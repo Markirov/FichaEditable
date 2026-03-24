@@ -635,7 +635,30 @@
             box-shadow: 0 0 15px rgba(183, 28, 28, 0.6);
             transform: translateY(-2px);
         }
-        body.theme-classic #landing-page .mech-data-panel {
+                body.theme-classic #landing-page .landing-hero {
+            pointer-events: none;
+        }
+        body.theme-classic #landing-page .landing-menu,
+        body.theme-classic #landing-page .landing-title {
+            position: relative;
+            z-index: 20;
+            pointer-events: auto;
+        }
+        .classic-theme-float-switch {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.75);
+            border: 1px solid #5c4200;
+            padding: 6px 8px;
+        }
+        body.theme-classic .classic-theme-float-switch {
+            display: flex;
+        }body.theme-classic #landing-page .mech-data-panel {
             right: 20px;
             top: 18%;
             width: 320px;
@@ -9113,6 +9136,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
 <body class="theme-new">
+    <div class="classic-theme-float-switch" title="Cambiar diseño">
+        <span class="theme-switch-label">Diseño</span>
+        <select id="classic-theme-switch" class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
+            <option value="theme-new">Nuevo</option>
+            <option value="theme-classic">Clásico</option>
+        </select>
+    </div>
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
@@ -29885,6 +29915,7 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
+
 
 
 
