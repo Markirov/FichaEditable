@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Shadow Hawk SHD-2ELH",
+    "file": "assets/mechs/Shadow Hawk SDH-2ELH.mtf"
+  },
+  {
+    "name": "Grasshopper GHR-5N",
+    "file": "assets/mechs/Grasshopper GHR-5N.mtf"
+  },
+  {
+    "name": "Grasshopper GHR-5H ELH",
+    "file": "assets/mechs/Grasshopper GHR-5H ELH.mtf"
+  },
+  {
+    "name": "Catapult CPLT-C1 ELH",
+    "file": "assets/mechs/Catapult CPLT-C1 ELH.mtf"
+  },
+  {
+    "name": "Dervish DV-6M ELH",
+    "file": "assets/mechs/Dervish DV-6M ELH.mtf"
+  },
+  {
+    "name": "Thunderbolt TDR-5SE ELH",
+    "file": "assets/mechs/Thunderbolt TDR-5SE ELH.mtf"
+  },
+  {
+    "name": "Wolverine WVR-6M ELH",
+    "file": "assets/mechs/Wolverine WVR-6M ELH.mtf"
+  }
+]
