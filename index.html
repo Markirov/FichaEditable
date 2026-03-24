@@ -579,12 +579,16 @@
             inset: 0;
             background: transparent;
         }
-        body.theme-classic #landing-page .mech-reveal-container {
-            top: 5%;
-            width: 25%;
-            height: 90%;
+        
+        /* scan-laser centrado y barrido vertical en nuevo */
+        body.theme-new #landing-page .scan-laser {
+            width: 56% !important;
+            left: 22% !important;
+            top: 0 !important;
+            right: auto !important;
+            z-index: 30 !important;
         }
-        body.theme-classic #landing-page .landing-title {
+body.theme-classic #landing-page .landing-title {
             display: block !important;
             font-size: 60px;
             text-transform: uppercase;
@@ -665,14 +669,18 @@
             height: 520px;
             z-index: 8;
         }
+        
+        
         body.theme-new #landing-page .mech-reveal-container {
-            left: 44%;      /* más a la izquierda para abrir hueco visual */
-            width: 36%;
-            height: 95%;
-            top: 2.5%;
+            position: fixed !important;
+            left: 56% !important;
+            top: 5% !important;
+            width: 28% !important;
+            height: 90% !important;
+            transform: translateX(-50%) !important;
+            z-index: 4 !important;
         }
-
-        body.theme-classic #landing-page .mech-silhouette-container {
+body.theme-classic #landing-page .mech-silhouette-container {
             display: block !important;
             left: 20px;
             top: 120px;
@@ -680,24 +688,33 @@
             height: 500px;
             z-index: 8;
         }
-        body.theme-classic #landing-page .mech-reveal-container {
-            left: 50%;
-            width: 25%;
-            height: 90%;
-            top: 5%;
+        
+        /* scan-laser centrado y barrido vertical en nuevo */
+        body.theme-new #landing-page .scan-laser {
+            width: 56% !important;
+            left: 22% !important;
+            top: 0 !important;
+            right: auto !important;
+            z-index: 30 !important;
         }
-
-        @media (max-width: 1280px) {
+@media (max-width: 1280px) {
             body.theme-new #landing-page .mech-silhouette-container {
                 left: 228px;
                 width: 280px;
                 height: 470px;
             }
-            body.theme-new #landing-page .mech-reveal-container {
-                left: 46%;
-                width: 34%;
-            }
+            
+        
+        body.theme-new #landing-page .mech-reveal-container {
+            position: fixed !important;
+            left: 56% !important;
+            top: 5% !important;
+            width: 28% !important;
+            height: 90% !important;
+            transform: translateX(-50%) !important;
+            z-index: 4 !important;
         }
+}
 body.theme-classic .classic-theme-float-switch {
             display: flex;
         }
@@ -827,11 +844,7 @@ body.theme-classic .classic-theme-float-switch {
             0% { transform: translateY(0); }
             100% { transform: translateY(100vh); }
         }
-
-
-        @keyframes scan-line-classic {
-            0% { transform: translateX(-35%); }
-            100% { transform: translateX(35%); }
+100% { transform: translateX(35%); }
         }
         
         /* Mech nuevo: se revela de arriba a abajo */
@@ -1469,26 +1482,31 @@ body.theme-classic .classic-theme-float-switch {
             z-index: 50 !important;
             display: block !important;
         }
+        
+        
         body.theme-new #landing-page .mech-reveal-container {
-            left: 44% !important;
-            top: 2.5% !important;
-            width: 36% !important;
-            height: 95% !important;
-        }
-        body.theme-classic #landing-page .mech-reveal-container {
             position: fixed !important;
-            left: 50% !important;
+            left: 56% !important;
             top: 5% !important;
-            width: 25% !important;
+            width: 28% !important;
             height: 90% !important;
             transform: translateX(-50%) !important;
             z-index: 4 !important;
         }
-        /* scan-laser centrado y barrido lateral en clasico */
+
+        /* scan-laser centrado y barrido vertical en nuevo */
+        body.theme-new #landing-page .scan-laser {
+            width: 56% !important;
+            left: 22% !important;
+            top: 0 !important;
+            right: auto !important;
+            z-index: 30 !important;
+        }
+/* scan-laser centrado y barrido vertical en clasico */
         body.theme-classic #landing-page .scan-laser {
-            width: 52% !important;
-            left: 24% !important;
-            top: 76% !important;
+            width: 56% !important;
+            left: 22% !important;
+            top: 0 !important;
             right: auto !important;
             z-index: 30 !important;
         }
@@ -8926,12 +8944,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         const SCAN_MECHS = ['marauder-scan', 'warhammer-scan', 'battlemaster-scan', 'locust-scan', 'wasp-scan'];
         const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
         const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
-        const SCAN_LASER_COMP_MS = 500; // Compensa render pesado de SVG
-        
-        function getScanLaserAnimName(){
-            return document.body.classList.contains('theme-classic') ? 'scan-line-classic' : 'scan-line';
-        }
-        let currentScanMechIndex = 0;
+                const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
+let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
         
         function initMechScanSystem() {
@@ -8974,7 +8988,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // Iniciar animación del láser
             if (laser) {
-                laser.style.animation = getScanLaserAnimName() + ' ' + SCAN_LASER_S + ' linear forwards';
+                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
             }
             
             // Rotar por ciclo sincronizado (sincronizado con la animación del láser)
@@ -9027,7 +9041,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (laser) {
                 laser.style.animation = 'none';
                 laser.offsetHeight; // Trigger reflow
-                laser.style.animation = getScanLaserAnimName() + ' ' + SCAN_LASER_S + ' linear forwards';
+                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
             }
         }
         
@@ -30014,6 +30028,9 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
+
+
+
 
 
 
