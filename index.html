@@ -563,7 +563,7 @@
         }
         /* Recuperación visual del diseño clásico (index (7).html) */
         body.theme-classic #landing-page {
-            display: flex !important;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -1439,7 +1439,38 @@ body.theme-classic .classic-theme-float-switch {
         #exit-confirmation-modal button:active {
             transform: translateY(0);
         }
-    </style>
+    
+        /* ANCLA FINAL BLUEPRINT (evita que reglas posteriores muevan el panel) */
+        body.theme-classic #landing-page .mech-silhouette-container {
+            position: fixed !important;
+            left: 20px !important;
+            top: 120px !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 320px !important;
+            height: 500px !important;
+            transform: none !important;
+            z-index: 50 !important;
+            display: block !important;
+        }
+        body.theme-new #landing-page .mech-silhouette-container {
+            position: fixed !important;
+            left: 236px !important;
+            top: 95px !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 320px !important;
+            height: 520px !important;
+            transform: none !important;
+            z-index: 50 !important;
+            display: block !important;
+        }
+        body.theme-new #landing-page .mech-reveal-container {
+            left: 44% !important;
+            top: 2.5% !important;
+            width: 36% !important;
+            height: 95% !important;
+        }</style>
 
     <script>
         // ============================================================================
@@ -29958,6 +29989,8 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
+
+
 
 
 
