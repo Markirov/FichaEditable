@@ -2,11 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Generador de Ficha MechWarrior Interactiva</title>
     <style>
+        /* === STITCH DESIGN SYSTEM VARIABLES === */
+        :root {
+            --surface: #10141a;
+            --surface-dim: #0a0e14;
+            --surface-container-low: #181c22;
+            --surface-container: #1c2026;
+            --surface-container-high: #262a31;
+            --surface-container-highest: #31353c;
+            --primary: #ffd79b;
+            --primary-dim: #ffba38;
+            --primary-container: #ffb300;
+            --on-primary: #432c00;
+            --secondary: #bdf4ff;
+            --on-surface: #dfe2eb;
+            --on-surface-variant: #d6c4ac;
+            --outline: #9e8e78;
+            --outline-variant: #514532;
+            --error: #ffb4ab;
+            --font-headline: 'Space Grotesk', 'Orbitron', sans-serif;
+            --font-body: 'Inter', 'Helvetica', sans-serif;
+            --font-mono: 'Share Tech Mono', 'Space Grotesk', monospace;
+        }
+        
+        /* Scanline CRT overlay */
+        .scanline-overlay {
+            position: fixed; inset: 0;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.15) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.03), rgba(0,255,0,0.01), rgba(0,0,255,0.03));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.3;
+        }
+
         body { 
-            font-family: 'Helvetica', 'Arial', sans-serif; 
-            margin: 20px; 
+            font-family: var(--font-body, Inter, sans-serif); 
+            margin: 0; 
             line-height: 1.4; 
             color: #e0e0e0; 
             font-size: 11pt; 
@@ -393,23 +426,22 @@
         /* --- LANDING PAGE MILITAR BATTLETECH --- */
         #landing-page {
             position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background-color: #000000;
-            background-image: none;
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            background-color: var(--surface, #10141a);
             z-index: 2000;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            color: #e0e0e0;
-            font-family: 'Orbitron', 'Impact', sans-serif;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            grid-template-rows: 48px 1fr;
+            grid-template-areas:
+                "header header"
+                "hero datapanel";
+            color: var(--on-surface, #dfe2eb);
+            font-family: var(--font-body, Inter, sans-serif);
             overflow: hidden;
+            padding-left: 220px;
         }
 
-        /* Fondo negro puro - sin patrón */
         #landing-page::before {
             display: none;
         }
@@ -421,20 +453,20 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent 10%, #00ff00 50%, transparent 90%);
+            background: linear-gradient(90deg, transparent 10%, var(--secondary, #bdf4ff) 50%, transparent 90%);
             z-index: 10;
-            box-shadow: 0 0 8px #00ff00, 0 0 15px #00ff00;
+            box-shadow: 0 0 8px var(--secondary, #bdf4ff), 0 0 15px var(--secondary, #bdf4ff);
             pointer-events: none;
         }
         
         /* Contenedor principal de mechs */
         .mech-reveal-container {
             position: absolute;
-            top: 5%;
+            top: 2%;
             left: 50%;
             transform: translateX(-50%);
-            width: 25%;
-            height: 90%;
+            width: 40%;
+            height: 96%;
             z-index: 2;
             pointer-events: none;
             overflow: visible;
@@ -502,15 +534,7 @@
         }
 
         .landing-title {
-            font-size: 60px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 15px rgba(255, 140, 66, 0.6), 0 0 30px rgba(255, 140, 66, 0.3);
-            margin-bottom: 50px;
-            border: 3px solid #4a5a6a;
-            padding: 20px;
-            background: rgba(26, 26, 26, 0.4);
-            box-shadow: 0 0 20px rgba(255, 140, 66, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            display: none; /* Replaced by header */
             color: #ff8c42;
             position: relative;
             z-index: 10;
@@ -518,54 +542,45 @@
         }
 
         .landing-menu {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            width: 650px;
-            position: relative;
-            z-index: 10;
+            display: none; /* Replaced by sidebar */
         }
 
         .cyber-button {
-            background: rgba(26, 26, 26, 0.8);
-            border: 2px solid #b71c1c;
-            color: #e0e0e0;
-            padding: 12px 10px;
-            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--on-surface-variant, #d6c4ac);
+            padding: 10px 14px;
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 12px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            transition: all 0.2s;
+            text-align: left;
+            clip-path: none;
             position: relative;
             overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+            padding-left: 220px;
         }
 
-        .cyber-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(183, 28, 28, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-            z-index: -1;
-        }
-
-        .cyber-button:hover::before {
-            width: 100%;
-            height: 100%;
-        }
-
+        .cyber-button::before { content: none; }
+        .cyber-button:hover::before { display: none; }
         .cyber-button:hover {
-            background: #b71c1c;
-            color: #000;
-            box-shadow: 0 0 25px rgba(183, 28, 28, 0.6);
-            transform: scale(1.05);
+            background: var(--surface-container-high, #262a31);
+            color: var(--primary, #ffd79b);
+            transform: none;
+            box-shadow: none;
         }
+        .cyber-button.active {
+            background: var(--primary, #ffd79b);
+            color: var(--on-primary, #432c00);
+            font-weight: 600;
+        }
+        .cyber-button .btn-icon { font-size: 16px; width: 20px; text-align: center; }
 
         .cyber-button.disabled {
             border-color: #5a3a3a;
@@ -597,9 +612,83 @@
 
         /* ESQUEMAS DE ARMAS LATERALES */
         /* CONTENEDOR DE SILUETAS DE MECHS (IZQUIERDA) - ESTILO BLUEPRINT */
-        .mech-silhouette-container {
+        /* Header bar */
+        .landing-header {
+            grid-area: header;
+            display: grid;
+            grid-template-columns: 220px 1fr 220px;
+            align-items: center;
+            padding: 0 20px;
+            background: var(--surface-dim, #0a0e14);
+            border-bottom: 1px solid var(--surface-container-highest, #31353c);
+            z-index: 20;
+        }
+        .landing-header-brand {
+            grid-column: 2;
+            justify-self: center;
+            text-align: center;
+            font-family: var(--font-headline);
+            font-size: 12px; font-weight: 700;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 2px;
+        }
+        .landing-header-brand .hidden-config {
+            cursor: pointer; transition: color 0.3s;
+        }
+        .landing-header-brand .hidden-config:hover {
+            color: var(--secondary, #bdf4ff);
+        }
+        .landing-header-info {
+            grid-column: 3;
+            justify-self: end;
+            display: flex; gap: 12px; align-items: center;
+        }
+        .header-stat {
+            text-align: center; padding: 2px 14px;
+            border: 1px solid var(--outline-variant, #514532);
+            background: var(--surface-container-low, #181c22);
+        }
+        .header-stat-label {
+            font-family: var(--font-headline); font-size: 8px;
+            color: var(--outline, #9e8e78); letter-spacing: 1px; text-transform: uppercase;
+        }
+        .header-stat-value {
+            font-family: var(--font-headline); font-size: 16px;
+            font-weight: 700; color: var(--primary, #ffd79b);
+        }
+        
+        /* Sidebar */
+        .landing-sidebar {
             position: fixed;
-            left: 20px;
+            left: 0;
+            top: 48px;
+            bottom: 0;
+            width: 220px;
+            background: var(--surface-dim, #0a0e14);
+            padding: 12px 8px;
+            display: flex; flex-direction: column; gap: 2px;
+            border-right: 1px solid var(--surface-container-highest, #31353c);
+            overflow-y: auto;
+            z-index: 15;
+        }
+        .sidebar-section-label {
+            font-family: var(--font-headline); font-size: 9px;
+            color: var(--outline, #9e8e78); letter-spacing: 2px;
+            text-transform: uppercase; padding: 10px 8px 4px;
+        }
+        
+        /* Hero center */
+        .landing-hero {
+            grid-area: hero;
+            position: relative;
+            background: var(--surface, #10141a);
+            overflow: hidden;
+            padding-left: 220px;
+        }
+        
+        .mech-silhouette-container {
+            position: absolute;
+            left: 3%;
             top: 120px;
             width: 320px;
             height: 500px;
@@ -705,17 +794,16 @@
         }
 
         .mech-name {
-            font-size: 15px;
-            color: #00ff00;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.4);
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #00ff00;
-            animation: typing 1.65s steps(20) forwards, blink 0.75s step-end infinite;
-            animation-fill-mode: forwards;
+            font-family: var(--font-headline);
+            font-size: 16px;
+            color: var(--primary, #ffd79b);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            text-shadow: none;
+            overflow: visible; white-space: normal;
+            border-right: none;
+            animation: none;
         }
 
         @keyframes typing {
@@ -729,15 +817,17 @@
         }
 
         .mech-spec {
-            font-size: 10px;
-            color: #00ff00;
-            margin: 5px 0;
-            padding-left: 8px;
-            border-left: 2px solid #00aa00;
-            opacity: 0;
-            animation: fadeInLine 0.5s ease-in forwards;
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--on-surface-variant, #d6c4ac);
+            margin: 0 0 2px 0;
+            padding: 8px 10px;
+            border-left: 2px solid var(--outline-variant, #514532);
+            opacity: 1;
+            animation: none;
+            text-shadow: none;
             line-height: 1.4;
+            background: var(--surface-container-low, #181c22);
         }
 
         .mech-spec:nth-child(2) {
@@ -788,6 +878,58 @@
             .mech-data-panel {
                 display: none;
             }
+            #landing-page {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "hero";
+                padding-left: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #landing-page {
+                grid-template-columns: 1fr;
+                grid-template-rows: 48px 1fr;
+                grid-template-areas:
+                    "header"
+                    "hero";
+                padding-left: 0;
+            }
+            .landing-sidebar {
+                position: static;
+                width: 100%;
+                top: auto; bottom: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border-right: none;
+                border-bottom: 1px solid var(--surface-container-highest, #31353c);
+                padding: 6px;
+                overflow-x: auto;
+            }
+            .cyber-button { padding: 6px 10px; font-size: 10px; }
+            .sidebar-section-label { display: none; }
+            .mech-silhouette-container { display: none; }
+            .landing-header { grid-template-columns: 1fr auto; }
+            .landing-header-brand { grid-column: 1; justify-self: start; text-align: left; }
+            .landing-header-info { grid-column: 2; justify-self: end; }
+        }
+            .landing-sidebar {
+            position: fixed;
+            left: 0;
+            top: 48px;
+            bottom: 0;
+            width: 220px;
+            background: var(--surface-dim, #0a0e14);
+            padding: 12px 8px;
+            display: flex; flex-direction: column; gap: 2px;
+            border-right: 1px solid var(--surface-container-highest, #31353c);
+            overflow-y: auto;
+            z-index: 15;
+        }
+            .cyber-button { padding: 6px 10px; font-size: 10px; }
+            .sidebar-section-label { display: none; }
+            .mech-silhouette-container { display: none; }
         }
 
         @media print {
@@ -4877,7 +5019,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goHome() {
             if(confirm("¿Volver al inicio? Se perderán los datos no guardados.")) {
-                document.getElementById('landing-page').style.display = 'flex';
+                document.getElementById('landing-page').style.display = 'grid';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('galactic-map').style.display = 'none';
@@ -4899,7 +5041,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goHomeNoConfirm() {
             clearCriticalInfoDisplays();
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -4915,7 +5057,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         function goHomeFromTRR() {
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -5193,7 +5335,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Barracones...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'flex';
+                document.getElementById('landing-page').style.display = 'grid';
                 document.getElementById('barracones').style.display = 'none';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
@@ -5212,7 +5354,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Generador...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'flex';
+                document.getElementById('landing-page').style.display = 'grid';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('barracones').style.display = 'none';
@@ -5252,7 +5394,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // Ocultar Registro de Combate
             document.getElementById('registro-combate').style.display = 'none';
                 // Mostrar menú principal
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
                 console.log('✅ Menú principal mostrado');
         }
 
@@ -6242,6 +6384,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al landing page principal
          */
         function goToLanding() {
+            const toolbar = document.getElementById('barracones-toolbar');
+            if (toolbar) toolbar.style.display = 'none';
             // Ocultar todas las secciones principales
             const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
                               'registro-combate', 'trr-section', 'battle-tracker', 'trr-hub-section',
@@ -6290,7 +6434,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (modifiersTable) modifiersTable.style.display = 'none';
             
             // Mostrar landing
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
             
             // Scroll al inicio
             window.scrollTo(0, 0);
@@ -6986,7 +7130,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function backToHomeFromTRO() {
             document.getElementById('tro-section').style.display = 'none';
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
         }
 
         function updateTROStats() {
@@ -7552,7 +7696,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function init() {
             // Estado inicial: Landing Page visible, lo demás oculto
-            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('landing-page').style.display = 'grid';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('points-counter').style.display = 'none';
@@ -8740,52 +8884,81 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     </div>
 
     <!-- LANDING PAGE MILITAR BATTLETECH -->
+    <!-- SCANLINE CRT OVERLAY -->
+    <div class="scanline-overlay"></div>
+    
     <div id="landing-page">
-        <!-- Línea de escaneo láser -->
-        <div class="scan-laser" id="scan-laser"></div>
-        <!-- Sistema de revelado de Mechs -->
-        <div class="mech-reveal-container">
-            <!-- Capa actual (se borra) -->
-            <div class="mech-layer-current" id="mech-layer-current"></div>
-            <!-- Capa siguiente (se dibuja) -->
-            <div class="mech-layer-next" id="mech-layer-next"></div>
+        <!-- === HEADER BAR (pegado arriba) === -->
+        <header class="landing-header">
+            <span class="landing-header-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
+            <div class="landing-header-info">
+                <div class="header-stat">
+                    <div class="header-stat-label">AÑO CAMPAÑA</div>
+                    <div class="header-stat-value"><span id="current-campaign-year">3026</span></div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- === SIDEBAR (pegado al lateral izquierdo) === -->
+        <nav class="landing-sidebar">
+            <div class="sidebar-section-label">OPERACIONES</div>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+            
+            <div class="sidebar-section-label">TÁCTICO</div>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
+            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
+            
+            <div class="sidebar-section-label">INTEL</div>
+            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> Crónicas</button>
+        </nav>
+        
+        <!-- === HERO CENTER (Mech Scan) === -->
+        <div class="landing-hero">
+            <div class="scan-laser" id="scan-laser"></div>
+            <div class="mech-reveal-container">
+                <div class="mech-layer-current" id="mech-layer-current"></div>
+                <div class="mech-layer-next" id="mech-layer-next"></div>
+            </div>
+            <div class="mech-svg-storage" id="mech-svg-storage">
+                <div id="mech-svg-marauder-scan"></div>
+                <div id="mech-svg-warhammer-scan"></div>
+                <div id="mech-svg-battlemaster-scan"></div>
+                <div id="mech-svg-locust-scan"></div>
+                <div id="mech-svg-wasp-scan"></div>
+            </div>
+            <div class="mech-silhouette-container">
+                <svg id="mech-svg-marauder" class="mech-svg-object" style="display:none;"></svg>
+                <svg id="mech-svg-warhammer" class="mech-svg-object" style="display:none;"></svg>
+                <svg id="mech-svg-battlemaster" class="mech-svg-object" style="display:none;"></svg>
+                <svg id="mech-svg-locust" class="mech-svg-object" style="display:none;"></svg>
+                <svg id="mech-svg-wasp" class="mech-svg-object" style="display:none;"></svg>
+            </div>
         </div>
         
-        <!-- Almacén de SVGs de Mechs (oculto) -->
-        <!-- Almacén de SVGs de Mechs (cargados desde archivos externos) -->
-        <div class="mech-svg-storage" id="mech-svg-storage">
-            <div id="mech-svg-marauder-scan"></div>
-            <div id="mech-svg-warhammer-scan"></div>
-            <div id="mech-svg-battlemaster-scan"></div>
-            <div id="mech-svg-locust-scan"></div>
-            <div id="mech-svg-wasp-scan"></div>
-        </div>
-        <!-- Panel de siluetas de mechs izquierdo (cargadas desde archivos externos) -->
-        <div class="mech-silhouette-container">
-            <svg id="mech-svg-marauder" class="mech-svg-object" style="display:none;"></svg>
-            <svg id="mech-svg-warhammer" class="mech-svg-object" style="display:none;"></svg>
-            <svg id="mech-svg-battlemaster" class="mech-svg-object" style="display:none;"></svg>
-            <svg id="mech-svg-locust" class="mech-svg-object" style="display:none;"></svg>
-            <svg id="mech-svg-wasp" class="mech-svg-object" style="display:none;"></svg>
-        </div>
-        <!-- Panel de datos de mechs (derecha) -->
+        <!-- === DATA PANEL (derecha) === -->
         <div class="mech-data-panel">
+            <div style="font-family:var(--font-headline);font-size:10px;color:var(--outline);letter-spacing:2px;text-transform:uppercase;padding-bottom:8px;border-bottom:1px solid var(--surface-container-highest,#31353c);">UNIT_SPECS</div>
             <div class="mech-data-content">
-                <div class="mech-name">GM MAD-3D MARAUDER</div>
+                <div class="mech-name">MAD-3D MARAUDER</div>
                 <div class="mech-spec">CHASIS: GM Marauder (Pesado)</div>
                 <div class="mech-spec">MASA: 75 TONS</div>
                 <div class="mech-spec">MOTOR: Vlar 300 Fusión</div>
                 <div class="mech-spec">VELOCIDAD: 43.2/64.8 km/h</div>
-                <div class="mech-spec">BLINDAJE: 11.5 Tons Blindaje</div>
+                <div class="mech-spec">BLINDAJE: 11.5 Tons</div>
                 <div class="mech-spec">TÉRMICO: 20 Disipadores</div>
                 <div class="mech-spec">ARMAS: 2x PPC, 1x LL, 2x ML</div>
             </div>
         </div>
-
-        <div class="landing-title">MECHWARRIOR<br><span style="font-size:30px; display:block; text-align:center; margin-top:10px;"><span id="current-campaign-year">3026</span> <span onclick="toggleConfigDatabase()" style="cursor: pointer; transition: all 0.3s;" title="⚙️ Configuración Técnica">D</span>ATABASE SYSTEM</span></div>
+        
+        <!-- Hidden elements for compatibility -->
+        <div class="landing-title" style="display:none;">MECHWARRIOR</div>
         
         <!-- ============ PANEL DE CONFIGURACIÓN TÉCNICA OCULTO ============ -->
-        <div id="config-database-panel" style="display: none; background: rgba(0,0,0,0.98); border: 2px solid #ffae00; padding: 20px; margin: 0 auto 20px auto; max-width: 600px; animation: slideDown 0.3s ease; box-shadow: 0 0 50px rgba(0,0,0,1);">
+        <div id="config-database-panel" style="display: none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background: #181c22; border: 1px solid #514532; padding: 24px; max-width: 500px; width:90%; z-index:5000; box-shadow: 0 8px 32px rgba(0,0,0,0.8);">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #5c4200; padding-bottom: 10px;">
                 <h3 style="color: #ffae00; margin: 0; font-family: 'Share Tech Mono', monospace; font-size: 14px;">⚙️ CONFIGURACIÓN TÉCNICA</h3>
                 <button onclick="toggleConfigDatabase()" style="background: none; border: 1px solid #ffae00; color: #ffae00; padding: 5px 10px; cursor: pointer; font-family: 'Share Tech Mono', monospace; font-size: 12px;">✖ CERRAR</button>
@@ -8824,16 +8997,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             </div>
         </div>
         
-        <div class="landing-menu">
-            <button class="cyber-button" onclick="goToGenerator()">Generador de Personajes</button>
-            <button class="cyber-button" onclick="goToBarracones()">Barracones</button>
-            <button class="cyber-button" onclick="goToTRRHub()">📋 Ayudas</button>
-            <button class="cyber-button" onclick="goToCronicasHub()">📜 Crónicas & Historial</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()">⚔️ Calculador Combate RPG</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()">Registro de Combate</button>
-            <button class="cyber-button" onclick="goToBattleTracker()">🎯 Seguimiento de Combate</button>
-            <button class="cyber-button" onclick="goToTRO()">TRO: Technical Readout</button>
-        </div>
+        <div class="landing-menu" style="display:none;"></div>
         
         <!-- Script para funciones de configuración (debe estar aquí para ser accesible desde landing-page) -->
         <script>
@@ -9755,7 +9919,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         <div style="padding:8px; background:rgba(0,0,0,0.5); border:1px solid #5c4200;">
             <div style="display:flex; align-items:center; gap:8px;">
                 <div style="font-size:8px; color:#ffae00; letter-spacing:1px; min-width:36px;">CALOR</div>
-                <div style="flex:1; height:12px; background:#0a0500; border:1px solid #5c4200; border-radius:2px; position:relative; overflow:hidden;">
+                <div style="flex:1; height:12px; background:#0a0500; border:1px solid #5c4200; border-radius:2px; position:relative; overflow: hidden;
+            padding-left: 220px;">
                     <div id="mech-heat-bar" style="position:absolute; top:0; left:0; height:100%; width:0%; border-radius:2px; transition:width 0.3s; background:linear-gradient(to right,#00ff41,#ffae00,#ff0000);"></div>
                     <div style="position:absolute; top:0; left:16.7%; width:1px; height:100%; background:#ffae0060;"></div>
                     <div style="position:absolute; top:0; left:26.7%; width:1px; height:100%; background:#ffae0060;"></div>
@@ -9995,6 +10160,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 padding: 25px;
                 position: relative;
                 overflow: hidden;
+            padding-left: 220px;
             }
             .trr-hub-sector::before {
                 content: '';
@@ -10060,9 +10226,32 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 color: #fff;
             }
             @media (max-width: 768px) {
-                .trr-hub-grid {
-                    grid-template-columns: 1fr;
-                }
+            #landing-page {
+                grid-template-columns: 1fr;
+                grid-template-rows: 48px 1fr;
+                grid-template-areas:
+                    "header"
+                    "hero";
+                padding-left: 0;
+            }
+            .landing-sidebar {
+                position: static;
+                width: 100%;
+                top: auto; bottom: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border-right: none;
+                border-bottom: 1px solid var(--surface-container-highest, #31353c);
+                padding: 6px;
+                overflow-x: auto;
+            }
+            .cyber-button { padding: 6px 10px; font-size: 10px; }
+            .sidebar-section-label { display: none; }
+            .mech-silhouette-container { display: none; }
+            .landing-header { grid-template-columns: 1fr auto; }
+            .landing-header-brand { grid-column: 1; justify-self: start; text-align: left; }
+            .landing-header-info { grid-column: 2; justify-self: end; }
+        }
                 .trr-hub-title {
                     font-size: 28px;
                 }
@@ -10175,6 +10364,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 transition: all 0.3s;
                 position: relative;
                 overflow: hidden;
+            padding-left: 220px;
             }
             .cronicas-hub-card::before {
                 content: '';
@@ -10227,9 +10417,32 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 color: #fff;
             }
             @media (max-width: 768px) {
-                .cronicas-hub-grid {
-                    grid-template-columns: 1fr;
-                }
+            #landing-page {
+                grid-template-columns: 1fr;
+                grid-template-rows: 48px 1fr;
+                grid-template-areas:
+                    "header"
+                    "hero";
+                padding-left: 0;
+            }
+            .landing-sidebar {
+                position: static;
+                width: 100%;
+                top: auto; bottom: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border-right: none;
+                border-bottom: 1px solid var(--surface-container-highest, #31353c);
+                padding: 6px;
+                overflow-x: auto;
+            }
+            .cyber-button { padding: 6px 10px; font-size: 10px; }
+            .sidebar-section-label { display: none; }
+            .mech-silhouette-container { display: none; }
+            .landing-header { grid-template-columns: 1fr auto; }
+            .landing-header-brand { grid-column: 1; justify-self: start; text-align: left; }
+            .landing-header-info { grid-column: 2; justify-self: end; }
+        }
                 .cronicas-hub-title {
                     font-size: 28px;
                 }
@@ -11967,19 +12180,22 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <p style="color: #888; font-family: 'Courier New', monospace; font-size: 18px; letter-spacing: 3px; text-shadow: 0 0 5px rgba(136, 136, 136, 0.5);">TABLA DE RESOLUCIÓN RÁPIDA - Herramientas de Combate</p>
             </div>
                 <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-                <button class="cyber-button" onclick="goToClusterTable()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToClusterTable()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🎯</span>
                         TABLA DE CLUSTER
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToDamageGrouper()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToDamageGrouper()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">💥</span>
                         AGRUPADOR DE DAÑOS
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToModifiersTable()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToModifiersTable()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">📊</span>
                         TABLA DE MODIFICADORES
@@ -12177,13 +12393,15 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <p style="color: #888; font-family: 'Courier New', monospace; font-size: 18px; letter-spacing: 3px; text-shadow: 0 0 5px rgba(136, 136, 136, 0.5);">Sistema de Combate para BattleMechs</p>
             </div>
                 <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-                <button class="cyber-button" onclick="goToMechLocations()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToMechLocations()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🎯</span>
                         LOCALIZACIONES
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToMechCriticals()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToMechCriticals()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">⚠️</span>
                         CRITICOS
@@ -12515,19 +12733,22 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <p style="color: #888; font-family: 'Courier New', monospace; font-size: 18px; letter-spacing: 3px; text-shadow: 0 0 5px rgba(136, 136, 136, 0.5);">Sistema de Combate para Vehículos Blindados</p>
             </div>
                 <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-                <button class="cyber-button" onclick="goToVehicleLocations()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToVehicleLocations()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🎯</span>
                         LOCALIZACIONES
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToVehicleCriticals()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToVehicleCriticals()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">⚠️</span>
                         CRITICOS
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToVehicleMotive()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToVehicleMotive()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🔧</span>
                         MOTIVE
@@ -12946,13 +13167,15 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <p style="color: #888; font-family: 'Courier New', monospace; font-size: 18px; letter-spacing: 3px; text-shadow: 0 0 5px rgba(136, 136, 136, 0.5);">TABLA DE RESOLUCIÓN RÁPIDA - Sistema de Combate</p>
             </div>
                 <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
-                <button class="cyber-button" onclick="goToTRRCombat()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToTRRCombat()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">⚔️</span>
                         COMBATE
                     </div>
                 </button>
-                <button class="cyber-button" onclick="goToTRRWeapons()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+                <button class="cyber-button" onclick="goToTRRWeapons()" style="width: 320px; height: 100px; font-size: 22px; position: relative; overflow: hidden;
+            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🔫</span>
                         TABLA DE ARMAMENTO
@@ -15271,7 +15494,7 @@ function goToCronicas() {
  */
 function goHomeFromCronicas() {
     document.getElementById('cronicas-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'flex';
+    document.getElementById('landing-page').style.display = 'grid';
 }
 
 /**
@@ -15485,7 +15708,7 @@ function goToHistorialLogros() {
  */
 function goHomeFromHistorial() {
     document.getElementById('historial-logros-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'flex';
+    document.getElementById('landing-page').style.display = 'grid';
 }
 
 /**
@@ -15842,7 +16065,8 @@ async function cargarCronicas() {
                 const estiloCapitalizado = cronica.estilo ? cronica.estilo.charAt(0).toUpperCase() + cronica.estilo.slice(1) : 'Épico';
                 
                 html += `
-                    <div style="background: linear-gradient(135deg, rgba(255, 174, 0, 0.05) 0%, rgba(0,0,0,0.4) 100%); border: 2px solid #5c4200; padding: 0; overflow: hidden; ${index === 0 ? 'border-color: #ffae00;' : ''}">
+                    <div style="background: linear-gradient(135deg, rgba(255, 174, 0, 0.05) 0%, rgba(0,0,0,0.4) 100%); border: 2px solid #5c4200; padding: 0; overflow: hidden;
+            padding-left: 220px; ${index === 0 ? 'border-color: #ffae00;' : ''}">
                         <!-- Cabecera -->
                         <div style="background: rgba(255, 174, 0, 0.15); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #5c4200;">
                             <div>
@@ -16041,7 +16265,8 @@ console.log('📊 Sistema de Historial, Logros y Crónicas inicializado');
                 <p style="color: #00ff41; margin: 0; font-family: 'Share Tech Mono', monospace; letter-spacing: 2px;">REPARTO DE EXPERIENCIA BASADO EN CONTRIBUCIÓN</p>
             </div>
             
-            <div id="bt-results-table" style="background: rgba(26, 26, 26, 0.8); border: 2px solid #ffae00; overflow: hidden; margin-bottom: 24px; clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);"></div>
+            <div id="bt-results-table" style="background: rgba(26, 26, 26, 0.8); border: 2px solid #ffae00; overflow: hidden;
+            padding-left: 220px; margin-bottom: 24px; clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);"></div>
             
             <div id="bt-results-summary" style="background: rgba(26, 26, 26, 0.6); border: 1px solid #5c4200; padding: 20px; color: #888; font-size: 14px; margin-bottom: 16px; font-family: 'Share Tech Mono', monospace;"></div>
             
@@ -16401,7 +16626,8 @@ function renderSavedForcesList() {
         <div style="background: rgba(0, 0, 0, 0.5); border: 1px solid #5c4200; padding: 12px; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
             <div style="flex-grow: 1; min-width: 0;">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                    <span style="font-weight: bold; color: #ffae00; font-family: 'Share Tech Mono', monospace; font-size: 14px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${force.name}</span>
+                    <span style="font-weight: bold; color: #ffae00; font-family: 'Share Tech Mono', monospace; font-size: 14px; text-transform: uppercase; white-space: nowrap; overflow: hidden;
+            padding-left: 220px; text-overflow: ellipsis;">${force.name}</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span style="font-size: 11px; color: #00ff41; font-family: 'Share Tech Mono', monospace;">${force.units.length} unidades</span>
@@ -16812,7 +17038,8 @@ function renderCombatEnemies() {
         const enemyColor = enemy.color || '#ffae00';
         
         return `
-            <div style="background: rgba(26, 26, 26, 0.8); border: 2px solid ${isDead ? '#b71c1c' : '#16a34a'}; margin-bottom: 20px; overflow: hidden; opacity: ${isDead ? '1' : '0.6'}; ${isDead ? '' : 'filter: grayscale(0.7);'} clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);">
+            <div style="background: rgba(26, 26, 26, 0.8); border: 2px solid ${isDead ? '#b71c1c' : '#16a34a'}; margin-bottom: 20px; overflow: hidden;
+            padding-left: 220px; opacity: ${isDead ? '1' : '0.6'}; ${isDead ? '' : 'filter: grayscale(0.7);'} clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%);">
                 <div style="background: rgba(0, 0, 0, 0.5); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #5c4200; border-left: 4px solid ${enemyColor};">
                     <div>
                         <h3 style="font-weight: bold; font-size: 18px; color: ${enemyColor}; margin: 0 0 4px 0; font-family: 'Share Tech Mono', monospace; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 10px ${enemyColor}50;">${enemy.name}</h3>
@@ -16829,7 +17056,8 @@ function renderCombatEnemies() {
                         const playerName = PLAYER_NAMES[idx + 1];
                         return `
                             <div style="display: flex; flex-direction: column; gap: 6px;">
-                                <button onclick="handleHit('${enemy.id}', ${idx}, 1)" style="height: 80px; background: rgba(0, 0, 0, 0.5); border: 2px solid #5c4200; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);" onmouseover="this.style.borderColor='#ffae00'; this.style.boxShadow='0 0 15px rgba(255, 174, 0, 0.3)'" onmouseout="this.style.borderColor='#5c4200'; this.style.boxShadow='none'">
+                                <button onclick="handleHit('${enemy.id}', ${idx}, 1)" style="height: 80px; background: rgba(0, 0, 0, 0.5); border: 2px solid #5c4200; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden;
+            padding-left: 220px; transition: all 0.2s; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);" onmouseover="this.style.borderColor='#ffae00'; this.style.boxShadow='0 0 15px rgba(255, 174, 0, 0.3)'" onmouseout="this.style.borderColor='#5c4200'; this.style.boxShadow='none'">
                                     <span style="font-size: 11px; font-weight: bold; color: #888; text-transform: uppercase; letter-spacing: 1px; font-family: 'Share Tech Mono', monospace;">${playerName}</span>
                                     <span style="font-size: 32px; font-weight: bold; color: #ffae00; font-family: 'Share Tech Mono', monospace; text-shadow: 0 0 10px rgba(255, 174, 0, 0.5);">${hits}</span>
                                     <span style="font-size: 10px; color: #00ff41; font-family: 'Share Tech Mono', monospace;">IMPACTOS</span>
@@ -17748,7 +17976,7 @@ function abrirCalculadorCombate() {
 
 function cerrarCalculadorCombate() {
     document.getElementById('combat-calculator-modal').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'flex';
+    document.getElementById('landing-page').style.display = 'grid';
     console.log('⚔️ Calculador cerrado');
 }
 
@@ -19165,6 +19393,5678 @@ const MECH_WEAPON_DB = {
   'Gauss Rifle':{'d':'Gauss Rifle','h':1,'dm':'15','r':'7/15/22'},
   'Light AC/2':{'d':'Light AC/2','h':1,'dm':'2','r':'6/12/18'},'Light AC/5':{'d':'Light AC/5','h':2,'dm':'5','r':'5/10/15'},
 };
+
+const WEAPONS_MIN_EMBEDDED = {
+  "(CL) AP Gauss Rifle": {
+    "MegaMekName": "CLAPGaussRifle",
+    "ActualName": "Anti-Personnel Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 40,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Arrow IV Missile": {
+    "MegaMekName": "CLArrowIV",
+    "ActualName": "Arrow IV Missile",
+    "type": "ARROW_IV",
+    "Heat": 10,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 9,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ATM-12": {
+    "MegaMekName": "CLATM12",
+    "ActualName": "Advanced Tactical Missile-12",
+    "type": "ATM",
+    "Heat": 8,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 12,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) ATM-3": {
+    "MegaMekName": "CLATM3",
+    "ActualName": "Advanced Tactical Missile-3",
+    "type": "ATM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 3,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) ATM-6": {
+    "MegaMekName": "CLATM6",
+    "ActualName": "Advanced Tactical Missile-6",
+    "type": "ATM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) ATM-9": {
+    "MegaMekName": "CLATM9",
+    "ActualName": "Advanced Tactical Missile-9",
+    "type": "ATM",
+    "Heat": 6,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 7,
+    "RackSize": 9,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) ER Large Laser": {
+    "MegaMekName": "CLERLargeLaser",
+    "ActualName": "Extended Range Large Laser",
+    "type": "LASER",
+    "Heat": 12,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 8,
+    "RngMed": 15,
+    "RngLng": 25,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Large Pulse Laser": {
+    "MegaMekName": "CLERLargePulseLaser",
+    "ActualName": "Extended Range Large Pulse Laser",
+    "type": "LASER",
+    "Heat": 13,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 23,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Medium Laser": {
+    "MegaMekName": "CLERMediumLaser",
+    "ActualName": "Extended Range Medium Laser",
+    "type": "LASER",
+    "Heat": 5,
+    "DamSht": 7,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Medium Pulse Laser": {
+    "MegaMekName": "CLERMediumPulseLaser",
+    "ActualName": "Extended Range Medium Pulse Laser",
+    "type": "LASER",
+    "Heat": 6,
+    "DamSht": 7,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 9,
+    "RngLng": 14,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Micro Laser": {
+    "MegaMekName": "CLERMicroLaser",
+    "ActualName": "Extended Range Micro Laser",
+    "type": "LASER",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 4,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER PPC": {
+    "MegaMekName": "CLERPPC",
+    "ActualName": "Extended Range Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 15,
+    "DamSht": 15,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 23,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Small Laser": {
+    "MegaMekName": "CLERSmallLaser",
+    "ActualName": "Extended Range Small Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) ER Small Pulse Laser": {
+    "MegaMekName": "CLERSmallPulseLaser",
+    "ActualName": "Extended Range Small Pulse Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Flamer": {
+    "MegaMekName": "CLFlamer",
+    "ActualName": "Flamer",
+    "type": "FLAMER",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Gauss Rifle": {
+    "MegaMekName": "CLGaussRifle",
+    "ActualName": "Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Heavy Large Laser": {
+    "MegaMekName": "CLHeavyLargeLaser",
+    "ActualName": "Heavy Large Laser",
+    "type": "LASER",
+    "Heat": 18,
+    "DamSht": 16,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Heavy Machine Gun": {
+    "MegaMekName": "CLHeavyMG",
+    "ActualName": "Heavy Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 100,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Heavy Medium Laser": {
+    "MegaMekName": "CLHeavyMediumLaser",
+    "ActualName": "Heavy Medium Laser",
+    "type": "LASER",
+    "Heat": 7,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Heavy Small Laser": {
+    "MegaMekName": "CLHeavySmallLaser",
+    "ActualName": "Heavy Small Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 6,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Hyper Assault Gauss 20": {
+    "MegaMekName": "CLHAG20",
+    "ActualName": "Hyper Assault Gauss 20",
+    "type": "GAUSS",
+    "Heat": 4,
+    "DamSht": 20,
+    "RngMin": 2,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Hyper Assault Gauss 30": {
+    "MegaMekName": "CLHAG30",
+    "ActualName": "Hyper Assault Gauss 30",
+    "type": "GAUSS",
+    "Heat": 6,
+    "DamSht": 30,
+    "RngMin": 2,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 30,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Hyper Assault Gauss 40": {
+    "MegaMekName": "CLHAG40",
+    "ActualName": "Hyper Assault Gauss 40",
+    "type": "GAUSS",
+    "Heat": 8,
+    "DamSht": 40,
+    "RngMin": 2,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 3,
+    "RackSize": 40,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) iATM-12": {
+    "MegaMekName": "CLiATM12",
+    "ActualName": "Improved Advanced Tactical Missile-12",
+    "type": "ATM",
+    "Heat": 8,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 12,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) iATM-3": {
+    "MegaMekName": "CLiATM3",
+    "ActualName": "Improved Advanced Tactical Missile-3",
+    "type": "ATM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 3,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) iATM-6": {
+    "MegaMekName": "CLiATM6",
+    "ActualName": "Improved Advanced Tactical Missile-6",
+    "type": "ATM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) iATM-9": {
+    "MegaMekName": "CLiATM9",
+    "ActualName": "Improved Advanced Tactical Missile-9",
+    "type": "ATM",
+    "Heat": 6,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 7,
+    "RackSize": 9,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved Autocannon/10": {
+    "MegaMekName": "Improved Autocannon/10",
+    "ActualName": "Improved Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 3,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Autocannon/2": {
+    "MegaMekName": "Improved Autocannon/2",
+    "ActualName": "Improved Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Autocannon/20": {
+    "MegaMekName": "Improved Autocannon/20",
+    "ActualName": "Improved Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 7,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Autocannon/5": {
+    "MegaMekName": "Improved Autocannon/5",
+    "ActualName": "Improved Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Gauss Rifle": {
+    "MegaMekName": "Improved Gauss Rifle",
+    "ActualName": "Improved Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Heavy Large Laser": {
+    "MegaMekName": "CLImprovedHeavyLargeLaser",
+    "ActualName": "Improved Heavy Large Laser",
+    "type": "LASER",
+    "Heat": 18,
+    "DamSht": 16,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Heavy Medium Laser": {
+    "MegaMekName": "CLImprovedHeavyMediumLaser",
+    "ActualName": "Improved Heavy Medium Laser",
+    "type": "LASER",
+    "Heat": 7,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Heavy Small Laser": {
+    "MegaMekName": "CLImprovedHeavySmallLaser",
+    "ActualName": "Improved Heavy Small Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 6,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Large Laser": {
+    "MegaMekName": "Improved Large Laser",
+    "ActualName": "Improved Large Laser",
+    "type": "LASER",
+    "Heat": 8,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved Large Pulse Laser": {
+    "MegaMekName": "ImprovedLargePulseLaser",
+    "ActualName": "Improved Large Pulse Laser",
+    "type": "LASER",
+    "Heat": 10,
+    "DamSht": 9,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved LRM-10": {
+    "MegaMekName": "Improved LRM 10",
+    "ActualName": "Improved Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved LRM-15": {
+    "MegaMekName": "Improved LRM 15",
+    "ActualName": "Improved Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved LRM-20": {
+    "MegaMekName": "Improved LRM 20",
+    "ActualName": "Improved Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved LRM-5": {
+    "MegaMekName": "Improved LRM 5",
+    "ActualName": "Improved Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved PPC": {
+    "MegaMekName": "CLIMPPPC",
+    "ActualName": "Improved Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Improved SRM-2": {
+    "MegaMekName": "Improved SRM 2",
+    "ActualName": "Improved Short Range Missile-2",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved SRM-4": {
+    "MegaMekName": "Improved SRM 4",
+    "ActualName": "Improved Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Improved SRM-6": {
+    "MegaMekName": "Improved SRM 6",
+    "ActualName": "Improved Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Large Chemical Laser": {
+    "MegaMekName": "CLLargeChemLaser",
+    "ActualName": "Large Chemical Laser",
+    "type": "LASER",
+    "Heat": 6,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Large Pulse Laser": {
+    "MegaMekName": "CLLargePulseLaser",
+    "ActualName": "Large Pulse Laser",
+    "type": "LASER",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 14,
+    "RngLng": 20,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) LB 10-X AC": {
+    "MegaMekName": "CLLBXAC10",
+    "ActualName": "LB 10-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 2,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LB 2-X AC": {
+    "MegaMekName": "CLLBXAC2",
+    "ActualName": "LB 2-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 10,
+    "RngMed": 20,
+    "RngLng": 30,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LB 20-X AC": {
+    "MegaMekName": "CLLBXAC20",
+    "ActualName": "LB 20-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 6,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LB 5-X AC": {
+    "MegaMekName": "CLLBXAC5",
+    "ActualName": "LB 5-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 15,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Light Machine Gun": {
+    "MegaMekName": "CLLightMG",
+    "ActualName": "Light Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": true,
+    "AmmoLotSize": 200,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) LRM-10": {
+    "MegaMekName": "CLLRM10",
+    "ActualName": "Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRM-10 (iOS)": {
+    "MegaMekName": "CLLRM10 (iOS)",
+    "ActualName": "Long Range Missile-10 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-10 (OS)": {
+    "MegaMekName": "CLLRM10 (OS)",
+    "ActualName": "Long Range Missile-10 (One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-15": {
+    "MegaMekName": "CLLRM15",
+    "ActualName": "Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRM-15 (iOS)": {
+    "MegaMekName": "CLLRM15 (iOS)",
+    "ActualName": "Long Range Missile-15 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-15 (OS)": {
+    "MegaMekName": "CLLRM15 (OS)",
+    "ActualName": "Long Range Missile-15 (One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-20": {
+    "MegaMekName": "CLLRM20",
+    "ActualName": "Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRM-20 (iOS)": {
+    "MegaMekName": "CLLRM20 (iOS)",
+    "ActualName": "Long Range Missile-20 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-20 (OS)": {
+    "MegaMekName": "CLLRM20 (OS)",
+    "ActualName": "Long Range Missile-20 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-5": {
+    "MegaMekName": "CLLRM5",
+    "ActualName": "Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRM-5 (iOS)": {
+    "MegaMekName": "CLLRM5 (iOS)",
+    "ActualName": "Long Range Missile-5 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRM-5 (OS)": {
+    "MegaMekName": "CLLRM5 (OS)",
+    "ActualName": "Long Range Missile-5 (One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) LRT-10": {
+    "MegaMekName": "CLLRT10",
+    "ActualName": "Long Range Torpedo-10",
+    "type": "LRT",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRT-15": {
+    "MegaMekName": "CLLRT15",
+    "ActualName": "Long Range Torpedo-15",
+    "type": "LRT",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRT-20": {
+    "MegaMekName": "CLLRT20",
+    "ActualName": "Long Range Torpedo-20",
+    "type": "LRT",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) LRT-5": {
+    "MegaMekName": "CLLRT5",
+    "ActualName": "Long Range Torpedo-5",
+    "type": "LRT",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Machine Gun": {
+    "MegaMekName": "CLMG",
+    "ActualName": "Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": true,
+    "AmmoLotSize": 200,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Mech Mortar 1": {
+    "MegaMekName": "CLMekMortar1",
+    "ActualName": "Mech Mortar 1",
+    "type": "MORTAR",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 1,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Mech Mortar 2": {
+    "MegaMekName": "CLMekMortar2",
+    "ActualName": "Mech Mortar 2",
+    "type": "MORTAR",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Mech Mortar 4": {
+    "MegaMekName": "CLMekMortar4",
+    "ActualName": "Mech Mortar 4",
+    "type": "MORTAR",
+    "Heat": 5,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Mech Mortar 8": {
+    "MegaMekName": "CLMekMortar8",
+    "ActualName": "Mech Mortar 8",
+    "type": "MORTAR",
+    "Heat": 10,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 8,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Medium Chemical Laser": {
+    "MegaMekName": "CLMediumChemLaser",
+    "ActualName": "Medium Chemical Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 30,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Medium Pulse Laser": {
+    "MegaMekName": "CLMediumPulseLaser",
+    "ActualName": "Medium Pulse Laser",
+    "type": "LASER",
+    "Heat": 4,
+    "DamSht": 7,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Micro Pulse Laser": {
+    "MegaMekName": "CLMicroPulseLaser",
+    "ActualName": "Micro Pulse Laser",
+    "type": "LASER",
+    "Heat": 1,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Narc Missile Beacon": {
+    "MegaMekName": "CLNarcBeacon",
+    "ActualName": "Narc Missile Beacon",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Narc Missile Beacon (iOS)": {
+    "MegaMekName": "CLNarcBeacon (iOS)",
+    "ActualName": "Narc Missile Beacon (Improved One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(CL) Narc Missile Beacon (OS)": {
+    "MegaMekName": "CLNarcBeacon (OS)",
+    "ActualName": "Narc Missile Beacon (One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(CL) Plasma Cannon": {
+    "MegaMekName": "CLPlasmaCannon",
+    "ActualName": "Plasma Cannon",
+    "type": "PLASMA_CANNON",
+    "Heat": 7,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Protomech AC/2": {
+    "MegaMekName": "CLProtoAC2",
+    "ActualName": "Protomech Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 20,
+    "HasAmmo": true,
+    "AmmoLotSize": 40,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Protomech AC/4": {
+    "MegaMekName": "CLProtoAC4",
+    "ActualName": "Protomech Autocannon/4",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 4,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Protomech AC/8": {
+    "MegaMekName": "CLProtoAC8",
+    "ActualName": "Protomech Autocannon/8",
+    "type": "AUTOCANNON",
+    "Heat": 2,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 8,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Rotary AC/2": {
+    "MegaMekName": "CLRotaryAC2",
+    "ActualName": "Rotary Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 8,
+    "RngMed": 17,
+    "RngLng": 25,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Rotary AC/5": {
+    "MegaMekName": "CLRotaryAC5",
+    "ActualName": "Rotary Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Small Chemical Laser": {
+    "MegaMekName": "CLSmallChemLaser",
+    "ActualName": "Small Chemical Laser",
+    "type": "LASER",
+    "Heat": 1,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": true,
+    "AmmoLotSize": 60,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) Small Pulse Laser": {
+    "MegaMekName": "CLSmallPulseLaser",
+    "ActualName": "Small Pulse Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(CL) SRM-2": {
+    "MegaMekName": "CLSRM2",
+    "ActualName": "Short Range Missile-2",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) SRM-2 (iOS)": {
+    "MegaMekName": "CLSRM2 (iOS)",
+    "ActualName": "Short Range Missile-2 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRM-2 (OS)": {
+    "MegaMekName": "CLSRM2 (OS)",
+    "ActualName": "Short Range Missile-2 (One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRM-4": {
+    "MegaMekName": "CLSRM4",
+    "ActualName": "Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) SRM-4 (iOS)": {
+    "MegaMekName": "CLSRM4 (iOS)",
+    "ActualName": "Short Range Missile-4 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRM-4 (OS)": {
+    "MegaMekName": "CLSRM4 (OS)",
+    "ActualName": "Short Range Missile-4 (One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRM-6": {
+    "MegaMekName": "CLSRM6",
+    "ActualName": "Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) SRM-6 (iOS)": {
+    "MegaMekName": "CLSRM6 (iOS)",
+    "ActualName": "Short Range Missile-6 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRM-6 (OS)": {
+    "MegaMekName": "CLSRM6 (OS)",
+    "ActualName": "Short Range Missile-6 (One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) SRT-2": {
+    "MegaMekName": "CLSRT2",
+    "ActualName": "Short Range Torpedo-2",
+    "type": "SRT",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) SRT-4": {
+    "MegaMekName": "CLSRT4",
+    "ActualName": "Short Range Torpedo-4",
+    "type": "SRT",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) SRT-6": {
+    "MegaMekName": "CLSRT6",
+    "ActualName": "Short Range Torpedo-6",
+    "type": "SRT",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-10": {
+    "MegaMekName": "CLStreakLRM10",
+    "ActualName": "Streak Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-10 (iOS)": {
+    "MegaMekName": "CLStreakLRM10 (iOS)",
+    "ActualName": "Streak Long Range Missile-10 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-10 (OS)": {
+    "MegaMekName": "CLStreakLRM10 (OS)",
+    "ActualName": "Streak Long Range Missile-10 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-15": {
+    "MegaMekName": "CLStreakLRM15",
+    "ActualName": "Streak Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-15 (iOS)": {
+    "MegaMekName": "CLStreakLRM15 (iOS)",
+    "ActualName": "Streak Long Range Missile-15 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-15 (OS)": {
+    "MegaMekName": "CLStreakLRM15 (OS)",
+    "ActualName": "Streak Long Range Missile-15 (One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-20": {
+    "MegaMekName": "CLStreakLRM20",
+    "ActualName": "Streak Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-20 (iOS)": {
+    "MegaMekName": "CLStreakLRM20 (iOS)",
+    "ActualName": "Streak Long Range Missile-20 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-20 (OS)": {
+    "MegaMekName": "CLStreakLRM20 (OS)",
+    "ActualName": "Streak Long Range Missile-20 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-5": {
+    "MegaMekName": "CLStreakLRM5",
+    "ActualName": "Streak Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-5 (iOS)": {
+    "MegaMekName": "CLStreakLRM5 (iOS)",
+    "ActualName": "Streak Long Range Missile-5 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak LRM-5 (OS)": {
+    "MegaMekName": "CLStreakLRM5 (OS)",
+    "ActualName": "Streak Long Range Missile-5 (One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-2": {
+    "MegaMekName": "CLStreakSRM2",
+    "ActualName": "Streak Short Range Missile-2",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-2 (iOS)": {
+    "MegaMekName": "CLStreakSRM2 (iOS)",
+    "ActualName": "Streak Short Range Missile-2 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-2 (OS)": {
+    "MegaMekName": "CLStreakSRM2 (OS)",
+    "ActualName": "Streak Short Range Missile-2 (One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-4": {
+    "MegaMekName": "CLStreakSRM4",
+    "ActualName": "Streak Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-4 (iOS)": {
+    "MegaMekName": "CLStreakSRM4 (iOS)",
+    "ActualName": "Streak Short Range Missile-4 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-4 (OS)": {
+    "MegaMekName": "CLStreakSRM4 (OS)",
+    "ActualName": "Streak Short Range Missile-4 (One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-6": {
+    "MegaMekName": "CLStreakSRM6",
+    "ActualName": "Streak Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-6 (iOS)": {
+    "MegaMekName": "CLStreakSRM6 (iOS)",
+    "ActualName": "Streak Short Range Missile-6 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Streak SRM-6 (OS)": {
+    "MegaMekName": "CLStreakSRM6 (OS)",
+    "ActualName": "Streak Short Range Missile-6 (One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(CL) Ultra AC/10": {
+    "MegaMekName": "CLUltraAC10",
+    "ActualName": "Ultra Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 3,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Ultra AC/2": {
+    "MegaMekName": "CLUltraAC2",
+    "ActualName": "Ultra Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 2,
+    "RngSht": 9,
+    "RngMed": 18,
+    "RngLng": 27,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Ultra AC/20": {
+    "MegaMekName": "CLUltraAC20",
+    "ActualName": "Ultra Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 7,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(CL) Ultra AC/5": {
+    "MegaMekName": "CLUltraAC5",
+    "ActualName": "Ultra Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Arrow IV Missile": {
+    "MegaMekName": "ISArrowIV",
+    "ActualName": "Arrow IV Missile",
+    "type": "ARROW_IV",
+    "Heat": 10,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 8,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Autocannon/10": {
+    "MegaMekName": "ISAC10",
+    "ActualName": "Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 3,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Autocannon/2": {
+    "MegaMekName": "ISAC2",
+    "ActualName": "Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Autocannon/20": {
+    "MegaMekName": "ISAC20",
+    "ActualName": "Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 7,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Autocannon/5": {
+    "MegaMekName": "ISAC5",
+    "ActualName": "Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) BattleMech Taser": {
+    "MegaMekName": "ISMekTaser",
+    "ActualName": "BattleMech Taser",
+    "type": "TASER",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 4,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Binary Laser Cannon": {
+    "MegaMekName": "ISBlazer",
+    "ActualName": "Binary Laser Cannon",
+    "type": "LASER",
+    "Heat": 16,
+    "DamSht": 12,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Bombast Laser": {
+    "MegaMekName": "ISBombastLaser",
+    "ActualName": "Bombast Laser",
+    "type": "LASER",
+    "Heat": 12,
+    "DamSht": 12,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Cruise Missile/120": {
+    "MegaMekName": "ISCruiseMissle120",
+    "ActualName": "Cruise Missile/120",
+    "type": "CRUISE_MISSILE",
+    "Heat": 120,
+    "DamSht": 120,
+    "RngMin": 0,
+    "RngSht": 150,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 1,
+    "RackSize": 120,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Cruise Missile/50": {
+    "MegaMekName": "ISCruiseMissle50",
+    "ActualName": "Cruise Missile/50",
+    "type": "CRUISE_MISSILE",
+    "Heat": 50,
+    "DamSht": 50,
+    "RngMin": 0,
+    "RngSht": 50,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 1,
+    "RackSize": 50,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Cruise Missile/70": {
+    "MegaMekName": "ISCruiseMissle70",
+    "ActualName": "Cruise Missile/70",
+    "type": "CRUISE_MISSILE",
+    "Heat": 70,
+    "DamSht": 70,
+    "RngMin": 0,
+    "RngSht": 90,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 1,
+    "RackSize": 70,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Cruise Missile/90": {
+    "MegaMekName": "ISCruiseMissle90",
+    "ActualName": "Cruise Missile/90",
+    "type": "CRUISE_MISSILE",
+    "Heat": 90,
+    "DamSht": 90,
+    "RngMin": 0,
+    "RngSht": 120,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 1,
+    "RackSize": 90,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Enhanced ER PPC": {
+    "MegaMekName": "ISEHERPPC",
+    "ActualName": "Enhanced Extended Range Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 15,
+    "DamSht": 12,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 23,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Enhanced LRM-10": {
+    "MegaMekName": "ISEnhancedLRM10",
+    "ActualName": "Enhanced Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-10 (iOS)": {
+    "MegaMekName": "ISNLRM10 (iOS)",
+    "ActualName": "Enhanced Long Range Missile-10 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-10 (OS)": {
+    "MegaMekName": "ISNLRM10 (OS)",
+    "ActualName": "Enhanced Long Range Missile-10 (One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-15": {
+    "MegaMekName": "ISEnhancedLRM15",
+    "ActualName": "Enhanced Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-15 (iOS)": {
+    "MegaMekName": "ISNLRM15 (iOS)",
+    "ActualName": "Enhanced Long Range Missile-15 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-15 (OS)": {
+    "MegaMekName": "ISNLRM15 (OS)",
+    "ActualName": "Enhanced Long Range Missile-15 (One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-20": {
+    "MegaMekName": "ISEnhancedLRM20",
+    "ActualName": "Enhanced Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-20 (iOS)": {
+    "MegaMekName": "ISNLRM20 (iOS)",
+    "ActualName": "Enhanced Long Range Missile-20 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-20 (OS)": {
+    "MegaMekName": "ISNLRM20 (OS)",
+    "ActualName": "Enhanced Long Range Missile-20 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-5": {
+    "MegaMekName": "ISEnhancedLRM5",
+    "ActualName": "Enhanced Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-5 (iOS)": {
+    "MegaMekName": "ISNLRM5 (iOS)",
+    "ActualName": "Enhanced Long Range Missile-5 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRM-5 (OS)": {
+    "MegaMekName": "ISNLRM5 (OS)",
+    "ActualName": "Enhanced Long Range Missile-5 (One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRT-10": {
+    "MegaMekName": "ISNLRT10",
+    "ActualName": "Enhanced Long Range Torpedo-10",
+    "type": "LRT",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRT-15": {
+    "MegaMekName": "ISNLRT15",
+    "ActualName": "Enhanced Long Range Torpedo-15",
+    "type": "LRT",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRT-20": {
+    "MegaMekName": "ISNLRT20",
+    "ActualName": "Enhanced Long Range Torpedo-20",
+    "type": "LRT",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Enhanced LRT-5": {
+    "MegaMekName": "ISNLRT5",
+    "ActualName": "Enhanced Long Range Torpedo-5",
+    "type": "LRT",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) ER Large Laser": {
+    "MegaMekName": "ISERLargeLaser",
+    "ActualName": "Extended Range Large Laser",
+    "type": "LASER",
+    "Heat": 12,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 19,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) ER Medium Laser": {
+    "MegaMekName": "ISERMediumLaser",
+    "ActualName": "Extended Range Medium Laser",
+    "type": "LASER",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) ER PPC": {
+    "MegaMekName": "ISERPPC",
+    "ActualName": "Extended Range Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 15,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 23,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) ER Small Laser": {
+    "MegaMekName": "ISERSmallLaser",
+    "ActualName": "Extended Range Small Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 5,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Extended LRM-10": {
+    "MegaMekName": "ISExtendedLRM10",
+    "ActualName": "Extended Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": true,
+    "AmmoLotSize": 9,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-10 (iOS)": {
+    "MegaMekName": "ISELRM10 (iOS)",
+    "ActualName": "Extended Long Range Missile-10 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-10 (OS)": {
+    "MegaMekName": "ISELRM10 (OS)",
+    "ActualName": "Extended Long Range Missile-10 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-15": {
+    "MegaMekName": "ISExtendedLRM15",
+    "ActualName": "Extended Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 8,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-15 (iOS)": {
+    "MegaMekName": "ISELRM15 (iOS)",
+    "ActualName": "Extended Long Range Missile-15 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 8,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-15 (OS)": {
+    "MegaMekName": "ISELRM15 (OS)",
+    "ActualName": "Extended Long Range Missile-15 (One-Shot)",
+    "type": "LRM",
+    "Heat": 8,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-20": {
+    "MegaMekName": "ISExtendedLRM20",
+    "ActualName": "Extended Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-20 (iOS)": {
+    "MegaMekName": "ISELRM20 (iOS)",
+    "ActualName": "Extended Long Range Missile-20 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-20 (OS)": {
+    "MegaMekName": "ISELRM20 (OS)",
+    "ActualName": "Extended Long Range Missile-20 (One-Shot)",
+    "type": "LRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-5": {
+    "MegaMekName": "ISExtendedLRM5",
+    "ActualName": "Extended Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": true,
+    "AmmoLotSize": 18,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-5 (iOS)": {
+    "MegaMekName": "ISELRM5 (iOS)",
+    "ActualName": "Extended Long Range Missile-5 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Extended LRM-5 (OS)": {
+    "MegaMekName": "ISELRM5 (OS)",
+    "ActualName": "Extended Long Range Missile-5 (One-Shot)",
+    "type": "LRM",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 10,
+    "RngSht": 12,
+    "RngMed": 22,
+    "RngLng": 38,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Flamer": {
+    "MegaMekName": "ISFlamer",
+    "ActualName": "Flamer",
+    "type": "FLAMER",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Fluid Gun": {
+    "MegaMekName": "ISFluidGun",
+    "ActualName": "Fluid Gun",
+    "type": "FLUID_GUN",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Gauss Rifle": {
+    "MegaMekName": "ISGaussRifle",
+    "ActualName": "Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Heavy Gauss Rifle": {
+    "MegaMekName": "ISHeavyGaussRifle",
+    "ActualName": "Heavy Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 2,
+    "DamSht": 25,
+    "RngMin": 4,
+    "RngSht": 6,
+    "RngMed": 13,
+    "RngLng": 20,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Heavy Machine Gun": {
+    "MegaMekName": "ISHeavyMG",
+    "ActualName": "Heavy Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 100,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Heavy PPC": {
+    "MegaMekName": "ISHeavyPPC",
+    "ActualName": "Heavy Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 15,
+    "DamSht": 15,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Heavy Rifle": {
+    "MegaMekName": "ISHeavyRifle",
+    "ActualName": "Heavy Rifle",
+    "type": "RIFLE",
+    "Heat": 4,
+    "DamSht": 9,
+    "RngMin": 2,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Hyper-Velocity Autocannon/10": {
+    "MegaMekName": "ISHVAC10",
+    "ActualName": "Hyper-Velocity Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 7,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 20,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Hyper-Velocity Autocannon/2": {
+    "MegaMekName": "ISHVAC2",
+    "ActualName": "Hyper-Velocity Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 3,
+    "RngSht": 10,
+    "RngMed": 20,
+    "RngLng": 35,
+    "HasAmmo": true,
+    "AmmoLotSize": 30,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Hyper-Velocity Autocannon/5": {
+    "MegaMekName": "ISHVAC5",
+    "ActualName": "Hyper-Velocity Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 28,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Improved Heavy Gauss Rifle": {
+    "MegaMekName": "ISImprovedHeavyGaussRifle",
+    "ActualName": "Improved Heavy Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 2,
+    "DamSht": 22,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 19,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) iNarc Launcher": {
+    "MegaMekName": "iNarc",
+    "ActualName": "Improved Narc Launcher",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) iNarc Launcher (iOS)": {
+    "MegaMekName": "ISImprovedNarc (iOS)",
+    "ActualName": "Improved Narc Launcher (Improved One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) iNarc Launcher (OS)": {
+    "MegaMekName": "ISImprovedNarc (OS)",
+    "ActualName": "Improved Narc Launcher (One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Large Laser": {
+    "MegaMekName": "ISLargeLaser",
+    "ActualName": "Large Laser",
+    "type": "LASER",
+    "Heat": 8,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Large Pulse Laser": {
+    "MegaMekName": "ISLargePulseLaser",
+    "ActualName": "Large Pulse Laser",
+    "type": "LASER",
+    "Heat": 10,
+    "DamSht": 9,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Large R-e Laser": {
+    "MegaMekName": "ISLargeRELaser",
+    "ActualName": "Large Re-engineered Laser",
+    "type": "LASER",
+    "Heat": 9,
+    "DamSht": 9,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Large Variable Speed Pulse Laser": {
+    "MegaMekName": "ISLargeVSPLaser",
+    "ActualName": "Large Variable Speed Pulse Laser",
+    "type": "LASER",
+    "Heat": 10,
+    "DamSht": 11,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Large X-Pulse Laser": {
+    "MegaMekName": "ISLargeXPulseLaser",
+    "ActualName": "Large X-Pulse Laser",
+    "type": "LASER",
+    "Heat": 14,
+    "DamSht": 9,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) LB 10-X AC": {
+    "MegaMekName": "ISLBXAC10",
+    "ActualName": "LB 10-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 2,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LB 2-X AC": {
+    "MegaMekName": "ISLBXAC2",
+    "ActualName": "LB 2-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 9,
+    "RngMed": 18,
+    "RngLng": 27,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LB 20-X AC": {
+    "MegaMekName": "ISLBXAC20",
+    "ActualName": "LB 20-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 6,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LB 5-X AC": {
+    "MegaMekName": "ISLBXAC5",
+    "ActualName": "LB 5-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Light AC/2": {
+    "MegaMekName": "ISLAC2",
+    "ActualName": "Light Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Light AC/5": {
+    "MegaMekName": "ISLAC5",
+    "ActualName": "Light Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Light Gauss Rifle": {
+    "MegaMekName": "ISLightGaussRifle",
+    "ActualName": "Light Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 8,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 17,
+    "RngLng": 25,
+    "HasAmmo": true,
+    "AmmoLotSize": 16,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Light Machine Gun": {
+    "MegaMekName": "ISLightMG",
+    "ActualName": "Light Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": true,
+    "AmmoLotSize": 200,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Light PPC": {
+    "MegaMekName": "ISLightPPC",
+    "ActualName": "Light Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Light Rifle": {
+    "MegaMekName": "ISLightRifle",
+    "ActualName": "Light Rifle",
+    "type": "RIFLE",
+    "Heat": 1,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 18,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Long Tom": {
+    "MegaMekName": "ISLongTom",
+    "ActualName": "Long Tom",
+    "type": "OTHER",
+    "Heat": 20,
+    "DamSht": 25,
+    "RngMin": 0,
+    "RngSht": 30,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) LRM-10": {
+    "MegaMekName": "ISLRM10",
+    "ActualName": "Long Range Missile-10",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRM-10 (iOS)": {
+    "MegaMekName": "ISLRM10 (iOS)",
+    "ActualName": "Long Range Missile-10 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-10 (OS)": {
+    "MegaMekName": "ISLRM10 (OS)",
+    "ActualName": "Long Range Missile-10 (One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-15": {
+    "MegaMekName": "ISLRM15",
+    "ActualName": "Long Range Missile-15",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRM-15 (iOS)": {
+    "MegaMekName": "ISLRM15 (iOS)",
+    "ActualName": "Long Range Missile-15 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-15 (OS)": {
+    "MegaMekName": "ISLRM15 (OS)",
+    "ActualName": "Long Range Missile-15 (One-Shot)",
+    "type": "LRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-20": {
+    "MegaMekName": "ISLRM20",
+    "ActualName": "Long Range Missile-20",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRM-20 (iOS)": {
+    "MegaMekName": "ISLRM20 (iOS)",
+    "ActualName": "Long Range Missile-20 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-20 (OS)": {
+    "MegaMekName": "ISLRM20 (OS)",
+    "ActualName": "Long Range Missile-20 (One-Shot)",
+    "type": "LRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-5": {
+    "MegaMekName": "ISLRM5",
+    "ActualName": "Long Range Missile-5",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRM-5 (iOS)": {
+    "MegaMekName": "ISLRM5 (iOS)",
+    "ActualName": "Long Range Missile-5 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRM-5 (OS)": {
+    "MegaMekName": "ISLRM5 (OS)",
+    "ActualName": "Long Range Missile-5 (One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) LRT-10": {
+    "MegaMekName": "ISLRT10",
+    "ActualName": "Long Range Torpedo-10",
+    "type": "LRT",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRT-15": {
+    "MegaMekName": "ISLRT15",
+    "ActualName": "Long Range Torpedo-15",
+    "type": "LRT",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRT-20": {
+    "MegaMekName": "ISLRT20",
+    "ActualName": "Long Range Torpedo-20",
+    "type": "LRT",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) LRT-5": {
+    "MegaMekName": "ISLRT5",
+    "ActualName": "Long Range Torpedo-5",
+    "type": "LRT",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Machine Gun": {
+    "MegaMekName": "ISMachine Gun",
+    "ActualName": "Machine Gun",
+    "type": "MG",
+    "Heat": 0,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": true,
+    "AmmoLotSize": 200,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Magshot Gauss Rifle": {
+    "MegaMekName": "ISMagshotGR",
+    "ActualName": "Magshot Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Mech Mortar 1": {
+    "MegaMekName": "ISMekMortar1",
+    "ActualName": "Mech Mortar 1",
+    "type": "MORTAR",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 1,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Mech Mortar 2": {
+    "MegaMekName": "ISMekMortar2",
+    "ActualName": "Mech Mortar 2",
+    "type": "MORTAR",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Mech Mortar 4": {
+    "MegaMekName": "ISMekMortar4",
+    "ActualName": "Mech Mortar 4",
+    "type": "MORTAR",
+    "Heat": 5,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Mech Mortar 8": {
+    "MegaMekName": "ISMekMortar8",
+    "ActualName": "Mech Mortar 8",
+    "type": "MORTAR",
+    "Heat": 10,
+    "DamSht": 2,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 8,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Medium Laser": {
+    "MegaMekName": "ISMediumLaser",
+    "ActualName": "Medium Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Medium Pulse Laser": {
+    "MegaMekName": "ISMediumPulseLaser",
+    "ActualName": "Medium Pulse Laser",
+    "type": "LASER",
+    "Heat": 4,
+    "DamSht": 6,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Medium R-e Laser": {
+    "MegaMekName": "ISMediumRELaser",
+    "ActualName": "Medium Re-engineered Laser",
+    "type": "LASER",
+    "Heat": 6,
+    "DamSht": 6,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Medium Rifle": {
+    "MegaMekName": "ISMediumRifle",
+    "ActualName": "Medium Rifle",
+    "type": "RIFLE",
+    "Heat": 2,
+    "DamSht": 6,
+    "RngMin": 1,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 9,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Medium Variable Speed Pulse Laser": {
+    "MegaMekName": "ISMediumVSPLaser",
+    "ActualName": "Medium Variable Speed Pulse Laser",
+    "type": "LASER",
+    "Heat": 7,
+    "DamSht": 9,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 5,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Medium X-Pulse Laser": {
+    "MegaMekName": "ISMediumXPulseLaser",
+    "ActualName": "Medium X-Pulse Laser",
+    "type": "LASER",
+    "Heat": 6,
+    "DamSht": 6,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) MML-3": {
+    "MegaMekName": "ISMML3",
+    "ActualName": "Multi-Missile Launcher-3",
+    "type": "MRM",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 40,
+    "RackSize": 3,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MML-3 (iOS)": {
+    "MegaMekName": "ISMML3 (iOS)",
+    "ActualName": "Multi-Missile Launcher-3 (Improved One-Shot)",
+    "type": "MML",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 3,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-3 (OS)": {
+    "MegaMekName": "ISMML3 (OS)",
+    "ActualName": "Multi-Missile Launcher-3 (One-Shot)",
+    "type": "MML",
+    "Heat": 2,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 3,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-5": {
+    "MegaMekName": "ISMML5",
+    "ActualName": "Multi-Missile Launcher-5",
+    "type": "MRM",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MML-5 (iOS)": {
+    "MegaMekName": "ISMML5 (iOS)",
+    "ActualName": "Multi-Missile Launcher-5 (Improved One-Shot)",
+    "type": "MML",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-5 (OS)": {
+    "MegaMekName": "ISMML5 (OS)",
+    "ActualName": "Multi-Missile Launcher-5 (One-Shot)",
+    "type": "MML",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-7": {
+    "MegaMekName": "ISMML7",
+    "ActualName": "Multi-Missile Launcher-7",
+    "type": "MRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 17,
+    "RackSize": 7,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MML-7 (iOS)": {
+    "MegaMekName": "ISMML7 (iOS)",
+    "ActualName": "Multi-Missile Launcher-7 (Improved One-Shot)",
+    "type": "MML",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 7,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-7 (OS)": {
+    "MegaMekName": "ISMML7 (OS)",
+    "ActualName": "Multi-Missile Launcher-7 (One-Shot)",
+    "type": "MML",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 7,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-9": {
+    "MegaMekName": "ISMML9",
+    "ActualName": "Multi-Missile Launcher-9",
+    "type": "MRM",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 13,
+    "RackSize": 9,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MML-9 (iOS)": {
+    "MegaMekName": "ISMML9 (iOS)",
+    "ActualName": "Multi-Missile Launcher-9 (Improved One-Shot)",
+    "type": "MML",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 9,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MML-9 (OS)": {
+    "MegaMekName": "ISMML9 (OS)",
+    "ActualName": "Multi-Missile Launcher-9 (One-Shot)",
+    "type": "MML",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 6,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 9,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-10": {
+    "MegaMekName": "ISMRM10",
+    "ActualName": "Medium Range Missile-10",
+    "type": "MRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 24,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MRM-10 (iOS)": {
+    "MegaMekName": "ISMRM10 (iOS)",
+    "ActualName": "Medium Range Missile-10 (Improved One-Shot)",
+    "type": "MRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-10 (OS)": {
+    "MegaMekName": "ISMRM10 (OS)",
+    "ActualName": "Medium Range Missile-10 (One-Shot)",
+    "type": "MRM",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-20": {
+    "MegaMekName": "ISMRM20",
+    "ActualName": "Medium Range Missile-20",
+    "type": "MRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MRM-20 (iOS)": {
+    "MegaMekName": "ISMRM20 (iOS)",
+    "ActualName": "Medium Range Missile-20 (Improved One-Shot)",
+    "type": "MRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-20 (OS)": {
+    "MegaMekName": "ISMRM20 (OS)",
+    "ActualName": "Medium Range Missile-20 (One-Shot)",
+    "type": "MRM",
+    "Heat": 6,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-30": {
+    "MegaMekName": "ISMRM30",
+    "ActualName": "Medium Range Missile-30",
+    "type": "MRM",
+    "Heat": 10,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 30,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MRM-30 (iOS)": {
+    "MegaMekName": "ISMRM30 (iOS)",
+    "ActualName": "Medium Range Missile-30 (Improved One-Shot)",
+    "type": "MRM",
+    "Heat": 10,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 30,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-30 (OS)": {
+    "MegaMekName": "ISMRM30 (OS)",
+    "ActualName": "Medium Range Missile-30 (One-Shot)",
+    "type": "MRM",
+    "Heat": 10,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 30,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-40": {
+    "MegaMekName": "ISMRM40",
+    "ActualName": "Medium Range Missile-40",
+    "type": "MRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 40,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) MRM-40 (iOS)": {
+    "MegaMekName": "ISMRM40 (iOS)",
+    "ActualName": "Medium Range Missile-40 (Improved One-Shot)",
+    "type": "MRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 40,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) MRM-40 (OS)": {
+    "MegaMekName": "ISMRM40 (OS)",
+    "ActualName": "Medium Range Missile-40 (One-Shot)",
+    "type": "MRM",
+    "Heat": 12,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 8,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 40,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Narc Missile Beacon": {
+    "MegaMekName": "ISNarcBeacon",
+    "ActualName": "Narc Missile Beacon",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Narc Missile Beacon (iOS)": {
+    "MegaMekName": "ISNarcBeacon (iOS)",
+    "ActualName": "Narc Missile Beacon (Improved One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Narc Missile Beacon (OS)": {
+    "MegaMekName": "ISNarcBeacon (OS)",
+    "ActualName": "Narc Missile Beacon (One-Shot)",
+    "type": "NARC",
+    "Heat": 0,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Plasma Rifle": {
+    "MegaMekName": "ISPlasmaRifle",
+    "ActualName": "Plasma Rifle",
+    "type": "PLASMA_RIFLE",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) PPC": {
+    "MegaMekName": "ISPPC",
+    "ActualName": "Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Autocannon/10": {
+    "MegaMekName": "ISAC10",
+    "ActualName": "Prototype Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 3,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Autocannon/2": {
+    "MegaMekName": "ISAC2",
+    "ActualName": "Prototype Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 8,
+    "RngMed": 16,
+    "RngLng": 24,
+    "HasAmmo": true,
+    "AmmoLotSize": 34,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Autocannon/20": {
+    "MegaMekName": "ISAC20",
+    "ActualName": "Prototype Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 7,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Autocannon/5": {
+    "MegaMekName": "ISAC5",
+    "ActualName": "Prototype Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Gauss Rifle": {
+    "MegaMekName": "IS Gauss Rifle Prototype",
+    "ActualName": "Prototype Gauss Rifle",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Gauss Rifle-X": {
+    "MegaMekName": "IS Gauss Rifle Prototype",
+    "ActualName": "Prototype Gauss Rifle-X",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Large Laser": {
+    "MegaMekName": "ISLargeLaser",
+    "ActualName": "Prototype Large Laser",
+    "type": "LASER",
+    "Heat": 12,
+    "DamSht": 8,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Medium Laser": {
+    "MegaMekName": "ISMediumLaser",
+    "ActualName": "Prototype Medium Laser",
+    "type": "LASER",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype PPC": {
+    "MegaMekName": "ISPPC",
+    "ActualName": "Prototype Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 15,
+    "DamSht": 10,
+    "RngMin": 3,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Prototype Small Laser": {
+    "MegaMekName": "ISSmallLaser",
+    "ActualName": "Prototype Small Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) RISC Hyper Laser": {
+    "MegaMekName": "ISRISCHyperLaser ",
+    "ActualName": "RISC Hyper Laser",
+    "type": "LASER",
+    "Heat": 24,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 8,
+    "RngMed": 15,
+    "RngLng": 25,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) RISC Repeating TSEMP": {
+    "MegaMekName": "ISRISCREPTSEMP",
+    "ActualName": "RISC Repeating TSEMP",
+    "type": "TSEMP",
+    "Heat": 10,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Rocket Launcher 10": {
+    "MegaMekName": "ISRocketLauncher10",
+    "ActualName": "Rocket Launcher 10",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 11,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Rocket Launcher 15": {
+    "MegaMekName": "ISRocketLauncher15",
+    "ActualName": "Rocket Launcher 15",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Rocket Launcher 20": {
+    "MegaMekName": "ISRocketLauncher20",
+    "ActualName": "Rocket Launcher 20",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Rotary AC/2": {
+    "MegaMekName": "ISRotaryAC2",
+    "ActualName": "Rotary Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Rotary AC/5": {
+    "MegaMekName": "ISRotaryAC5",
+    "ActualName": "Rotary Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Silver Bullet Gauss": {
+    "MegaMekName": "ISSBGR",
+    "ActualName": "Silver Bullet Gauss",
+    "type": "GAUSS",
+    "Heat": 1,
+    "DamSht": 15,
+    "RngMin": 2,
+    "RngSht": 7,
+    "RngMed": 15,
+    "RngLng": 22,
+    "HasAmmo": true,
+    "AmmoLotSize": 8,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Small Laser": {
+    "MegaMekName": "ISSmallLaser",
+    "ActualName": "Small Laser",
+    "type": "LASER",
+    "Heat": 1,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Small Pulse Laser": {
+    "MegaMekName": "ISSmallPulseLaser",
+    "ActualName": "Small Pulse Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Small R-e Laser": {
+    "MegaMekName": "ISSmallRELaser",
+    "ActualName": "Small Re-engineered Laser",
+    "type": "LASER",
+    "Heat": 4,
+    "DamSht": 4,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Small Variable Speed Pulse Laser": {
+    "MegaMekName": "ISSmallVSPLaser",
+    "ActualName": "Small Variable Speed Pulse Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 6,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Small X-Pulse Laser": {
+    "MegaMekName": "ISSmallXPulseLaser",
+    "ActualName": "Small X-Pulse Laser",
+    "type": "LASER",
+    "Heat": 3,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 5,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Sniper": {
+    "MegaMekName": "ISSniper",
+    "ActualName": "Sniper",
+    "type": "OTHER",
+    "Heat": 10,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 18,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Snub-Nose PPC": {
+    "MegaMekName": "ISSNPPC",
+    "ActualName": "Snub-Nose Particle Projection Cannon",
+    "type": "PPC",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 9,
+    "RngMed": 13,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) SRM-2": {
+    "MegaMekName": "ISSRM2",
+    "ActualName": "Short Range Missile-2",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) SRM-2 (iOS)": {
+    "MegaMekName": "ISSRM2 (iOS)",
+    "ActualName": "Short Range Missile-2 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRM-2 (OS)": {
+    "MegaMekName": "ISSRM2 (OS)",
+    "ActualName": "Short Range Missile-2 (One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRM-4": {
+    "MegaMekName": "ISSRM4",
+    "ActualName": "Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) SRM-4 (iOS)": {
+    "MegaMekName": "ISSRM4 (iOS)",
+    "ActualName": "Short Range Missile-4 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRM-4 (OS)": {
+    "MegaMekName": "ISSRM4 (OS)",
+    "ActualName": "Short Range Missile-4 (One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRM-6": {
+    "MegaMekName": "ISSRM6",
+    "ActualName": "Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) SRM-6 (iOS)": {
+    "MegaMekName": "ISSRM6 (iOS)",
+    "ActualName": "Short Range Missile-6 (Improved One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRM-6 (OS)": {
+    "MegaMekName": "ISSRM6 (OS)",
+    "ActualName": "Short Range Missile-6 (One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) SRT-2": {
+    "MegaMekName": "ISSRT2",
+    "ActualName": "Short Range Torpedo-2",
+    "type": "SRT",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) SRT-4": {
+    "MegaMekName": "ISSRT4",
+    "ActualName": "Short Range Torpedo-4",
+    "type": "SRT",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) SRT-6": {
+    "MegaMekName": "ISSRT6",
+    "ActualName": "Short Range Torpedo-6",
+    "type": "SRT",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-2": {
+    "MegaMekName": "ISStreakSRM2",
+    "ActualName": "Streak Short Range Missile-2",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 50,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-2 (iOS)": {
+    "MegaMekName": "ISStreakSRM2 (iOS)",
+    "ActualName": "Streak Short Range Missile-2 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-2 (OS)": {
+    "MegaMekName": "ISStreakSRM2 (OS)",
+    "ActualName": "Streak Short Range Missile-2 (One-Shot)",
+    "type": "SRM",
+    "Heat": 2,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 2,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-4": {
+    "MegaMekName": "ISStreakSRM4",
+    "ActualName": "Streak Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-4 (iOS)": {
+    "MegaMekName": "ISStreakSRM4 (iOS)",
+    "ActualName": "Streak Short Range Missile-4 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-4 (OS)": {
+    "MegaMekName": "ISStreakSRM4 (OS)",
+    "ActualName": "Streak Short Range Missile-4 (One-Shot)",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 4,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-6": {
+    "MegaMekName": "ISStreakSRM6",
+    "ActualName": "Streak Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-6 (iOS)": {
+    "MegaMekName": "ISStreakSRM6 (iOS)",
+    "ActualName": "Streak Short Range Missile-6 (Improved One-Shot)",
+    "type": "LRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Streak SRM-6 (OS)": {
+    "MegaMekName": "ISStreakSRM6 (OS)",
+    "ActualName": "Streak Short Range Missile-6 (One-Shot)",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 6,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "(IS) Thumper": {
+    "MegaMekName": "ISThumper",
+    "ActualName": "Thumper",
+    "type": "OTHER",
+    "Heat": 6,
+    "DamSht": 15,
+    "RngMin": 0,
+    "RngSht": 21,
+    "RngMed": 0,
+    "RngLng": 0,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-10": {
+    "MegaMekName": "ISThunderbolt10",
+    "ActualName": "Thunderbolt-10",
+    "type": "THUNDERBOLT",
+    "Heat": 5,
+    "DamSht": 10,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 6,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-10 (iOS)": {
+    "MegaMekName": "ISThunderbolt10 (iOS)",
+    "ActualName": "Thunderbolt-10 (Improved One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 5,
+    "DamSht": 10,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-10 (OS)": {
+    "MegaMekName": "ISThunderbolt10 (OS)",
+    "ActualName": "Thunderbolt-10 (One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 5,
+    "DamSht": 10,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-15": {
+    "MegaMekName": "ISThunderbolt15",
+    "ActualName": "Thunderbolt-15",
+    "type": "THUNDERBOLT",
+    "Heat": 7,
+    "DamSht": 15,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 4,
+    "RackSize": 15,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-15 (iOS)": {
+    "MegaMekName": "ISThunderbolt15 (iOS)",
+    "ActualName": "Thunderbolt-15 (Improved One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 7,
+    "DamSht": 15,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-15 (OS)": {
+    "MegaMekName": "ISThunderbolt15 (OS)",
+    "ActualName": "Thunderbolt-15 (One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 7,
+    "DamSht": 15,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-20": {
+    "MegaMekName": "ISThunderbolt20",
+    "ActualName": "Thunderbolt-20",
+    "type": "THUNDERBOLT",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 3,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-20 (iOS)": {
+    "MegaMekName": "ISThunderbolt20 (iOS)",
+    "ActualName": "Thunderbolt-20 (Improved One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-20 (OS)": {
+    "MegaMekName": "ISThunderbolt20 (OS)",
+    "ActualName": "Thunderbolt-20 (One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-5": {
+    "MegaMekName": "ISThunderbolt5",
+    "ActualName": "Thunderbolt-5",
+    "type": "THUNDERBOLT",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 12,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-5 (iOS)": {
+    "MegaMekName": "ISThunderbolt5 (iOS)",
+    "ActualName": "Thunderbolt-5 (Improved One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Thunderbolt-5 (OS)": {
+    "MegaMekName": "ISThunderbolt5 (OS)",
+    "ActualName": "Thunderbolt-5 (One-Shot)",
+    "type": "THUNDERBOLT",
+    "Heat": 3,
+    "DamSht": 5,
+    "RngMin": 5,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 5,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) TSEMP": {
+    "MegaMekName": "ISTSEMP",
+    "ActualName": "TSEMP",
+    "type": "TSEMP",
+    "Heat": 10,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "(IS) TSEMPOS": {
+    "MegaMekName": "ISTSEMPOS",
+    "ActualName": "TSEMP (OS)",
+    "type": "TSEMP",
+    "Heat": 10,
+    "DamSht": 0,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 10,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": true,
+    "IsCluster": false
+  },
+  "(IS) Ultra AC/10": {
+    "MegaMekName": "ISUltraAC10",
+    "ActualName": "Ultra Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 4,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Ultra AC/2": {
+    "MegaMekName": "ISUltraAC2",
+    "ActualName": "Ultra Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 17,
+    "RngLng": 25,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Ultra AC/20": {
+    "MegaMekName": "ISUltraAC20",
+    "ActualName": "Ultra Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "(IS) Ultra AC/5": {
+    "MegaMekName": "ISUltraAC5",
+    "ActualName": "Ultra Autocannon/5",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 2,
+    "RngSht": 6,
+    "RngMed": 13,
+    "RngLng": 20,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "ER Flamer": {
+    "MegaMekName": "ERFlamer",
+    "ActualName": "ER Flamer",
+    "type": "FLAMER",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 5,
+    "RngLng": 7,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "ER Medium Laser CI": {
+    "MegaMekName": "ISERMediumLaser",
+    "ActualName": "Clan Interim Extended Range Medium Laser",
+    "type": "LASER",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "ER Medium Laser CP": {
+    "MegaMekName": "ISERMediumLaser",
+    "ActualName": "Clan Prototype Extended Range Medium Laser",
+    "type": "LASER",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "ER Small Laser CI": {
+    "MegaMekName": "ISERSmallLaser",
+    "ActualName": "Clan Interim Extended Range Small Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 5,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "ER Small Laser CP": {
+    "MegaMekName": "ISERSmallLaser",
+    "ActualName": "Clan Prototype Extended Range Small Laser",
+    "type": "LASER",
+    "Heat": 2,
+    "DamSht": 3,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 4,
+    "RngLng": 5,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "Heavy Flamer": {
+    "MegaMekName": "HeavyFlamer",
+    "ActualName": "Heavy Flamer",
+    "type": "FLAMER",
+    "Heat": 5,
+    "DamSht": 4,
+    "RngMin": 0,
+    "RngSht": 2,
+    "RngMed": 3,
+    "RngLng": 4,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "LB 2-X CI AC": {
+    "MegaMekName": "ISLBXAC2",
+    "ActualName": "Clan Interim LB 2-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 9,
+    "RngMed": 18,
+    "RngLng": 27,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "LB 2-X CP AC": {
+    "MegaMekName": "ISLBXAC2",
+    "ActualName": "Clan Prototype LB 2-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 4,
+    "RngSht": 9,
+    "RngMed": 18,
+    "RngLng": 27,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "LB 20-X CI AC": {
+    "MegaMekName": "ISLBXAC20",
+    "ActualName": "Clan Interim LB 20-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 6,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "LB 20-X CP AC": {
+    "MegaMekName": "ISLBXAC20",
+    "ActualName": "Clan Prototype LB 20-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 6,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "LB 5-X CI AC": {
+    "MegaMekName": "ISLBXAC5",
+    "ActualName": "Clan Interim LB 5-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "LB 5-X CP AC": {
+    "MegaMekName": "ISLBXAC5",
+    "ActualName": "Clan Prototype LB 5-X Autocannon",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 7,
+    "RngMed": 14,
+    "RngLng": 21,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 5,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Long Tom Artillery Cannon": {
+    "MegaMekName": "LongTomCannon",
+    "ActualName": "Long Tom Artillery Cannon",
+    "type": "ARTILLERY_CANNON",
+    "Heat": 20,
+    "DamSht": 20,
+    "RngMin": 4,
+    "RngSht": 6,
+    "RngMed": 13,
+    "RngLng": 20,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "Rocket Launcher 10 PP": {
+    "MegaMekName": "ISRocketLauncher10",
+    "ActualName": "Pentagon Power's Rocket Launcher 10",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 3,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 5,
+    "RngMed": 11,
+    "RngLng": 18,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 10,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "Rocket Launcher 15 PP": {
+    "MegaMekName": "ISRocketLauncher15",
+    "ActualName": "Pentagon Power's Rocket Launcher 15",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 4,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 15,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "Rocket Launcher 20 PP": {
+    "MegaMekName": "ISRocketLauncher20",
+    "ActualName": "Pentagon Power's Rocket Launcher 20",
+    "type": "ROCKET_LAUNCHER",
+    "Heat": 5,
+    "DamSht": 1,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 12,
+    "HasAmmo": false,
+    "AmmoLotSize": 0,
+    "RackSize": 20,
+    "OneShot": true,
+    "IsCluster": true
+  },
+  "Sniper Artillery Cannon": {
+    "MegaMekName": "SniperCannon",
+    "ActualName": "Sniper Artillery Cannon",
+    "type": "ARTILLERY_CANNON",
+    "Heat": 10,
+    "DamSht": 10,
+    "RngMin": 2,
+    "RngSht": 4,
+    "RngMed": 8,
+    "RngLng": 12,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "Streak SRM-4 CI": {
+    "MegaMekName": "ISStreakSRM4",
+    "ActualName": "Clan Interim Streak Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Streak SRM-4 CP": {
+    "MegaMekName": "ISStreakSRM4",
+    "ActualName": "Clan Prototype Streak Short Range Missile-4",
+    "type": "SRM",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 25,
+    "RackSize": 4,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Streak SRM-6 CI": {
+    "MegaMekName": "ISStreakSRM6",
+    "ActualName": "Clan Interim Streak Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Streak SRM-6 CP": {
+    "MegaMekName": "ISStreakSRM6",
+    "ActualName": "Clan Prototype Streak Short Range Missile-6",
+    "type": "SRM",
+    "Heat": 4,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 6,
+    "RngLng": 9,
+    "HasAmmo": true,
+    "AmmoLotSize": 15,
+    "RackSize": 6,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Thumper Artillery Cannon": {
+    "MegaMekName": "ThumperCannon",
+    "ActualName": "Thumper Artillery Cannon",
+    "type": "ARTILLERY_CANNON",
+    "Heat": 5,
+    "DamSht": 5,
+    "RngMin": 3,
+    "RngSht": 4,
+    "RngMed": 9,
+    "RngLng": 15,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  },
+  "Ultra AC/10 CI": {
+    "MegaMekName": "ISUltraAC10",
+    "ActualName": "Clan Interim Ultra Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 4,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Ultra AC/10 CP": {
+    "MegaMekName": "ISUltraAC10",
+    "ActualName": "Clan Prototype Ultra Autocannon/10",
+    "type": "AUTOCANNON",
+    "Heat": 4,
+    "DamSht": 10,
+    "RngMin": 0,
+    "RngSht": 6,
+    "RngMed": 12,
+    "RngLng": 18,
+    "HasAmmo": true,
+    "AmmoLotSize": 10,
+    "RackSize": 10,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Ultra AC/2 CI": {
+    "MegaMekName": "ISUltraAC2",
+    "ActualName": "Clan Interim Ultra Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 17,
+    "RngLng": 25,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Ultra AC/2 CP": {
+    "MegaMekName": "ISUltraAC2",
+    "ActualName": "Clan Prototype Ultra Autocannon/2",
+    "type": "AUTOCANNON",
+    "Heat": 1,
+    "DamSht": 2,
+    "RngMin": 3,
+    "RngSht": 8,
+    "RngMed": 17,
+    "RngLng": 25,
+    "HasAmmo": true,
+    "AmmoLotSize": 45,
+    "RackSize": 2,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Ultra AC/20 CI": {
+    "MegaMekName": "ISUltraAC20",
+    "ActualName": "Clan Interim Ultra Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Ultra AC/20 CP": {
+    "MegaMekName": "ISUltraAC20",
+    "ActualName": "Clan Prototype Ultra Autocannon/20",
+    "type": "AUTOCANNON",
+    "Heat": 8,
+    "DamSht": 20,
+    "RngMin": 0,
+    "RngSht": 3,
+    "RngMed": 7,
+    "RngLng": 10,
+    "HasAmmo": true,
+    "AmmoLotSize": 5,
+    "RackSize": 20,
+    "OneShot": false,
+    "IsCluster": true
+  },
+  "Vehicle Flamer": {
+    "MegaMekName": "VehicleFlamer",
+    "ActualName": "Vehicle Flamer",
+    "type": "FLAMER",
+    "Heat": 3,
+    "DamSht": 2,
+    "RngMin": 0,
+    "RngSht": 1,
+    "RngMed": 2,
+    "RngLng": 3,
+    "HasAmmo": true,
+    "AmmoLotSize": 20,
+    "RackSize": 0,
+    "OneShot": false,
+    "IsCluster": false
+  }
+}
+;
+let WEAPONS_MIN_LOADED = false;
+
+function weaponMiniToDbEntry(rec, fallbackName){
+  const heat = parseInt(rec?.Heat, 10);
+  const dSht = rec?.DamSht;
+  const dmgBase = (dSht === null || dSht === undefined || dSht === '') ? '?' : String(dSht);
+  const type = String(rec?.type || '').toUpperCase();
+  const isCluster = !!rec?.IsCluster || /^(LRM|SRM|MRM|LRT|SRT|ATM)/.test(type);
+  const dmg = (isCluster && dmgBase !== '?') ? (dmgBase + '/m') : dmgBase;
+
+  const rs = (rec?.RngSht ?? '?');
+  const rm = (rec?.RngMed ?? '?');
+  const rl = (rec?.RngLng ?? '?');
+
+  return {
+    d: String(rec?.ActualName || fallbackName || 'Arma'),
+    h: Number.isFinite(heat) ? heat : 0,
+    dm: dmg,
+    r: `${rs}/${rm}/${rl}`
+  };
+}
+
+function weaponMiniAddAlias(alias, entry){
+  const k = String(alias || '').trim();
+  if(!k) return;
+
+  const existing = MECH_WEAPON_DB[k];
+  if(!existing){
+    MECH_WEAPON_DB[k] = entry;
+    return;
+  }
+
+  const exName = String(existing?.d || '');
+  const nwName = String(entry?.d || '');
+  const exProto = /prototype/i.test(exName);
+  const nwProto = /prototype/i.test(nwName);
+  if(exProto && !nwProto){
+    MECH_WEAPON_DB[k] = entry;
+  }
+}
+function weaponMiniHydrateDatabase(data){
+  if(!data || typeof data !== 'object') return;
+  for(const [lookupName, rec] of Object.entries(data)){
+    const entry = weaponMiniToDbEntry(rec, lookupName);
+    const mega = String(rec?.MegaMekName || '').trim();
+    const actual = String(rec?.ActualName || '').trim();
+    const cleanLookup = String(lookupName || '')
+      .replace(/^\((IS|CL|CLAN)\)\s*/i, '')
+      .trim();
+
+    weaponMiniAddAlias(lookupName, entry);
+    weaponMiniAddAlias(cleanLookup, entry);
+    weaponMiniAddAlias(mega, entry);
+    weaponMiniAddAlias(actual, entry);
+  }
+  WEAPONS_MIN_LOADED = true;
+  console.log('✅ weapons.min embebido integrado en MECH_WEAPON_DB');
+}
+
+function loadWeaponsMinIntoDb(){
+  try{
+    weaponMiniHydrateDatabase(WEAPONS_MIN_EMBEDDED);
+  }catch(err){
+    console.warn('⚠️ No se pudo hidratar weapons.min embebido, uso fallback embebido base:', err?.message || err);
+  }
+}
+
+loadWeaponsMinIntoDb();
 const MECH_IS_TABLE = {
   20:{HD:3,CT:6,LT:5,RT:5,LA:3,RA:3,LL:4,RL:4},25:{HD:3,CT:8,LT:6,RT:6,LA:4,RA:4,LL:6,RL:6},
   30:{HD:3,CT:10,LT:7,RT:7,LA:5,RA:5,LL:7,RL:7},35:{HD:3,CT:11,LT:8,RT:8,LA:6,RA:6,LL:8,RL:8},
@@ -19247,6 +25147,8 @@ function mwNormLoc(raw){
 
 const MECH_AMMO_PER_TON = {
   'Machine Gun': 200,
+  'Light Machine Gun': 200,
+  'Heavy Machine Gun': 100,
   'AC/2': 45, 'AC/5': 20, 'AC/10': 10, 'AC/20': 5,
   'Ultra AC/2': 45, 'Ultra AC/5': 20, 'Ultra AC/10': 10, 'Ultra AC/20': 5,
   'LBX AC/2': 45, 'LBX AC/5': 20, 'LBX AC/10': 10, 'LBX AC/20': 5,
@@ -19257,21 +25159,26 @@ const MECH_AMMO_PER_TON = {
   'Streak SRM-2': 50, 'Streak SRM-4': 25, 'Streak SRM-6': 15
 };
 function mechAmmoFamilyFromWeaponName(name){
-  // Normalizar: quitar prefijo @, (IS)/(CL), IS/CL sin paréntesis (formato MegaMek: ISLRM15), y Autocannon→AC
   const n=String(name||'').trim()
     .replace(/^@\s*/,'')
     .replace(/^\((IS|CL|CLAN)\)\s*/i,'')
     .replace(/^(IS|CL|CLAN)\s*/i,'')
-    .replace(/\bAuto\s*[Cc]annon\b/g,'AC');
-  const m=n.match(/\b((?:Ultra\s*|LBX\s*|Light\s*)?AC\s*\/?\s*\d+|LRM[-\s]?\d+|SRM[-\s]?\d+|Streak\s*SRM[-\s]?\d+|Gauss\s*Rifle|Heavy\s*Gauss|Light\s*Gauss|Machine\s*Gun)\b/i);
+    .replace(/\bAMMO\b.*$/i,'')
+    .replace(/\(.*?\)/g,'')
+    .replace(/\bAuto\s*[Cc]annon\b/g,'AC')
+    .replace(/\s+/g,' ')
+    .trim();
+
+  const m=n.match(/\b((?:Ultra\s*|LBX\s*|Light\s*)?AC\s*\/?\s*\d+|LRM[-\s]?\d+|SRM[-\s]?\d+|Streak\s*SRM[-\s]?\d+|Gauss\s*Rifle|Heavy\s*Gauss|Light\s*Gauss|Heavy\s*Machine\s*Gun|Light\s*Machine\s*Gun|Machine\s*Gun|HMG|LMG|MG)\b/i);
   if(!m) return null;
+
   let f=m[1].replace(/\s+/g,' ').trim();
-  // Normalizar AC sin barra: AC5 → AC/5, AC /5 → AC/5, UltraAC5 → Ultra AC/5
   f=f.replace(/^((?:Ultra|LBX|Light)\s*)?AC\s*\/?\s*(\d+)$/i,(_,pre,num)=>(pre?pre.trim()+' ':'')+'AC/'+num);
   f=f.replace(/^LRM\s?(\d+)$/i,'LRM-$1').replace(/^SRM\s?(\d+)$/i,'SRM-$1').replace(/^Streak\s*SRM\s?(\d+)$/i,'Streak SRM-$1');
   f=f.replace(/^Ultra\s*AC\/?(\d+)$/i,'Ultra AC/$1').replace(/^LBX\s*AC\/?(\d+)$/i,'LBX AC/$1').replace(/^Light\s*AC\/?(\d+)$/i,'Light AC/$1');
-  // Normalizar nombres sin espacio (GaussRifle→Gauss Rifle, MachineGun→Machine Gun)
+  f=f.replace(/^HMG$/i,'Heavy Machine Gun').replace(/^LMG$/i,'Light Machine Gun').replace(/^MG$/i,'Machine Gun');
   f=f.replace(/^Gauss\s*Rifle$/i,'Gauss Rifle').replace(/^Heavy\s*Gauss$/i,'Heavy Gauss').replace(/^Light\s*Gauss$/i,'Light Gauss').replace(/^Machine\s*Gun$/i,'Machine Gun');
+
   return f;
 }
 function mechAmmoTechFromName(name){
@@ -19300,17 +25207,22 @@ function mechParseMTF(text){
   if(lines[0].startsWith('Version:')){chassis=lines[1];model=lines[2];}
   else{chassis=kv('chassis');model=kv('model');}
   function kv(key){for(const l of lines)if(l.toLowerCase().startsWith(key.toLowerCase()+':'))return l.split(':',2)[1].trim();return '';}
+
   const tonnage=parseInt(kv('Mass'))||0,walkMP=parseInt(kv('Walk MP'))||0;
   const runMP=Math.ceil(walkMP*1.5),jumpMP=parseInt(kv('Jump MP'))||0;
   const hsRaw=kv('Heat Sinks'),hsCount=parseInt(hsRaw)||0,hsDouble=/double/i.test(hsRaw),diss=hsDouble?hsCount*2:hsCount;
+  const configRaw=(kv('Config')||'').trim();
+  const declaredQuad=/\bquad\b/i.test(configRaw);
+
   function av(loc){return parseInt(kv(loc+' Armor'))||0;}
   const armor={HD:av('HD'),CTf:av('CT'),CTr:av('RTC'),LTf:av('LT'),LTr:av('RTL'),RTf:av('RT'),RTr:av('RTR'),LA:av('LA'),RA:av('RA'),LL:av('LL'),RL:av('RL')};
   const is=MECH_IS_TABLE[tonnage]||MECH_IS_TABLE[100];
+
   const wIdx=lines.findIndex(l=>/^weapons:\d+/i.test(l));
   const wCount=wIdx>=0?(parseInt(lines[wIdx].split(':')[1])||0):0;
   const wMap={};let wid=1;
   const ammoTonsByFamily = {};
-  // Tabla de slots por arma (valores estándar BattleTech)
+
   const WEAPON_SLOTS = {
     'SMALLLASER':1,'MEDIUMLASER':1,'LARGELASER':2,'ERSMALL':1,'ERMEDIUM':1,'ERLARGE':2,
     'PPC':3,'ERPPC':3,'SNUBPPC':2,'SMALLPULSE':1,'MEDIUMPULSE':1,'LARGEPULSE':2,
@@ -19322,24 +25234,23 @@ function mechParseMTF(text){
   };
   function getWeaponSlots(name){
     const n = mechNormEquipName(name).replace(/^(IS|CL|CLAN)/,'');
-    for(const[k,v] of Object.entries(WEAPON_SLOTS)){
-      if(n.includes(k)) return v;
-    }
-    return 1; // Default 1 slot
+    for(const[k,v] of Object.entries(WEAPON_SLOTS)) if(n.includes(k)) return v;
+    return 1;
   }
 
-  // Primero parsear los críticos para saber qué slots ocupa cada equipo
   const LOC_MAP={'Left Arm:':'LA','Right Arm:':'RA','Left Torso:':'LT','Right Torso:':'RT','Center Torso:':'CT','Head:':'HD','Left Leg:':'LL','Right Leg:':'RL'};
   const crits={};let curLoc=null,curS=[];
   for(const l of lines){
-    if(LOC_MAP[l]){if(curLoc)crits[curLoc]=curS.slice(0,12);curLoc=LOC_MAP[l];curS=[];}
-    else if(curLoc&&l&&!l.startsWith('#')&&curS.length<12)curS.push(l==='-Empty-'?'-':l);
+    if(LOC_MAP[l]){ if(curLoc) crits[curLoc]=curS.slice(0,12); curLoc=LOC_MAP[l]; curS=[]; }
+    else if(curLoc&&l&&!l.startsWith('#')&&curS.length<12) curS.push(l==='-Empty-'?'-':l);
   }
-  if(curLoc)crits[curLoc]=curS.slice(0,12);
+  if(curLoc) crits[curLoc]=curS.slice(0,12);
 
-  // Rastrear qué slots ya fueron asignados a armas
-  const usedSlots = {}; // loc -> Set de índices usados
+  const inferredQuad = (crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||''))) && (crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
+  const isQuad = declaredQuad || inferredQuad;
+  const configType = isQuad ? 'QUAD' : (configRaw ? configRaw.toUpperCase() : 'BIPED');
 
+  const usedSlots = {};
   for(let i=wIdx+1;i<wIdx+1+wCount&&i<lines.length;i++){
     const l=lines[i];if(!l)continue;
     const parts=l.split(',');const rawName=parts[0].replace(/^\d+\s+/,'').trim();
@@ -19348,12 +25259,10 @@ function mechParseMTF(text){
     const loc=mwNormLoc(rawLoc);
     const expectedSlots = getWeaponSlots(rawName);
 
-    // Detectar si es arma trasera (R/Rear) o torreta (T/Turret)
     const rearMatch = rawName.match(/\s*\((R|Rear|T|Turret)\)\s*$/i);
     const posSuffix = rearMatch ? ` (${rearMatch[1][0].toUpperCase()})` : '';
     const displayName = (stats ? stats.d : rawName.replace(/\s*\((R|Rear|T|Turret)\)\s*$/i,'')) + posSuffix;
 
-    // Buscar slots que coincidan con este arma (limitado a expectedSlots)
     const slotIndices = [];
     const normName = mechNormEquipName(rawName);
     if(!usedSlots[loc]) usedSlots[loc] = new Set();
@@ -19370,7 +25279,6 @@ function mechParseMTF(text){
     wid++;
   }
 
-  // Construir ammoBins desde slots críticos (un bin por slot de munición = 1 tonelada)
   const ammoBins = [];
   let binId = 0;
   Object.entries(crits).forEach(([loc, slots])=>{
@@ -19380,15 +25288,14 @@ function mechParseMTF(text){
       const meta = mechAmmoMetaForWeapon({rawName: slotName});
       if(!meta.familyKey) return;
       const perTon = MECH_AMMO_PER_TON[meta.family] || 0;
-      const max = perTon; // 1 slot = 1 tonelada
+      const max = perTon;
       ammoTonsByFamily[meta.familyKey] = (ammoTonsByFamily[meta.familyKey]||0) + 1;
       ammoBins.push({id:binId++,loc,slotIdx,familyKey:meta.familyKey,family:meta.family,perTon,current:max,max});
     });
   });
 
-  return {source:'MTF',chassis:chassis.trim(),model:model.trim(),tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,armorType:kv('Armor').replace(/\(.*?\)/g,'').trim(),techBase:kv('TechBase'),era:kv('Era'),armor,is,weapons:Object.values(wMap),crits,bv:0,ammoTonsByFamily,ammoBins};
+  return {source:'MTF',chassis:chassis.trim(),model:model.trim(),tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,configType,isQuad,armorType:kv('Armor').replace(/\(.*?\)/g,'').trim(),techBase:kv('TechBase'),era:kv('Era'),armor,is,weapons:Object.values(wMap),crits,bv:0,ammoTonsByFamily,ammoBins};
 }
-
 function mechParseSSW(text){
   const doc=new DOMParser().parseFromString(text,'text/xml');
   function xt(sel,def=''){const e=doc.querySelector(sel);return e?e.textContent.trim():def;}
@@ -19397,6 +25304,8 @@ function mechParseSSW(text){
   if(!root){console.error('SSW: No se encontró elemento <mech>');return null;}
   const chassis=root.getAttribute('name')||'',model=root.getAttribute('model')||'';
   const tonnage=parseInt(root.getAttribute('tons'))||parseInt(xt('tonnage'))||0;
+  const configRaw=(root.getAttribute('config')||xt('configuration')||xt('config')||'').trim();
+  let isQuad=/\bquad\b/i.test(configRaw);
   const bv=parseInt(xt('battle_value'))||0;
   const engRating=parseInt(xa('engine','rating'))||parseInt(xt('engine rating'))||0;
   const walkMP=tonnage>0?Math.floor(engRating/tonnage):0;
@@ -19526,7 +25435,10 @@ function mechParseSSW(text){
     ammoTonsByFamily[meta.familyKey]=(ammoTonsByFamily[meta.familyKey]||0)+actualTons;
     ammoBins.push({id:binId++,loc,slotIdx,familyKey:meta.familyKey,family:meta.family,perTon,current:max,max});
   });
-  return {source:'SSW',chassis,model,tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,engineRating:engRating,armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||'',armor,is,weapons:Object.values(wMap),crits,bv,ammoTonsByFamily,ammoBins};
+  const inferredQuad = (crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||''))) && (crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
+  if(inferredQuad) isQuad = true;
+  const configType = isQuad ? 'QUAD' : (configRaw ? configRaw.toUpperCase() : 'BIPED');
+  return {source:'SSW',chassis,model,tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,configType,isQuad,engineRating:engRating,armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||'',armor,is,weapons:Object.values(wMap),crits,bv,ammoTonsByFamily,ammoBins};
 }
 
 function mechParseMech(text){
@@ -19860,6 +25772,28 @@ const ARMOR_SLOTS = [
 ];
 
 // Sistema de slider de daño reutilizable con transferencia
+function mechGetArmorSlotLabel(key, fallback){
+  if(!(mechState && mechState.isQuad)) return fallback;
+  if(key==='LA') return 'PIERNA DELANTERA IZQUIERDA';
+  if(key==='RA') return 'PIERNA DELANTERA DERECHA';
+  if(key==='LL') return 'PIERNA TRASERA IZQUIERDA';
+  if(key==='RL') return 'PIERNA TRASERA DERECHA';
+  return fallback;
+}
+
+function mechGetCritLocLabel(loc){
+  const quad = !!(mechState && mechState.isQuad);
+  if(loc==='LA') return quad ? 'PIERNA DELANTERA IZQUIERDA' : 'BRAZO IZQUIERDO';
+  if(loc==='RA') return quad ? 'PIERNA DELANTERA DERECHA' : 'BRAZO DERECHO';
+  if(loc==='LL') return quad ? 'PIERNA TRASERA IZQUIERDA' : 'PIERNA IZQUIERDA';
+  if(loc==='RL') return quad ? 'PIERNA TRASERA DERECHA' : 'PIERNA DERECHA';
+  if(loc==='LT') return 'TORSO IZQUIERDO';
+  if(loc==='RT') return 'TORSO DERECHO';
+  if(loc==='CT') return 'TORSO CENTRAL';
+  if(loc==='HD') return 'CABEZA';
+  return loc;
+}
+
 const DAMAGE_TRANSFER = {
   'LA': 'LT', 'RA': 'RT',  // Brazos → Torso lateral
   'LL': 'LT', 'RL': 'RT',  // Piernas → Torso lateral
@@ -20232,7 +26166,7 @@ function mechMakeSlot(k,ik,l,rear){
   if (rear) {
     // Armor trasero - slider independiente solo para ese armor
     el.innerHTML=`
-      <div class="mech-loc-title"><span>${l}</span></div>
+      <div class="mech-loc-title"><span>${mechGetArmorSlotLabel(k,l)}</span></div>
       <div style="font-size:8px;color:${acol};margin-bottom:2px;">ARM ${av}/${am}</div>
       <div id="pips-a-${k}" class="mech-pip-row" style="margin-bottom:2px;">${pipA}</div>
       <div style="position:relative;">
@@ -20246,7 +26180,7 @@ function mechMakeSlot(k,ik,l,rear){
   } else {
     // Localización frontal - slider único con transferencia
     el.innerHTML=`
-      <div class="mech-loc-title"><span>${l}</span>${dead?'<span style="color:#ff4444;font-weight:bold;">✕ DESTRUIDO</span>':''}</div>
+      <div class="mech-loc-title"><span>${mechGetArmorSlotLabel(k,l)}</span>${dead?'<span style="color:#ff4444;font-weight:bold;">✕ DESTRUIDO</span>':''}</div>
       <div style="font-size:8px;color:${acol};margin-bottom:2px;">ARM ${av}/${am}</div>
       <div id="pips-a-${k}" class="mech-pip-row" style="margin-bottom:2px;">${pipA}</div>
       <div style="font-size:7px;color:#555;margin:3px 0 1px;">IS ${iv}/${im}</div>
@@ -20322,7 +26256,7 @@ function mechRenderAll(){
   document.getElementById('mech-full-sheet').style.display='block';
   document.getElementById('mech-sheet-name').textContent=d.chassis.toUpperCase()+' '+d.model;
   document.getElementById('mech-sheet-meta').textContent=
-    d.tonnage+'T · '+d.techBase+' · Era: '+d.era+(d.bv?' · BV: '+d.bv:'')+'  ['+d.source+']';
+    d.tonnage+'T · '+d.techBase+' · '+(d.configType || (d.isQuad?'QUAD':'BIPED'))+' · Era: '+d.era+(d.bv?' · BV: '+d.bv:'')+'  ['+d.source+']';
   mechRenderStats();
   mechRenderArmor();mechRenderMoveControls();mechRenderWeapons();mechRenderHeat();mechRenderCrits();mechRenderPilot();mechRenderDamageControl();
 }
@@ -20532,13 +26466,10 @@ function mechRenderHeat(){
 function mechRenderCrits(){
   const s=mechSession;if(!s)return;
   const sys = mechGetSystemCritHits();
-  const order = [
-    ['LT','TORSO IZQUIERDO'], ['HD','CABEZA'], ['RT','TORSO DERECHO'],
-    ['LA','BRAZO IZQUIERDO'], ['CT','TORSO CENTRAL'], ['RA','BRAZO DERECHO'],
-    ['LL','PIERNA IZQUIERDA'], ['__DMG__','CONTROL DE DAÑOS'], ['RL','PIERNA DERECHA']
-  ];
+  const order = ['LT','HD','RT','LA','CT','RA','LL','__DMG__','RL'];
 
-  const html = order.map(([loc,label])=>{
+  const html = order.map((loc)=>{
+    const label = (loc==='__DMG__') ? 'CONTROL DE DAÑOS' : mechGetCritLocLabel(loc);
     if(loc==='__DMG__'){
       const engineDead = sys.engine >= 3;
       const gyroDead = sys.gyro >= 2;
@@ -23133,6 +29064,19 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
