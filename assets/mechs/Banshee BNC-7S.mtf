@@ -1,0 +1,133 @@
+Version:1.1
+Banshee
+BNC-7S
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3063
+Rules Level:2
+
+Mass:95
+Engine:380 Light Fusion Engine (Inner Sphere)
+Structure:Endo-Steel
+Myomer:Standard
+
+Heat Sinks:14 Double (Inner Sphere)
+Walk MP:4
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:27
+RA Armor:27
+LT Armor:27
+RT Armor:27
+CT Armor:38
+HD Armor:9
+LL Armor:32
+RL Armor:32
+RTL Armor:8
+RTR Armor:8
+RTC Armor:13
+
+Weapons:7
+1 ISGaussRifle, Left Torso, Ammo:16
+1 ISERMediumLaser, Right Torso
+1 ISERMediumLaser, Right Arm
+1 ISERMediumLaser, Left Torso
+1 ISERMediumLaser, Right Arm
+1 ISERPPC, Left Arm
+1 ISSRM6, Right Torso, Ammo:15
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISERPPC
+ISERPPC
+ISERPPC
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISERMediumLaser
+ISERMediumLaser
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Engine
+Engine
+ISGaussRifle
+ISGaussRifle
+ISGaussRifle
+ISGaussRifle
+ISGaussRifle
+ISGaussRifle
+ISGaussRifle
+ISERMediumLaser
+ISSRM6 Ammo
+ISCASE
+
+Right Torso:
+Engine
+Engine
+ISSRM6
+ISSRM6
+ISERMediumLaser
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISGauss Ammo
+ISGauss Ammo
+
+Head:
+Life Support
+Sensors
+Cockpit
+Endo-Steel
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Endo-Steel
+Endo-Steel
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Endo-Steel
+Endo-Steel

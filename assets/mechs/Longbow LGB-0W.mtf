@@ -1,0 +1,131 @@
+Version:1.1
+Longbow
+LGB-0W
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2529
+Rules Level:5
+
+Mass:85
+Engine:340 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:13 Single
+Walk MP:4
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:9
+RA Armor:9
+LT Armor:18
+RT Armor:18
+CT Armor:21
+HD Armor:9
+LL Armor:18
+RL Armor:18
+RTL Armor:7
+RTR Armor:7
+RTC Armor:10
+
+Weapons:5
+1 ISSmallLaser, Head
+1 ISLRM20, Right Arm, Ammo:24
+1 ISLRM20, Left Arm
+1 ISLRM5, Right Torso, Ammo:48
+1 ISLRM5, Left Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISLRM20
+ISLRM20
+ISLRM20
+ISLRM20
+ISLRM20
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISLRM20
+ISLRM20
+ISLRM20
+ISLRM20
+ISLRM20
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+ISLRM5
+ISLRM20 Ammo
+ISLRM20 Ammo
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+ISLRM5
+ISLRM20 Ammo
+ISLRM20 Ammo
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISLRM5 Ammo
+ISLRM5 Ammo
+
+Head:
+Life Support
+Sensors
+Cockpit
+ISSmallLaser
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-

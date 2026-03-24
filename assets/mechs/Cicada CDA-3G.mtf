@@ -1,0 +1,130 @@
+Version:1.1
+Cicada
+CDA-3G
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3056
+Rules Level:2
+
+Mass:40
+Engine:320 XL Fusion Engine (Inner Sphere)
+Structure:Endo-Steel
+Myomer:Standard
+
+Heat Sinks:10 Double (Inner Sphere)
+Walk MP:8
+Jump MP:8
+
+Armor:Ferro-Fibrous (Inner Sphere)
+LA Armor:10
+RA Armor:10
+LT Armor:15
+RT Armor:15
+CT Armor:16
+HD Armor:9
+LL Armor:17
+RL Armor:17
+RTL Armor:5
+RTR Armor:5
+RTC Armor:6
+
+Weapons:4
+1 ISMediumLaser, Right Torso
+1 ISMediumLaser, Left Torso
+1 ISERLargeLaser, Left Torso
+1 ISBeagleActiveProbe, Right Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Left Torso:
+Engine
+Engine
+Engine
+Jump Jet
+Jump Jet
+ISERLargeLaser
+ISERLargeLaser
+ISMediumLaser
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+-Empty-
+
+Right Torso:
+Engine
+Engine
+Engine
+Jump Jet
+Jump Jet
+ISMediumLaser
+ISBeagleActiveProbe
+ISBeagleActiveProbe
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Ferro-Fibrous
+Ferro-Fibrous
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet

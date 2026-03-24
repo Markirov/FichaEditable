@@ -1,0 +1,130 @@
+Version:1.1
+Raven
+RVN-3X
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3028
+Rules Level:4
+
+Mass:35
+Engine:175 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Triple Strength Myomer
+
+Heat Sinks:12 Single
+Walk MP:5
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:6
+RA Armor:6
+LT Armor:6
+RT Armor:6
+CT Armor:8
+HD Armor:6
+LL Armor:8
+RL Armor:8
+RTL Armor:3
+RTR Armor:3
+RTC Armor:4
+
+Weapons:4
+1 ISMediumLaser, Right Arm
+1 ISMediumLaser, Right Arm
+1 ISSRM6, Right Torso, Ammo:15
+1 ISEWEquipment, Left Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISMediumLaser
+ISMediumLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+ISSRM6 Ammo
+ISEWEquipment
+ISEWEquipment
+ISEWEquipment
+ISEWEquipment
+Triple Strength Myomer
+Triple Strength Myomer
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+ISSRM6
+ISSRM6
+Triple Strength Myomer
+Triple Strength Myomer
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Triple Strength Myomer
+Triple Strength Myomer
+
+Head:
+Life Support
+Sensors
+Cockpit
+Heat Sink
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink

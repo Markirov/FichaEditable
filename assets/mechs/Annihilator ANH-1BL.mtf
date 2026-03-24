@@ -1,0 +1,132 @@
+Version:1.1
+Annihilator
+ANH-1BL
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3068
+Rules Level:2
+
+Mass:100
+Engine:200 Fusion Engine (Clan)
+Structure:Standard
+Gyro:Compact Gyro
+Myomer:Standard
+
+Heat Sinks:14 Double (Inner Sphere)
+Walk MP:2
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:34
+RA Armor:34
+LT Armor:32
+RT Armor:32
+CT Armor:47
+HD Armor:9
+LL Armor:42
+RL Armor:42
+RTL Armor:10
+RTR Armor:10
+RTC Armor:15
+
+Weapons:5
+1 ISRotaryAC2, Right Arm, Ammo:405
+1 ISRotaryAC2, Right Torso
+1 ISRotaryAC2, Left Torso
+1 ISRotaryAC2, Left Arm
+1 ISAntiMissileSystem, Head
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISRotaryAC2
+ISRotaryAC2
+ISRotaryAC2
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISRotaryAC2
+ISRotaryAC2
+ISRotaryAC2
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+
+Left Torso:
+ISRotaryAC2
+ISRotaryAC2
+ISRotaryAC2
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISCASE
+
+Right Torso:
+ISRotaryAC2
+ISRotaryAC2
+ISRotaryAC2
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+ISTargeting Computer
+IS AMS Ammo
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+IS AMS Ammo
+
+Head:
+Life Support
+Sensors
+Cockpit
+ISAntiMissileSystem
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+IS Rotary AC/2 Ammo
+IS Rotary AC/2 Ammo

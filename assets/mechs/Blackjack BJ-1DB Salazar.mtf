@@ -1,0 +1,130 @@
+Version:1.1
+Blackjack
+BJ-1DB Salazar
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2756
+Rules Level:5
+
+Mass:45
+Engine:180 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:17 Single
+Walk MP:4
+Jump MP:4
+
+Armor:Standard Armor (Clan)
+LA Armor:11
+RA Armor:11
+LT Armor:15
+RT Armor:15
+CT Armor:18
+HD Armor:9
+LL Armor:14
+RL Armor:14
+RTL Armor:4
+RTR Armor:4
+RTC Armor:5
+
+Weapons:4
+1 ISMediumLaser, Right Arm
+1 ISMediumLaser, Left Arm
+1 ISLargeLaser, Right Arm
+1 ISLargeLaser, Left Arm
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISLargeLaser
+ISLargeLaser
+ISMediumLaser
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISLargeLaser
+ISLargeLaser
+ISMediumLaser
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Heat Sink
+Heat Sink
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet

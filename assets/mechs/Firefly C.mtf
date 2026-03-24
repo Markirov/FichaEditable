@@ -1,0 +1,134 @@
+Version:1.1
+Firefly
+C
+
+Config:Biped
+TechBase:Clan
+Era:2839
+Rules Level:2
+
+Mass:30
+Engine:150 Fusion Engine (Clan)
+Structure:Endo-Steel
+Myomer:Standard
+
+Heat Sinks:10 Double (Clan)
+Walk MP:5
+Jump MP:4
+
+Armor:Standard Armor (Clan)
+LA Armor:10
+RA Armor:10
+LT Armor:11
+RT Armor:11
+CT Armor:15
+HD Armor:8
+LL Armor:14
+RL Armor:14
+RTL Armor:3
+RTR Armor:3
+RTC Armor:5
+
+Weapons:8
+1 CLERSmallLaser, Right Arm
+1 CLERSmallLaser, Left Torso
+1 CLMediumPulseLaser, Right Torso
+1 CLMediumPulseLaser, Left Torso
+1 CLMediumPulseLaser, Center Torso
+1 CLERSmallLaser, Center Torso
+1 CLERSmallLaser, Left Arm
+1 CLSRM2, Right Torso, Ammo:50
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+CLDouble Heat Sink
+CLDouble Heat Sink
+CLERSmallLaser
+Endo-Steel
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+CLDouble Heat Sink
+CLDouble Heat Sink
+CLERSmallLaser
+Endo-Steel
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+CLDouble Heat Sink
+CLDouble Heat Sink
+CLMediumPulseLaser
+CLERSmallLaser
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+CLDouble Heat Sink
+CLDouble Heat Sink
+CLMediumPulseLaser
+CLSRM2
+CLSRM2 Ammo
+Endo-Steel
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+CLMediumPulseLaser
+CLERSmallLaser
+
+Head:
+Life Support
+Sensors
+Cockpit
+Endo-Steel
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet

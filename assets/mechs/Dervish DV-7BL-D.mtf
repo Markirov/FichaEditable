@@ -1,0 +1,130 @@
+Version:1.1
+Dervish
+DV-7BL-D
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3047
+Rules Level:2
+
+Mass:55
+Engine:275 XL Fusion Engine (Inner Sphere)
+Structure:Endo-Steel
+Myomer:Standard
+
+Heat Sinks:11 Double (Inner Sphere)
+Walk MP:5
+Jump MP:5
+
+Armor:Standard Armor (Clan)
+LA Armor:18
+RA Armor:18
+LT Armor:20
+RT Armor:20
+CT Armor:28
+HD Armor:9
+LL Armor:22
+RL Armor:22
+RTL Armor:6
+RTR Armor:6
+RTC Armor:7
+
+Weapons:4
+1 ISLRM15, Right Torso, Ammo:24
+1 ISLRM15, Left Torso
+1 ISMediumPulseLaser, Right Arm
+1 ISMediumPulseLaser, Left Arm
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISMediumPulseLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISMediumPulseLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+
+Left Torso:
+Engine
+Engine
+Engine
+ISLRM15
+ISLRM15
+ISLRM15
+ISArtemisIV
+-Empty-
+Endo-Steel
+Endo-Steel
+Endo-Steel
+Endo-Steel
+
+Right Torso:
+Engine
+Engine
+Engine
+ISLRM15
+ISLRM15
+ISLRM15
+ISArtemisIV
+ISLRM15 Ammo Artemis-capable
+ISLRM15 Ammo Artemis-capable
+ISLRM15 Ammo Artemis-capable
+-Empty-
+ISCASE
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Jump Jet
+Endo-Steel
+
+Head:
+Life Support
+Sensors
+Cockpit
+Endo-Steel
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet

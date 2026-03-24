@@ -1,0 +1,131 @@
+Version:1.1
+Grand Dragon
+DRG-9KC
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3071
+Rules Level:2
+
+Mass:60
+Engine:360 XL Fusion Engine (Inner Sphere)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:13 Double (Inner Sphere)
+Walk MP:6
+Jump MP:0
+
+Armor:Light Ferro-Fibrous (Inner Sphere)
+LA Armor:16
+RA Armor:16
+LT Armor:16
+RT Armor:16
+CT Armor:24
+HD Armor:9
+LL Armor:22
+RL Armor:22
+RTL Armor:6
+RTR Armor:6
+RTC Armor:8
+
+Weapons:5
+1 ISC3MasterComputer, Right Torso
+1 ISMediumLaser, Left Arm
+1 ISMediumLaser (R), Left Torso (R)
+1 ISSNPPC, Right Arm
+1 ISMML5, Left Torso, Ammo:48
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISMediumLaser
+Light Ferro-Fibrous
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISSNPPC
+ISSNPPC
+Light Ferro-Fibrous
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Engine
+Engine
+Engine
+ISMML5
+ISMML5
+ISMML5
+ISMediumLaser (R)
+ISMML5 LRM Ammo
+ISMML5 SRM Ammo
+Light Ferro-Fibrous
+-Empty-
+-Empty-
+
+Right Torso:
+Engine
+Engine
+Engine
+ISC3MasterComputer
+ISC3MasterComputer
+ISC3MasterComputer
+ISC3MasterComputer
+ISC3MasterComputer
+Light Ferro-Fibrous
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+-Empty-
+-Empty-
+
+Head:
+Life Support
+Sensors
+Cockpit
+Light Ferro-Fibrous
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Light Ferro-Fibrous
+-Empty-
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Light Ferro-Fibrous
+-Empty-

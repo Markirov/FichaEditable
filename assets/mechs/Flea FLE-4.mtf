@@ -1,0 +1,130 @@
+Version:1.1
+Flea
+FLE-4
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2501
+Rules Level:5
+
+Mass:20
+Engine:120 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:10 Single
+Walk MP:6
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:3
+RA Armor:3
+LT Armor:3
+RT Armor:3
+CT Armor:5
+HD Armor:5
+LL Armor:3
+RL Armor:3
+RTL Armor:1
+RTR Armor:1
+RTC Armor:2
+
+Weapons:4
+1 ISLargeLaser, Right Arm
+1 ISFlamer (R), Center Torso (R)
+1 ISSmallLaser, Left Arm
+1 ISSmallLaser, Left Arm
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISSmallLaser
+ISSmallLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISLargeLaser
+ISLargeLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+Heat Sink
+Heat Sink
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISFlamer (R)
+-Empty-
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+-Empty-
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+-Empty-
