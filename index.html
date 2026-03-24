@@ -10147,7 +10147,7 @@ function openUnifiedConfigPanel() {
                         <span id="mech-catalog-status" style="color:#666; font-size:9px; font-style:italic;">Pendiente de carga...</span>
                         <select id="mech-catalog-delete-select" style="background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; font-family:inherit; font-size:9px; padding:3px 6px; min-width:220px;"><option value="">(elige modelo para borrar)</option></select>
                     </div>
-                    <div id="mech-catalog-buttons" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                    <div id="mech-catalog-buttons" style="display:none;"></div>
                 </div>
 
                 <!-- FICHA COMPLETA (oculta hasta cargar mech) -->
@@ -26188,14 +26188,11 @@ async function mechLoadCatalog(force){
     const items = await resp.json();
     if(!Array.isArray(items)) throw new Error('index.json debe ser un array');
 
-    items.forEach(item => {
-      if(!item || !item.file) return;
-      const btn=document.createElement('button');
-      btn.textContent=item.name || item.file;
-      btn.style.cssText='padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
-      btn.onclick=()=>mechLoadFromCatalogItem(item);
-      box.appendChild(btn);
-    });
+    // UI optimizada: no renderizar 500+ botones, solo buscador + select de borrado
+    if (box) {
+      box.innerHTML = '';
+      box.style.display = 'none';
+    }
 
     st.textContent = items.length ? ('Mechs: '+items.length) : 'Catalogo vacio';
     st.style.color = items.length ? '#4ade80' : '#888';
@@ -29429,14 +29426,17 @@ function mechCatalogRender(items){
   if(!box||!st) return;
   box.innerHTML='';
   if(sel) sel.innerHTML='<option value="">(elige modelo para borrar)</option>';
+  // UI optimizada: no renderizar lista de botones enorme
+  if (box) {
+    box.innerHTML = '';
+    box.style.display = 'none';
+  }
   (items||[]).forEach(item=>{
-    const btn=document.createElement('button');
-    btn.textContent=item.name || item.file;
-    btn.style.cssText='padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
-    btn.onclick=()=>mechLoadFromCatalogItem(item);
-    box.appendChild(btn);
     if(sel){
-      const op=document.createElement('option'); op.value=item.file; op.textContent=(item.name||item.file); sel.appendChild(op);
+      const op=document.createElement('option');
+      op.value=item.file;
+      op.textContent=(item.name||item.file);
+      sel.appendChild(op);
     }
   });
   st.textContent = items?.length ? ('Mechs: '+items.length) : 'Catalogo vacio';
@@ -29700,6 +29700,8 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
 
 
 
