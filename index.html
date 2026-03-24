@@ -8680,6 +8680,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // SISTEMA DE ROTACIÓN DE MECHS CON ESCANEO
         // ============================================
         const SCAN_MECHS = ['marauder-scan', 'warhammer-scan', 'battlemaster-scan', 'locust-scan', 'wasp-scan'];
+        const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
+        const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
+        const SCAN_LASER_COMP_MS = 500; // Compensa render pesado de SVG
+        const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
         let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
         
@@ -8702,7 +8706,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 layerCurrent.innerHTML = currentSvgContainer.innerHTML;
                 const currentSvg = layerCurrent.querySelector('svg');
                 if (currentSvg) {
-                    currentSvg.style.animation = 'mech-erase 12s linear forwards';
+                    currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
                 }
             }
             
@@ -8712,7 +8716,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 layerNext.innerHTML = nextSvgContainer.innerHTML;
                 const nextSvg = layerNext.querySelector('svg');
                 if (nextSvg) {
-                    nextSvg.style.animation = 'mech-reveal 12s linear forwards';
+                    nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
                 }
             }
             
@@ -8723,11 +8727,11 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // Iniciar animación del láser
             if (laser) {
-                laser.style.animation = 'scan-line 12s linear forwards';
+                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
             }
             
-            // Rotar cada 12 segundos (sincronizado con la animación del láser)
-            setInterval(rotateScanMechs, 12000);
+            // Rotar por ciclo sincronizado (sincronizado con la animación del láser)
+            setInterval(rotateScanMechs, SCAN_CYCLE_MS);
         }
         
         function rotateScanMechs() {
@@ -8743,6 +8747,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // El lateral muestra el mech que se está DIBUJANDO (nextScanMechIndex)
             currentMechIndex = nextScanMechIndex;
+            updateSidebarMech();
+            updateBlueprintSilhouette();
             
             // El mech que estaba en "next" pasa a "current" (ahora visible, se borra)
             layerCurrent.innerHTML = layerNext.innerHTML;
@@ -8760,13 +8766,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (currentSvg) {
                 currentSvg.style.animation = 'none';
                 currentSvg.offsetHeight; // Trigger reflow
-                currentSvg.style.animation = 'mech-erase 12s linear forwards';
+                currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
             }
             
             if (nextSvg) {
                 nextSvg.style.animation = 'none';
                 nextSvg.offsetHeight; // Trigger reflow
-                nextSvg.style.animation = 'mech-reveal 12s linear forwards';
+                nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
             }
             
             // Reiniciar animación del láser
@@ -8774,14 +8780,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (laser) {
                 laser.style.animation = 'none';
                 laser.offsetHeight; // Trigger reflow
-                laser.style.animation = 'scan-line 12s linear forwards';
+                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
             }
-            
-            // Actualizar panel lateral (sin el setTimeout de rotateMechData)
-            updateSidebarMech();
-            
-            // Actualizar silueta del blueprint lateral
-            updateBlueprintSilhouette();
         }
         
         // Actualizar el panel de datos del mech lateral
@@ -29225,6 +29225,8 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
 
 
 
