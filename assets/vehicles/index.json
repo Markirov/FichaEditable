@@ -1,14 +1,618 @@
 [
   {
+    "name": "AC2 Carrier",
+    "file": "assets/vehicles/AC2 Carrier.saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Hover LRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Hover LRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Hover MG)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Hover MG).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Hover Sensors)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Hover Sensors).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Hover SRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Hover SRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Hover)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Hover).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Tracked LRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Tracked LRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Tracked MG)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Tracked MG).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Tracked SRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Tracked SRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Tracked)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Tracked).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Wheeled LRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Wheeled LRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Wheeled MG)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Wheeled MG).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Wheeled SRM)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Wheeled SRM).saw"
+  },
+  {
+    "name": "Armored Personnel Carrier (Wheeled)",
+    "file": "assets/vehicles/Armored Personnel Carrier (Wheeled).saw"
+  },
+  {
+    "name": "Axel Heavy Tank Mk 1",
+    "file": "assets/vehicles/Axel Heavy Tank Mk 1.saw"
+  },
+  {
+    "name": "Axel Heavy Tank Mk 2",
+    "file": "assets/vehicles/Axel Heavy Tank Mk 2.saw"
+  },
+  {
+    "name": "Behemoth Heavy Tank (Armor)",
+    "file": "assets/vehicles/Behemoth Heavy Tank (Armor).saw"
+  },
+  {
+    "name": "Behemoth Heavy Tank (Flamer)",
+    "file": "assets/vehicles/Behemoth Heavy Tank (Flamer).saw"
+  },
+  {
+    "name": "Behemoth Heavy Tank",
+    "file": "assets/vehicles/Behemoth Heavy Tank.saw"
+  },
+  {
+    "name": "Bulldog Medium Tank (AC2)",
+    "file": "assets/vehicles/Bulldog Medium Tank (AC2).saw"
+  },
+  {
+    "name": "Bulldog Medium Tank (LRM)",
+    "file": "assets/vehicles/Bulldog Medium Tank (LRM).saw"
+  },
+  {
+    "name": "Bulldog Medium Tank",
+    "file": "assets/vehicles/Bulldog Medium Tank.saw"
+  },
+  {
+    "name": "Condor Heavy Hover Tank (Davion)",
+    "file": "assets/vehicles/Condor Heavy Hover Tank (Davion).saw"
+  },
+  {
+    "name": "Condor Heavy Hover Tank (Flamer)",
+    "file": "assets/vehicles/Condor Heavy Hover Tank (Flamer).saw"
+  },
+  {
+    "name": "Condor Heavy Hover Tank (Liao)",
+    "file": "assets/vehicles/Condor Heavy Hover Tank (Liao).saw"
+  },
+  {
+    "name": "Condor Heavy Hover Tank",
+    "file": "assets/vehicles/Condor Heavy Hover Tank.saw"
+  },
+  {
+    "name": "Coolant Truck (Hover)",
+    "file": "assets/vehicles/Coolant Truck (Hover).saw"
+  },
+  {
+    "name": "Coolant Truck (Tracked)",
+    "file": "assets/vehicles/Coolant Truck (Tracked).saw"
+  },
+  {
+    "name": "Coolant Truck 135 K Lifesaver",
+    "file": "assets/vehicles/Coolant Truck 135-K Lifesaver.saw"
+  },
+  {
+    "name": "Demolisher Heavy Tank (Defensive)",
+    "file": "assets/vehicles/Demolisher Heavy Tank (Defensive).saw"
+  },
+  {
+    "name": "Demolisher Heavy Tank (Mk. I)",
+    "file": "assets/vehicles/Demolisher Heavy Tank (Mk. I).saw"
+  },
+  {
+    "name": "Demolisher Heavy Tank (Mk. II)",
+    "file": "assets/vehicles/Demolisher Heavy Tank (Mk. II).saw"
+  },
+  {
+    "name": "Devastator Heavy Tank",
+    "file": "assets/vehicles/Devastator Heavy Tank.saw"
+  },
+  {
+    "name": "Drillson Heavy Hover Tank (SRM)",
+    "file": "assets/vehicles/Drillson Heavy Hover Tank (SRM).saw"
+  },
+  {
+    "name": "Drillson Heavy Hover Tank",
+    "file": "assets/vehicles/Drillson Heavy Hover Tank.saw"
+  },
+  {
+    "name": "Engineering Vehicle (Autocannon)",
+    "file": "assets/vehicles/Engineering Vehicle (Autocannon).saw"
+  },
+  {
+    "name": "Engineering Vehicle (Flamer)",
+    "file": "assets/vehicles/Engineering Vehicle (Flamer).saw"
+  },
+  {
+    "name": "Engineering Vehicle",
+    "file": "assets/vehicles/Engineering Vehicle.saw"
+  },
+  {
+    "name": "Ferret Light Scout VTOL (Armor) Wild Weasel",
+    "file": "assets/vehicles/Ferret Light Scout VTOL (Armor) Wild Weasel.saw"
+  },
+  {
+    "name": "Ferret Light Scout VTOL (Cargo)",
+    "file": "assets/vehicles/Ferret Light Scout VTOL (Cargo).saw"
+  },
+  {
+    "name": "Ferret Light Scout VTOL",
+    "file": "assets/vehicles/Ferret Light Scout VTOL.saw"
+  },
+  {
+    "name": "Goblin Medium Tank (LRM)",
+    "file": "assets/vehicles/Goblin Medium Tank (LRM).saw"
+  },
+  {
+    "name": "Goblin Medium Tank (MG)",
+    "file": "assets/vehicles/Goblin Medium Tank (MG).saw"
+  },
+  {
+    "name": "Goblin Medium Tank (SRM)",
+    "file": "assets/vehicles/Goblin Medium Tank (SRM).saw"
+  },
+  {
+    "name": "Goblin Medium Tank",
+    "file": "assets/vehicles/Goblin Medium Tank.saw"
+  },
+  {
+    "name": "Harasser Laser Platform",
+    "file": "assets/vehicles/Harasser Laser Platform.saw"
+  },
+  {
+    "name": "Harasser Missile Platform (Flamer)",
+    "file": "assets/vehicles/Harasser Missile Platform (Flamer).saw"
+  },
+  {
+    "name": "Harasser Missile Platform (LRM)",
+    "file": "assets/vehicles/Harasser Missile Platform (LRM).saw"
+  },
+  {
+    "name": "Harasser Missile Platform Leaping Lisa",
+    "file": "assets/vehicles/Harasser Missile Platform Leaping Lisa.saw"
+  },
+  {
+    "name": "Harasser Missile Platform Mini Peggy",
+    "file": "assets/vehicles/Harasser Missile Platform Mini-Peggy.saw"
+  },
+  {
+    "name": "Harasser Missile Platform",
+    "file": "assets/vehicles/Harasser Missile Platform.saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun (AC10)",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun (AC10).saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun (Laser)",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun (Laser).saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun (LRM)",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun (LRM).saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun (Scout)",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun (Scout).saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun (SRM)",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun (SRM).saw"
+  },
+  {
+    "name": "Hetzer Wheeled Assault Gun",
+    "file": "assets/vehicles/Hetzer Wheeled Assault Gun.saw"
+  },
+  {
+    "name": "Hi Scout Drone Carrier",
+    "file": "assets/vehicles/Hi-Scout Drone Carrier.saw"
+  },
+  {
+    "name": "Hunter Light Support Tank (Ammo)",
+    "file": "assets/vehicles/Hunter Light Support Tank (Ammo).saw"
+  },
+  {
+    "name": "Hunter Light Support Tank (LRM10)",
+    "file": "assets/vehicles/Hunter Light Support Tank (LRM10).saw"
+  },
+  {
+    "name": "Hunter Light Support Tank (LRM15)",
+    "file": "assets/vehicles/Hunter Light Support Tank (LRM15).saw"
+  },
+  {
+    "name": "Hunter Light Support Tank",
+    "file": "assets/vehicles/Hunter Light Support Tank.saw"
+  },
+  {
+    "name": "J 27 Ordnance Transport (Armor)",
+    "file": "assets/vehicles/J-27 Ordnance Transport (Armor).saw"
+  },
+  {
+    "name": "J 27 Ordnance Transport (Fusion)",
+    "file": "assets/vehicles/J-27 Ordnance Transport (Fusion).saw"
+  },
+  {
+    "name": "J 27 Ordnance Transport (Trailer)",
+    "file": "assets/vehicles/J-27 Ordnance Transport (Trailer).saw"
+  },
+  {
+    "name": "J 27 Ordnance Transport Killjoy",
+    "file": "assets/vehicles/J-27 Ordnance Transport Killjoy.saw"
+  },
+  {
+    "name": "J 27 Ordnance Transport",
+    "file": "assets/vehicles/J-27 Ordnance Transport.saw"
+  },
+  {
+    "name": "J. Edgar Light Hover Tank (Flamer)",
+    "file": "assets/vehicles/J. Edgar Light Hover Tank (Flamer).saw"
+  },
+  {
+    "name": "J. Edgar Light Hover Tank (ICE)",
+    "file": "assets/vehicles/J. Edgar Light Hover Tank (ICE).saw"
+  },
+  {
+    "name": "J. Edgar Light Hover Tank (MG)",
+    "file": "assets/vehicles/J. Edgar Light Hover Tank (MG).saw"
+  },
+  {
+    "name": "J. Edgar Light Hover Tank",
+    "file": "assets/vehicles/J. Edgar Light Hover Tank.saw"
+  },
+  {
+    "name": "Karnov UR Transport (AC)",
+    "file": "assets/vehicles/Karnov UR Transport (AC).saw"
+  },
+  {
+    "name": "Karnov UR Transport (Artillery)",
+    "file": "assets/vehicles/Karnov UR Transport (Artillery).saw"
+  },
+  {
+    "name": "Karnov UR Transport (Gunship)",
+    "file": "assets/vehicles/Karnov UR Transport (Gunship).saw"
+  },
+  {
+    "name": "Karnov UR Transport",
+    "file": "assets/vehicles/Karnov UR Transport.saw"
+  },
+  {
+    "name": "Laser Carrier",
+    "file": "assets/vehicles/Laser Carrier.saw"
+  },
+  {
+    "name": "LRM Carrier",
+    "file": "assets/vehicles/LRM Carrier.saw"
+  },
+  {
+    "name": "M.A.S.H. Truck (ICE)",
+    "file": "assets/vehicles/M.A.S.H. Truck (ICE).saw"
+  },
+  {
+    "name": "M.A.S.H. Truck",
+    "file": "assets/vehicles/M.A.S.H. Truck.saw"
+  },
+  {
+    "name": "Manticore Heavy Tank",
+    "file": "assets/vehicles/Manticore Heavy Tank.saw"
+  },
+  {
+    "name": "Maxim Hover Transport (SRM2)",
+    "file": "assets/vehicles/Maxim Hover Transport (SRM2).saw"
+  },
+  {
+    "name": "Maxim Hover Transport (SRM4)",
+    "file": "assets/vehicles/Maxim Hover Transport (SRM4).saw"
+  },
+  {
+    "name": "Maxim Hover Transport",
+    "file": "assets/vehicles/Maxim Hover Transport.saw"
+  },
+  {
+    "name": "Mobile Headquarters (ICE LL)",
+    "file": "assets/vehicles/Mobile Headquarters (ICE-LL).saw"
+  },
+  {
+    "name": "Mobile Headquarters (ICE LRM)",
+    "file": "assets/vehicles/Mobile Headquarters (ICE-LRM).saw"
+  },
+  {
+    "name": "Mobile Headquarters (ICE)",
+    "file": "assets/vehicles/Mobile Headquarters (ICE).saw"
+  },
+  {
+    "name": "Mobile Headquarters (LL)",
+    "file": "assets/vehicles/Mobile Headquarters (LL).saw"
+  },
+  {
+    "name": "Mobile Headquarters (LRM)",
+    "file": "assets/vehicles/Mobile Headquarters (LRM).saw"
+  },
+  {
+    "name": "Mobile Headquarters",
+    "file": "assets/vehicles/Mobile Headquarters.saw"
+  },
+  {
+    "name": "Mobile Long Tom Artillery (Ammo Carriage)",
+    "file": "assets/vehicles/Mobile Long Tom Artillery (Ammo Carriage).saw"
+  },
+  {
+    "name": "Mobile Long Tom Artillery (Support Carriage)",
+    "file": "assets/vehicles/Mobile Long Tom Artillery (Support Carriage).saw"
+  },
+  {
+    "name": "Mobile Long Tom Artillery LT MOB 25",
+    "file": "assets/vehicles/Mobile Long Tom Artillery LT-MOB-25.saw"
+  },
+  {
+    "name": "Monitor Naval Vessel",
+    "file": "assets/vehicles/Monitor Naval Vessel.saw"
+  },
+  {
+    "name": "Neptune Submarine (LRT)",
+    "file": "assets/vehicles/Neptune Submarine (LRT).saw"
+  },
+  {
+    "name": "Neptune Submarine (SRT)",
+    "file": "assets/vehicles/Neptune Submarine (SRT).saw"
+  },
+  {
+    "name": "Neptune Submarine",
+    "file": "assets/vehicles/Neptune Submarine.saw"
+  },
+  {
+    "name": "Ontos Heavy Tank (Fusion)",
+    "file": "assets/vehicles/Ontos Heavy Tank (Fusion).saw"
+  },
+  {
+    "name": "Ontos Heavy Tank (LRM)",
+    "file": "assets/vehicles/Ontos Heavy Tank (LRM).saw"
+  },
+  {
+    "name": "Ontos Heavy Tank",
+    "file": "assets/vehicles/Ontos Heavy Tank.saw"
+  },
+  {
+    "name": "Packrat MRPV PKR T5 (ICE)",
+    "file": "assets/vehicles/Packrat MRPV PKR-T5 (ICE).saw"
+  },
+  {
+    "name": "Packrat MRPV PKR T5 (ML)",
+    "file": "assets/vehicles/Packrat MRPV PKR-T5 (ML).saw"
+  },
+  {
+    "name": "Packrat MRPV PKR T5 (SRM2)",
+    "file": "assets/vehicles/Packrat MRPV PKR-T5 (SRM2).saw"
+  },
+  {
+    "name": "Packrat MRPV PKR T5",
+    "file": "assets/vehicles/Packrat MRPV PKR-T5.saw"
+  },
+  {
+    "name": "Partisan Heavy Tank (AC2)",
+    "file": "assets/vehicles/Partisan Heavy Tank (AC2).saw"
+  },
+  {
+    "name": "Partisan Heavy Tank (LRM)",
+    "file": "assets/vehicles/Partisan Heavy Tank (LRM).saw"
+  },
+  {
+    "name": "Partisan Heavy Tank",
+    "file": "assets/vehicles/Partisan Heavy Tank.saw"
+  },
+  {
+    "name": "Patton Tank",
+    "file": "assets/vehicles/Patton Tank.saw"
+  },
+  {
+    "name": "Pegasus Scout Hover Tank (Missle)",
+    "file": "assets/vehicles/Pegasus Scout Hover Tank (Missle).saw"
+  },
+  {
+    "name": "Pegasus Scout Hover Tank (Sensors)",
+    "file": "assets/vehicles/Pegasus Scout Hover Tank (Sensors).saw"
+  },
+  {
+    "name": "Pegasus Scout Hover Tank (Unarmed)",
+    "file": "assets/vehicles/Pegasus Scout Hover Tank (Unarmed).saw"
+  },
+  {
+    "name": "Pegasus Scout Hover Tank",
+    "file": "assets/vehicles/Pegasus Scout Hover Tank.saw"
+  },
+  {
+    "name": "Pike Support Vehicle (AC5)",
+    "file": "assets/vehicles/Pike Support Vehicle (AC5).saw"
+  },
+  {
+    "name": "Pike Support Vehicle (Missile)",
+    "file": "assets/vehicles/Pike Support Vehicle (Missile).saw"
+  },
+  {
+    "name": "Pike Support Vehicle",
+    "file": "assets/vehicles/Pike Support Vehicle.saw"
+  },
+  {
     "name": "Rommel Tank",
     "file": "assets/vehicles/Rommel Tank.saw"
   },
   {
-    "name": "Armored Personnel Carrier (Hover)",
-    "file": "assets/vehicles/Armored_Personnel_Carrier_Hover_.saw"
+    "name": "Saladin Assault Hover Tank (Armor)",
+    "file": "assets/vehicles/Saladin Assault Hover Tank (Armor).saw"
+  },
+  {
+    "name": "Saladin Assault Hover Tank",
+    "file": "assets/vehicles/Saladin Assault Hover Tank.saw"
+  },
+  {
+    "name": "Saracen Medium Hover Tank",
+    "file": "assets/vehicles/Saracen Medium Hover Tank.saw"
+  },
+  {
+    "name": "Savannah Master Hovercraft (SL)",
+    "file": "assets/vehicles/Savannah Master Hovercraft (SL).saw"
+  },
+  {
+    "name": "Savannah Master Hovercraft",
+    "file": "assets/vehicles/Savannah Master Hovercraft.saw"
+  },
+  {
+    "name": "Schrek AC Carrier",
+    "file": "assets/vehicles/Schrek AC Carrier.saw"
+  },
+  {
+    "name": "Schrek PPC Carrier (Anti Infantry)",
+    "file": "assets/vehicles/Schrek PPC Carrier (Anti-Infantry).saw"
   },
   {
     "name": "Schrek PPC Carrier",
-    "file": "assets/vehicles/Schrek_PPC_Carrier.saw"
+    "file": "assets/vehicles/Schrek PPC Carrier.saw"
+  },
+  {
+    "name": "Scimitar Medium Hover Tank (Missile)",
+    "file": "assets/vehicles/Scimitar Medium Hover Tank (Missile).saw"
+  },
+  {
+    "name": "Scimitar Medium Hover Tank",
+    "file": "assets/vehicles/Scimitar Medium Hover Tank.saw"
+  },
+  {
+    "name": "Scorpion Light Tank (LRM)",
+    "file": "assets/vehicles/Scorpion Light Tank (LRM).saw"
+  },
+  {
+    "name": "Scorpion Light Tank (ML)",
+    "file": "assets/vehicles/Scorpion Light Tank (ML).saw"
+  },
+  {
+    "name": "Scorpion Light Tank (SRM)",
+    "file": "assets/vehicles/Scorpion Light Tank (SRM).saw"
+  },
+  {
+    "name": "Scorpion Light Tank",
+    "file": "assets/vehicles/Scorpion Light Tank.saw"
+  },
+  {
+    "name": "Sea Skimmer Hydrofoil (SRM2)",
+    "file": "assets/vehicles/Sea Skimmer Hydrofoil (SRM2).saw"
+  },
+  {
+    "name": "Sea Skimmer Hydrofoil (SRM6)",
+    "file": "assets/vehicles/Sea Skimmer Hydrofoil (SRM6).saw"
+  },
+  {
+    "name": "Sea Skimmer Hydrofoil",
+    "file": "assets/vehicles/Sea Skimmer Hydrofoil.saw"
+  },
+  {
+    "name": "Skulker Wheeled Scout Tank (MG)",
+    "file": "assets/vehicles/Skulker Wheeled Scout Tank (MG).saw"
+  },
+  {
+    "name": "Skulker Wheeled Scout Tank (SRM)",
+    "file": "assets/vehicles/Skulker Wheeled Scout Tank (SRM).saw"
+  },
+  {
+    "name": "Skulker Wheeled Scout Tank",
+    "file": "assets/vehicles/Skulker Wheeled Scout Tank.saw"
+  },
+  {
+    "name": "SRM Carrier",
+    "file": "assets/vehicles/SRM Carrier.saw"
+  },
+  {
+    "name": "Striker Light Tank (LRM)",
+    "file": "assets/vehicles/Striker Light Tank (LRM).saw"
+  },
+  {
+    "name": "Striker Light Tank (SRM)",
+    "file": "assets/vehicles/Striker Light Tank (SRM).saw"
+  },
+  {
+    "name": "Striker Light Tank",
+    "file": "assets/vehicles/Striker Light Tank.saw"
+  },
+  {
+    "name": "Sturmfeur Heavy Tank (SRM)",
+    "file": "assets/vehicles/Sturmfeur Heavy Tank (SRM).saw"
+  },
+  {
+    "name": "Sturmfeur Heavy Tank",
+    "file": "assets/vehicles/Sturmfeur Heavy Tank.saw"
+  },
+  {
+    "name": "Swift Wind Scout Car (ICE   Cargo)",
+    "file": "assets/vehicles/Swift Wind Scout Car (ICE - Cargo).saw"
+  },
+  {
+    "name": "Swift Wind Scout Car (ICE   Speed)",
+    "file": "assets/vehicles/Swift Wind Scout Car (ICE - Speed).saw"
+  },
+  {
+    "name": "Swift Wind Scout Car (ICE)",
+    "file": "assets/vehicles/Swift Wind Scout Car (ICE).saw"
+  },
+  {
+    "name": "Swift Wind Scout Car",
+    "file": "assets/vehicles/Swift Wind Scout Car.saw"
+  },
+  {
+    "name": "Vedette Medium Tank (AC2)",
+    "file": "assets/vehicles/Vedette Medium Tank (AC2).saw"
+  },
+  {
+    "name": "Vedette Medium Tank (Liao)",
+    "file": "assets/vehicles/Vedette Medium Tank (Liao).saw"
+  },
+  {
+    "name": "Vedette Medium Tank",
+    "file": "assets/vehicles/Vedette Medium Tank.saw"
+  },
+  {
+    "name": "Von Luckner Heavy Tank VNL K100",
+    "file": "assets/vehicles/Von Luckner Heavy Tank VNL-K100.saw"
+  },
+  {
+    "name": "Von Luckner Heavy Tank VNL K65N",
+    "file": "assets/vehicles/Von Luckner Heavy Tank VNL-K65N.saw"
+  },
+  {
+    "name": "Von Luckner Heavy Tank VNL K70",
+    "file": "assets/vehicles/Von Luckner Heavy Tank VNL-K70.saw"
+  },
+  {
+    "name": "Warrior Attack Helicopter H 7",
+    "file": "assets/vehicles/Warrior Attack Helicopter H-7.saw"
+  },
+  {
+    "name": "Warrior Attack Helicopter H 7A",
+    "file": "assets/vehicles/Warrior Attack Helicopter H-7A.saw"
+  },
+  {
+    "name": "Warrior Attack Helicopter H 7C",
+    "file": "assets/vehicles/Warrior Attack Helicopter H-7C.saw"
   }
 ]
