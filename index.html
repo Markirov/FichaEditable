@@ -656,9 +656,52 @@
             border: 1px solid #5c4200;
             padding: 6px 8px;
         }
-        body.theme-classic .classic-theme-float-switch {
+                /* Ajustes de layout: blueprint izquierda y mech desplazado */
+        body.theme-new #landing-page .mech-silhouette-container {
+            display: block !important;
+            left: 236px;   /* deja hueco al sidebar global */
+            top: 95px;
+            width: 320px;
+            height: 520px;
+            z-index: 8;
+        }
+        body.theme-new #landing-page .mech-reveal-container {
+            left: 44%;      /* más a la izquierda para abrir hueco visual */
+            width: 36%;
+            height: 95%;
+            top: 2.5%;
+        }
+
+        body.theme-classic #landing-page .mech-silhouette-container {
+            display: block !important;
+            left: 20px;
+            top: 120px;
+            width: 320px;
+            height: 500px;
+            z-index: 8;
+        }
+        body.theme-classic #landing-page .mech-reveal-container {
+            left: 50%;
+            width: 25%;
+            height: 90%;
+            top: 5%;
+        }
+
+        @media (max-width: 1280px) {
+            body.theme-new #landing-page .mech-silhouette-container {
+                left: 228px;
+                width: 280px;
+                height: 470px;
+            }
+            body.theme-new #landing-page .mech-reveal-container {
+                left: 46%;
+                width: 34%;
+            }
+        }
+body.theme-classic .classic-theme-float-switch {
             display: flex;
-        }body.theme-classic #landing-page .mech-data-panel {
+        }
+        body.theme-classic #landing-page .mech-data-panel {
             right: 20px;
             top: 18%;
             width: 320px;
@@ -29915,6 +29958,7 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
+
 
 
 
