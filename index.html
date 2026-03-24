@@ -530,10 +530,123 @@
         }
         .global-shell-sidebar .btn-icon { width: 20px; text-align: center; }
 
-        /* Evitar duplicado visual del header/sidebar internos del landing */
-        #landing-page > .landing-header,
-        #landing-page > .landing-sidebar {
-            display: none !important;
+        /* Selector de diseño: nuevo (anoche) vs clásico (anterior) */
+        body.theme-new #global-shell { display: block; }
+        body.theme-new #landing-page > .landing-header,
+        body.theme-new #landing-page > .landing-sidebar { display: none !important; }
+
+        body.theme-classic #global-shell { display: none !important; }
+        body.theme-classic #landing-page > .landing-header { display: none !important; }
+        body.theme-classic #landing-page > .landing-sidebar { display: none !important; }
+
+        .theme-switch-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: 12px;
+        }
+        .theme-switch-label {
+            font-family: var(--font-headline);
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .theme-switch-select {
+            background: #0a0a0a;
+            border: 1px solid #5c4200;
+            color: #ffd79b;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            padding: 3px 6px;
+            min-width: 110px;
+        }
+        /* Recuperación visual del diseño clásico (index (7).html) */
+        body.theme-classic #landing-page {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000 !important;
+            background-image: none !important;
+            grid-template-columns: none !important;
+            grid-template-rows: none !important;
+            grid-template-areas: none !important;
+            font-family: 'Orbitron', 'Impact', sans-serif;
+        }
+        body.theme-classic #landing-page .landing-hero {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+        }
+        body.theme-classic #landing-page .mech-reveal-container {
+            top: 5%;
+            width: 25%;
+            height: 90%;
+        }
+        body.theme-classic #landing-page .landing-title {
+            display: block !important;
+            font-size: 60px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px rgba(255, 140, 66, 0.6), 0 0 30px rgba(255, 140, 66, 0.3);
+            margin-bottom: 50px;
+            border: 3px solid #4a5a6a;
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.4);
+            box-shadow: 0 0 20px rgba(255, 140, 66, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            color: #ff8c42;
+            position: relative;
+            z-index: 10;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+            text-align: center;
+        }
+        body.theme-classic #landing-page .landing-title .classic-subline {
+            font-size: 30px;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        body.theme-classic #landing-page .landing-menu {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 650px;
+            position: relative;
+            z-index: 10;
+        }
+        body.theme-classic #landing-page .landing-menu .cyber-button {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #b71c1c;
+            color: #e0e0e0;
+            padding: 12px 10px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            position: relative;
+        }
+        body.theme-classic #landing-page .landing-menu .cyber-button:hover {
+            background-color: #b71c1c;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(183, 28, 28, 0.6);
+            transform: translateY(-2px);
+        }
+        body.theme-classic #landing-page .mech-data-panel {
+            right: 20px;
+            top: 18%;
+            width: 320px;
+            border-color: #00ff00;
+            box-shadow: 0 0 16px rgba(0, 255, 0, 0.35);
+        }
+        @media (max-width: 900px) {
+            body.theme-classic #landing-page .landing-title { font-size: 42px; }
+            body.theme-classic #landing-page .landing-title .classic-subline { font-size: 20px; }
+            body.theme-classic #landing-page .landing-menu { width: min(92vw, 650px); grid-template-columns: 1fr; }
+            body.theme-classic #landing-page .mech-data-panel { display: none; }
         }
 
         @media (max-width: 900px) {
@@ -8999,7 +9112,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
-<body>
+<body class="theme-new">
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
@@ -9024,6 +9137,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div class="global-shell-info">
                 <span class="label">AÑO CAMPAÑA</span>
                 <span class="value" id="global-campaign-year">3026</span>
+                <div class="theme-switch-wrap">
+                    <span class="theme-switch-label">Diseño</span>
+                    <select class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
+                        <option value="theme-new">Nuevo</option>
+                        <option value="theme-classic">Clásico</option>
+                    </select>
+                </div>
             </div>
         </header>
     </div>
@@ -9067,6 +9187,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <div class="header-stat">
                     <div class="header-stat-label">AÑO CAMPAÑA</div>
                     <div class="header-stat-value"><span id="current-campaign-year">3026</span></div>
+                </div>
+                <div class="theme-switch-wrap">
+                    <span class="theme-switch-label">Diseño</span>
+                    <select class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
+                        <option value="theme-new">Nuevo</option>
+                        <option value="theme-classic">Clásico</option>
+                    </select>
                 </div>
             </div>
         </header>
@@ -29698,8 +29825,69 @@ function volverHubCalculador(){
 // switchMechTab removed — single view layout
 </script>
 
+<script>
+(function(){
+  const THEME_KEY = 'UI_THEME_PREF';
+
+  function buildClassicLandingMenu(){
+    const menu = document.querySelector('#landing-page .landing-menu');
+    if(!menu) return;
+
+    if(!menu.dataset.built){
+      menu.innerHTML = `
+        <button class="cyber-button" onclick="goToGenerator()">Generador de Personajes</button>
+        <button class="cyber-button" onclick="goToBarracones()">Barracones</button>
+        <button class="cyber-button" onclick="goToTRRHub()">📋 Ayudas</button>
+        <button class="cyber-button" onclick="goToCronicasHub()">📜 Crónicas & Historial</button>
+        <button class="cyber-button" onclick="abrirCalculadorCombate()">⚔️ Calculador Combate RPG</button>
+        <button class="cyber-button" onclick="goToRegistroCombate()">Registro de Combate</button>
+        <button class="cyber-button" onclick="goToBattleTracker()">🎯 Seguimiento de Combate</button>
+        <button class="cyber-button" onclick="goToTRO()">TRO: Technical Readout</button>
+      `;
+      menu.dataset.built = '1';
+    }
+
+    const title = document.querySelector('#landing-page .landing-title');
+    if(title && !title.dataset.classic){
+      title.innerHTML = `MECHWARRIOR<span class="classic-subline"><span class="classic-campaign-year">3026</span> DATABASE SYSTEM</span>`;
+      title.dataset.classic = '1';
+    }
+
+    const yearText = (document.getElementById('global-campaign-year')?.textContent || document.getElementById('current-campaign-year')?.textContent || '3026').trim();
+    document.querySelectorAll('.classic-campaign-year').forEach(el => el.textContent = yearText);
+  }
+
+  window.setUiTheme = function(theme){
+    const safe = (theme === 'theme-classic') ? 'theme-classic' : 'theme-new';
+    document.body.classList.remove('theme-new','theme-classic');
+    document.body.classList.add(safe);
+    try { localStorage.setItem(THEME_KEY, safe); } catch(_) {}
+    document.querySelectorAll('.ui-theme-switcher').forEach(sel => { sel.value = safe; });
+
+    if (safe === 'theme-classic') {
+      buildClassicLandingMenu();
+    }
+  };
+
+  window.initUiTheme = function(){
+    let saved = 'theme-new';
+    try { saved = localStorage.getItem(THEME_KEY) || 'theme-new'; } catch(_) {}
+    if (saved !== 'theme-classic') saved = 'theme-new';
+    setUiTheme(saved);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUiTheme);
+  } else {
+    initUiTheme();
+  }
+})();
+</script>
 </body>
 </html>
+
+
+
 
 
 
