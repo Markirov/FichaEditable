@@ -423,7 +423,139 @@
             background-color: #d32f2f;
         }
 
-        /* --- LANDING PAGE MILITAR BATTLETECH --- */
+        
+        /* --- SHELL GLOBAL PERSISTENTE (SIEMPRE VISIBLE) --- */
+        .global-shell-header {
+            position: fixed;
+            top: 0;
+            left: 220px;
+            right: 0;
+            height: 48px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            align-items: center;
+            padding: 0 20px;
+            background: var(--surface-dim, #0a0e14);
+            border-bottom: 1px solid var(--surface-container-highest, #31353c);
+            z-index: 4000;
+        }
+        .global-shell-brand {
+            justify-self: center;
+            text-align: center;
+            font-family: var(--font-headline, 'Share Tech Mono');
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .global-shell-info {
+            justify-self: end;
+            text-align: center;
+            padding: 2px 14px;
+            border: 1px solid var(--outline-variant, #514532);
+            background: var(--surface-container-low, #181c22);
+        }
+        .global-shell-info .label {
+            display: block;
+            font-family: var(--font-headline, 'Share Tech Mono');
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .global-shell-info .value {
+            display: block;
+            font-family: var(--font-headline, 'Share Tech Mono');
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary, #ffd79b);
+            line-height: 1.1;
+        }
+
+        .global-shell-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 220px;
+            background: var(--surface-dim, #0a0e14);
+            border-right: 1px solid var(--surface-container-highest, #31353c);
+            padding: 12px 8px;
+            overflow-y: auto;
+            z-index: 4001;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .global-shell-sidebar .sidebar-section-label {
+            font-family: var(--font-headline, 'Share Tech Mono');
+            font-size: 9px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 10px 8px 4px;
+        }
+        .global-shell-sidebar .cyber-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--on-surface-variant, #d6c4ac);
+            padding: 10px 14px;
+            font-family: var(--font-headline, 'Share Tech Mono');
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .global-shell-sidebar .cyber-button:hover {
+            background: var(--surface-container-high, #262a31);
+            color: var(--primary, #ffd79b);
+        }
+        .global-shell-sidebar .btn-icon { width: 20px; text-align: center; }
+
+        /* Evitar duplicado visual del header/sidebar internos del landing */
+        #landing-page > .landing-header,
+        #landing-page > .landing-sidebar {
+            display: none !important;
+        }
+
+        @media (max-width: 900px) {
+            .global-shell-header {
+                left: 0;
+                grid-template-columns: 1fr auto;
+                padding: 0 10px;
+            }
+            .global-shell-brand {
+                justify-self: start;
+                text-align: left;
+                font-size: 11px;
+            }
+            .global-shell-sidebar {
+                top: 48px;
+                height: auto;
+                bottom: auto;
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border-right: none;
+                border-bottom: 1px solid var(--surface-container-highest, #31353c);
+                z-index: 4001;
+            }
+            .global-shell-sidebar .sidebar-section-label { display: none; }
+            .global-shell-sidebar .cyber-button { width: auto; padding: 8px 10px; font-size: 11px; }
+        }
+
+/* --- LANDING PAGE MILITAR BATTLETECH --- */
         #landing-page {
             position: fixed; 
             top: 0; left: 0; 
@@ -8857,6 +8989,33 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     </head>
 <body>
 
+    <div id="global-shell">
+        <aside class="global-shell-sidebar">
+            <div class="sidebar-section-label">OPERACIONES</div>
+            <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> Comision</button>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+
+            <div class="sidebar-section-label">TÁCTICO</div>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
+            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
+
+            <div class="sidebar-section-label">INTEL</div>
+            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> Crónicas</button>
+        </aside>
+
+        <header class="global-shell-header">
+            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE MERCENARIOS</span>
+            <div class="global-shell-info">
+                <span class="label">AÑO CAMPAÑA</span>
+                <span class="value" id="global-campaign-year">3026</span>
+            </div>
+        </header>
+    </div>
+
     <!-- MODAL DE CONFIRMACIÓN DE SALIDA -->
     <div id="exit-confirmation-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10000; align-items: center; justify-content: center;">
         <div style="background: linear-gradient(135deg, #1a0f00 0%, #2d1a00 100%); border: 3px solid #ffae00; padding: 30px; max-width: 500px; width: 90%; box-shadow: 0 0 30px rgba(255, 174, 0, 0.5), inset 0 0 20px rgba(255, 174, 0, 0.1);">
@@ -9146,6 +9305,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             // Guardar en localStorage
             localStorage.setItem('CAMPAIGN_YEAR', year);
             document.getElementById('current-campaign-year').textContent = year;
+            const yEl = document.getElementById('global-campaign-year'); if (yEl) yEl.textContent = year;
             
             // Sincronizar con input de crónicas si existe
             const cronicasInput = document.getElementById('config-año-campana');
@@ -9208,6 +9368,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // Actualizar display en portada
             const displayEl = document.getElementById('current-campaign-year');
+            const globalDisplayEl = document.getElementById('global-campaign-year');
             if (displayEl) displayEl.textContent = year;
             
             // Actualizar input en config del panel Database
@@ -15663,6 +15824,7 @@ async function guardarConfiguracionCronicas() {
             if (year) {
                 localStorage.setItem('CAMPAIGN_YEAR', year);
                 const displayEl = document.getElementById('current-campaign-year');
+            const globalDisplayEl = document.getElementById('global-campaign-year');
                 if (displayEl) displayEl.textContent = year;
                 const configInput = document.getElementById('config-campaign-year');
                 if (configInput) configInput.value = year;
@@ -29063,6 +29225,8 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
 
 
 
