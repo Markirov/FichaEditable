@@ -439,7 +439,6 @@
             color: var(--on-surface, #dfe2eb);
             font-family: var(--font-body, Inter, sans-serif);
             overflow: hidden;
-            padding-left: 220px;
         }
 
         #landing-page::before {
@@ -564,7 +563,6 @@
             clip-path: none;
             position: relative;
             overflow: hidden;
-            padding-left: 220px;
         }
 
         .cyber-button::before { content: none; }
@@ -615,16 +613,21 @@
         /* Header bar */
         .landing-header {
             grid-area: header;
+            position: fixed;
+            top: 0;
+            left: 220px;
+            right: 280px;
+            height: 48px;
             display: grid;
-            grid-template-columns: 220px 1fr 220px;
+            grid-template-columns: 1fr 220px;
             align-items: center;
             padding: 0 20px;
             background: var(--surface-dim, #0a0e14);
             border-bottom: 1px solid var(--surface-container-highest, #31353c);
-            z-index: 20;
+            z-index: 30;
         }
         .landing-header-brand {
-            grid-column: 2;
+            grid-column: 1;
             justify-self: center;
             text-align: center;
             font-family: var(--font-headline);
@@ -638,8 +641,8 @@
         .landing-header-brand .hidden-config:hover {
             color: var(--secondary, #bdf4ff);
         }
-        .landing-header-info {
-            grid-column: 3;
+        \.landing-header-info {
+            grid-column: 2;
             justify-self: end;
             display: flex; gap: 12px; align-items: center;
         }
@@ -661,7 +664,7 @@
         .landing-sidebar {
             position: fixed;
             left: 0;
-            top: 48px;
+            top: 0;
             bottom: 0;
             width: 220px;
             background: var(--surface-dim, #0a0e14);
@@ -669,7 +672,7 @@
             display: flex; flex-direction: column; gap: 2px;
             border-right: 1px solid var(--surface-container-highest, #31353c);
             overflow-y: auto;
-            z-index: 15;
+            z-index: 25;
         }
         .sidebar-section-label {
             font-family: var(--font-headline); font-size: 9px;
@@ -683,7 +686,6 @@
             position: relative;
             background: var(--surface, #10141a);
             overflow: hidden;
-            padding-left: 220px;
         }
         
         .mech-silhouette-container {
@@ -883,7 +885,6 @@
                 grid-template-areas:
                     "header"
                     "hero";
-                padding-left: 220px;
             }
         }
 
@@ -9920,7 +9921,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div style="display:flex; align-items:center; gap:8px;">
                 <div style="font-size:8px; color:#ffae00; letter-spacing:1px; min-width:36px;">CALOR</div>
                 <div style="flex:1; height:12px; background:#0a0500; border:1px solid #5c4200; border-radius:2px; position:relative; overflow: hidden;
-            padding-left: 220px;">
+            ">
                     <div id="mech-heat-bar" style="position:absolute; top:0; left:0; height:100%; width:0%; border-radius:2px; transition:width 0.3s; background:linear-gradient(to right,#00ff41,#ffae00,#ff0000);"></div>
                     <div style="position:absolute; top:0; left:16.7%; width:1px; height:100%; background:#ffae0060;"></div>
                     <div style="position:absolute; top:0; left:26.7%; width:1px; height:100%; background:#ffae0060;"></div>
@@ -10160,7 +10161,6 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 padding: 25px;
                 position: relative;
                 overflow: hidden;
-            padding-left: 220px;
             }
             .trr-hub-sector::before {
                 content: '';
@@ -10364,7 +10364,6 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 transition: all 0.3s;
                 position: relative;
                 overflow: hidden;
-            padding-left: 220px;
             }
             .cronicas-hub-card::before {
                 content: '';
@@ -12181,7 +12180,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             </div>
                 <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
                 <button class="cyber-button" onclick="goToClusterTable()" style="width: 320px; height: 100px; font-size: 18px; position: relative; overflow: hidden;
-            padding-left: 220px; background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
+             background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%); border: 3px solid #b71c1c; box-shadow: 0 0 30px rgba(183, 28, 28, 0.5), inset 0 0 30px rgba(0, 0, 0, 0.5); transition: all 0.3s;">
                     <div style="position: relative; z-index: 1;">
                         <span style="display: block; font-size: 32px; margin-bottom: 5px;">🎯</span>
                         TABLA DE CLUSTER
@@ -29064,6 +29063,9 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
+
 
 
 
