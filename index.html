@@ -822,12 +822,16 @@ body.theme-classic .classic-theme-float-switch {
         /* Contenedores de SVGs ocultos */
         .mech-svg-storage {
             display: none;
-        }
-        
-        /* Línea de escaneo: de arriba a abajo */
+        }        /* Línea de escaneo: de arriba a abajo */
         @keyframes scan-line {
             0% { transform: translateY(0); }
             100% { transform: translateY(100vh); }
+        }
+
+
+        @keyframes scan-line-classic {
+            0% { transform: translateX(-35%); }
+            100% { transform: translateX(35%); }
         }
         
         /* Mech nuevo: se revela de arriba a abajo */
@@ -1480,10 +1484,11 @@ body.theme-classic .classic-theme-float-switch {
             transform: translateX(-50%) !important;
             z-index: 4 !important;
         }
-        /* scan-laser centrado sobre el mech en clasico */
+        /* scan-laser centrado y barrido lateral en clasico */
         body.theme-classic #landing-page .scan-laser {
-            width: 34% !important;
-            left: 33% !important;
+            width: 52% !important;
+            left: 24% !important;
+            top: 76% !important;
             right: auto !important;
             z-index: 30 !important;
         }
@@ -8922,7 +8927,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
         const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
         const SCAN_LASER_COMP_MS = 500; // Compensa render pesado de SVG
-        const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
+        
+        function getScanLaserAnimName(){
+            return document.body.classList.contains('theme-classic') ? 'scan-line-classic' : 'scan-line';
+        }
         let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
         
@@ -8966,7 +8974,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // Iniciar animación del láser
             if (laser) {
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
+                laser.style.animation = getScanLaserAnimName() + ' ' + SCAN_LASER_S + ' linear forwards';
             }
             
             // Rotar por ciclo sincronizado (sincronizado con la animación del láser)
@@ -9019,7 +9027,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (laser) {
                 laser.style.animation = 'none';
                 laser.offsetHeight; // Trigger reflow
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
+                laser.style.animation = getScanLaserAnimName() + ' ' + SCAN_LASER_S + ' linear forwards';
             }
         }
         
@@ -30006,6 +30014,9 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
+
+
+
 
 
 
