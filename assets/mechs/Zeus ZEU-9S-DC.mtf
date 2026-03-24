@@ -1,0 +1,130 @@
+Version:1.1
+Zeus
+ZEU-9S-DC
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3049
+Rules Level:3
+
+Mass:80
+Engine:320 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:16 Double (Inner Sphere)
+Walk MP:4
+Jump MP:0
+
+Armor:Ferro-Fibrous (Inner Sphere)
+LA Armor:22
+RA Armor:22
+LT Armor:25
+RT Armor:25
+CT Armor:26
+HD Armor:9
+LL Armor:24
+RL Armor:24
+RTL Armor:6
+RTR Armor:6
+RTC Armor:8
+
+Weapons:4
+1 ISLRM15, Right Arm, Ammo:8
+1 ISERPPC, Left Arm
+1 ISERLargeLaser, Left Torso
+1 ISMediumPulseLaser, Center Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISERPPC
+ISERPPC
+ISERPPC
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISLRM15
+ISLRM15
+ISLRM15
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Left Torso:
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISERLargeLaser
+ISERLargeLaser
+Ferro-Fibrous
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISLRM15 Ammo
+ISCASE
+Ferro-Fibrous
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISMediumPulseLaser
+-Empty-
+
+Head:
+Life Support
+Sensors
+Cockpit
+Cockpit
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-

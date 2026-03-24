@@ -1,0 +1,129 @@
+Version:1.1
+Locust
+LCT-1S
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2567
+Rules Level:5
+
+Mass:20
+Engine:160 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:10 Single
+Walk MP:8
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:3
+RA Armor:3
+LT Armor:6
+RT Armor:6
+CT Armor:6
+HD Armor:6
+LL Armor:6
+RL Armor:6
+RTL Armor:2
+RTR Armor:2
+RTC Armor:2
+
+Weapons:3
+1 ISMediumLaser, Center Torso
+1 ISSRM2, Right Arm, Ammo:50
+1 ISSRM2, Left Arm
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISSRM2
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISSRM2
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISMediumLaser
+ISSRM2 Ammo
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink

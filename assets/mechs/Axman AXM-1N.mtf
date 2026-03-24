@@ -1,0 +1,132 @@
+Version:1.1
+Axman
+AXM-1N
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3048
+Rules Level:2
+
+Mass:65
+Engine:260 XL Fusion Engine (Inner Sphere)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:10 Double (Inner Sphere)
+Walk MP:4
+Jump MP:4
+
+Armor:Ferro-Fibrous (Inner Sphere)
+LA Armor:17
+RA Armor:17
+LT Armor:21
+RT Armor:21
+CT Armor:28
+HD Armor:9
+LL Armor:24
+RL Armor:24
+RTL Armor:6
+RTR Armor:6
+RTC Armor:6
+
+Weapons:6
+1 ISAC20, Center Torso, Ammo:10
+1 ISMediumLaser, Right Arm
+1 ISMediumLaser, Right Arm
+1 ISMediumLaser, Right Arm
+1 ISLargePulseLaser, Left Arm
+1 Hatchet, Right Arm
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISLargePulseLaser
+ISLargePulseLaser
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISMediumLaser
+ISMediumLaser
+ISMediumLaser
+Hatchet
+Hatchet
+Hatchet
+Hatchet
+Hatchet
+
+Left Torso:
+Engine
+Engine
+Engine
+ISAC20 Ammo
+ISAC20 Ammo
+ISCASE
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+Ferro-Fibrous
+
+Right Torso:
+Engine
+Engine
+Engine
+ISAC20
+ISAC20
+ISAC20
+ISAC20
+ISAC20
+ISAC20
+ISAC20
+ISAC20
+Ferro-Fibrous
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISAC20
+ISAC20
+
+Head:
+Life Support
+Sensors
+Cockpit
+Ferro-Fibrous
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Jump Jet
+Jump Jet

@@ -1,0 +1,134 @@
+Version:1.1
+Imp
+IMP-2E
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3005
+Rules Level:5
+
+Mass:100
+Engine:300 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:30 Single
+Walk MP:3
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:25
+RA Armor:25
+LT Armor:30
+RT Armor:30
+CT Armor:40
+HD Armor:9
+LL Armor:42
+RL Armor:42
+RTL Armor:12
+RTR Armor:12
+RTC Armor:21
+
+Weapons:8
+1 ISPPC, Right Torso
+1 ISPPC, Left Torso
+1 ISMediumLaser, Left Torso
+1 ISMediumLaser, Left Arm
+1 ISMediumLaser, Right Torso
+1 ISMediumLaser, Center Torso
+1 ISMediumLaser, Center Torso
+1 ISLRM15, Right Arm, Ammo:8
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISMediumLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISLRM15
+ISLRM15
+ISLRM15
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+ISPPC
+ISPPC
+ISPPC
+ISMediumLaser
+ISLRM15 Ammo
+-Empty-
+
+Right Torso:
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+Heat Sink
+ISPPC
+ISPPC
+ISPPC
+ISMediumLaser
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISMediumLaser
+ISMediumLaser
+
+Head:
+Life Support
+Sensors
+Cockpit
+Heat Sink
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink

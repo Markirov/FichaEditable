@@ -1,0 +1,128 @@
+Version:1.1
+Wasp
+WSP-1K
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2818
+Rules Level:5
+
+Mass:20
+Engine:120 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:10 Single
+Walk MP:6
+Jump MP:6
+
+Armor:Standard Armor (Clan)
+LA Armor:5
+RA Armor:5
+LT Armor:7
+RT Armor:7
+CT Armor:7
+HD Armor:5
+LL Armor:6
+RL Armor:6
+RTL Armor:2
+RTR Armor:2
+RTC Armor:4
+
+Weapons:2
+1 ISMediumLaser, Right Arm
+1 ISMachine Gun, Left Torso, Ammo:200
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISMediumLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Heat Sink
+Heat Sink
+Jump Jet
+ISMachine Gun
+ISMG Ammo (200)
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+Heat Sink
+Heat Sink
+Jump Jet
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Jump Jet
+Jump Jet
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Jump Jet
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Jump Jet

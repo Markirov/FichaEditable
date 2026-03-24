@@ -1,0 +1,134 @@
+Version:1.1
+Daboku
+DCMS-MX90-D
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3038
+Rules Level:2
+
+Mass:90
+Engine:270 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:12 Single
+Walk MP:3
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:16
+RA Armor:16
+LT Armor:15
+RT Armor:15
+CT Armor:23
+HD Armor:9
+LL Armor:20
+RL Armor:20
+RTL Armor:5
+RTR Armor:5
+RTC Armor:8
+
+Weapons:8
+1 ISLargeLaser, Right Arm
+1 ISLargeLaser, Left Arm
+1 ISLRM10, Right Torso, Ammo:24
+1 ISLRM10, Left Torso
+1 ISAC2, Left Torso, Ammo:90
+1 ISAC2, Right Torso
+1 ISAC2, Right Torso
+1 ISAC2, Left Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISLargeLaser
+ISLargeLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+ISLargeLaser
+ISLargeLaser
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Heat Sink
+ISLRM10
+ISLRM10
+ISAC2
+ISAC2
+ISAC2 Ammo
+ISLRM10 Ammo
+ISCASE
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+Heat Sink
+ISLRM10
+ISLRM10
+ISAC2
+ISAC2
+ISAC2 Ammo
+ISLRM10 Ammo
+ISCASE
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+-Empty-
+-Empty-
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+-Empty-
+-Empty-

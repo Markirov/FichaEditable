@@ -1,0 +1,134 @@
+Version:1.1
+Battlemaster
+BLR-1G-Bl
+
+Config:Biped
+TechBase:Inner Sphere
+Era:2633
+Rules Level:5
+
+Mass:85
+Engine:340 Fusion Engine (Clan)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:20 Single
+Walk MP:4
+Jump MP:0
+
+Armor:Standard Armor (Clan)
+LA Armor:24
+RA Armor:24
+LT Armor:28
+RT Armor:28
+CT Armor:40
+HD Armor:9
+LL Armor:26
+RL Armor:26
+RTL Armor:8
+RTR Armor:8
+RTC Armor:11
+
+Weapons:8
+1 ISPPC, Right Arm
+1 ISMediumLaser, Left Torso
+1 ISMediumLaser, Left Torso
+1 ISMediumLaser, Right Torso
+1 ISMediumLaser, Right Torso
+1 ISMediumLaser (R), Right Torso (R)
+1 ISMediumLaser (R), Left Torso (R)
+1 ISSRM6, Left Torso, Ammo:30
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+Lower Arm Actuator
+Hand Actuator
+ISPPC
+ISPPC
+ISPPC
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+ISSRM6
+ISSRM6
+ISMediumLaser
+ISMediumLaser
+ISMediumLaser (R)
+Heat Sink
+ISSRM6 Ammo
+ISSRM6 Ammo
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Right Torso:
+Heat Sink
+ISMediumLaser
+ISMediumLaser
+ISMediumLaser (R)
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+Heat Sink
+-Empty-
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Heat Sink
+Heat Sink

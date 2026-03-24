@@ -1,0 +1,134 @@
+Version:1.1
+Raven
+RVN-4LC
+
+Config:Biped
+TechBase:Inner Sphere
+Era:3062
+Rules Level:2
+
+Mass:35
+Engine:210 XL Fusion Engine (Inner Sphere)
+Structure:Standard
+Myomer:Standard
+
+Heat Sinks:10 Double (Inner Sphere)
+Walk MP:6
+Jump MP:0
+
+Armor:Stealth Armor (Inner Sphere)
+LA Armor:10
+RA Armor:10
+LT Armor:10
+RT Armor:10
+CT Armor:15
+HD Armor:9
+LL Armor:10
+RL Armor:10
+RTL Armor:4
+RTR Armor:4
+RTC Armor:4
+
+Weapons:8
+1 ISSRM6, Right Torso, Ammo:15
+1 ISNarcBeacon, Left Arm, Ammo:12
+1 ISTAG, Right Torso
+1 ISGuardianECM, Left Torso
+1 ISERMediumLaser, Right Arm
+1 ISERMediumLaser, Right Arm
+1 ISC3SlaveUnit, Center Torso
+1 ISERSmallLaser, Center Torso
+
+Left Arm:
+Shoulder
+Upper Arm Actuator
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISNarcBeacon
+ISNarcBeacon
+Stealth Armor
+Stealth Armor
+-Empty-
+-Empty-
+-Empty-
+
+Right Arm:
+Shoulder
+Upper Arm Actuator
+ISERMediumLaser
+ISERMediumLaser
+Stealth Armor
+Stealth Armor
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+-Empty-
+
+Left Torso:
+Engine
+Engine
+Engine
+IS Ammo Narc
+IS Ammo Narc
+ISSRM6 Ammo Narc-capable
+ISGuardianECM
+ISGuardianECM
+Stealth Armor
+Stealth Armor
+-Empty-
+-Empty-
+
+Right Torso:
+Engine
+Engine
+Engine
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISDouble Heat Sink
+ISSRM6
+ISSRM6
+ISTAG
+Stealth Armor
+Stealth Armor
+-Empty-
+
+Center Torso:
+Engine
+Engine
+Engine
+Gyro
+Gyro
+Gyro
+Gyro
+Engine
+Engine
+Engine
+ISERSmallLaser
+ISC3SlaveUnit
+
+Head:
+Life Support
+Sensors
+Cockpit
+-Empty-
+Sensors
+Life Support
+
+Left Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Stealth Armor
+Stealth Armor
+
+Right Leg:
+Hip
+Upper Leg Actuator
+Lower Leg Actuator
+Foot Actuator
+Stealth Armor
+Stealth Armor
