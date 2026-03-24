@@ -452,6 +452,13 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .global-shell-brand .hidden-config {
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .global-shell-brand .hidden-config:hover {
+            color: var(--secondary, #bdf4ff);
+        }
         .global-shell-info {
             justify-self: end;
             text-align: center;
@@ -6524,7 +6531,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                               'registro-combate', 'trr-section', 'battle-tracker', 'trr-hub-section',
                               'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
                               'cronicas-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities'];
+                              'trr-infantry', 'trr-utilities',
+                              'combat-calc-hub', 'calc-section-infantry', 'calc-section-mech', 'calc-section-vehicle',
+                              'combat-calculator-modal', 'vehicle-crit-resolution-modal'];
             sections.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.style.display = 'none';
@@ -6568,6 +6577,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             
             // Mostrar landing
             document.getElementById('landing-page').style.display = 'grid';
+            if (typeof cargarAnoCampana === 'function') {
+                cargarAnoCampana();
+            }
             
             // Scroll al inicio
             window.scrollTo(0, 0);
@@ -9008,7 +9020,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         </aside>
 
         <header class="global-shell-header">
-            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE MERCENARIOS</span>
+            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
             <div class="global-shell-info">
                 <span class="label">AÑO CAMPAÑA</span>
                 <span class="value" id="global-campaign-year">3026</span>
@@ -9370,6 +9382,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             const displayEl = document.getElementById('current-campaign-year');
             const globalDisplayEl = document.getElementById('global-campaign-year');
             if (displayEl) displayEl.textContent = year;
+            if (globalDisplayEl) globalDisplayEl.textContent = year;
             
             // Actualizar input en config del panel Database
             const inputEl = document.getElementById('config-campaign-year');
@@ -9834,9 +9847,23 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     <button onclick="mechLoadPilotByPlayer('Marcos')" style="padding:4px 10px; background:#1a4a1a; border:1px solid #2d5a2d; color:#4ade80; font-family:inherit; font-size:10px; cursor:pointer;">Marcos</button>
                     <button onclick="mechLoadPilotByPlayer('Jaime')" style="padding:4px 10px; background:#1a3a5a; border:1px solid #2d4a6d; color:#60a5fa; font-family:inherit; font-size:10px; cursor:pointer;">Jaime</button>
                     <button onclick="mechLoadPilotByPlayer('Joan')" style="padding:4px 10px; background:#4a3a1a; border:1px solid #6d5a2d; color:#fbbf24; font-family:inherit; font-size:10px; cursor:pointer;">Joan</button>
-                    <button onclick="mechLoadPilotByPlayer('Juan')" style="padding:4px 10px; background:#4a1a4a; border:1px solid #6d2d6d; color:#c084fc; font-family:inherit; font-size:10px; cursor:pointer;">Juan</button>
+                    <button onclick="mechLoadPilotByPlayer('Palacios')" style="padding:4px 10px; background:#4a1a4a; border:1px solid #6d2d6d; color:#c084fc; font-family:inherit; font-size:10px; cursor:pointer;">Palacios</button>
                     <button onclick="mechToggleGenericPilot()" id="mech-generic-pilot-btn" style="padding:4px 10px; background:#1a1a1a; border:1px solid #555; color:#aaa; font-family:inherit; font-size:10px; cursor:pointer;">+ Genérico</button>
                     <span id="mech-pilot-load-status" style="color:#666; font-size:10px; font-style:italic; margin-left:6px;">Sin piloto cargado</span>
+                </div>
+                <div id="mech-pilot-quick-row" style="display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; margin-bottom:10px; padding:8px 10px; background:rgba(96,165,250,0.06); border:1px solid #60a5fa40;">
+                    <div style="min-width:320px; flex:1;">
+                        <div style="color:#60a5fa; font-size:9px; letter-spacing:1px; margin-bottom:6px;">MECHS DE PILOTOS (CONFIGURACIÓN)</div>
+                        <div id="mech-quick-mechs" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                    </div>
+                    <div style="min-width:260px; width:360px; max-width:100%;">
+                        <div style="color:#60a5fa; font-size:9px; letter-spacing:1px; margin-bottom:6px;">BUSCAR MECH (CATÁLOGO)</div>
+                        <div style="display:flex; gap:6px; align-items:center;">
+                            <input id="mech-catalog-search" list="mech-catalog-search-list" placeholder="Buscar mech..." onkeydown="if(event.key==='Enter'){event.preventDefault();mechSearchAndLoad();}" style="flex:1; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; font-family:inherit; font-size:10px; padding:5px 8px;">
+                            <datalist id="mech-catalog-search-list"></datalist>
+                            <button onclick="mechSearchAndLoad()" style="padding:5px 10px; background:#0a1f2a; border:1px solid #60a5fa; color:#60a5fa; font-family:inherit; font-size:10px; cursor:pointer; letter-spacing:1px;">CARGAR</button>
+                        </div>
+                    </div>
                 </div>
                 <div id="mech-generic-pilot-form" style="display:none; padding:6px 10px 8px; margin-bottom:10px; background:rgba(0,0,0,0.5); border:1px solid #555; border-top:none;">
                     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -10139,9 +10166,23 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     <button onclick="vehicleLoadPilotByPlayer('Marcos')" style="padding:4px 10px; background:#1a4a1a; border:1px solid #2d5a2d; color:#4ade80; font-family:inherit; font-size:10px; cursor:pointer;">Marcos</button>
                     <button onclick="vehicleLoadPilotByPlayer('Jaime')" style="padding:4px 10px; background:#1a3a5a; border:1px solid #2d4a6d; color:#60a5fa; font-family:inherit; font-size:10px; cursor:pointer;">Jaime</button>
                     <button onclick="vehicleLoadPilotByPlayer('Joan')" style="padding:4px 10px; background:#4a3a1a; border:1px solid #6d5a2d; color:#fbbf24; font-family:inherit; font-size:10px; cursor:pointer;">Joan</button>
-                    <button onclick="vehicleLoadPilotByPlayer('Juan')" style="padding:4px 10px; background:#4a1a4a; border:1px solid #6d2d6d; color:#c084fc; font-family:inherit; font-size:10px; cursor:pointer;">Juan</button>
+                    <button onclick="vehicleLoadPilotByPlayer('Palacios')" style="padding:4px 10px; background:#4a1a4a; border:1px solid #6d2d6d; color:#c084fc; font-family:inherit; font-size:10px; cursor:pointer;">Palacios</button>
                     <button onclick="vehicleToggleGenericPilot()" id="vehicle-generic-pilot-btn" style="padding:4px 10px; background:#1a1a1a; border:1px solid #555; color:#aaa; font-family:inherit; font-size:10px; cursor:pointer;">+ Genérico</button>
                     <span id="vehicle-pilot-load-status" style="color:#666; font-size:10px; font-style:italic; margin-left:6px;">Sin piloto cargado</span>
+                </div>
+                <div id="vehicle-pilot-quick-row" style="display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; margin-bottom:10px; padding:8px 10px; background:rgba(255,191,71,0.06); border:1px solid #ffbf4730;">
+                    <div style="min-width:320px; flex:1;">
+                        <div style="color:#ffbf47; font-size:9px; letter-spacing:1px; margin-bottom:6px;">VEHÍCULOS DE PILOTOS (CONFIGURACIÓN)</div>
+                        <div id="vehicle-quick-models" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                    </div>
+                    <div style="min-width:260px; width:360px; max-width:100%;">
+                        <div style="color:#ffbf47; font-size:9px; letter-spacing:1px; margin-bottom:6px;">BUSCAR VEHÍCULO (CATÁLOGO)</div>
+                        <div style="display:flex; gap:6px; align-items:center;">
+                            <input id="vehicle-catalog-search" list="vehicle-catalog-search-list" placeholder="Buscar vehículo..." onkeydown="if(event.key==='Enter'){event.preventDefault();vehicleSearchAndLoad();}" style="flex:1; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; font-family:inherit; font-size:10px; padding:5px 8px;">
+                            <datalist id="vehicle-catalog-search-list"></datalist>
+                            <button onclick="vehicleSearchAndLoad()" style="padding:5px 10px; background:#112133; border:1px solid #60a5fa; color:#60a5fa; font-family:inherit; font-size:10px; cursor:pointer; letter-spacing:1px;">CARGAR</button>
+                        </div>
+                    </div>
                 </div>
                 <div id="vehicle-generic-pilot-form" style="display:none; padding:6px 10px 8px; margin-bottom:10px; background:rgba(0,0,0,0.5); border:1px solid #555; border-top:none;">
                     <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
@@ -26816,6 +26857,7 @@ function mechLoadGenericPilot(){
 async function mechLoadPilotByPlayer(jugador){
   const st = document.getElementById('mech-pilot-load-status');
   try{
+    jugador = mechResolvePlayerAlias(jugador);
     if(st){ st.textContent='Cargando piloto '+jugador+'...'; st.style.color='#60a5fa'; }
     const c = await loadPilotFromCloudByPlayer(jugador);
     const g = calcSkillTIRFromCharacter(c, 'Disparo Mech');
@@ -28610,6 +28652,7 @@ function vehicleLoadGenericPilot(){
 async function vehicleLoadPilotByPlayer(jugador){
   const st = document.getElementById('vehicle-pilot-load-status');
   try{
+    jugador = mechResolvePlayerAlias(jugador);
     if(st){ st.textContent='Cargando piloto '+jugador+'...'; st.style.color='#60a5fa'; }
     const c = await loadPilotFromCloudByPlayer(jugador);
     const g = calcSkillTIRFromCharacter(c, 'Disparo Mech')
@@ -28629,6 +28672,89 @@ async function vehicleLoadPilotByPlayer(jugador){
   }catch(err){
     if(st){ st.textContent='Error piloto: '+err.message; st.style.color='#ff6b6b'; }
   }
+}
+
+function vehicleFindCatalogItemByName(name){
+  const q = mechNormalizeText(name);
+  if (!q) return null;
+
+  const local = (typeof vehicleCatalogItems !== 'undefined' && Array.isArray(vehicleCatalogItems)) ? vehicleCatalogItems : [];
+  const byExact = local.find(it => mechNormalizeText(it?.name || '') === q);
+  if (byExact) return byExact;
+
+  const byFile = local.find(it => mechNormalizeText(it?.file || '').includes(q));
+  if (byFile) return byFile;
+
+  return local.find(it => {
+    const n = mechNormalizeText(it?.name || '');
+    return (n && (n.includes(q) || q.includes(n)));
+  }) || null;
+}
+
+function vehicleRenderSearchDatalist(items){
+  const dl = document.getElementById('vehicle-catalog-search-list');
+  if (!dl) return;
+  dl.innerHTML = '';
+  (items || []).forEach(it => {
+    const op = document.createElement('option');
+    op.value = it.name || it.file || '';
+    dl.appendChild(op);
+  });
+}
+
+async function vehicleLoadQuickPilotModels(){
+  const wrap = document.getElementById('vehicle-quick-models');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  try {
+    const resp = await fetch(`${GOOGLE_SCRIPT_URL}?action=getConfiguracion`, { cache: 'no-store' });
+    const data = await resp.json();
+    const cfg = data?.config || {};
+    const rows = [];
+
+    for (let i = 1; i <= 4; i++) {
+      const pilotRaw = String(cfg[`PILOTO_${i}_NOMBRE`] || '').trim();
+      const vehicleModel = String(cfg[`PILOTO_${i}_VEHICULO`] || cfg[`PILOTO_${i}_VEHÍCULO`] || '').trim();
+      if (!pilotRaw || !vehicleModel) continue;
+      rows.push({
+        pilot: pilotRaw.toLowerCase() === 'juan' ? 'Palacios' : pilotRaw,
+        model: vehicleModel
+      });
+    }
+
+    if (!rows.length) {
+      wrap.innerHTML = '<span style="color:#777; font-size:10px;">Sin vehículos definidos en Configuración</span>';
+      return;
+    }
+
+    rows.forEach(r => {
+      const b = document.createElement('button');
+      b.textContent = r.model;
+      b.title = 'Piloto: ' + r.pilot;
+      b.style.cssText = 'padding:4px 8px; background:#112133; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
+      b.onclick = () => {
+        const it = vehicleFindCatalogItemByName(r.model);
+        const st = document.getElementById('vehicle-catalog-status');
+        if (it) return vehicleLoadFromCatalogItem(it);
+        if (st) { st.textContent = 'No encontrado en index: ' + r.model; st.style.color = '#ff8c42'; }
+      };
+      wrap.appendChild(b);
+    });
+  } catch (err) {
+    wrap.innerHTML = '<span style="color:#ff6b6b; font-size:10px;">Error config: ' + err.message + '</span>';
+  }
+}
+
+function vehicleSearchAndLoad(){
+  const inp = document.getElementById('vehicle-catalog-search');
+  const st = document.getElementById('vehicle-catalog-status');
+  const q = inp?.value || '';
+  const it = vehicleFindCatalogItemByName(q);
+  if (!it) {
+    if (st) { st.textContent = 'Sin coincidencia: ' + q; st.style.color = '#ff8c42'; }
+    return;
+  }
+  vehicleLoadFromCatalogItem(it);
 }
 
 
@@ -28729,7 +28855,10 @@ async function vehicleLoadCatalog(force){
 
   const local = vehicleGetLocalCatalog();
   const merged = vehicleMergeCatalog(remote, local);
+  vehicleCatalogItems = merged;
   vehicleRenderCatalog(merged);
+  vehicleRenderSearchDatalist(merged);
+  vehicleLoadQuickPilotModels();
 
   if(st){
     st.textContent = `Modelos: ${merged.length} (locales: ${local.length})`;
@@ -28951,6 +29080,103 @@ async function ghSaveIndexArray(path, arr, msg){
   await ghPutTextFile(path, txt, msg || ('update '+path));
 }
 
+function mechNormalizeText(s){
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function mechResolvePlayerAlias(name){
+  const n = String(name || '').trim().toLowerCase();
+  return n === 'juan' ? 'Palacios' : name;
+}
+
+function mechFindCatalogItemByName(name){
+  const q = mechNormalizeText(name);
+  if (!q || !Array.isArray(mechCatalogItems)) return null;
+
+  let item = mechCatalogItems.find(it => mechNormalizeText(it?.name || '') === q);
+  if (item) return item;
+
+  item = mechCatalogItems.find(it => mechNormalizeText(it?.file || '').includes(q));
+  if (item) return item;
+
+  return mechCatalogItems.find(it => {
+    const n = mechNormalizeText(it?.name || '');
+    return (n && (n.includes(q) || q.includes(n)));
+  }) || null;
+}
+
+function mechRenderSearchDatalist(items){
+  const dl = document.getElementById('mech-catalog-search-list');
+  if (!dl) return;
+  dl.innerHTML = '';
+  (items || []).forEach(it => {
+    const op = document.createElement('option');
+    op.value = it.name || it.file || '';
+    dl.appendChild(op);
+  });
+}
+
+async function mechLoadQuickPilotMechs(){
+  const wrap = document.getElementById('mech-quick-mechs');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+
+  try {
+    const resp = await fetch(`${GOOGLE_SCRIPT_URL}?action=getConfiguracion`, { cache: 'no-store' });
+    const data = await resp.json();
+    const cfg = data?.config || {};
+    const rows = [];
+
+    for (let i = 1; i <= 4; i++) {
+      const pilotRaw = String(cfg[`PILOTO_${i}_NOMBRE`] || '').trim();
+      const mech = String(cfg[`PILOTO_${i}_MECH`] || '').trim();
+      if (!pilotRaw || !mech) continue;
+      rows.push({
+        pilot: pilotRaw.toLowerCase() === 'juan' ? 'Palacios' : pilotRaw,
+        mech
+      });
+    }
+
+    if (!rows.length) {
+      wrap.innerHTML = '<span style="color:#777; font-size:10px;">Sin mechs de pilotos en Configuración</span>';
+      return;
+    }
+
+    rows.forEach(r => {
+      const b = document.createElement('button');
+      b.textContent = r.mech;
+      b.title = 'Piloto: ' + r.pilot;
+      b.style.cssText = 'padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
+      b.onclick = () => {
+        const it = mechFindCatalogItemByName(r.mech);
+        const st = document.getElementById('mech-catalog-status');
+        if (it) return mechLoadFromCatalogItem(it);
+        if (st) { st.textContent = 'No encontrado en index: ' + r.mech; st.style.color = '#ff8c42'; }
+      };
+      wrap.appendChild(b);
+    });
+  } catch (err) {
+    wrap.innerHTML = '<span style="color:#ff6b6b; font-size:10px;">Error config: ' + err.message + '</span>';
+  }
+}
+
+function mechSearchAndLoad(){
+  const inp = document.getElementById('mech-catalog-search');
+  const st = document.getElementById('mech-catalog-status');
+  const q = inp?.value || '';
+  const it = mechFindCatalogItemByName(q);
+  if (!it) {
+    if (st) { st.textContent = 'Sin coincidencia: ' + q; st.style.color = '#ff8c42'; }
+    return;
+  }
+  mechLoadFromCatalogItem(it);
+}
+
 function mechCatalogRender(items){
   const box=document.getElementById('mech-catalog-buttons');
   const st=document.getElementById('mech-catalog-status');
@@ -28993,6 +29219,8 @@ async function mechLoadCatalog(force){
     }
     mechCatalogItems = items;
     mechCatalogRender(items);
+    mechRenderSearchDatalist(items);
+    mechLoadQuickPilotMechs();
     mechCatalogLoaded = true;
   }catch(err){
     st.textContent='Error catalogo: '+err.message;
@@ -29040,6 +29268,8 @@ async function vehicleLoadCatalog(force){
     }
     vehicleCatalogItems = items;
     vehicleCatalogRender(items);
+    vehicleRenderSearchDatalist(items);
+    vehicleLoadQuickPilotModels();
     vehicleCatalogLoaded = true;
   }catch(err){
     if(st){ st.textContent='Error: '+err.message; st.style.color='#ff6b6b'; }
