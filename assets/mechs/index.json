@@ -1692,6 +1692,10 @@
     "file": "assets/mechs/Shadow Hawk SHD-2K.mtf"
   },
   {
+    "name": "Shadow Hawk SHD 2 ELH",
+    "file": "assets/mechs/Shadow Hawk SHD-2ELH.mtf"
+  },
+  {
     "name": "Shogun C",
     "file": "assets/mechs/Shogun C.mtf"
   },
