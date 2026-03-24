@@ -9217,15 +9217,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     console.log('✅ Contraseña correcta, panel a abrir:', panelAAbrir);
                     cerrarConfigPasswordModal();
                     
-                    if (panelAAbrir === 'database') {
-                        console.log('🔧 Llamando abrirPanelDatabase()...');
-                        abrirPanelDatabase();
-                    } else if (panelAAbrir === 'cronicas') {
-                        console.log('📜 Llamando abrirPanelCronicas()...');
-                        abrirPanelCronicas();
-                    } else {
-                        console.log('⚠️ panelAAbrir no reconocido:', panelAAbrir);
-                    }
+                    // Unificado: siempre abrir panel único desde la M
+                    console.log('⚙️ Panel unificado: abrirPanelDatabase()');
+                    abrirPanelDatabase();
                 } else {
                     document.getElementById('config-password-error').style.display = 'block';
                     document.getElementById('config-password-input').value = '';
@@ -9283,6 +9277,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             panel.style.zIndex = '9000';
             panel.style.maxHeight = '80vh';
             panel.style.overflowY = 'auto';
+            const oldCron = document.getElementById('config-cronicas-panel');
+            if (oldCron) oldCron.style.display = 'none';
+            const oldCombat = document.getElementById('combat-config-panel');
+            if (oldCombat) oldCombat.style.display = 'none';
             
             console.log('✅ Panel abierto');
             
@@ -9543,7 +9541,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <!-- Header -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px; background: rgba(255, 174, 0, 0.1); border: 2px solid #5c4200;">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <span style="font-size: 24px; cursor: pointer;" onclick="pedirPasswordConfig()" title="Configuración">⚔️</span>
+                    <span style="font-size: 24px; cursor: default; opacity: 0.75;" title="Configuración disponible desde la M de MERCENARIOS">⚔️</span>
                     <h2 style="color: #ffae00; margin: 0; font-size: 18px; letter-spacing: 3px;">CALCULADOR DE COMBATE</h2>
                 </div>
             </div>            <!-- Hub del Calculador (como Crónicas) -->
@@ -15337,7 +15335,7 @@ console.log('✅ Generador de PDF integrado correctamente');
         <!-- Header -->
         <div style="text-align: center; margin-bottom: 30px;">
             <h1 style="font-family: 'Share Tech Mono', monospace; color: #ffae00; font-size: 2.5em; text-transform: uppercase; letter-spacing: 6px; margin: 0; text-shadow: 0 0 20px rgba(255, 174, 0, 0.6);">
-                <span onclick="toggleConfigCronicas()" style="cursor: pointer; transition: all 0.3s;" title="⚙️ Configuración de Crónicas">📜</span> CRÓNICAS
+                <span style="cursor: default; opacity: 0.75; transition: all 0.3s;" title="Configuración disponible desde la M de MERCENARIOS">📜</span> CRÓNICAS
             </h1>
             <p style="font-family: 'Share Tech Mono', monospace; color: #00ff41; font-size: 0.9em; letter-spacing: 3px; margin-top: 10px;">
                 FUERZAS DE LA CABALLERIA LIGERA DE ERIDANI • ARCHIVO HISTÓRICO
@@ -15739,19 +15737,8 @@ let configCargada = {};
  * Usa el modal visual de contraseña
  */
 function toggleConfigCronicas() {
-    const panel = document.getElementById('config-cronicas-panel');
-    
-    if (panel.style.display === 'none' || panel.style.display === '') {
-        // Usar el modal visual de contraseña (definido en landing-page)
-        if (typeof mostrarConfigPasswordModal === 'function') {
-            mostrarConfigPasswordModal('cronicas', '📜 CONFIGURACIÓN DE CRÓNICAS 📜');
-        } else {
-            // Fallback si la función no está disponible
-            console.error('Modal de contraseña no disponible');
-        }
-    } else {
-        panel.style.display = 'none';
-    }
+    // Unificado: la configuración solo se abre desde la "M" del header
+    return false;
 }
 
 /**
@@ -15759,9 +15746,9 @@ function toggleConfigCronicas() {
  * (Llamada desde el modal de contraseña)
  */
 function abrirPanelCronicas() {
-    const panel = document.getElementById('config-cronicas-panel');
-    panel.style.display = 'block';
-    cargarConfiguracion(); // Cargar datos al abrir
+    // Unificado: redirige al panel único
+    abrirPanelDatabase();
+    cargarConfiguracion();
 }
 
 /**
@@ -19127,17 +19114,18 @@ function irARegistroCombate() {
 }
 
 function pedirPasswordConfig() {
-    const password = prompt('🔐 Contraseña de configuración:');
-    if (password === 'Mark') {
-        toggleCombatConfig();
-    } else if (password !== null) {
-        alert('❌ Contraseña incorrecta');
-    }
+    // Unificado: acceso solo desde la M de MERCENARIOS
+    return false;
 }
 
 function toggleCombatConfig() {
     const p = document.getElementById('combat-config-panel');
-    p.style.display = p.style.display === 'none' ? 'block' : 'none';
+    if (!p) return false;
+    // Solo permitir cerrar si ya estaba abierto por compatibilidad
+    if (p.style.display !== 'none' && p.style.display !== '') {
+        p.style.display = 'none';
+    }
+    return false;
 }
 
 function guardarConfigCombate() {
