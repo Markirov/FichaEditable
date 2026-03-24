@@ -9020,7 +9020,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         </aside>
 
         <header class="global-shell-header">
-            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
+            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
             <div class="global-shell-info">
                 <span class="label">AÑO CAMPAÑA</span>
                 <span class="value" id="global-campaign-year">3026</span>
@@ -9062,7 +9062,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <div id="landing-page">
         <!-- === HEADER BAR (pegado arriba) === -->
         <header class="landing-header">
-            <span class="landing-header-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
+            <span class="landing-header-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
             <div class="landing-header-info">
                 <div class="header-stat">
                     <div class="header-stat-label">AÑO CAMPAÑA</div>
@@ -9141,7 +9141,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <label style="color: #00ff41; font-size: 12px; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">📅 Año de Campaña:</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     <button onclick="ajustarAnoCampana(-1)" style="background: #1a1a1a; border: 1px solid #00ff41; color: #00ff41; width: 40px; height: 40px; cursor: pointer; font-size: 18px; font-weight: bold;">-</button>
-                    <input type="number" id="config-campaign-year" value="3026" min="2300" max="3200" style="flex: 1; background: #0a0a0a; border: 2px solid #00ff41; padding: 10px; color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 20px; text-align: center; font-weight: bold;">
+                    <input type="number" id="config-campaign-year" value="3000" min="3000" max="3099" style="flex: 1; background: #0a0a0a; border: 2px solid #00ff41; padding: 10px; color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 20px; text-align: center; font-weight: bold;">
                     <button onclick="ajustarAnoCampana(1)" style="background: #1a1a1a; border: 1px solid #00ff41; color: #00ff41; width: 40px; height: 40px; cursor: pointer; font-size: 18px; font-weight: bold;">+</button>
                 </div>
                 <p style="color: #00aa41; font-size: 10px; margin: 8px 0 0 0; text-align: center;">El año afectará a las unidades disponibles en el TRO</p>
@@ -9178,6 +9178,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         
         // Variable para saber qué panel abrir después de autenticar
         let configPanelPendiente = null;
+        const CAMPAIGN_MONTH_NAMES = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+
+        function formatCampaignDisplay(month, year){
+            const m = Math.min(12, Math.max(1, parseInt(month,10) || 1));
+            const y = Math.min(3099, Math.max(3000, parseInt(year,10) || 3000));
+            return `${CAMPAIGN_MONTH_NAMES[m-1]} ${y}`;
+        }
         
         /**
          * Muestra el modal de contraseña para configuración
@@ -9217,9 +9224,11 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     console.log('✅ Contraseña correcta, panel a abrir:', panelAAbrir);
                     cerrarConfigPasswordModal();
                     
-                    // Unificado: siempre abrir panel único desde la M
-                    console.log('⚙️ Panel unificado: abrirPanelDatabase()');
-                    abrirPanelDatabase();
+                    if (panelAAbrir === 'unified') {
+                        openUnifiedConfigPanelAfterAuth();
+                    } else {
+                        abrirPanelDatabase();
+                    }
                 } else {
                     document.getElementById('config-password-error').style.display = 'block';
                     document.getElementById('config-password-input').value = '';
@@ -9302,7 +9311,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         function ajustarAnoCampana(delta) {
             const input = document.getElementById('config-campaign-year');
             let year = parseInt(input.value) || 3026;
-            year = Math.max(2300, Math.min(3200, year + delta));
+            year = Math.max(3000, Math.min(3099, year + delta));
             input.value = year;
         }
         
@@ -9310,88 +9319,105 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Guarda el año de campaña en localStorage Y en Google Sheets
          */
         async function guardarAnoCampana() {
-            const year = parseInt(document.getElementById('config-campaign-year')?.value) || 3026;
-            
+            const yEl = document.getElementById('config-campaign-year');
+            const mEl = document.getElementById('config-campaign-month');
+            const year = Math.min(3099, Math.max(3000, parseInt(yEl?.value, 10) || 3000));
+            const month = Math.min(12, Math.max(1, parseInt(mEl?.value, 10) || 1));
+
             // Guardar en localStorage
-            localStorage.setItem('CAMPAIGN_YEAR', year);
-            document.getElementById('current-campaign-year').textContent = year;
-            const yEl = document.getElementById('global-campaign-year'); if (yEl) yEl.textContent = year;
-            
-            // Sincronizar con input de crónicas si existe
+            localStorage.setItem('CAMPAIGN_YEAR', String(year));
+            localStorage.setItem('CAMPAIGN_MONTH', String(month));
+
+            // Reflejar en UI principal
+            const display = formatCampaignDisplay(month, year);
+            const currentEl = document.getElementById('current-campaign-year');
+            const globalEl = document.getElementById('global-campaign-year');
+            if (currentEl) currentEl.textContent = display;
+            if (globalEl) globalEl.textContent = display;
+
+            // Sincronizar con input de crónicas si existe (año)
             const cronicasInput = document.getElementById('config-año-campana');
-            if (cronicasInput) cronicasInput.value = year;
-            
+            if (cronicasInput) cronicasInput.value = String(year);
+
             // Guardar en Google Sheets
             try {
                 const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
                 if (scriptUrl) {
                     const params = new URLSearchParams({
                         action: 'saveConfiguracionBatch',
-                        config: JSON.stringify({ 'AÑO_CAMPANA': year.toString() })
+                        config: JSON.stringify({
+                            'AÑO_CAMPANA': String(year),
+                            'MES_CAMPANA': String(month)
+                        })
                     });
-                    
+
                     const response = await fetch(`${scriptUrl}?${params.toString()}`);
                     const data = await response.json();
-                    
+
                     if (data.result === 'success') {
-                        console.log('📅 Año sincronizado con Sheets:', year);
+                        console.log('📅 Fecha campaña sincronizada con Sheets:', month, year);
                     } else {
-                        console.warn('⚠️ Error al sincronizar año con Sheets:', data.msg);
+                        console.warn('⚠️ Error al sincronizar fecha campaña con Sheets:', data.msg);
                     }
                 }
             } catch (error) {
-                console.warn('⚠️ No se pudo sincronizar año con Sheets:', error.message);
+                console.warn('⚠️ No se pudo sincronizar fecha campaña con Sheets:', error.message);
             }
-            
-            console.log('📅 Año de campaña guardado:', year);
+
+            console.log('📅 Fecha de campaña guardada:', month, year);
         }
         
         /**
          * Carga el año de campaña desde Google Sheets (primero) o localStorage
          */
         async function cargarAnoCampana() {
-            let year = 3026;
-            
+            let year = 3000;
+            let month = 1;
+
             // Intentar cargar desde Sheets primero
             try {
                 const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
                 if (scriptUrl) {
                     const response = await fetch(`${scriptUrl}?action=getConfiguracion`);
                     const data = await response.json();
-                    
-                    if (data.result === 'success' && data.config && data.config['AÑO_CAMPANA']) {
-                        year = parseInt(data.config['AÑO_CAMPANA']) || 3026;
-                        localStorage.setItem('CAMPAIGN_YEAR', year);
-                        console.log('📅 Año cargado desde Sheets:', year);
+
+                    if (data.result === 'success' && data.config) {
+                        year = Math.min(3099, Math.max(3000, parseInt(data.config['AÑO_CAMPANA'], 10) || 3000));
+                        month = Math.min(12, Math.max(1, parseInt(data.config['MES_CAMPANA'], 10) || 1));
+                        localStorage.setItem('CAMPAIGN_YEAR', String(year));
+                        localStorage.setItem('CAMPAIGN_MONTH', String(month));
+                        console.log('📅 Fecha campaña cargada desde Sheets:', month, year);
                     }
                 }
             } catch (error) {
-                console.warn('⚠️ No se pudo cargar año desde Sheets, usando localStorage');
-                year = parseInt(localStorage.getItem('CAMPAIGN_YEAR')) || 3026;
+                console.warn('⚠️ No se pudo cargar fecha campaña desde Sheets, usando localStorage');
             }
-            
-            // Fallback a localStorage si no hay conexión
-            if (!year || year === 3026) {
-                const savedYear = localStorage.getItem('CAMPAIGN_YEAR');
-                if (savedYear) year = parseInt(savedYear);
-            }
-            
+
+            // Fallback localStorage
+            const savedYear = parseInt(localStorage.getItem('CAMPAIGN_YEAR'), 10);
+            const savedMonth = parseInt(localStorage.getItem('CAMPAIGN_MONTH'), 10);
+            if (!Number.isNaN(savedYear)) year = Math.min(3099, Math.max(3000, savedYear));
+            if (!Number.isNaN(savedMonth)) month = Math.min(12, Math.max(1, savedMonth));
+
             // Actualizar display en portada
+            const display = formatCampaignDisplay(month, year);
             const displayEl = document.getElementById('current-campaign-year');
             const globalDisplayEl = document.getElementById('global-campaign-year');
-            if (displayEl) displayEl.textContent = year;
-            if (globalDisplayEl) globalDisplayEl.textContent = year;
-            
-            // Actualizar input en config del panel Database
-            const inputEl = document.getElementById('config-campaign-year');
-            if (inputEl) inputEl.value = year;
-            
-            // Sincronizar con input de crónicas si existe
+            if (displayEl) displayEl.textContent = display;
+            if (globalDisplayEl) globalDisplayEl.textContent = display;
+
+            // Actualizar inputs en config del panel Database
+            const yInput = document.getElementById('config-campaign-year');
+            if (yInput) yInput.value = String(year);
+            const mInput = document.getElementById('config-campaign-month');
+            if (mInput) mInput.value = String(month);
+
+            // Sincronizar con input de crónicas si existe (año)
             const cronicasInput = document.getElementById('config-año-campana');
-            if (cronicasInput) cronicasInput.value = year;
-            
-            console.log('📅 Año de campaña:', year);
-            return year;
+            if (cronicasInput) cronicasInput.value = String(year);
+
+            console.log('📅 Fecha de campaña:', month, year);
+            return { month, year };
         }
         
         // Cargar año al iniciar
@@ -9444,6 +9470,177 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 console.error('Error de conexión:', error);
             }
         }
+
+        // ============================================================
+        // PANEL UNIFICADO DE CONFIGURACIÓN (M de MERCENARIOS)
+        // ============================================================
+        function sanitizeConfigForSheet(cfg) {
+            const clean = { ...(cfg || {}) };
+            delete clean.PILOTO_1_MECH;
+            delete clean.PILOTO_2_MECH;
+            delete clean.PILOTO_3_MECH;
+            delete clean.PILOTO_4_MECH;
+            return clean;
+        }
+function openUnifiedConfigPanel() {
+            mostrarConfigPasswordModal('unified', '⚙️ CONFIGURACIÓN UNIFICADA ⚙️');
+        }
+
+        function openUnifiedConfigPanelAfterAuth() {
+            const panel = document.getElementById('config-unified-panel');
+            if (!panel) return;
+            panel.style.display = 'flex';
+            loadUnifiedConfigData();
+        }
+
+        function closeUnifiedConfigPanel() {
+            const panel = document.getElementById('config-unified-panel');
+            if (panel) panel.style.display = 'none';
+        }
+
+        async function loadUnifiedConfigData() {
+            const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
+            const cfg = {};
+            try {
+                if (scriptUrl) {
+                    const r = await fetch(`${scriptUrl}?action=getConfiguracion`, { cache: 'no-store' });
+                    const d = await r.json();
+                    if (d?.result === 'success' && d?.config) Object.assign(cfg, d.config);
+                }
+            } catch (_) {}
+
+            const byId = (id, v) => { const el = document.getElementById(id); if (el) el.value = (v ?? ''); };
+            const campaignYear = parseInt(cfg['AÑO_CAMPANA'] || localStorage.getItem('CAMPAIGN_YEAR') || 3000, 10) || 3000;
+            const campaignMonth = parseInt(cfg['MES_CAMPANA'] || localStorage.getItem('CAMPAIGN_MONTH') || 1, 10) || 1;
+
+            // Técnica
+            const yearSel = document.getElementById('uc-year');
+            if (yearSel && !yearSel.options.length) {
+                for (let y = 3000; y <= 3099; y++) {
+                    const op = document.createElement('option');
+                    op.value = String(y);
+                    op.textContent = String(y);
+                    yearSel.appendChild(op);
+                }
+            }
+            const monthSel = document.getElementById('uc-month');
+            if (monthSel && !monthSel.options.length) {
+                CAMPAIGN_MONTH_NAMES.forEach((name, idx) => {
+                    const op = document.createElement('option');
+                    op.value = String(idx + 1);
+                    op.textContent = name;
+                    monthSel.appendChild(op);
+                });
+            }
+            byId('uc-year', campaignYear);
+            byId('uc-month', campaignMonth);
+            byId('uc-script-url', localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : ''));
+
+            // Crónicas
+            byId('uc-company', cfg['COMPANIA_NOMBRE'] || '');
+            byId('uc-system', cfg['SISTEMA_ACTUAL'] || '');
+            byId('uc-faction', cfg['FACCION_ACTUAL'] || '');
+            byId('uc-prompt', cfg['PROMPT_INSTRUCCIONES'] || '');
+            for (let i = 1; i <= 4; i++) {
+                byId(`uc-p${i}-name`, cfg[`PILOTO_${i}_NOMBRE`] || '');
+                byId(`uc-p${i}-rank`, cfg[`PILOTO_${i}_RANGO`] || '');
+                byId(`uc-p${i}-mech`, cfg[`PILOTO_${i}_MECH`] || '');
+            }
+
+            // Combate
+            let cc = {};
+            try { cc = JSON.parse(localStorage.getItem('combatConfig') || '{}'); } catch (_) {}
+            const defaults = {
+                rangeShort: 0, rangeMedium: 2, rangeLong: 4,
+                movStand: 0, movWalk: 1, movRun: 2, movJump: 3,
+                movTargetStand: 0, movTargetWalk: 1, movTargetRun: 2, movTargetJump: 3
+            };
+            const c = { ...defaults, ...cc };
+            byId('uc-range-short', c.rangeShort);
+            byId('uc-range-medium', c.rangeMedium);
+            byId('uc-range-long', c.rangeLong);
+            byId('uc-mov-stand', c.movStand);
+            byId('uc-mov-walk', c.movWalk);
+            byId('uc-mov-run', c.movRun);
+            byId('uc-mov-jump', c.movJump);
+            byId('uc-movt-stand', c.movTargetStand);
+            byId('uc-movt-walk', c.movTargetWalk);
+            byId('uc-movt-run', c.movTargetRun);
+            byId('uc-movt-jump', c.movTargetJump);
+        }
+
+        async function saveUnifiedConfigPanel() {
+            const val = (id, fb = '') => (document.getElementById(id)?.value ?? fb).toString().trim();
+            const year = Math.min(3099, Math.max(3000, parseInt(val('uc-year', '3000')) || 3000));
+            const month = Math.min(12, Math.max(1, parseInt(val('uc-month', '1')) || 1));
+
+            const scriptUrlInput = val('uc-script-url', '');
+            if (scriptUrlInput) localStorage.setItem('GOOGLE_SCRIPT_URL_CUSTOM', scriptUrlInput);
+            const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
+
+            // 1) Guardar config global/crónicas en Sheets
+            const config = {
+                'AÑO_CAMPANA': String(year),
+                'MES_CAMPANA': String(month),
+                'COMPANIA_NOMBRE': val('uc-company'),
+                'SISTEMA_ACTUAL': val('uc-system'),
+                'FACCION_ACTUAL': val('uc-faction'),
+                'PROMPT_INSTRUCCIONES': val('uc-prompt'),
+                'PILOTO_1_NOMBRE': val('uc-p1-name'),
+                'PILOTO_1_RANGO': val('uc-p1-rank'),
+                'PILOTO_2_NOMBRE': val('uc-p2-name'),
+                'PILOTO_2_RANGO': val('uc-p2-rank'),
+                'PILOTO_3_NOMBRE': val('uc-p3-name'),
+                'PILOTO_3_RANGO': val('uc-p3-rank'),
+                'PILOTO_4_NOMBRE': val('uc-p4-name'),
+                'PILOTO_4_RANGO': val('uc-p4-rank'),
+            };
+
+            if (scriptUrl) {
+                try {
+                    const params = new URLSearchParams({
+                        action: 'saveConfiguracionBatch',
+                        config: JSON.stringify(sanitizeConfigForSheet(config))
+                    });
+                    await fetch(`${scriptUrl}?${params.toString()}`);
+                } catch (e) {
+                    console.warn('⚠️ No se pudo guardar config en Sheets:', e.message);
+                }
+            }
+
+            // 2) Guardar año local y reflejar
+            localStorage.setItem('CAMPAIGN_YEAR', String(year));
+            localStorage.setItem('CAMPAIGN_MONTH', String(month));
+            const campaignDisplay = formatCampaignDisplay(month, year);
+            const y1 = document.getElementById('current-campaign-year');
+            const y2 = document.getElementById('global-campaign-year');
+            if (y1) y1.textContent = campaignDisplay;
+            if (y2) y2.textContent = campaignDisplay;
+            const yInput = document.getElementById('config-campaign-year');
+            if (yInput) yInput.value = String(year);
+            const mInput = document.getElementById('config-campaign-month');
+            if (mInput) mInput.value = String(month);
+
+            // 3) Guardar config combate local y aplicar
+            const combatConfig = {
+                rangeShort: parseInt(val('uc-range-short', '0')) || 0,
+                rangeMedium: parseInt(val('uc-range-medium', '2')) || 2,
+                rangeLong: parseInt(val('uc-range-long', '4')) || 4,
+                movStand: parseInt(val('uc-mov-stand', '0')) || 0,
+                movWalk: parseInt(val('uc-mov-walk', '1')) || 1,
+                movRun: parseInt(val('uc-mov-run', '2')) || 2,
+                movJump: parseInt(val('uc-mov-jump', '3')) || 3,
+                movTargetStand: parseInt(val('uc-movt-stand', '0')) || 0,
+                movTargetWalk: parseInt(val('uc-movt-walk', '1')) || 1,
+                movTargetRun: parseInt(val('uc-movt-run', '2')) || 2,
+                movTargetJump: parseInt(val('uc-movt-jump', '3')) || 3
+            };
+            localStorage.setItem('combatConfig', JSON.stringify(combatConfig));
+            if (typeof aplicarConfigARadios === 'function') aplicarConfigARadios(combatConfig);
+
+            closeUnifiedConfigPanel();
+            alert('✅ Configuración unificada guardada');
+        }
         </script>
     </div>
 
@@ -9457,6 +9654,70 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div style="display: flex; gap: 10px; margin-top: 15px;">
                 <button onclick="verificarConfigPassword()" style="flex: 1; padding: 10px; background: #ffae00; color: #000; border: none; cursor: pointer; font-family: monospace; font-weight: bold;">ACCEDER</button>
                 <button onclick="cerrarConfigPasswordModal()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; font-family: monospace;">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL UNIFICADO DE CONFIGURACIÓN -->
+    <div id="config-unified-panel" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:10000; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;">
+        <div style="width:min(1100px, 96vw); max-height:92vh; overflow:auto; background:#10141a; border:2px solid #ffae00; box-shadow:0 0 30px rgba(255,174,0,0.25); padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; border-bottom:1px solid #5c4200; padding-bottom:10px; margin-bottom:12px;">
+                <h3 style="margin:0; color:#ffae00; font-family:'Share Tech Mono', monospace; letter-spacing:1px;">⚙️ CONFIGURACIÓN UNIFICADA</h3>
+                <div style="display:flex; gap:8px;">
+                    <button onclick="saveUnifiedConfigPanel()" style="background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; padding:8px 12px; cursor:pointer; font-family:'Share Tech Mono', monospace; font-size:12px;">💾 GUARDAR</button>
+                    <button onclick="closeUnifiedConfigPanel()" style="background:#2a1a0a; border:1px solid #ffae00; color:#ffae00; padding:8px 12px; cursor:pointer; font-family:'Share Tech Mono', monospace; font-size:12px;">✖ CERRAR</button>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(280px,1fr)); gap:12px;">
+                <div style="background:rgba(255,174,0,0.08); border:1px solid #5c4200; padding:10px;">
+                    <div style="color:#ffae00; font-size:12px; margin-bottom:8px;">Database / Sistema</div>
+                    <label style="color:#aaa; font-size:11px;">Mes campaña</label>
+                    <select id="uc-month" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#00ff41; padding:8px; box-sizing:border-box;"></select>
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Año campaña</label>
+                    <select id="uc-year" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#00ff41; padding:8px; box-sizing:border-box;"></select>
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">URL Apps Script</label>
+                    <input id="uc-script-url" type="text" placeholder="https://script.google.com/macros/s/..." style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                </div>
+
+                <div style="background:rgba(255,174,0,0.08); border:1px solid #5c4200; padding:10px;">
+                    <div style="color:#ffae00; font-size:12px; margin-bottom:8px;">Crónicas / Campaña</div>
+                    <label style="color:#aaa; font-size:11px;">Compañía</label>
+                    <input id="uc-company" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Sistema</label>
+                    <input id="uc-system" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Facción</label>
+                    <input id="uc-faction" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Prompt instrucciones</label>
+                    <textarea id="uc-prompt" rows="3" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;"></textarea>
+                </div>
+
+                <div style="grid-column:1 / -1; background:rgba(0,255,65,0.05); border:1px solid #2d5a2d; padding:10px;">
+                    <div style="color:#4ade80; font-size:12px; margin-bottom:8px;">Pilotos (Crónicas)</div>
+                    <div style="display:grid; grid-template-columns:repeat(4,minmax(180px,1fr)); gap:8px;">
+                        <div><input id="uc-p1-name" placeholder="Piloto 1" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p1-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p1-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p2-name" placeholder="Piloto 2" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p2-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p2-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p3-name" placeholder="Piloto 3" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p3-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p3-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p4-name" placeholder="Piloto 4" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p4-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p4-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                    </div>
+                </div>
+
+                <div style="grid-column:1 / -1; background:rgba(96,165,250,0.08); border:1px solid #2d4a6d; padding:10px;">
+                    <div style="color:#60a5fa; font-size:12px; margin-bottom:8px;">Combate (modificadores)</div>
+                    <div style="display:grid; grid-template-columns:repeat(11,minmax(60px,1fr)); gap:6px;">
+                        <input id="uc-range-short" title="Distancia corto" placeholder="Corto" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-range-medium" title="Distancia medio" placeholder="Medio" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-range-long" title="Distancia largo" placeholder="Largo" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-stand" title="Mi parado" placeholder="M Parado" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-walk" title="Mi camina" placeholder="M Camina" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-run" title="Mi corre" placeholder="M Corre" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-jump" title="Mi salto" placeholder="M Salta" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-stand" title="Obj parado" placeholder="O Parado" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-walk" title="Obj camina" placeholder="O Camina" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-run" title="Obj corre" placeholder="O Corre" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-jump" title="Obj salto" placeholder="O Salta" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -15383,7 +15644,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto1-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto1-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto1-mech" placeholder="Mech (ej: Marauder MAD-3R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto1-mech" readonly disabled placeholder="Mech (ej: Marauder MAD-3R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 2 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15392,7 +15653,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto2-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto2-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto2-mech" placeholder="Mech (ej: Warhammer WHM-6R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto2-mech" readonly disabled placeholder="Mech (ej: Warhammer WHM-6R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 3 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15401,7 +15662,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto3-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto3-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto3-mech" placeholder="Mech (ej: Griffin GRF-1N)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto3-mech" readonly disabled placeholder="Mech (ej: Griffin GRF-1N)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 4 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15410,7 +15671,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto4-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto4-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto4-mech" placeholder="Mech (ej: Shadow Hawk SHD-2H)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto4-mech" readonly disabled placeholder="Mech (ej: Shadow Hawk SHD-2H)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                 </div>
             </div>
@@ -15822,22 +16083,18 @@ async function guardarConfiguracionCronicas() {
         'PROMPT_INSTRUCCIONES': document.getElementById('config-prompt-instrucciones').value,
         'PILOTO_1_NOMBRE': document.getElementById('config-piloto1-nombre').value,
         'PILOTO_1_RANGO': document.getElementById('config-piloto1-rango').value,
-        'PILOTO_1_MECH': document.getElementById('config-piloto1-mech').value,
         'PILOTO_2_NOMBRE': document.getElementById('config-piloto2-nombre').value,
         'PILOTO_2_RANGO': document.getElementById('config-piloto2-rango').value,
-        'PILOTO_2_MECH': document.getElementById('config-piloto2-mech').value,
         'PILOTO_3_NOMBRE': document.getElementById('config-piloto3-nombre').value,
         'PILOTO_3_RANGO': document.getElementById('config-piloto3-rango').value,
-        'PILOTO_3_MECH': document.getElementById('config-piloto3-mech').value,
         'PILOTO_4_NOMBRE': document.getElementById('config-piloto4-nombre').value,
         'PILOTO_4_RANGO': document.getElementById('config-piloto4-rango').value,
-        'PILOTO_4_MECH': document.getElementById('config-piloto4-mech').value
     };
     
     try {
         const params = new URLSearchParams({
             action: 'saveConfiguracionBatch',
-            config: JSON.stringify(config)
+            config: JSON.stringify(sanitizeConfigForSheet(config))
         });
         
         const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`);
@@ -29443,6 +29700,11 @@ function volverHubCalculador(){
 
 </body>
 </html>
+
+
+
+
+
 
 
 
