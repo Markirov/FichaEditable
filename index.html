@@ -1460,10 +1460,9 @@ body.theme-classic .classic-theme-float-switch {
         /* === NUEVO (Stitch): mech centrado en hero, silueta a la izquierda === */
         body.theme-new #landing-page .scan-laser {
             position: absolute;
-            width: 100%;
-            left: 0;
             top: 0;
             z-index: 30;
+            /* left y width se calculan por JS para ir de blueprint a data panel */
         }
         
         body.theme-new #landing-page .mech-reveal-container {
@@ -1478,29 +1477,28 @@ body.theme-classic .classic-theme-float-switch {
         
         body.theme-new #landing-page .mech-silhouette-container {
             position: absolute;
-            left: 3%;
-            top: 10%;
-            width: 20%;
-            height: 80%;
+            left: 2%;
+            top: 60px;
+            width: 320px;
+            height: 500px;
             z-index: 8;
             display: block;
         }
         
-        /* === CLÁSICO: mech centrado en pantalla, título encima, botones debajo === */
+        /* === CLÁSICO: blueprint y data panel alineados, laser de borde a borde === */
         body.theme-classic #landing-page .scan-laser {
-            position: absolute;
-            width: 25%;
-            left: 37.5%;
+            position: fixed;
             top: 0;
             z-index: 30;
+            /* left y width se calculan por JS para ir de blueprint a data panel */
         }
         
         body.theme-classic #landing-page .mech-reveal-container {
             position: absolute;
             left: 50%;
-            top: 5%;
+            top: 10%;
             width: 25%;
-            height: 90%;
+            height: 80%;
             transform: translateX(-50%);
             z-index: 2;
         }
@@ -1508,7 +1506,7 @@ body.theme-classic .classic-theme-float-switch {
         body.theme-classic #landing-page .mech-silhouette-container {
             position: fixed;
             left: 20px;
-            top: 120px;
+            top: 10%;
             width: 320px;
             height: 500px;
             z-index: 8;
@@ -1518,10 +1516,10 @@ body.theme-classic .classic-theme-float-switch {
         body.theme-classic #landing-page .mech-data-panel {
             position: fixed;
             right: 20px;
-            top: 18%;
+            top: 10%;
             width: 320px;
             height: auto;
-            max-height: 70%;
+            max-height: 80%;
             z-index: 2001;
             border-color: #00ff00;
             box-shadow: 0 0 16px rgba(0, 255, 0, 0.35);
@@ -9008,66 +9006,107 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         // ============================================
         // SISTEMA DE ROTACIÓN DE MECHS CON ESCANEO
+        // Un solo reloj (requestAnimationFrame) controla
+        // laser + clip-path del mech = sincronía perfecta
         // ============================================
         const SCAN_MECHS = ['marauder-scan', 'warhammer-scan', 'battlemaster-scan', 'locust-scan', 'wasp-scan'];
-        const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
-        const SCAN_LASER_COMP_MS = 0; // Compensación del láser vs animación mech
-        const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
-        const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
+        const SCAN_CYCLE_MS = 14000;
         let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
+        let scanCycleStart = 0;
+        let scanAnimRunning = false;
         
         function initMechScanSystem() {
             const layerCurrent = document.getElementById('mech-layer-current');
             const layerNext = document.getElementById('mech-layer-next');
             const storage = document.getElementById('mech-svg-storage');
-            const laser = document.getElementById('scan-laser');
             
             if (!layerCurrent || !layerNext || !storage) return;
             
-            // Al inicio: el mech visible completo es el que se muestra en el lateral
-            // currentScanMechIndex = 0 (Marauder visible, se va borrando)
-            // nextScanMechIndex = 1 (Warhammer apareciendo)
-            // El lateral muestra Marauder (el visible)
+            // Cargar primer mech (visible, se borra)
+            const currentSrc = document.getElementById('mech-svg-' + SCAN_MECHS[currentScanMechIndex]);
+            if (currentSrc) layerCurrent.innerHTML = currentSrc.innerHTML;
             
-            // Cargar el primer mech en la capa actual (visible, se está borrando)
-            const currentSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[currentScanMechIndex]);
-            if (currentSvgContainer) {
-                layerCurrent.innerHTML = currentSvgContainer.innerHTML;
-                const currentSvg = layerCurrent.querySelector('svg');
-                if (currentSvg) {
-                    currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
-                }
-            }
+            // Cargar siguiente mech (apareciendo)
+            const nextSrc = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
+            if (nextSrc) layerNext.innerHTML = nextSrc.innerHTML;
             
-            // Cargar el siguiente mech en la capa next (apareciendo)
-            const nextSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
-            if (nextSvgContainer) {
-                layerNext.innerHTML = nextSvgContainer.innerHTML;
-                const nextSvg = layerNext.querySelector('svg');
-                if (nextSvg) {
-                    nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
-                }
-            }
-            
-            // El lateral muestra el mech que se está DIBUJANDO (nextScanMechIndex)
+            // Sidebar muestra el que se está dibujando
             currentMechIndex = nextScanMechIndex;
             updateSidebarMech();
             updateBlueprintSilhouette();
             
-            // Iniciar animación del láser
-            if (laser) {
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
+            // Iniciar el reloj único
+            scanCycleStart = performance.now();
+            scanAnimRunning = true;
+            requestAnimationFrame(scanAnimationFrame);
+        }
+        
+        function scanAnimationFrame(now) {
+            if (!scanAnimRunning) return;
+            
+            const elapsed = now - scanCycleStart;
+            const progress = Math.min(elapsed / SCAN_CYCLE_MS, 1);
+            const pct = (progress * 100).toFixed(2);
+            
+            // Posicionar laser: vertical = borde del clip-path, horizontal = de blueprint a data panel
+            const laser = document.getElementById('scan-laser');
+            const mechContainer = document.querySelector('.mech-reveal-container');
+            const blueprint = document.querySelector('.mech-silhouette-container');
+            const dataPanel = document.querySelector('.mech-data-panel');
+            
+            if (laser && mechContainer) {
+                // Posición vertical: sigue el clip-path del mech
+                var containerTop, containerH;
+                var rect = mechContainer.getBoundingClientRect();
+                containerTop = rect.top;
+                containerH = rect.height;
+                var laserY = containerTop + (progress * containerH);
+                laser.style.top = laserY + 'px';
+                laser.style.position = 'fixed';
+                
+                // Ancho horizontal: de borde izquierdo de blueprint a borde derecho de data panel
+                var laserLeft = 0;
+                var laserRight = window.innerWidth;
+                
+                if (blueprint && blueprint.offsetParent !== null) {
+                    var bpRect = blueprint.getBoundingClientRect();
+                    laserLeft = bpRect.left;
+                }
+                if (dataPanel && dataPanel.offsetParent !== null) {
+                    var dpRect = dataPanel.getBoundingClientRect();
+                    laserRight = dpRect.right;
+                }
+                
+                laser.style.left = laserLeft + 'px';
+                laser.style.width = (laserRight - laserLeft) + 'px';
             }
             
-            // Rotar por ciclo sincronizado (sincronizado con la animación del láser)
-            setInterval(rotateScanMechs, SCAN_CYCLE_MS);
+            // Clip-path mechs — sincronizado al frame con el laser
+            const layerCurrent = document.getElementById('mech-layer-current');
+            const layerNext = document.getElementById('mech-layer-next');
+            
+            if (layerCurrent) {
+                // Borrar de arriba a abajo
+                layerCurrent.style.clipPath = 'inset(' + pct + '% 0 0 0)';
+            }
+            if (layerNext) {
+                // Revelar de arriba a abajo
+                layerNext.style.clipPath = 'inset(0 0 ' + (100 - parseFloat(pct)).toFixed(2) + '% 0)';
+            }
+            
+            // Ciclo completado → rotar
+            if (progress >= 1) {
+                rotateScanMechs();
+                scanCycleStart = now;
+            }
+            
+            requestAnimationFrame(scanAnimationFrame);
         }
         
         function rotateScanMechs() {
             const layerCurrent = document.getElementById('mech-layer-current');
             const layerNext = document.getElementById('mech-layer-next');
-            const landingPage = document.getElementById('landing-page');
             
             if (!layerCurrent || !layerNext) return;
             
@@ -9075,43 +9114,17 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             currentScanMechIndex = nextScanMechIndex;
             nextScanMechIndex = (nextScanMechIndex + 1) % SCAN_MECHS.length;
             
-            // El lateral muestra el mech que se está DIBUJANDO (nextScanMechIndex)
+            // Sidebar muestra el que se está dibujando
             currentMechIndex = nextScanMechIndex;
             updateSidebarMech();
             updateBlueprintSilhouette();
             
-            // El mech que estaba en "next" pasa a "current" (ahora visible, se borra)
+            // Mech que era "next" pasa a "current"
             layerCurrent.innerHTML = layerNext.innerHTML;
             
-            // Cargar el nuevo mech en "next" (se va a dibujar)
-            const nextSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
-            if (nextSvgContainer) {
-                layerNext.innerHTML = nextSvgContainer.innerHTML;
-            }
-            
-            // Reiniciar animaciones de SVGs
-            const currentSvg = layerCurrent.querySelector('svg');
-            const nextSvg = layerNext.querySelector('svg');
-            
-            if (currentSvg) {
-                currentSvg.style.animation = 'none';
-                currentSvg.offsetHeight; // Trigger reflow
-                currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
-            }
-            
-            if (nextSvg) {
-                nextSvg.style.animation = 'none';
-                nextSvg.offsetHeight; // Trigger reflow
-                nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
-            }
-            
-            // Reiniciar animación del láser
-            const laser = document.getElementById('scan-laser');
-            if (laser) {
-                laser.style.animation = 'none';
-                laser.offsetHeight; // Trigger reflow
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
-            }
+            // Cargar nuevo mech en "next"
+            const nextSrc = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
+            if (nextSrc) layerNext.innerHTML = nextSrc.innerHTML;
         }
         
         // Actualizar el panel de datos del mech lateral
@@ -9170,7 +9183,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // Para GitHub Pages: 'https://tu-usuario.github.io/tu-repo/svg/'
         // Para GitHub raw: 'https://raw.githubusercontent.com/tu-usuario/tu-repo/main/svg/'
         // Para local (mismo directorio): 'svg/'
-        const SVG_BASE_URL = 'svg/';
+        const SVG_BASE_URL = 'assets/svg/';
         
         /**
          * Carga un SVG externo y lo inyecta en un contenedor.
