@@ -539,27 +539,27 @@
         body.theme-classic #landing-page > .landing-header { display: none !important; }
         body.theme-classic #landing-page > .landing-sidebar { display: none !important; }
 
-        .theme-switch-wrap {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: 12px;
+        /* MRB Badge — Theme Toggle Button */
+        .mrb-badge-btn {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            z-index: 99999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+            filter: drop-shadow(0 0 4px rgba(255, 174, 0, 0.4));
         }
-        .theme-switch-label {
-            font-family: var(--font-headline);
-            font-size: 8px;
-            color: var(--outline, #9e8e78);
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .mrb-badge-btn:hover {
+            opacity: 1;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px rgba(255, 174, 0, 0.7));
         }
-        .theme-switch-select {
-            background: #0a0a0a;
-            border: 1px solid #5c4200;
-            color: #ffd79b;
-            font-family: var(--font-mono);
-            font-size: 10px;
-            padding: 3px 6px;
-            min-width: 110px;
+        .mrb-badge-btn img {
+            display: block;
         }
         /* Recuperación visual del diseño clásico (index (7).html) */
         body.theme-classic #landing-page {
@@ -572,6 +572,8 @@
             grid-template-columns: none !important;
             grid-template-rows: none !important;
             grid-template-areas: none !important;
+            padding-left: 0 !important;
+            padding-top: 0 !important;
             font-family: 'Orbitron', 'Impact', sans-serif;
         }
         body.theme-classic #landing-page .landing-hero {
@@ -580,23 +582,15 @@
             background: transparent;
         }
         
-        /* scan-laser centrado y barrido vertical en nuevo */
-        body.theme-new #landing-page .scan-laser {
-            width: 56% !important;
-            left: 22% !important;
-            top: 0 !important;
-            right: auto !important;
-            z-index: 30 !important;
-        }
 body.theme-classic #landing-page .landing-title {
             display: block !important;
-            font-size: 60px;
+            font-size: clamp(18px, 3.5vw, 42px);
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             text-shadow: 0 0 15px rgba(255, 140, 66, 0.6), 0 0 30px rgba(255, 140, 66, 0.3);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             border: 3px solid #4a5a6a;
-            padding: 20px;
+            padding: 15px 25px;
             background: rgba(26, 26, 26, 0.4);
             box-shadow: 0 0 20px rgba(255, 140, 66, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
             color: #ff8c42;
@@ -604,6 +598,8 @@ body.theme-classic #landing-page .landing-title {
             z-index: 10;
             clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
             text-align: center;
+            max-width: 90vw;
+            line-height: 1.2;
         }
         body.theme-classic #landing-page .landing-title .classic-subline {
             font-size: 30px;
@@ -649,81 +645,19 @@ body.theme-classic #landing-page .landing-title {
             pointer-events: auto;
         }
         .classic-theme-float-switch {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0,0,0,0.75);
-            border: 1px solid #5c4200;
-            padding: 6px 8px;
-        }
-                /* Ajustes de layout: blueprint izquierda y mech desplazado */
-        body.theme-new #landing-page .mech-silhouette-container {
-            display: block !important;
-            left: 236px;   /* deja hueco al sidebar global */
-            top: 95px;
-            width: 320px;
-            height: 520px;
-            z-index: 8;
+            display: none !important; /* Replaced by MRB badge */
         }
         
         
-        body.theme-new #landing-page .mech-reveal-container {
-            position: fixed !important;
-            left: 56% !important;
-            top: 5% !important;
-            width: 28% !important;
-            height: 90% !important;
-            transform: translateX(-50%) !important;
-            z-index: 4 !important;
-        }
-body.theme-classic #landing-page .mech-silhouette-container {
-            display: block !important;
-            left: 20px;
-            top: 120px;
-            width: 320px;
-            height: 500px;
-            z-index: 8;
-        }
         
-        /* scan-laser centrado y barrido vertical en nuevo */
-        body.theme-new #landing-page .scan-laser {
-            width: 56% !important;
-            left: 22% !important;
-            top: 0 !important;
-            right: auto !important;
-            z-index: 30 !important;
-        }
+
+        
 @media (max-width: 1280px) {
-            body.theme-new #landing-page .mech-silhouette-container {
-                left: 228px;
-                width: 280px;
-                height: 470px;
-            }
             
         
-        body.theme-new #landing-page .mech-reveal-container {
-            position: fixed !important;
-            left: 56% !important;
-            top: 5% !important;
-            width: 28% !important;
-            height: 90% !important;
-            transform: translateX(-50%) !important;
-            z-index: 4 !important;
-        }
 }
 body.theme-classic .classic-theme-float-switch {
-            display: flex;
-        }
-        body.theme-classic #landing-page .mech-data-panel {
-            right: 20px;
-            top: 18%;
-            width: 320px;
-            border-color: #00ff00;
-            box-shadow: 0 0 16px rgba(0, 255, 0, 0.35);
+            display: none !important; /* Replaced by MRB badge */
         }
         @media (max-width: 900px) {
             body.theme-classic #landing-page .landing-title { font-size: 42px; }
@@ -767,13 +701,19 @@ body.theme-classic .classic-theme-float-switch {
             z-index: 2000;
             display: grid;
             grid-template-columns: 1fr 280px;
-            grid-template-rows: 48px 1fr;
+            grid-template-rows: 1fr;
             grid-template-areas:
-                "header header"
                 "hero datapanel";
             color: var(--on-surface, #dfe2eb);
             font-family: var(--font-body, Inter, sans-serif);
             overflow: hidden;
+        }
+        
+        /* New theme: offset for global shell sidebar + header */
+        body.theme-new #landing-page {
+            padding-left: 220px;
+            padding-top: 48px;
+            box-sizing: border-box;
         }
 
         #landing-page::before {
@@ -1457,59 +1397,138 @@ body.theme-classic .classic-theme-float-switch {
             transform: translateY(0);
         }
     
-        /* ANCLA FINAL BLUEPRINT (evita que reglas posteriores muevan el panel) */
-        body.theme-classic #landing-page .mech-silhouette-container {
-            position: fixed !important;
-            left: 20px !important;
-            top: 120px !important;
-            right: auto !important;
-            bottom: auto !important;
-            width: 320px !important;
-            height: 500px !important;
-            transform: none !important;
-            z-index: 50 !important;
-            display: block !important;
-        }
-        body.theme-new #landing-page .mech-silhouette-container {
-            position: fixed !important;
-            left: 236px !important;
-            top: 95px !important;
-            right: auto !important;
-            bottom: auto !important;
-            width: 320px !important;
-            height: 520px !important;
-            transform: none !important;
-            z-index: 50 !important;
-            display: block !important;
-        }
+
         
+        
+
+
+        /* ============================================================
+           THEME OVERRIDES — CONSOLIDATED (single source of truth)
+           ============================================================ */
+        
+        /* === NUEVO (Stitch): mech centrado en hero, silueta a la izquierda === */
+        body.theme-new #landing-page .scan-laser {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: 30;
+        }
         
         body.theme-new #landing-page .mech-reveal-container {
-            position: fixed !important;
-            left: 56% !important;
-            top: 5% !important;
-            width: 28% !important;
-            height: 90% !important;
-            transform: translateX(-50%) !important;
-            z-index: 4 !important;
+            position: absolute;
+            left: 50%;
+            top: 2%;
+            width: 40%;
+            height: 96%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+        
+        body.theme-new #landing-page .mech-silhouette-container {
+            position: absolute;
+            left: 3%;
+            top: 10%;
+            width: 20%;
+            height: 80%;
+            z-index: 8;
+            display: block;
+        }
+        
+        /* === CLÁSICO: mech centrado en pantalla, título encima, botones debajo === */
+        body.theme-classic #landing-page .scan-laser {
+            position: absolute;
+            width: 25%;
+            left: 37.5%;
+            top: 0;
+            z-index: 30;
+        }
+        
+        body.theme-classic #landing-page .mech-reveal-container {
+            position: absolute;
+            left: 50%;
+            top: 5%;
+            width: 25%;
+            height: 90%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        body.theme-classic #landing-page .mech-silhouette-container {
+            position: fixed;
+            left: 20px;
+            top: 120px;
+            width: 320px;
+            height: 500px;
+            z-index: 8;
+            display: block;
+        }
+        
+        body.theme-classic #landing-page .mech-data-panel {
+            position: fixed;
+            right: 20px;
+            top: 18%;
+            width: 320px;
+            height: auto;
+            max-height: 70%;
+            z-index: 2001;
+            border-color: #00ff00;
+            box-shadow: 0 0 16px rgba(0, 255, 0, 0.35);
+        }
+        
+        body.theme-new #landing-page .mech-data-panel {
+            /* Override fixed positioning — use grid area instead */
+            position: relative;
+            right: auto;
+            top: auto;
+            width: auto;
+            min-height: auto;
+            grid-area: datapanel;
+            background: var(--surface-dim, #0a0e14);
+            border: none;
+            border-left: 1px solid var(--surface-container-highest, #31353c);
+            box-shadow: none;
+            pointer-events: auto;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        body.theme-new #landing-page .mech-data-panel::before,
+        body.theme-new #landing-page .mech-data-panel::after {
+            display: none;
+        }
+        body.theme-new #landing-page .mech-name {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            color: var(--primary, #ffd79b);
+            text-shadow: none;
+            animation: none;
+            border-right: none;
+            overflow: visible;
+            white-space: normal;
+        }
+        body.theme-new #landing-page .mech-spec {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--on-surface-variant, #d6c4ac);
+            background: var(--surface-container-low, #181c22);
+            border-left: 2px solid var(--outline-variant, #514532);
+            text-shadow: none;
+            animation: none;
+            opacity: 1;
+            padding: 8px 10px;
+            margin: 0 0 2px 0;
+        }
+        
+        /* === RESPONSIVE OVERRIDES === */
+        @media (max-width: 1400px) {
+            body.theme-new #landing-page .mech-data-panel { display: none; }
+            body.theme-classic #landing-page .mech-data-panel { display: none; }
+        }
+        @media (max-width: 768px) {
+            body.theme-new #landing-page .mech-silhouette-container { display: none; }
+            body.theme-classic #landing-page .mech-silhouette-container { display: none; }
         }
 
-        /* scan-laser centrado y barrido vertical en nuevo */
-        body.theme-new #landing-page .scan-laser {
-            width: 56% !important;
-            left: 22% !important;
-            top: 0 !important;
-            right: auto !important;
-            z-index: 30 !important;
-        }
-/* scan-laser centrado y barrido vertical en clasico */
-        body.theme-classic #landing-page .scan-laser {
-            width: 56% !important;
-            left: 22% !important;
-            top: 0 !important;
-            right: auto !important;
-            z-index: 30 !important;
-        }
 </style>
 
     <script>
@@ -5409,7 +5428,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goHome() {
             if(confirm("¿Volver al inicio? Se perderán los datos no guardados.")) {
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('galactic-map').style.display = 'none';
@@ -5431,7 +5450,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goHomeNoConfirm() {
             clearCriticalInfoDisplays();
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -5447,7 +5466,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         function goHomeFromTRR() {
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -5477,7 +5496,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // Personalizar mensaje según la sección
             const messages = {
                 'barracones': '¿Salir de Barracones?',
-                'generador': '¿Salir del Generador de Personajes?',
+                'generador': '¿Salir del RECLUTAMIENTO?',
                 'default': '¿Salir de esta sección?'
             };
                 const message = messages[section] || messages['default'];
@@ -5556,7 +5575,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
          *    - Armas (selectores, munición, daño, alcance)
          *    - Notas
          * 
-         * 2. 'generador': Limpia la interfaz del Generador de Personajes
+         * 2. 'generador': Limpia la interfaz del RECLUTAMIENTO
          *    - Contador de puntos (resetea a 150)
          *    - Campos de personaje (nombre, jugador, edad, planeta, etc.)
          *    - Campaña, década y año
@@ -5725,7 +5744,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Barracones...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('barracones').style.display = 'none';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
@@ -5744,7 +5763,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Generador...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('barracones').style.display = 'none';
@@ -5757,34 +5776,34 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         /**
-         * Navega a la sección de Registro de Combate
+         * Navega a la sección de HOJA DE SERVICIO
          * Esta sección permite registrar combates y distribuir recompensas (XP, dinero) de forma masiva
          */
         function goToRegistroCombate() {
-            console.log('🎯 Navegando a Registro de Combate...');
+            console.log('🎯 Navegando a HOJA DE SERVICIO...');
                 // Ocultar todas las secciones
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('barracones').style.display = 'none';
             document.getElementById('points-counter').style.display = 'none';
-                // Mostrar Registro de Combate
+                // Mostrar HOJA DE SERVICIO
             document.getElementById('registro-combate').style.display = 'block';
-                console.log('✅ Registro de Combate mostrado');
+                console.log('✅ HOJA DE SERVICIO mostrado');
         }
 
         /**
-         * Vuelve al menú principal desde Registro de Combate
+         * Vuelve al menú principal desde HOJA DE SERVICIO
          * No requiere confirmación porque no hay datos que guardar
          */
         function goHomeFromRegistroCombate() {
-            console.log('🏠 Volviendo al menú desde Registro de Combate...');
+            console.log('🏠 Volviendo al menú desde HOJA DE SERVICIO...');
                 // Cerrar modal si está abierto
             cerrarModalRecompensas();
-                // Ocultar Registro de Combate
+                // Ocultar HOJA DE SERVICIO
             document.getElementById('registro-combate').style.display = 'none';
                 // Mostrar menú principal
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
                 console.log('✅ Menú principal mostrado');
         }
 
@@ -5930,7 +5949,7 @@ let quirksComprados = {};
 // ============================================================================
 
 /**
- * Inicializa los controles de gastos XP al cargar Registro de Combate
+ * Inicializa los controles de gastos XP al cargar HOJA DE SERVICIO
  */
 function inicializarGastosXP() {
     console.log('🎮 Inicializando controles de gastos XP...');
@@ -6515,7 +6534,7 @@ async function registrarMisionConGastos() {
 // ============================================================================
 
 /*
-// Al cargar Registro de Combate:
+// Al cargar HOJA DE SERVICIO:
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('registro-combate')) {
         inicializarGastosXP();
@@ -6525,8 +6544,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Al hacer click en "REGISTRAR MISIÓN":
 document.getElementById('btn-registrar-mision').onclick = registrarMisionConGastos;
 */
-
-
 
         /**
          * Cierra el modal de distribución de recompensas
@@ -6826,7 +6843,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (modifiersTable) modifiersTable.style.display = 'none';
             
             // Mostrar landing
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             if (typeof cargarAnoCampana === 'function') {
                 cargarAnoCampana();
             }
@@ -7525,7 +7542,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function backToHomeFromTRO() {
             document.getElementById('tro-section').style.display = 'none';
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
         }
 
         function updateTROStats() {
@@ -8091,7 +8108,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function init() {
             // Estado inicial: Landing Page visible, lo demás oculto
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('points-counter').style.display = 'none';
@@ -9249,25 +9266,24 @@ let currentScanMechIndex = 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
 <body class="theme-new">
-    <div class="classic-theme-float-switch" title="Cambiar diseño">
-        <span class="theme-switch-label">Diseño</span>
-        <select id="classic-theme-switch" class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
-            <option value="theme-new">Nuevo</option>
-            <option value="theme-classic">Clásico</option>
-        </select>
-    </div>
+    <!-- Theme switcher moved to MRB badge -->
+    <!-- MRB BADGE — Theme Switcher (bottom-left) -->
+    <button id="mrb-theme-toggle" class="mrb-badge-btn" onclick="setUiTheme(document.body.classList.contains('theme-new') ? 'theme-classic' : 'theme-new')" title="Cambiar estilo visual">
+        <img src="data:image/png;base64,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" alt="MRB" width="40" height="40">
+    </button>
+
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
             <div class="sidebar-section-label">OPERACIONES</div>
             <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> Comision</button>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
             <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
 
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
             <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
             <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
 
@@ -9280,13 +9296,6 @@ let currentScanMechIndex = 0;
             <div class="global-shell-info">
                 <span class="label">AÑO CAMPAÑA</span>
                 <span class="value" id="global-campaign-year">3026</span>
-                <div class="theme-switch-wrap">
-                    <span class="theme-switch-label">Diseño</span>
-                    <select class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
-                        <option value="theme-new">Nuevo</option>
-                        <option value="theme-classic">Clásico</option>
-                    </select>
-                </div>
             </div>
         </header>
     </div>
@@ -9331,26 +9340,19 @@ let currentScanMechIndex = 0;
                     <div class="header-stat-label">AÑO CAMPAÑA</div>
                     <div class="header-stat-value"><span id="current-campaign-year">3026</span></div>
                 </div>
-                <div class="theme-switch-wrap">
-                    <span class="theme-switch-label">Diseño</span>
-                    <select class="theme-switch-select ui-theme-switcher" onchange="setUiTheme(this.value)">
-                        <option value="theme-new">Nuevo</option>
-                        <option value="theme-classic">Clásico</option>
-                    </select>
-                </div>
             </div>
         </header>
         
         <!-- === SIDEBAR (pegado al lateral izquierdo) === -->
         <nav class="landing-sidebar">
             <div class="sidebar-section-label">OPERACIONES</div>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
             <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
             
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
             <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
             <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
             
@@ -15495,8 +15497,6 @@ function obtenerDatosPersonajeActual() {
     return datos;
 }
 
-
-
 /**
  * Genera el HTML completo para el PDF (FORMATO CORRECTO DEL GENERADOR)
  */
@@ -16224,7 +16224,7 @@ function goToCronicas() {
  */
 function goHomeFromCronicas() {
     document.getElementById('cronicas-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
 }
 
 /**
@@ -16424,7 +16424,7 @@ function goToHistorialLogros() {
  */
 function goHomeFromHistorial() {
     document.getElementById('historial-logros-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
 }
 
 /**
@@ -17905,7 +17905,7 @@ function renderResults() {
 // ============================================
 
 function goToRegistroAndCopy() {
-    console.log('📋 Copiando XP y navegando al Registro de Combate...');
+    console.log('📋 Copiando XP y navegando al HOJA DE SERVICIO...');
     
     const results = calculateResults();
     console.log('📊 XP calculados:', results);
@@ -17921,20 +17921,20 @@ function goToRegistroAndCopy() {
     
     // Pequeño delay para asegurar que el DOM se actualice
     setTimeout(() => {
-        // Navegar al Registro de Combate
+        // Navegar al HOJA DE SERVICIO
         goToRegistroCombate();
         
         // Verificar que el Registro está visible
         const registro = document.getElementById('registro-combate');
         if (registro && registro.style.display === 'block') {
-            console.log('✓ Registro de Combate está visible');
+            console.log('✓ HOJA DE SERVICIO está visible');
             
             // Abrir modal automáticamente con los XP
             setTimeout(() => {
                 abrirModalRecompensasConXP(results);
             }, 300);
         } else {
-            console.error('❌ Registro de Combate NO está visible');
+            console.error('❌ HOJA DE SERVICIO NO está visible');
         }
         
         console.log('✅ Navegación completada');
@@ -18692,7 +18692,7 @@ function abrirCalculadorCombate() {
 
 function cerrarCalculadorCombate() {
     document.getElementById('combat-calculator-modal').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
     console.log('⚔️ Calculador cerrado');
 }
 
@@ -29973,31 +29973,32 @@ function volverHubCalculador(){
   const THEME_KEY = 'UI_THEME_PREF';
 
   function buildClassicLandingMenu(){
-    const menu = document.querySelector('#landing-page .landing-menu');
+    var menu = document.querySelector('#landing-page .landing-menu');
     if(!menu) return;
-
     if(!menu.dataset.built){
-      menu.innerHTML = `
-        <button class="cyber-button" onclick="goToGenerator()">Generador de Personajes</button>
-        <button class="cyber-button" onclick="goToBarracones()">Barracones</button>
-        <button class="cyber-button" onclick="goToTRRHub()">📋 Ayudas</button>
-        <button class="cyber-button" onclick="goToCronicasHub()">📜 Crónicas & Historial</button>
-        <button class="cyber-button" onclick="abrirCalculadorCombate()">⚔️ Calculador Combate RPG</button>
-        <button class="cyber-button" onclick="goToRegistroCombate()">Registro de Combate</button>
-        <button class="cyber-button" onclick="goToBattleTracker()">🎯 Seguimiento de Combate</button>
-        <button class="cyber-button" onclick="goToTRO()">TRO: Technical Readout</button>
-      `;
+      menu.innerHTML = ''
+        + '<button class="cyber-button" onclick="goToGenerator()">RECLUTAMIENTO</button>'
+        + '<button class="cyber-button" onclick="goToBarracones()">Barracones</button>'
+        + '<button class="cyber-button" onclick="goToTRRHub()">&#x1F4CB; Ayudas</button>'
+        + '<button class="cyber-button" onclick="goToCronicasHub()">&#x1F4DC; Cr\u00f3nicas & Historial</button>'
+        + '<button class="cyber-button" onclick="abrirCalculadorCombate()">&#x2694;&#xFE0F; SIMULADOR</button>'
+        + '<button class="cyber-button" onclick="goToRegistroCombate()">HOJA DE SERVICIO</button>'
+        + '<button class="cyber-button" onclick="goToBattleTracker()">&#x1F3AF; HUD TACTICO</button>'
+        + '<button class="cyber-button" onclick="goToTRO()">TRO: Technical Readout</button>';
       menu.dataset.built = '1';
     }
-
-    const title = document.querySelector('#landing-page .landing-title');
+    var title = document.querySelector('#landing-page .landing-title');
     if(title && !title.dataset.classic){
-      title.innerHTML = `MECHWARRIOR<span class="classic-subline"><span class="classic-campaign-year">3026</span> DATABASE SYSTEM</span>`;
+      title.innerHTML = 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS';
       title.dataset.classic = '1';
     }
-
-    const yearText = (document.getElementById('global-campaign-year')?.textContent || document.getElementById('current-campaign-year')?.textContent || '3026').trim();
-    document.querySelectorAll('.classic-campaign-year').forEach(el => el.textContent = yearText);
+    var yearText = '3026';
+    var el1 = document.getElementById('global-campaign-year');
+    var el2 = document.getElementById('current-campaign-year');
+    if(el1) yearText = el1.textContent.trim();
+    else if(el2) yearText = el2.textContent.trim();
+    var yearEls = document.querySelectorAll('.classic-campaign-year');
+    for(var i=0; i<yearEls.length; i++) yearEls[i].textContent = yearText;
   }
 
   window.setUiTheme = function(theme){
@@ -30028,135 +30029,4 @@ function volverHubCalculador(){
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
