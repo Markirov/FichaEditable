@@ -1,2202 +1,2662 @@
 [
   {
-    "name": "Annihilator ANH 1A",
-    "file": "assets/mechs/Annihilator ANH-1A.mtf"
+    "name": "Annihilator ANH-1A",
+    "bv2": 1434,
+    "file": "Annihilator ANH-1A.ssw"
   },
   {
-    "name": "Annihilator ANH 1BL",
-    "file": "assets/mechs/Annihilator ANH-1BL.mtf"
+    "name": "Annihilator ANH-1BL",
+    "bv2": 1746,
+    "file": "Annihilator ANH-1BL.ssw"
   },
   {
-    "name": "Annihilator ANH 2A",
-    "file": "assets/mechs/Annihilator ANH-2A.mtf"
+    "name": "Annihilator ANH-2A",
+    "bv2": 1595,
+    "file": "Annihilator ANH-2A.ssw"
   },
   {
-    "name": "Annihilator ANH 3A",
-    "file": "assets/mechs/Annihilator ANH-3A.mtf"
+    "name": "Annihilator ANH-3A",
+    "bv2": 1712,
+    "file": "Annihilator ANH-3A.ssw"
   },
   {
-    "name": "Annihilator ANH 4A",
-    "file": "assets/mechs/Annihilator ANH-4A.mtf"
-  },
-  {
-    "name": "Annihilator C 2",
-    "file": "assets/mechs/Annihilator C 2.mtf"
+    "name": "Annihilator ANH-4A",
+    "bv2": 1726,
+    "file": "Annihilator ANH-4A.ssw"
   },
   {
     "name": "Annihilator C",
-    "file": "assets/mechs/Annihilator C.mtf"
+    "bv2": 2520,
+    "file": "Annihilator C.ssw"
   },
   {
-    "name": "Archer ARC 2K",
-    "file": "assets/mechs/Archer ARC-2K.mtf"
+    "name": "Annihilator C 2",
+    "bv2": 2722,
+    "file": "Annihilator C 2.ssw"
   },
   {
-    "name": "Archer ARC 2R Salazar",
-    "file": "assets/mechs/Archer ARC-2R Salazar.mtf"
+    "name": "Archer ARC-2K",
+    "bv2": 1356,
+    "file": "Archer ARC-2K.ssw"
   },
   {
-    "name": "Archer ARC 2R",
-    "file": "assets/mechs/Archer ARC-2R.mtf"
+    "name": "Archer ARC-2R",
+    "bv2": 1477,
+    "file": "Archer ARC-2R.ssw"
   },
   {
-    "name": "Archer ARC 2S",
-    "file": "assets/mechs/Archer ARC-2S.mtf"
+    "name": "Archer ARC-2S",
+    "bv2": 1393,
+    "file": "Archer ARC-2S.ssw"
   },
   {
-    "name": "Archer ARC 2W",
-    "file": "assets/mechs/Archer ARC-2W.mtf"
+    "name": "Archer ARC-2W",
+    "bv2": 1338,
+    "file": "Archer ARC-2W.ssw"
   },
   {
-    "name": "Assassin ASN 101",
-    "file": "assets/mechs/Assassin ASN-101.mtf"
+    "name": "Assassin 'Servitor'",
+    "bv2": 1019,
+    "file": "Assassin Servitor.ssw"
   },
   {
-    "name": "Assassin ASN 21 Salazar",
-    "file": "assets/mechs/Assassin ASN-21 Salazar.mtf"
+    "name": "Assassin ASN-101",
+    "bv2": 757,
+    "file": "Assassin ASN-101.ssw"
   },
   {
-    "name": "Assassin ASN 21",
-    "file": "assets/mechs/Assassin ASN-21.mtf"
+    "name": "Assassin ASN-21",
+    "bv2": 749,
+    "file": "Assassin ASN-21.ssw"
   },
   {
-    "name": "Assassin ASN 23",
-    "file": "assets/mechs/Assassin ASN-23.mtf"
+    "name": "Assassin ASN-23",
+    "bv2": 740,
+    "file": "Assassin ASN-23.ssw"
   },
   {
-    "name": "Assassin ASN 30",
-    "file": "assets/mechs/Assassin ASN-30.mtf"
+    "name": "Assassin ASN-30",
+    "bv2": 925,
+    "file": "Assassin ASN-30.ssw"
   },
   {
-    "name": "Assassin ASN 99",
-    "file": "assets/mechs/Assassin ASN-99.mtf"
+    "name": "Assassin ASN-99",
+    "bv2": 1116,
+    "file": "Assassin ASN-99.ssw"
   },
   {
-    "name": "Assassin Servitor",
-    "file": "assets/mechs/Assassin Servitor.mtf"
+    "name": "Atlas AS7-C",
+    "bv2": 2163,
+    "file": "Atlas AS7-C.ssw"
   },
   {
-    "name": "Atlas AS7 A",
-    "file": "assets/mechs/Atlas AS7-A.mtf"
+    "name": "Atlas AS7-CM",
+    "bv2": 2036,
+    "file": "Atlas AS7-CM.ssw"
   },
   {
-    "name": "Atlas AS7 C",
-    "file": "assets/mechs/Atlas AS7-C.mtf"
+    "name": "Atlas AS7-D",
+    "bv2": 1897,
+    "file": "Atlas AS7-D.ssw"
   },
   {
-    "name": "Atlas AS7 CM",
-    "file": "assets/mechs/Atlas AS7-CM.mtf"
+    "name": "Atlas AS7-D-DC",
+    "bv2": 1858,
+    "file": "Atlas AS7-D-DC.ssw"
   },
   {
-    "name": "Atlas AS7 D DC",
-    "file": "assets/mechs/Atlas AS7-D-DC.mtf"
+    "name": "Atlas AS7-K",
+    "bv2": 2175,
+    "file": "Atlas AS7-K.ssw"
   },
   {
-    "name": "Atlas AS7 D",
-    "file": "assets/mechs/Atlas AS7-D.mtf"
+    "name": "Atlas AS7-K-DC",
+    "bv2": 2158,
+    "file": "Atlas AS7-K-DC.ssw"
   },
   {
-    "name": "Atlas AS7 K DC",
-    "file": "assets/mechs/Atlas AS7-K-DC.mtf"
+    "name": "Atlas AS7-RS",
+    "bv2": 1849,
+    "file": "Atlas AS7-RS.ssw"
   },
   {
-    "name": "Atlas AS7 K",
-    "file": "assets/mechs/Atlas AS7-K.mtf"
+    "name": "Atlas AS7-S",
+    "bv2": 1929,
+    "file": "Atlas AS7-S.ssw"
   },
   {
-    "name": "Atlas AS7 RS",
-    "file": "assets/mechs/Atlas AS7-RS.mtf"
+    "name": "Atlas AS7-S2",
+    "bv2": 2378,
+    "file": "Atlas AS7-S2.ssw"
   },
   {
-    "name": "Atlas AS7 S",
-    "file": "assets/mechs/Atlas AS7-S.mtf"
-  },
-  {
-    "name": "Atlas AS7 S2",
-    "file": "assets/mechs/Atlas AS7-S2.mtf"
-  },
-  {
-    "name": "Atlas AS7 S3",
-    "file": "assets/mechs/Atlas AS7-S3.mtf"
+    "name": "Atlas AS7-S3",
+    "bv2": 2378,
+    "file": "Atlas AS7-S3.ssw"
   },
   {
     "name": "Atlas C",
-    "file": "assets/mechs/Atlas C.mtf"
+    "bv2": 2174,
+    "file": "Atlas C.ssw"
   },
   {
-    "name": "Awesome AWS 10KM",
-    "file": "assets/mechs/Awesome AWS-10KM.mtf"
+    "name": "Awesome AWS-10KM",
+    "bv2": 1961,
+    "file": "Awesome AWS-10KM.ssw"
   },
   {
-    "name": "Awesome AWS 8Q",
-    "file": "assets/mechs/Awesome AWS-8Q.mtf"
+    "name": "Awesome AWS-8Q",
+    "bv2": 1605,
+    "file": "Awesome AWS-8Q.ssw"
   },
   {
-    "name": "Awesome AWS 8R",
-    "file": "assets/mechs/Awesome AWS-8R.mtf"
+    "name": "Awesome AWS-8R",
+    "bv2": 1470,
+    "file": "Awesome AWS-8R.ssw"
   },
   {
-    "name": "Awesome AWS 8T",
-    "file": "assets/mechs/Awesome AWS-8T.mtf"
+    "name": "Awesome AWS-8T",
+    "bv2": 1593,
+    "file": "Awesome AWS-8T.ssw"
   },
   {
-    "name": "Awesome AWS 8V",
-    "file": "assets/mechs/Awesome AWS-8V.mtf"
+    "name": "Awesome AWS-8V",
+    "bv2": 1510,
+    "file": "Awesome AWS-8V.ssw"
   },
   {
-    "name": "Awesome AWS 9M",
-    "file": "assets/mechs/Awesome AWS-9M.mtf"
+    "name": "Awesome AWS-9M",
+    "bv2": 1812,
+    "file": "Awesome AWS-9M.ssw"
   },
   {
-    "name": "Awesome AWS 9Ma",
-    "file": "assets/mechs/Awesome AWS-9Ma.mtf"
+    "name": "Awesome AWS-9Ma",
+    "bv2": 1836,
+    "file": "Awesome AWS-9Ma.ssw"
   },
   {
-    "name": "Awesome AWS 9Q (Klatt)",
-    "file": "assets/mechs/Awesome AWS-9Q (Klatt).mtf"
+    "name": "Awesome AWS-9Q",
+    "bv2": 1875,
+    "file": "Awesome AWS-9Q.ssw"
   },
   {
-    "name": "Awesome AWS 9Q",
-    "file": "assets/mechs/Awesome AWS-9Q.mtf"
+    "name": "Awesome AWS-9Q (Klatt)",
+    "bv2": 1805,
+    "file": "Awesome AWS-9Q (Klatt).ssw"
   },
   {
-    "name": "Axman AXM 1BL",
-    "file": "assets/mechs/Axman AXM-1BL.mtf"
+    "name": "Axman AXM-1BL",
+    "bv2": 1600,
+    "file": "Axman AXM-1BL.ssw"
   },
   {
-    "name": "Axman AXM 1N",
-    "file": "assets/mechs/Axman AXM-1N.mtf"
+    "name": "Axman AXM-1N",
+    "bv2": 1374,
+    "file": "Axman AXM-1N.ssw"
   },
   {
-    "name": "Axman AXM 2N",
-    "file": "assets/mechs/Axman AXM-2N.mtf"
+    "name": "Axman AXM-2N",
+    "bv2": 1458,
+    "file": "Axman AXM-2N.ssw"
   },
   {
-    "name": "Axman AXM 3S",
-    "file": "assets/mechs/Axman AXM-3S.mtf"
+    "name": "Axman AXM-4D",
+    "bv2": 1222,
+    "file": "Axman AXM-4D.ssw"
   },
   {
-    "name": "Axman AXM 4D",
-    "file": "assets/mechs/Axman AXM-4D.mtf"
+    "name": "Banshee BNC-3E",
+    "bv2": 1422,
+    "file": "Banshee BNC-3E.ssw"
   },
   {
-    "name": "Banshee BNC 3E",
-    "file": "assets/mechs/Banshee BNC-3E.mtf"
+    "name": "Banshee BNC-3M",
+    "bv2": 1595,
+    "file": "Banshee BNC-3M.ssw"
   },
   {
-    "name": "Banshee BNC 3M",
-    "file": "assets/mechs/Banshee BNC-3M.mtf"
+    "name": "Banshee BNC-3MC",
+    "bv2": 1487,
+    "file": "Banshee BNC-3MC.ssw"
   },
   {
-    "name": "Banshee BNC 3MC",
-    "file": "assets/mechs/Banshee BNC-3MC.mtf"
+    "name": "Banshee BNC-3Q",
+    "bv2": 1394,
+    "file": "Banshee BNC-3Q.ssw"
   },
   {
-    "name": "Banshee BNC 3Q",
-    "file": "assets/mechs/Banshee BNC-3Q.mtf"
+    "name": "Banshee BNC-3S",
+    "bv2": 1751,
+    "file": "Banshee BNC-3S.ssw"
   },
   {
-    "name": "Banshee BNC 3S (Reinesblatt)",
-    "file": "assets/mechs/Banshee BNC-3S (Reinesblatt).mtf"
+    "name": "Banshee BNC-3S (Reinesblatt)",
+    "bv2": 1678,
+    "file": "Banshee BNC-3S (Reinesblatt).ssw"
   },
   {
-    "name": "Banshee BNC 3S",
-    "file": "assets/mechs/Banshee BNC-3S.mtf"
+    "name": "Banshee BNC-3SS",
+    "bv2": 1751,
+    "file": "Banshee BNC-3SS.ssw"
   },
   {
-    "name": "Banshee BNC 3SS",
-    "file": "assets/mechs/Banshee BNC-3SS.mtf"
+    "name": "Banshee BNC-5S",
+    "bv2": 2065,
+    "file": "Banshee BNC-5S.ssw"
   },
   {
-    "name": "Banshee BNC 5S (Sawyer)",
-    "file": "assets/mechs/Banshee BNC-5S (Sawyer).mtf"
+    "name": "Banshee BNC-5S (Sawyer)",
+    "bv2": 2094,
+    "file": "Banshee BNC-5S (Sawyer).ssw"
   },
   {
-    "name": "Banshee BNC 5S (Vandergriff)",
-    "file": "assets/mechs/Banshee BNC-5S (Vandergriff).mtf"
+    "name": "Banshee BNC-5S (Vandergriff)",
+    "bv2": 1853,
+    "file": "Banshee BNC-5S (Vandergriff).ssw"
   },
   {
-    "name": "Banshee BNC 5S",
-    "file": "assets/mechs/Banshee BNC-5S.mtf"
+    "name": "Banshee BNC-6S",
+    "bv2": 1889,
+    "file": "Banshee BNC-6S.ssw"
   },
   {
-    "name": "Banshee BNC 6S",
-    "file": "assets/mechs/Banshee BNC-6S.mtf"
+    "name": "Banshee BNC-7S",
+    "bv2": 2126,
+    "file": "Banshee BNC-7S.ssw"
   },
   {
-    "name": "Banshee BNC 7S",
-    "file": "assets/mechs/Banshee BNC-7S.mtf"
+    "name": "Banshee BNC-8S",
+    "bv2": 2408,
+    "file": "Banshee BNC-8S.ssw"
   },
   {
-    "name": "Banshee BNC 8S",
-    "file": "assets/mechs/Banshee BNC-8S.mtf"
+    "name": "Banshee BNC-9S",
+    "bv2": 2496,
+    "file": "Banshee BNC-9S.ssw"
   },
   {
-    "name": "Banshee BNC 9S",
-    "file": "assets/mechs/Banshee BNC-9S.mtf"
+    "name": "BattleMaster BLR-1G-DC",
+    "bv2": 1494,
+    "file": "BattleMaster BLR-1G-DC.ssw"
   },
   {
-    "name": "Battlemaster BLR 1D",
-    "file": "assets/mechs/Battlemaster BLR-1D.mtf"
+    "name": "Battlemaster BLR-1D",
+    "bv2": 1522,
+    "file": "Battlemaster BLR-1D.ssw"
   },
   {
-    "name": "Battlemaster BLR 1G Bl",
-    "file": "assets/mechs/Battlemaster BLR-1G-Bl.mtf"
+    "name": "Battlemaster BLR-1G",
+    "bv2": 1519,
+    "file": "Battlemaster BLR-1G.ssw"
   },
   {
-    "name": "BattleMaster BLR 1G DC",
-    "file": "assets/mechs/BattleMaster BLR-1G-DC.mtf"
+    "name": "Battlemaster BLR-1G-Bl",
+    "bv2": 1551,
+    "file": "Battlemaster BLR-1G-Bl.ssw"
   },
   {
-    "name": "Battlemaster BLR 1G",
-    "file": "assets/mechs/Battlemaster BLR-1G.mtf"
+    "name": "Battlemaster BLR-1S",
+    "bv2": 1507,
+    "file": "Battlemaster BLR-1S.ssw"
   },
   {
-    "name": "Battlemaster BLR 1S",
-    "file": "assets/mechs/Battlemaster BLR-1S.mtf"
+    "name": "Black Knight BL-7-KNT",
+    "bv2": 1443,
+    "file": "Black Knight BL-7-KNT.ssw"
   },
   {
-    "name": "Black Knight BL 7 KNT L",
-    "file": "assets/mechs/Black Knight BL-7-KNT-L.mtf"
+    "name": "Black Knight BL-7-KNT-L",
+    "bv2": 1409,
+    "file": "Black Knight BL-7-KNT-L.ssw"
   },
   {
-    "name": "Black Knight BL 7 KNT",
-    "file": "assets/mechs/Black Knight BL-7-KNT.mtf"
+    "name": "Blackjack BJ-1",
+    "bv2": 949,
+    "file": "Blackjack BJ-1.ssw"
   },
   {
-    "name": "Blackjack BJ 1",
-    "file": "assets/mechs/Blackjack BJ-1.mtf"
+    "name": "Blackjack BJ-1DB",
+    "bv2": 1015,
+    "file": "Blackjack BJ-1DB.ssw"
   },
   {
-    "name": "Blackjack BJ 1DB Salazar",
-    "file": "assets/mechs/Blackjack BJ-1DB Salazar.mtf"
+    "name": "Blackjack BJ-1DC",
+    "bv2": 917,
+    "file": "Blackjack BJ-1DC.ssw"
   },
   {
-    "name": "Blackjack BJ 1DB",
-    "file": "assets/mechs/Blackjack BJ-1DB.mtf"
+    "name": "Blackjack BJ-1X",
+    "bv2": 964,
+    "file": "Blackjack BJ-1X.ssw"
   },
   {
-    "name": "Blackjack BJ 1DC",
-    "file": "assets/mechs/Blackjack BJ-1DC.mtf"
+    "name": "Blackjack BJ-2",
+    "bv2": 1148,
+    "file": "Blackjack BJ-2.ssw"
   },
   {
-    "name": "Blackjack BJ 1X Salazar",
-    "file": "assets/mechs/Blackjack BJ-1X Salazar.mtf"
+    "name": "Blackjack BJ-3",
+    "bv2": 1271,
+    "file": "Blackjack BJ-3.ssw"
   },
   {
-    "name": "Blackjack BJ 1X",
-    "file": "assets/mechs/Blackjack BJ-1X.mtf"
+    "name": "Blackjack BJ-4",
+    "bv2": 1063,
+    "file": "Blackjack BJ-4.ssw"
   },
   {
-    "name": "Blackjack BJ 2",
-    "file": "assets/mechs/Blackjack BJ-2.mtf"
+    "name": "Bombardier BMB-10D",
+    "bv2": 1340,
+    "file": "Bombardier BMB-10D.ssw"
   },
   {
-    "name": "Blackjack BJ 3",
-    "file": "assets/mechs/Blackjack BJ-3.mtf"
+    "name": "Caesar CES-3R",
+    "bv2": 1578,
+    "file": "Caesar CES-3R.ssw"
   },
   {
-    "name": "Blackjack BJ 4",
-    "file": "assets/mechs/Blackjack BJ-4.mtf"
+    "name": "Caesar CES-3R 'Archangel'",
+    "bv2": 2098,
+    "file": "Caesar CES-3R Archangel.ssw"
   },
   {
-    "name": "Bombardier BMB 10D",
-    "file": "assets/mechs/Bombardier BMB-10D.mtf"
+    "name": "Caesar CES-3R 'Gertrude'",
+    "bv2": 1833,
+    "file": "Caesar CES-3R Gertrude.ssw"
   },
   {
-    "name": "Caesar CES 3R Archangel",
-    "file": "assets/mechs/Caesar CES-3R Archangel.mtf"
+    "name": "Caesar CES-3S",
+    "bv2": 1909,
+    "file": "Caesar CES-3S.ssw"
   },
   {
-    "name": "Caesar CES 3R Gertrude",
-    "file": "assets/mechs/Caesar CES-3R Gertrude.mtf"
+    "name": "Caesar CES-4R",
+    "bv2": 2024,
+    "file": "Caesar CES-4R.ssw"
   },
   {
-    "name": "Caesar CES 3R",
-    "file": "assets/mechs/Caesar CES-3R.mtf"
+    "name": "Caesar CES-4S",
+    "bv2": 1739,
+    "file": "Caesar CES-4S.ssw"
   },
   {
-    "name": "Caesar CES 3S",
-    "file": "assets/mechs/Caesar CES-3S.mtf"
+    "name": "Cataphract CTF-1X",
+    "bv2": 1316,
+    "file": "Cataphract CTF-1X.ssw"
   },
   {
-    "name": "Caesar CES 4R",
-    "file": "assets/mechs/Caesar CES-4R.mtf"
+    "name": "Cataphract CTF-2X",
+    "bv2": 1344,
+    "file": "Cataphract CTF-2X.ssw"
   },
   {
-    "name": "Caesar CES 4S",
-    "file": "assets/mechs/Caesar CES-4S.mtf"
+    "name": "Cataphract CTF-3D",
+    "bv2": 1325,
+    "file": "Cataphract CTF-3D.ssw"
   },
   {
-    "name": "Cataphract CTF 1X",
-    "file": "assets/mechs/Cataphract CTF-1X.mtf"
+    "name": "Cataphract CTF-3L",
+    "bv2": 1545,
+    "file": "Cataphract CTF-3L.ssw"
   },
   {
-    "name": "Cataphract CTF 2X",
-    "file": "assets/mechs/Cataphract CTF-2X.mtf"
+    "name": "Cataphract CTF-3LL",
+    "bv2": 1664,
+    "file": "Cataphract CTF-3LL.ssw"
   },
   {
-    "name": "Cataphract CTF 3D",
-    "file": "assets/mechs/Cataphract CTF-3D.mtf"
+    "name": "Cataphract CTF-4L",
+    "bv2": 2002,
+    "file": "Cataphract CTF-4L.ssw"
   },
   {
-    "name": "Cataphract CTF 3L",
-    "file": "assets/mechs/Cataphract CTF-3L.mtf"
+    "name": "Cataphract CTF-4X",
+    "bv2": 1216,
+    "file": "Cataphract CTF-4X.ssw"
   },
   {
-    "name": "Cataphract CTF 3LL",
-    "file": "assets/mechs/Cataphract CTF-3LL.mtf"
+    "name": "Cataphract CTF-5D",
+    "bv2": 1742,
+    "file": "Cataphract CTF-5D.ssw"
   },
   {
-    "name": "Cataphract CTF 4L",
-    "file": "assets/mechs/Cataphract CTF-4L.mtf"
+    "name": "Catapult CPLT-A1",
+    "bv2": 1285,
+    "file": "Catapult CPLT-A1.ssw"
   },
   {
-    "name": "Cataphract CTF 4X",
-    "file": "assets/mechs/Cataphract CTF-4X.mtf"
+    "name": "Catapult CPLT-C1",
+    "bv2": 1399,
+    "file": "Catapult CPLT-C1.ssw"
   },
   {
-    "name": "Cataphract CTF 5D",
-    "file": "assets/mechs/Cataphract CTF-5D.mtf"
+    "name": "Catapult CPLT-C1 (Jenny) 'Butterbee'",
+    "bv2": 1242,
+    "file": "Catapult CPLT-C1 (Jenny) Butterbee.ssw"
   },
   {
-    "name": "Catapult CPLT A1",
-    "file": "assets/mechs/Catapult CPLT-A1.mtf"
+    "name": "Catapult CPLT-C1b",
+    "bv2": 1570,
+    "file": "Catapult CPLT-C1b.ssw"
   },
   {
-    "name": "Catapult CPLT C1 (Jenny) Butterbee",
-    "file": "assets/mechs/Catapult CPLT-C1 (Jenny) Butterbee.mtf"
+    "name": "Catapult CPLT-C2",
+    "bv2": 1346,
+    "file": "Catapult CPLT-C2.ssw"
   },
   {
-    "name": "Catapult CPLT C1 Salazar",
-    "file": "assets/mechs/Catapult CPLT-C1 Salazar.mtf"
+    "name": "Catapult CPLT-C3",
+    "bv2": 1368,
+    "file": "Catapult CPLT-C3.ssw"
   },
   {
-    "name": "Catapult CPLT C1 Salazar",
-    "file": "assets/mechs/Catapult CPLT-C1 Salazar.ssw"
+    "name": "Catapult CPLT-C4",
+    "bv2": 1358,
+    "file": "Catapult CPLT-C4.ssw"
   },
   {
-    "name": "Catapult CPLT C1",
-    "file": "assets/mechs/Catapult CPLT-C1.mtf"
+    "name": "Catapult CPLT-C4C",
+    "bv2": 1449,
+    "file": "Catapult CPLT-C4C.ssw"
   },
   {
-    "name": "Catapult CPLT C1b",
-    "file": "assets/mechs/Catapult CPLT-C1b.mtf"
+    "name": "Catapult CPLT-C5",
+    "bv2": 1748,
+    "file": "Catapult CPLT-C5.ssw"
   },
   {
-    "name": "Catapult CPLT C2",
-    "file": "assets/mechs/Catapult CPLT-C2.mtf"
+    "name": "Catapult CPLT-C6",
+    "bv2": 1874,
+    "file": "Catapult CPLT-C6.ssw"
   },
   {
-    "name": "Catapult CPLT C3",
-    "file": "assets/mechs/Catapult CPLT-C3.mtf"
+    "name": "Catapult CPLT-H2",
+    "bv2": 1473,
+    "file": "Catapult CPLT-H2.ssw"
   },
   {
-    "name": "Catapult CPLT C4",
-    "file": "assets/mechs/Catapult CPLT-C4.mtf"
+    "name": "Catapult CPLT-K2",
+    "bv2": 1319,
+    "file": "Catapult CPLT-K2.ssw"
   },
   {
-    "name": "Catapult CPLT C4C",
-    "file": "assets/mechs/Catapult CPLT-C4C.mtf"
+    "name": "Catapult CPLT-K2BL",
+    "bv2": 1600,
+    "file": "Catapult CPLT-K2BL.ssw"
   },
   {
-    "name": "Catapult CPLT C5",
-    "file": "assets/mechs/Catapult CPLT-C5.mtf"
+    "name": "Catapult CPLT-K2K",
+    "bv2": 1716,
+    "file": "Catapult CPLT-K2K.ssw"
   },
   {
-    "name": "Catapult CPLT C6",
-    "file": "assets/mechs/Catapult CPLT-C6.mtf"
+    "name": "Catapult CPLT-K3",
+    "bv2": 1437,
+    "file": "Catapult CPLT-K3.ssw"
   },
   {
-    "name": "Catapult CPLT H2",
-    "file": "assets/mechs/Catapult CPLT-H2.mtf"
+    "name": "Catapult CPLT-K4",
+    "bv2": 1880,
+    "file": "Catapult CPLT-K4.ssw"
   },
   {
-    "name": "Catapult CPLT K2",
-    "file": "assets/mechs/Catapult CPLT-K2.mtf"
+    "name": "Catapult CPLT-K5",
+    "bv2": 1457,
+    "file": "Catapult CPLT-K5.ssw"
   },
   {
-    "name": "Catapult CPLT K2BL",
-    "file": "assets/mechs/Catapult CPLT-K2BL.mtf"
+    "name": "Centurion CN10-B",
+    "bv2": 1243,
+    "file": "Centurion CN10-B.ssw"
   },
   {
-    "name": "Catapult CPLT K2K",
-    "file": "assets/mechs/Catapult CPLT-K2K.mtf"
+    "name": "Centurion CN9-A",
+    "bv2": 945,
+    "file": "Centurion CN9-A.ssw"
   },
   {
-    "name": "Catapult CPLT K3",
-    "file": "assets/mechs/Catapult CPLT-K3.mtf"
+    "name": "Centurion CN9-AH",
+    "bv2": 945,
+    "file": "Centurion CN9-AH.ssw"
   },
   {
-    "name": "Catapult CPLT K4",
-    "file": "assets/mechs/Catapult CPLT-K4.mtf"
+    "name": "Centurion CN9-AL",
+    "bv2": 1057,
+    "file": "Centurion CN9-AL.ssw"
   },
   {
-    "name": "Catapult CPLT K5",
-    "file": "assets/mechs/Catapult CPLT-K5.mtf"
+    "name": "Centurion CN9-D",
+    "bv2": 1130,
+    "file": "Centurion CN9-D.ssw"
   },
   {
-    "name": "Centurion CN10 B",
-    "file": "assets/mechs/Centurion CN10-B.mtf"
+    "name": "Centurion CN9-D3",
+    "bv2": 1324,
+    "file": "Centurion CN9-D3.ssw"
   },
   {
-    "name": "Centurion CN9 A",
-    "file": "assets/mechs/Centurion CN9-A.mtf"
+    "name": "Centurion CN9-D3D",
+    "bv2": 1373,
+    "file": "Centurion CN9-D3D.ssw"
   },
   {
-    "name": "Centurion CN9 AH",
-    "file": "assets/mechs/Centurion CN9-AH.mtf"
+    "name": "Centurion CN9-D4D",
+    "bv2": 1369,
+    "file": "Centurion CN9-D4D.ssw"
   },
   {
-    "name": "Centurion CN9 AL",
-    "file": "assets/mechs/Centurion CN9-AL.mtf"
+    "name": "Centurion CN9-D5",
+    "bv2": 1738,
+    "file": "Centurion CN9-D5.ssw"
   },
   {
-    "name": "Centurion CN9 D",
-    "file": "assets/mechs/Centurion CN9-D.mtf"
+    "name": "Centurion CN9-D9",
+    "bv2": 1638,
+    "file": "Centurion CN9-D9.ssw"
   },
   {
-    "name": "Centurion CN9 D3",
-    "file": "assets/mechs/Centurion CN9-D3.mtf"
+    "name": "Centurion CN9-YLW 'Yen Lo Wang'",
+    "bv2": 957,
+    "file": "Centurion CN9-YLW Yen Lo Wang.ssw"
   },
   {
-    "name": "Centurion CN9 D3D",
-    "file": "assets/mechs/Centurion CN9-D3D.mtf"
+    "name": "Centurion CN9-YLW2 'Yen Lo Wang'",
+    "bv2": 1435,
+    "file": "Centurion CN9-YLW2 Yen Lo Wang.ssw"
   },
   {
-    "name": "Centurion CN9 D4D",
-    "file": "assets/mechs/Centurion CN9-D4D.mtf"
+    "name": "Champion CHP-1N2",
+    "bv2": 1233,
+    "file": "Champion CHP-1N2.ssw"
   },
   {
-    "name": "Centurion CN9 D5",
-    "file": "assets/mechs/Centurion CN9-D5.mtf"
+    "name": "Champion CHP-2N",
+    "bv2": 1116,
+    "file": "Champion CHP-2N.ssw"
   },
   {
-    "name": "Centurion CN9 D9",
-    "file": "assets/mechs/Centurion CN9-D9.mtf"
+    "name": "Charger CGR-1A1",
+    "bv2": 981,
+    "file": "Charger CGR-1A1.ssw"
   },
   {
-    "name": "Centurion CN9 YLW Yen Lo Wang",
-    "file": "assets/mechs/Centurion CN9-YLW Yen Lo Wang.mtf"
+    "name": "Charger CGR-1A5",
+    "bv2": 1468,
+    "file": "Charger CGR-1A5.ssw"
   },
   {
-    "name": "Centurion CN9 YLW2 Yen Lo Wang",
-    "file": "assets/mechs/Centurion CN9-YLW2 Yen Lo Wang.mtf"
+    "name": "Charger CGR-1A9",
+    "bv2": 1397,
+    "file": "Charger CGR-1A9.ssw"
   },
   {
-    "name": "Champion CHP 1N2",
-    "file": "assets/mechs/Champion CHP-1N2.mtf"
+    "name": "Charger CGR-1L",
+    "bv2": 980,
+    "file": "Charger CGR-1L.ssw"
   },
   {
-    "name": "Champion CHP 2N",
-    "file": "assets/mechs/Champion CHP-2N.mtf"
+    "name": "Charger CGR-2A2",
+    "bv2": 1109,
+    "file": "Charger CGR-2A2.ssw"
   },
   {
-    "name": "Charger CGR 1A1",
-    "file": "assets/mechs/Charger CGR-1A1.mtf"
+    "name": "Charger CGR-3K",
+    "bv2": 1656,
+    "file": "Charger CGR-3K.ssw"
   },
   {
-    "name": "Charger CGR 1A5",
-    "file": "assets/mechs/Charger CGR-1A5.mtf"
+    "name": "Charger CGR-C",
+    "bv2": 1592,
+    "file": "Charger CGR-C.ssw"
   },
   {
-    "name": "Charger CGR 1A9",
-    "file": "assets/mechs/Charger CGR-1A9.mtf"
+    "name": "Charger CGR-KMZ",
+    "bv2": 1781,
+    "file": "Charger CGR-KMZ.ssw"
   },
   {
-    "name": "Charger CGR 1L",
-    "file": "assets/mechs/Charger CGR-1L.mtf"
+    "name": "Charger CGR-SA5",
+    "bv2": 2105,
+    "file": "Charger CGR-SA5.ssw"
   },
   {
-    "name": "Charger CGR 2A2",
-    "file": "assets/mechs/Charger CGR-2A2.mtf"
+    "name": "Charger CGR-SB 'Challenger'",
+    "bv2": 1604,
+    "file": "Charger CGR-SB Challenger.ssw"
   },
   {
-    "name": "Charger CGR 3K",
-    "file": "assets/mechs/Charger CGR-3K.mtf"
+    "name": "Cicada CDA-2A",
+    "bv2": 659,
+    "file": "Cicada CDA-2A.ssw"
   },
   {
-    "name": "Charger CGR C",
-    "file": "assets/mechs/Charger CGR-C.mtf"
+    "name": "Cicada CDA-2B",
+    "bv2": 626,
+    "file": "Cicada CDA-2B.ssw"
   },
   {
-    "name": "Charger CGR KMZ",
-    "file": "assets/mechs/Charger CGR-KMZ.mtf"
+    "name": "Cicada CDA-3C",
+    "bv2": 771,
+    "file": "Cicada CDA-3C.ssw"
   },
   {
-    "name": "Charger CGR SA5",
-    "file": "assets/mechs/Charger CGR-SA5.mtf"
+    "name": "Cicada CDA-3F",
+    "bv2": 1329,
+    "file": "Cicada CDA-3F.ssw"
   },
   {
-    "name": "Charger CGR SB Challenger",
-    "file": "assets/mechs/Charger CGR-SB Challenger.mtf"
+    "name": "Cicada CDA-3G",
+    "bv2": 1270,
+    "file": "Cicada CDA-3G.ssw"
   },
   {
-    "name": "Cicada CDA 2A",
-    "file": "assets/mechs/Cicada CDA-2A.mtf"
+    "name": "Cicada CDA-3M",
+    "bv2": 812,
+    "file": "Cicada CDA-3M.ssw"
   },
   {
-    "name": "Cicada CDA 2B",
-    "file": "assets/mechs/Cicada CDA-2B.mtf"
+    "name": "Cicada CDA-3MA",
+    "bv2": 1158,
+    "file": "Cicada CDA-3MA.ssw"
   },
   {
-    "name": "Cicada CDA 3C Salazar",
-    "file": "assets/mechs/Cicada CDA-3C Salazar.mtf"
+    "name": "Cicada CDA-3P",
+    "bv2": 1502,
+    "file": "Cicada CDA-3P.ssw"
   },
   {
-    "name": "Cicada CDA 3C",
-    "file": "assets/mechs/Cicada CDA-3C.mtf"
+    "name": "Clint CLNT-1-2R",
+    "bv2": 707,
+    "file": "Clint CLNT-1-2R.ssw"
   },
   {
-    "name": "Cicada CDA 3F",
-    "file": "assets/mechs/Cicada CDA-3F.mtf"
+    "name": "Clint CLNT-2-3T",
+    "bv2": 770,
+    "file": "Clint CLNT-2-3T.ssw"
   },
   {
-    "name": "Cicada CDA 3G",
-    "file": "assets/mechs/Cicada CDA-3G.mtf"
+    "name": "Clint CLNT-2-3T (Denton)",
+    "bv2": 873,
+    "file": "Clint CLNT-2-3T (Denton).ssw"
   },
   {
-    "name": "Cicada CDA 3M",
-    "file": "assets/mechs/Cicada CDA-3M.mtf"
+    "name": "Clint CLNT-2-3U",
+    "bv2": 1081,
+    "file": "Clint CLNT-2-3U.ssw"
   },
   {
-    "name": "Cicada CDA 3MA",
-    "file": "assets/mechs/Cicada CDA-3MA.mtf"
+    "name": "Clint CLNT-2-3UL",
+    "bv2": 1245,
+    "file": "Clint CLNT-2-3UL.ssw"
   },
   {
-    "name": "Cicada CDA 3P",
-    "file": "assets/mechs/Cicada CDA-3P.mtf"
+    "name": "Clint CLNT-2-4T",
+    "bv2": 619,
+    "file": "Clint CLNT-2-4T.ssw"
   },
   {
-    "name": "Clint CLNT 1 2R",
-    "file": "assets/mechs/Clint CLNT-1-2R.mtf"
+    "name": "Clint CLNT-3-3T",
+    "bv2": 901,
+    "file": "Clint CLNT-3-3T.ssw"
   },
   {
-    "name": "Clint CLNT 2 3T (Denton)",
-    "file": "assets/mechs/Clint CLNT-2-3T (Denton).mtf"
+    "name": "Clint CLNT-5U",
+    "bv2": 1275,
+    "file": "Clint CLNT-5U.ssw"
   },
   {
-    "name": "Clint CLNT 2 3T",
-    "file": "assets/mechs/Clint CLNT-2-3T.mtf"
+    "name": "Clint CLNT-6S",
+    "bv2": 1334,
+    "file": "Clint CLNT-6S.ssw"
   },
   {
-    "name": "Clint CLNT 2 3U",
-    "file": "assets/mechs/Clint CLNT-2-3U.mtf"
+    "name": "Commando COM-1B",
+    "bv2": 616,
+    "file": "Commando COM-1B.ssw"
   },
   {
-    "name": "Clint CLNT 2 3UL",
-    "file": "assets/mechs/Clint CLNT-2-3UL.mtf"
+    "name": "Commando COM-1C",
+    "bv2": 458,
+    "file": "Commando COM-1C.ssw"
   },
   {
-    "name": "Clint CLNT 2 4T",
-    "file": "assets/mechs/Clint CLNT-2-4T.mtf"
+    "name": "Commando COM-1D",
+    "bv2": 558,
+    "file": "Commando COM-1D.ssw"
   },
   {
-    "name": "Clint CLNT 3 3T",
-    "file": "assets/mechs/Clint CLNT-3-3T.mtf"
+    "name": "Commando COM-2D",
+    "bv2": 541,
+    "file": "Commando COM-2D.ssw"
   },
   {
-    "name": "Clint CLNT 3T Salazar",
-    "file": "assets/mechs/Clint CLNT-3T Salazar.mtf"
+    "name": "Commando COM-3A",
+    "bv2": 540,
+    "file": "Commando COM-3A.ssw"
   },
   {
-    "name": "Clint CLNT 5U",
-    "file": "assets/mechs/Clint CLNT-5U.mtf"
+    "name": "Commando COM-4H",
+    "bv2": 691,
+    "file": "Commando COM-4H.ssw"
   },
   {
-    "name": "Clint CLNT 6S",
-    "file": "assets/mechs/Clint CLNT-6S.mtf"
+    "name": "Commando COM-5S",
+    "bv2": 557,
+    "file": "Commando COM-5S.ssw"
   },
   {
-    "name": "Commando COM 1B",
-    "file": "assets/mechs/Commando COM-1B.mtf"
+    "name": "Commando COM-7B",
+    "bv2": 602,
+    "file": "Commando COM-7B.ssw"
   },
   {
-    "name": "Commando COM 1C",
-    "file": "assets/mechs/Commando COM-1C.mtf"
+    "name": "Commando COM-7S",
+    "bv2": 658,
+    "file": "Commando COM-7S.ssw"
   },
   {
-    "name": "Commando COM 1D",
-    "file": "assets/mechs/Commando COM-1D.mtf"
+    "name": "Crab CRB-20",
+    "bv2": 1143,
+    "file": "Crab CRB-20.ssw"
   },
   {
-    "name": "Commando COM 2D",
-    "file": "assets/mechs/Commando COM-2D.mtf"
+    "name": "Crusader CRD-3D",
+    "bv2": 1338,
+    "file": "Crusader CRD-3D.ssw"
   },
   {
-    "name": "Commando COM 3A",
-    "file": "assets/mechs/Commando COM-3A.mtf"
+    "name": "Crusader CRD-3K",
+    "bv2": 1290,
+    "file": "Crusader CRD-3K.ssw"
   },
   {
-    "name": "Commando COM 4H",
-    "file": "assets/mechs/Commando COM-4H.mtf"
+    "name": "Crusader CRD-3L",
+    "bv2": 1297,
+    "file": "Crusader CRD-3L.ssw"
   },
   {
-    "name": "Commando COM 5S",
-    "file": "assets/mechs/Commando COM-5S.mtf"
+    "name": "Crusader CRD-3LE",
+    "bv2": 1411,
+    "file": "Crusader CRD-3LE.ssw"
   },
   {
-    "name": "Commando COM 7B",
-    "file": "assets/mechs/Commando COM-7B.mtf"
+    "name": "Crusader CRD-3R",
+    "bv2": 1317,
+    "file": "Crusader CRD-3R.ssw"
   },
   {
-    "name": "Commando COM 7S",
-    "file": "assets/mechs/Commando COM-7S.mtf"
+    "name": "Cyclops CP-10-HQ",
+    "bv2": 1113,
+    "file": "Cyclops CP-10-HQ.ssw"
   },
   {
-    "name": "Crab CRB 20 Salazar",
-    "file": "assets/mechs/Crab CRB-20 Salazar.mtf"
+    "name": "Cyclops CP-10-Q",
+    "bv2": 1584,
+    "file": "Cyclops CP-10-Q.ssw"
   },
   {
-    "name": "Crab CRB 20",
-    "file": "assets/mechs/Crab CRB-20.mtf"
+    "name": "Cyclops CP-10-Z",
+    "bv2": 1317,
+    "file": "Cyclops CP-10-Z.ssw"
   },
   {
-    "name": "Crusader CRD 3D",
-    "file": "assets/mechs/Crusader CRD-3D.mtf"
+    "name": "Cyclops CP-11-A",
+    "bv2": 1547,
+    "file": "Cyclops CP-11-A.ssw"
   },
   {
-    "name": "Crusader CRD 3K",
-    "file": "assets/mechs/Crusader CRD-3K.mtf"
+    "name": "Cyclops CP-11-A-DC",
+    "bv2": 1507,
+    "file": "Cyclops CP-11-A-DC.ssw"
   },
   {
-    "name": "Crusader CRD 3L",
-    "file": "assets/mechs/Crusader CRD-3L.mtf"
+    "name": "Cyclops CP-11-C",
+    "bv2": 1553,
+    "file": "Cyclops CP-11-C.ssw"
   },
   {
-    "name": "Crusader CRD 3R Salazar",
-    "file": "assets/mechs/Crusader CRD-3R Salazar.mtf"
+    "name": "Cyclops CP-11-G",
+    "bv2": 1981,
+    "file": "Cyclops CP-11-G.ssw"
   },
   {
-    "name": "Crusader CRD 3R",
-    "file": "assets/mechs/Crusader CRD-3R.mtf"
+    "name": "Cyclops CP-11-H",
+    "bv2": 1525,
+    "file": "Cyclops CP-11-H.ssw"
   },
   {
-    "name": "Cyclops CP 10 HQ",
-    "file": "assets/mechs/Cyclops CP-10-HQ.mtf"
+    "name": "Cyclops CP-12-K",
+    "bv2": 1699,
+    "file": "Cyclops CP-12-K.ssw"
   },
   {
-    "name": "Cyclops CP 10 Q",
-    "file": "assets/mechs/Cyclops CP-10-Q.mtf"
+    "name": "Daboku DCMS-MX90-D",
+    "bv2": 1290,
+    "file": "Daboku DCMS-MX90-D.ssw"
   },
   {
-    "name": "Cyclops CP 10 Z",
-    "file": "assets/mechs/Cyclops CP-10-Z.mtf"
+    "name": "Dervish DV-6D",
+    "bv2": 1321,
+    "file": "Dervish DV-6D.ssw"
   },
   {
-    "name": "Cyclops CP 11 A DC",
-    "file": "assets/mechs/Cyclops CP-11-A-DC.mtf"
+    "name": "Dervish DV-6M",
+    "bv2": 1146,
+    "file": "Dervish DV-6M.ssw"
   },
   {
-    "name": "Cyclops CP 11 A",
-    "file": "assets/mechs/Cyclops CP-11-A.mtf"
+    "name": "Dervish DV-6M ELH",
+    "bv2": 1323,
+    "file": "Dervish DV-6M ELH.ssw"
   },
   {
-    "name": "Cyclops CP 11 C",
-    "file": "assets/mechs/Cyclops CP-11-C.mtf"
+    "name": "Dervish DV-7BL-D",
+    "bv2": 1568,
+    "file": "Dervish DV-7BL-D.ssw"
   },
   {
-    "name": "Cyclops CP 11 G",
-    "file": "assets/mechs/Cyclops CP-11-G.mtf"
+    "name": "Dervish DV-7D",
+    "bv2": 1412,
+    "file": "Dervish DV-7D.ssw"
   },
   {
-    "name": "Cyclops CP 11 H",
-    "file": "assets/mechs/Cyclops CP-11-H.mtf"
+    "name": "Dervish DV-8D",
+    "bv2": 1765,
+    "file": "Dervish DV-8D.ssw"
   },
   {
-    "name": "Cyclops CP 12 K",
-    "file": "assets/mechs/Cyclops CP-12-K.mtf"
+    "name": "Dervish DV-9D",
+    "bv2": 1518,
+    "file": "Dervish DV-9D.ssw"
   },
   {
-    "name": "Daboku DCMS MX90 D",
-    "file": "assets/mechs/Daboku DCMS-MX90-D.mtf"
+    "name": "Dragon DRG-1C",
+    "bv2": 1215,
+    "file": "Dragon DRG-1C.ssw"
   },
   {
-    "name": "Dervish DV 6D",
-    "file": "assets/mechs/Dervish DV-6D.mtf"
+    "name": "Dragon DRG-1N",
+    "bv2": 1125,
+    "file": "Dragon DRG-1N.ssw"
   },
   {
-    "name": "Dervish DV 6M ELH",
-    "file": "assets/mechs/Dervish DV-6M ELH.ssw"
+    "name": "Dragon DRG-5N",
+    "bv2": 1223,
+    "file": "Dragon DRG-5N.ssw"
   },
   {
-    "name": "Dervish DV 6M Salazar MkII",
-    "file": "assets/mechs/Dervish DV-6M Salazar MkII.mtf"
+    "name": "Dragon DRG-7N",
+    "bv2": 1495,
+    "file": "Dragon DRG-7N.ssw"
   },
   {
-    "name": "Dervish DV 6M Salazar",
-    "file": "assets/mechs/Dervish DV-6M Salazar.mtf"
+    "name": "Enforcer ENF-4R",
+    "bv2": 1032,
+    "file": "Enforcer ENF-4R.ssw"
   },
   {
-    "name": "Dervish DV 6M BL",
-    "file": "assets/mechs/Dervish DV-6M-BL.ssw"
+    "name": "Enforcer ENF-5D",
+    "bv2": 1308,
+    "file": "Enforcer ENF-5D.ssw"
   },
   {
-    "name": "Dervish DV 6M",
-    "file": "assets/mechs/Dervish DV-6M.mtf"
+    "name": "Falcon FLC-4N",
+    "bv2": 610,
+    "file": "Falcon FLC-4N.ssw"
   },
   {
-    "name": "Dervish DV 7BL D",
-    "file": "assets/mechs/Dervish DV-7BL-D.mtf"
+    "name": "Falcon FLC-4P",
+    "bv2": 649,
+    "file": "Falcon FLC-4P.ssw"
   },
   {
-    "name": "Dervish DV 7D",
-    "file": "assets/mechs/Dervish DV-7D.mtf"
+    "name": "Falcon FLC-5P",
+    "bv2": 945,
+    "file": "Falcon FLC-5P.ssw"
   },
   {
-    "name": "Dervish DV 8D",
-    "file": "assets/mechs/Dervish DV-8D.mtf"
-  },
-  {
-    "name": "Dervish DV 9D",
-    "file": "assets/mechs/Dervish DV-9D.mtf"
-  },
-  {
-    "name": "Dragon DRG 1C",
-    "file": "assets/mechs/Dragon DRG-1C.mtf"
-  },
-  {
-    "name": "Dragon DRG 1N",
-    "file": "assets/mechs/Dragon DRG-1N.mtf"
-  },
-  {
-    "name": "Dragon DRG 5N",
-    "file": "assets/mechs/Dragon DRG-5N.mtf"
-  },
-  {
-    "name": "Dragon DRG 7N",
-    "file": "assets/mechs/Dragon DRG-7N.mtf"
-  },
-  {
-    "name": "Enforcer ENF 4R",
-    "file": "assets/mechs/Enforcer ENF-4R.mtf"
-  },
-  {
-    "name": "Enforcer ENF 5D",
-    "file": "assets/mechs/Enforcer ENF-5D.mtf"
-  },
-  {
-    "name": "Falcon FLC 4N",
-    "file": "assets/mechs/Falcon FLC-4N.mtf"
-  },
-  {
-    "name": "Falcon FLC 4P",
-    "file": "assets/mechs/Falcon FLC-4P.mtf"
-  },
-  {
-    "name": "Falcon FLC 5P",
-    "file": "assets/mechs/Falcon FLC-5P.mtf"
-  },
-  {
-    "name": "Falcon FLC 6C",
-    "file": "assets/mechs/Falcon FLC-6C.mtf"
+    "name": "Falcon FLC-6C",
+    "bv2": 1290,
+    "file": "Falcon FLC-6C.ssw"
   },
   {
     "name": "Firefly C",
-    "file": "assets/mechs/Firefly C.mtf"
+    "bv2": 1290,
+    "file": "Firefly C.ssw"
   },
   {
-    "name": "Firefly FFL 3A",
-    "file": "assets/mechs/Firefly FFL-3A.mtf"
+    "name": "Firefly FFL-4A",
+    "bv2": 831,
+    "file": "Firefly FFL-4A.ssw"
   },
   {
-    "name": "Firefly FFL 4A",
-    "file": "assets/mechs/Firefly FFL-4A.mtf"
+    "name": "Firefly FFL-4B",
+    "bv2": 870,
+    "file": "Firefly FFL-4B.ssw"
   },
   {
-    "name": "Firefly FFL 4B",
-    "file": "assets/mechs/Firefly FFL-4B.mtf"
+    "name": "Firefly FFL-4C",
+    "bv2": 806,
+    "file": "Firefly FFL-4C.ssw"
   },
   {
-    "name": "Firefly FFL 4C",
-    "file": "assets/mechs/Firefly FFL-4C.mtf"
+    "name": "Firefly FFL-4D",
+    "bv2": 897,
+    "file": "Firefly FFL-4D.ssw"
   },
   {
-    "name": "Firefly FFL 4D",
-    "file": "assets/mechs/Firefly FFL-4D.mtf"
+    "name": "Firefly FFL-4DA",
+    "bv2": 921,
+    "file": "Firefly FFL-4DA.ssw"
   },
   {
-    "name": "Firefly FFL 4DA",
-    "file": "assets/mechs/Firefly FFL-4DA.mtf"
+    "name": "Firestarter FS9-A",
+    "bv2": 773,
+    "file": "Firestarter FS9-A.ssw"
   },
   {
-    "name": "Firestarter FS9 A",
-    "file": "assets/mechs/Firestarter FS9-A.mtf"
+    "name": "Firestarter FS9-B",
+    "bv2": 668,
+    "file": "Firestarter FS9-B.ssw"
   },
   {
-    "name": "Firestarter FS9 B",
-    "file": "assets/mechs/Firestarter FS9-B.mtf"
+    "name": "Firestarter FS9-C",
+    "bv2": 940,
+    "file": "Firestarter FS9-C.ssw"
   },
   {
-    "name": "Firestarter FS9 C",
-    "file": "assets/mechs/Firestarter FS9-C.mtf"
+    "name": "Firestarter FS9-H",
+    "bv2": 694,
+    "file": "Firestarter FS9-H.ssw"
   },
   {
-    "name": "Firestarter FS9 H",
-    "file": "assets/mechs/Firestarter FS9-H.mtf"
+    "name": "Firestarter FS9-K",
+    "bv2": 763,
+    "file": "Firestarter FS9-K.ssw"
   },
   {
-    "name": "Firestarter FS9 K",
-    "file": "assets/mechs/Firestarter FS9-K.mtf"
+    "name": "Firestarter FS9-M 'Mirage'",
+    "bv2": 798,
+    "file": "Firestarter FS9-M Mirage.ssw"
   },
   {
-    "name": "Firestarter FS9 M Mirage",
-    "file": "assets/mechs/Firestarter FS9-M Mirage.mtf"
+    "name": "Firestarter FS9-P",
+    "bv2": 775,
+    "file": "Firestarter FS9-P.ssw"
   },
   {
-    "name": "Firestarter FS9 P",
-    "file": "assets/mechs/Firestarter FS9-P.mtf"
+    "name": "Firestarter FS9-S",
+    "bv2": 754,
+    "file": "Firestarter FS9-S.ssw"
   },
   {
-    "name": "Firestarter FS9 S",
-    "file": "assets/mechs/Firestarter FS9-S.mtf"
+    "name": "Firestarter FS9-S1",
+    "bv2": 820,
+    "file": "Firestarter FS9-S1.ssw"
   },
   {
-    "name": "Firestarter FS9 S1",
-    "file": "assets/mechs/Firestarter FS9-S1.mtf"
+    "name": "Firestarter FS9-S2",
+    "bv2": 842,
+    "file": "Firestarter FS9-S2.ssw"
   },
   {
-    "name": "Firestarter FS9 S2",
-    "file": "assets/mechs/Firestarter FS9-S2.mtf"
+    "name": "Firestarter FS9-S3",
+    "bv2": 908,
+    "file": "Firestarter FS9-S3.ssw"
   },
   {
-    "name": "Firestarter FS9 S3",
-    "file": "assets/mechs/Firestarter FS9-S3.mtf"
+    "name": "Flashman FLS-7K",
+    "bv2": 1480,
+    "file": "Flashman FLS-7K.ssw"
   },
   {
-    "name": "Flashman FLS 7K",
-    "file": "assets/mechs/Flashman FLS-7K.mtf"
+    "name": "Flea 'Fire Ant'",
+    "bv2": 332,
+    "file": "Flea Fire Ant.ssw"
   },
   {
-    "name": "Flea Fire Ant",
-    "file": "assets/mechs/Flea Fire Ant.mtf"
+    "name": "Flea FLE-15",
+    "bv2": 430,
+    "file": "Flea FLE-15.ssw"
   },
   {
-    "name": "Flea FLE 15",
-    "file": "assets/mechs/Flea FLE-15.mtf"
+    "name": "Flea FLE-17",
+    "bv2": 510,
+    "file": "Flea FLE-17.ssw"
   },
   {
-    "name": "Flea FLE 16",
-    "file": "assets/mechs/Flea FLE-16.mtf"
+    "name": "Flea FLE-19",
+    "bv2": 381,
+    "file": "Flea FLE-19.ssw"
   },
   {
-    "name": "Flea FLE 17",
-    "file": "assets/mechs/Flea FLE-17.mtf"
+    "name": "Flea FLE-20",
+    "bv2": 791,
+    "file": "Flea FLE-20.ssw"
   },
   {
-    "name": "Flea FLE 19",
-    "file": "assets/mechs/Flea FLE-19.mtf"
+    "name": "Flea FLE-4",
+    "bv2": 432,
+    "file": "Flea FLE-4.ssw"
   },
   {
-    "name": "Flea FLE 20",
-    "file": "assets/mechs/Flea FLE-20.mtf"
+    "name": "Goliath GOL-1H",
+    "bv2": 1449,
+    "file": "Goliath GOL-1H.ssw"
   },
   {
-    "name": "Flea FLE 4",
-    "file": "assets/mechs/Flea FLE-4.mtf"
+    "name": "Grand Dragon DRG-1G",
+    "bv2": 1300,
+    "file": "Grand Dragon DRG-1G.ssw"
   },
   {
-    "name": "Goliath GOL 1H",
-    "file": "assets/mechs/Goliath GOL-1H.mtf"
+    "name": "Grand Dragon DRG-5K",
+    "bv2": 1358,
+    "file": "Grand Dragon DRG-5K.ssw"
   },
   {
-    "name": "Grand Dragon DRG 1G",
-    "file": "assets/mechs/Grand Dragon DRG-1G.mtf"
+    "name": "Grand Dragon DRG-5K-DC",
+    "bv2": 1322,
+    "file": "Grand Dragon DRG-5K-DC.ssw"
   },
   {
-    "name": "Grand Dragon DRG 5K DC",
-    "file": "assets/mechs/Grand Dragon DRG-5K-DC.mtf"
+    "name": "Grand Dragon DRG-7K",
+    "bv2": 1702,
+    "file": "Grand Dragon DRG-7K.ssw"
   },
   {
-    "name": "Grand Dragon DRG 5K",
-    "file": "assets/mechs/Grand Dragon DRG-5K.mtf"
+    "name": "Grand Dragon DRG-9KC",
+    "bv2": 1147,
+    "file": "Grand Dragon DRG-9KC.ssw"
   },
   {
-    "name": "Grand Dragon DRG 7K",
-    "file": "assets/mechs/Grand Dragon DRG-7K.mtf"
+    "name": "Grand Dragon DRG-C",
+    "bv2": 1322,
+    "file": "Grand Dragon DRG-C.ssw"
   },
   {
-    "name": "Grand Dragon DRG 9KC",
-    "file": "assets/mechs/Grand Dragon DRG-9KC.mtf"
+    "name": "Grasshopper GHR-5H",
+    "bv2": 1427,
+    "file": "Grasshopper GHR-5H.ssw"
   },
   {
-    "name": "Grand Dragon DRG C",
-    "file": "assets/mechs/Grand Dragon DRG-C.mtf"
+    "name": "Grasshopper GHR-5H ELH",
+    "bv2": 1417,
+    "file": "Grasshopper GHR-5H ELH.ssw"
   },
   {
-    "name": "Grasshopper GHR 5H ELH Mk II",
-    "file": "assets/mechs/Grasshopper GHR-5H ELH Mk II.ssw"
+    "name": "Grasshopper GHR-5H ELH Mk II",
+    "bv2": 1739,
+    "file": "Grasshopper GHR-5H ELH Mk II.ssw"
   },
   {
-    "name": "Grasshopper GHR 5H ELH",
-    "file": "assets/mechs/Grasshopper GHR-5H ELH.ssw"
+    "name": "Grasshopper GHR-5J",
+    "bv2": 1354,
+    "file": "Grasshopper GHR-5J.ssw"
   },
   {
-    "name": "Grasshopper GHR 5H",
-    "file": "assets/mechs/Grasshopper GHR-5H.mtf"
+    "name": "Grasshopper GHR-5N",
+    "bv2": 1511,
+    "file": "Grasshopper GHR-5N.ssw"
   },
   {
-    "name": "Grasshopper GHR 5J",
-    "file": "assets/mechs/Grasshopper GHR-5J.mtf"
+    "name": "Grasshopper GHR-6K",
+    "bv2": 1597,
+    "file": "Grasshopper GHR-6K.ssw"
   },
   {
-    "name": "Grasshopper GHR 5N",
-    "file": "assets/mechs/Grasshopper GHR-5N.mtf"
+    "name": "Grasshopper GHR-7K",
+    "bv2": 1806,
+    "file": "Grasshopper GHR-7K.ssw"
   },
   {
-    "name": "Grasshopper GHR 6K",
-    "file": "assets/mechs/Grasshopper GHR-6K.mtf"
+    "name": "Grasshopper GHR-7K 'Gravedigger'",
+    "bv2": 2084,
+    "file": "Grasshopper GHR-7K Gravedigger.ssw"
   },
   {
-    "name": "Grasshopper GHR 7K Gravedigger",
-    "file": "assets/mechs/Grasshopper GHR-7K Gravedigger.mtf"
+    "name": "Grasshopper GHR-C",
+    "bv2": 1366,
+    "file": "Grasshopper GHR-C.ssw"
   },
   {
-    "name": "Grasshopper GHR 7K",
-    "file": "assets/mechs/Grasshopper GHR-7K.mtf"
+    "name": "Griffin GRF-1BL",
+    "bv2": 1272,
+    "file": "Griffin GRF-1BL.ssw"
   },
   {
-    "name": "Grasshopper GHR C",
-    "file": "assets/mechs/Grasshopper GHR-C.mtf"
+    "name": "Griffin GRF-1E 'Sparky'",
+    "bv2": 1449,
+    "file": "Griffin GRF-1E Sparky.ssw"
   },
   {
-    "name": "Griffin GRF 1BL",
-    "file": "assets/mechs/Griffin GRF-1BL.mtf"
+    "name": "Griffin GRF-1N",
+    "bv2": 1272,
+    "file": "Griffin GRF-1N.ssw"
   },
   {
-    "name": "Griffin GRF 1E Sparky",
-    "file": "assets/mechs/Griffin GRF-1E Sparky.mtf"
+    "name": "Griffin GRF-1S",
+    "bv2": 1253,
+    "file": "Griffin GRF-1S.ssw"
   },
   {
-    "name": "Griffin GRF 1N",
-    "file": "assets/mechs/Griffin GRF-1N.mtf"
+    "name": "Guillotine GLT-4L",
+    "bv2": 1400,
+    "file": "Guillotine GLT-4L.ssw"
   },
   {
-    "name": "Griffin GRF 1S",
-    "file": "assets/mechs/Griffin GRF-1S.mtf"
+    "name": "Guillotine GLT-4P",
+    "bv2": 1376,
+    "file": "Guillotine GLT-4P.ssw"
   },
   {
-    "name": "Guillotine GLT 4L",
-    "file": "assets/mechs/Guillotine GLT-4L.mtf"
+    "name": "Hatamoto-Chi HTM-26T",
+    "bv2": 1536,
+    "file": "Hatamoto-Chi HTM-26T.ssw"
   },
   {
-    "name": "Guillotine GLT 4P",
-    "file": "assets/mechs/Guillotine GLT-4P.mtf"
+    "name": "Hatamoto-Chi HTM-27T",
+    "bv2": 1607,
+    "file": "Hatamoto-Chi HTM-27T.ssw"
   },
   {
-    "name": "Hatamoto Chi HTM 26T",
-    "file": "assets/mechs/Hatamoto-Chi HTM-26T.mtf"
+    "name": "Hatamoto-Chi HTM-28T",
+    "bv2": 2039,
+    "file": "Hatamoto-Chi HTM-28T.ssw"
   },
   {
-    "name": "Hatamoto Chi HTM 27T",
-    "file": "assets/mechs/Hatamoto-Chi HTM-27T.mtf"
+    "name": "Hatamoto-Chi HTM-28T (Shin)",
+    "bv2": 2213,
+    "file": "Hatamoto-Chi HTM-28T (Shin).ssw"
   },
   {
-    "name": "Hatamoto Chi HTM 28T (Shin)",
-    "file": "assets/mechs/Hatamoto-Chi HTM-28T (Shin).mtf"
+    "name": "Hatamoto-Hi HTM-27U",
+    "bv2": 1627,
+    "file": "Hatamoto-Hi HTM-27U.ssw"
   },
   {
-    "name": "Hatamoto Chi HTM 28T",
-    "file": "assets/mechs/Hatamoto-Chi HTM-28T.mtf"
+    "name": "Hatamoto-Hi HTM-C",
+    "bv2": 1627,
+    "file": "Hatamoto-Hi HTM-C.ssw"
   },
   {
-    "name": "Hatamoto Hi HTM 27U",
-    "file": "assets/mechs/Hatamoto-Hi HTM-27U.mtf"
+    "name": "Hatamoto-Hi HTM-CM",
+    "bv2": 1573,
+    "file": "Hatamoto-Hi HTM-CM.ssw"
   },
   {
-    "name": "Hatamoto Hi HTM C",
-    "file": "assets/mechs/Hatamoto-Hi HTM-C.mtf"
+    "name": "Hatamoto-Kaze HTM-27V",
+    "bv2": 1595,
+    "file": "Hatamoto-Kaze HTM-27V.ssw"
   },
   {
-    "name": "Hatamoto Hi HTM CM",
-    "file": "assets/mechs/Hatamoto-Hi HTM-CM.mtf"
+    "name": "Hatamoto-Ku HTM-27W",
+    "bv2": 1563,
+    "file": "Hatamoto-Ku HTM-27W.ssw"
   },
   {
-    "name": "Hatamoto Kaze HTM 27V",
-    "file": "assets/mechs/Hatamoto-Kaze HTM-27V.mtf"
+    "name": "Hatamoto-Mizo HTM-27Y",
+    "bv2": 1675,
+    "file": "Hatamoto-Mizo HTM-27Y.ssw"
   },
   {
-    "name": "Hatamoto Ku HTM 27W",
-    "file": "assets/mechs/Hatamoto-Ku HTM-27W.mtf"
+    "name": "Hatchetman HCT-3F",
+    "bv2": 854,
+    "file": "Hatchetman HCT-3F.ssw"
   },
   {
-    "name": "Hatamoto Mizo HTM 27Y",
-    "file": "assets/mechs/Hatamoto-Mizo HTM-27Y.mtf"
+    "name": "Hatchetman HCT-5D",
+    "bv2": 1012,
+    "file": "Hatchetman HCT-5D.ssw"
   },
   {
-    "name": "Hatchetman HCT 3F",
-    "file": "assets/mechs/Hatchetman HCT-3F.mtf"
+    "name": "Hatchetman HCT-5DD",
+    "bv2": 1112,
+    "file": "Hatchetman HCT-5DD.ssw"
   },
   {
-    "name": "Hatchetman HCT 5D",
-    "file": "assets/mechs/Hatchetman HCT-5D.mtf"
+    "name": "Hatchetman HCT-5K",
+    "bv2": 1070,
+    "file": "Hatchetman HCT-5K.ssw"
   },
   {
-    "name": "Hatchetman HCT 5DD",
-    "file": "assets/mechs/Hatchetman HCT-5DD.mtf"
+    "name": "Hatchetman HCT-5S",
+    "bv2": 1039,
+    "file": "Hatchetman HCT-5S.ssw"
   },
   {
-    "name": "Hatchetman HCT 5K",
-    "file": "assets/mechs/Hatchetman HCT-5K.mtf"
+    "name": "Hatchetman HCT-6D",
+    "bv2": 1611,
+    "file": "Hatchetman HCT-6D.ssw"
   },
   {
-    "name": "Hatchetman HCT 5S",
-    "file": "assets/mechs/Hatchetman HCT-5S.mtf"
+    "name": "Hatchetman HCT-6S",
+    "bv2": 1174,
+    "file": "Hatchetman HCT-6S.ssw"
   },
   {
-    "name": "Hatchetman HCT 6D",
-    "file": "assets/mechs/Hatchetman HCT-6D.mtf"
+    "name": "Hermes HER-1A",
+    "bv2": 601,
+    "file": "Hermes HER-1A.ssw"
   },
   {
-    "name": "Hatchetman HCT 6S",
-    "file": "assets/mechs/Hatchetman HCT-6S.mtf"
+    "name": "Hermes HER-1B",
+    "bv2": 687,
+    "file": "Hermes HER-1B.ssw"
   },
   {
-    "name": "Hermes HER 1A",
-    "file": "assets/mechs/Hermes HER-1A.mtf"
+    "name": "Hermes II HER-2M 'Mercury'",
+    "bv2": 910,
+    "file": "Hermes II HER-2M Mercury.ssw"
   },
   {
-    "name": "Hermes HER 1B",
-    "file": "assets/mechs/Hermes HER-1B.mtf"
+    "name": "Hermes II HER-2S",
+    "bv2": 784,
+    "file": "Hermes II HER-2S.ssw"
   },
   {
-    "name": "Hermes II HER 2M Mercury",
-    "file": "assets/mechs/Hermes II HER-2M Mercury.mtf"
+    "name": "Hermes II HER-4K 'Hermes III'",
+    "bv2": 976,
+    "file": "Hermes II HER-4K Hermes III.ssw"
   },
   {
-    "name": "Hermes II HER 2S",
-    "file": "assets/mechs/Hermes II HER-2S.mtf"
+    "name": "Hermes II HER-5C",
+    "bv2": 1119,
+    "file": "Hermes II HER-5C.ssw"
   },
   {
-    "name": "Hermes II HER 4K Hermes III",
-    "file": "assets/mechs/Hermes II HER-4K Hermes III.mtf"
+    "name": "Hermes II HER-5ME 'Mercury Elite'",
+    "bv2": 847,
+    "file": "Hermes II HER-5ME Mercury Elite.ssw"
   },
   {
-    "name": "Hermes II HER 5C",
-    "file": "assets/mechs/Hermes II HER-5C.mtf"
+    "name": "Hermes II HER-5S",
+    "bv2": 857,
+    "file": "Hermes II HER-5S.ssw"
   },
   {
-    "name": "Hermes II HER 5ME Mercury Elite",
-    "file": "assets/mechs/Hermes II HER-5ME Mercury Elite.mtf"
+    "name": "Hermes II HER-5SA",
+    "bv2": 924,
+    "file": "Hermes II HER-5SA.ssw"
   },
   {
-    "name": "Hermes II HER 5S",
-    "file": "assets/mechs/Hermes II HER-5S.mtf"
+    "name": "Hermes II HER-6D",
+    "bv2": 1106,
+    "file": "Hermes II HER-6D.ssw"
   },
   {
-    "name": "Hermes II HER 5SA",
-    "file": "assets/mechs/Hermes II HER-5SA.mtf"
+    "name": "Highlander HGN-733",
+    "bv2": 1801,
+    "file": "Highlander HGN-733.ssw"
   },
   {
-    "name": "Hermes II HER 6D",
-    "file": "assets/mechs/Hermes II HER-6D.mtf"
+    "name": "Highlander HGN-733C",
+    "bv2": 1857,
+    "file": "Highlander HGN-733C.ssw"
   },
   {
-    "name": "Highlander HGN 733",
-    "file": "assets/mechs/Highlander HGN-733.mtf"
-  },
-  {
-    "name": "Highlander HGN 733C",
-    "file": "assets/mechs/Highlander HGN-733C.mtf"
-  },
-  {
-    "name": "Highlander HGN 733P",
-    "file": "assets/mechs/Highlander HGN-733P.mtf"
+    "name": "Highlander HGN-733P",
+    "bv2": 1865,
+    "file": "Highlander HGN-733P.ssw"
   },
   {
     "name": "Hoplite C",
-    "file": "assets/mechs/Hoplite C.mtf"
+    "bv2": 1736,
+    "file": "Hoplite C.ssw"
   },
   {
-    "name": "Hoplite HOP 4B",
-    "file": "assets/mechs/Hoplite HOP-4B.mtf"
+    "name": "Hoplite HOP-4B",
+    "bv2": 1162,
+    "file": "Hoplite HOP-4B.ssw"
   },
   {
-    "name": "Hoplite HOP 4C",
-    "file": "assets/mechs/Hoplite HOP-4C.mtf"
+    "name": "Hoplite HOP-4C",
+    "bv2": 986,
+    "file": "Hoplite HOP-4C.ssw"
   },
   {
-    "name": "Hoplite HOP 4D",
-    "file": "assets/mechs/Hoplite HOP-4D.mtf"
+    "name": "Hoplite HOP-4D",
+    "bv2": 1022,
+    "file": "Hoplite HOP-4D.ssw"
   },
   {
-    "name": "Hornet HNT 151",
-    "file": "assets/mechs/Hornet HNT-151.mtf"
+    "name": "Hornet HNT-151",
+    "bv2": 488,
+    "file": "Hornet HNT-151.ssw"
   },
   {
-    "name": "Hornet HNT 152",
-    "file": "assets/mechs/Hornet HNT-152.mtf"
+    "name": "Hornet HNT-152",
+    "bv2": 475,
+    "file": "Hornet HNT-152.ssw"
   },
   {
-    "name": "Hornet HNT 161",
-    "file": "assets/mechs/Hornet HNT-161.mtf"
+    "name": "Hornet HNT-161",
+    "bv2": 511,
+    "file": "Hornet HNT-161.ssw"
   },
   {
-    "name": "Hornet HNT 171",
-    "file": "assets/mechs/Hornet HNT-171.mtf"
+    "name": "Hornet HNT-171",
+    "bv2": 535,
+    "file": "Hornet HNT-171.ssw"
   },
   {
-    "name": "Hunchback HBK 4G",
-    "file": "assets/mechs/Hunchback HBK-4G.mtf"
+    "name": "Hunchback HBK-4G",
+    "bv2": 1041,
+    "file": "Hunchback HBK-4G.ssw"
   },
   {
-    "name": "Hunchback HBK 4H",
-    "file": "assets/mechs/Hunchback HBK-4H.mtf"
+    "name": "Hunchback HBK-4H",
+    "bv2": 1067,
+    "file": "Hunchback HBK-4H.ssw"
   },
   {
-    "name": "Hunchback HBK 4J",
-    "file": "assets/mechs/Hunchback HBK-4J.mtf"
+    "name": "Hunchback HBK-4J",
+    "bv2": 1143,
+    "file": "Hunchback HBK-4J.ssw"
   },
   {
-    "name": "Hunchback HBK 4N",
-    "file": "assets/mechs/Hunchback HBK-4N.mtf"
+    "name": "Hunchback HBK-4N",
+    "bv2": 1087,
+    "file": "Hunchback HBK-4N.ssw"
   },
   {
-    "name": "Hunchback HBK 4P",
-    "file": "assets/mechs/Hunchback HBK-4P.mtf"
+    "name": "Hunchback HBK-4P",
+    "bv2": 1138,
+    "file": "Hunchback HBK-4P.ssw"
   },
   {
-    "name": "Hunchback HBK 4SP",
-    "file": "assets/mechs/Hunchback HBK-4SP.mtf"
+    "name": "Hunchback HBK-4SP",
+    "bv2": 1043,
+    "file": "Hunchback HBK-4SP.ssw"
   },
   {
-    "name": "Hunchback HBK 5H",
-    "file": "assets/mechs/Hunchback HBK-5H.mtf"
+    "name": "Hunchback HBK-5H",
+    "bv2": 1097,
+    "file": "Hunchback HBK-5H.ssw"
   },
   {
-    "name": "Hunchback HBK 5M",
-    "file": "assets/mechs/Hunchback HBK-5M.mtf"
+    "name": "Hunchback HBK-5M",
+    "bv2": 1056,
+    "file": "Hunchback HBK-5M.ssw"
   },
   {
-    "name": "Hunchback HBK 5N",
-    "file": "assets/mechs/Hunchback HBK-5N.mtf"
+    "name": "Hunchback HBK-5N",
+    "bv2": 1041,
+    "file": "Hunchback HBK-5N.ssw"
   },
   {
-    "name": "Hunchback HBK 5P",
-    "file": "assets/mechs/Hunchback HBK-5P.mtf"
+    "name": "Hunchback HBK-5P",
+    "bv2": 1340,
+    "file": "Hunchback HBK-5P.ssw"
   },
   {
-    "name": "Hunchback HBK 5S",
-    "file": "assets/mechs/Hunchback HBK-5S.mtf"
+    "name": "Hunchback HBK-5S",
+    "bv2": 1350,
+    "file": "Hunchback HBK-5S.ssw"
   },
   {
-    "name": "Hunchback HBK 5SG",
-    "file": "assets/mechs/Hunchback HBK-5SG.mtf"
+    "name": "Hunchback HBK-5SG",
+    "bv2": 1577,
+    "file": "Hunchback HBK-5SG.ssw"
   },
   {
-    "name": "Hunchback HBK 5SS",
-    "file": "assets/mechs/Hunchback HBK-5SS.mtf"
+    "name": "Hunchback HBK-5SS",
+    "bv2": 1342,
+    "file": "Hunchback HBK-5SS.ssw"
   },
   {
-    "name": "Hunchback HBK 6N",
-    "file": "assets/mechs/Hunchback HBK-6N.mtf"
+    "name": "Hunchback HBK-6N",
+    "bv2": 1130,
+    "file": "Hunchback HBK-6N.ssw"
   },
   {
-    "name": "Hunchback HBK 6S",
-    "file": "assets/mechs/Hunchback HBK-6S.mtf"
+    "name": "Hunchback HBK-6S",
+    "bv2": 1380,
+    "file": "Hunchback HBK-6S.ssw"
   },
   {
-    "name": "Hussar HSR 300 D",
-    "file": "assets/mechs/Hussar HSR-300-D.mtf"
+    "name": "Hussar HSR-300-D",
+    "bv2": 543,
+    "file": "Hussar HSR-300-D.ssw"
   },
   {
-    "name": "Hussar HSR 350 D",
-    "file": "assets/mechs/Hussar HSR-350-D.mtf"
+    "name": "Hussar HSR-350-D",
+    "bv2": 731,
+    "file": "Hussar HSR-350-D.ssw"
   },
   {
     "name": "Imp C",
-    "file": "assets/mechs/Imp C.mtf"
+    "bv2": 3070,
+    "file": "Imp C.ssw"
   },
   {
-    "name": "Imp IMP 2E",
-    "file": "assets/mechs/Imp IMP-2E.mtf"
+    "name": "Imp IMP-2E",
+    "bv2": 1969,
+    "file": "Imp IMP-2E.ssw"
   },
   {
-    "name": "Imp IMP 3E",
-    "file": "assets/mechs/Imp IMP-3E.mtf"
+    "name": "Imp IMP-3E",
+    "bv2": 1906,
+    "file": "Imp IMP-3E.ssw"
   },
   {
-    "name": "Imp IMP 4E",
-    "file": "assets/mechs/Imp IMP-4E.mtf"
+    "name": "Imp IMP-4E",
+    "bv2": 2263,
+    "file": "Imp IMP-4E.ssw"
   },
   {
-    "name": "JagerMech JM6 A",
-    "file": "assets/mechs/JagerMech JM6-A.mtf"
+    "name": "JagerMech JM6-A",
+    "bv2": 1122,
+    "file": "JagerMech JM6-A.ssw"
   },
   {
-    "name": "JagerMech JM6 DD",
-    "file": "assets/mechs/JagerMech JM6-DD.mtf"
+    "name": "JagerMech JM6-DD",
+    "bv2": 965,
+    "file": "JagerMech JM6-DD.ssw"
   },
   {
-    "name": "JagerMech JM6 DG",
-    "file": "assets/mechs/JagerMech JM6-DG.mtf"
+    "name": "JagerMech JM6-DG",
+    "bv2": 1625,
+    "file": "JagerMech JM6-DG.ssw"
   },
   {
-    "name": "JagerMech JM6 DGr",
-    "file": "assets/mechs/JagerMech JM6-DGr.mtf"
+    "name": "JagerMech JM6-DGr",
+    "bv2": 1661,
+    "file": "JagerMech JM6-DGr.ssw"
   },
   {
-    "name": "JagerMech JM6 H",
-    "file": "assets/mechs/JagerMech JM6-H.mtf"
+    "name": "JagerMech JM6-H",
+    "bv2": 1348,
+    "file": "JagerMech JM6-H.ssw"
   },
   {
-    "name": "JagerMech JM6 S",
-    "file": "assets/mechs/JagerMech JM6-S.mtf"
+    "name": "JagerMech JM6-S",
+    "bv2": 901,
+    "file": "JagerMech JM6-S.ssw"
   },
   {
-    "name": "JagerMech JM7 D",
-    "file": "assets/mechs/JagerMech JM7-D.mtf"
+    "name": "JagerMech JM7-D",
+    "bv2": 1500,
+    "file": "JagerMech JM7-D.ssw"
   },
   {
-    "name": "JagerMech JM7 F",
-    "file": "assets/mechs/JagerMech JM7-F.mtf"
+    "name": "JagerMech JM7-F",
+    "bv2": 1774,
+    "file": "JagerMech JM7-F.ssw"
   },
   {
-    "name": "JagerMech JM7 G",
-    "file": "assets/mechs/JagerMech JM7-G.mtf"
+    "name": "JagerMech JM7-G",
+    "bv2": 1275,
+    "file": "JagerMech JM7-G.ssw"
   },
   {
-    "name": "Javelin JVN 10A",
-    "file": "assets/mechs/Javelin JVN-10A.mtf"
+    "name": "Javelin JVN-10F 'Fire Javelin'",
+    "bv2": 835,
+    "file": "Javelin JVN-10F Fire Javelin.ssw"
   },
   {
-    "name": "Javelin JVN 10F Fire Javelin",
-    "file": "assets/mechs/Javelin JVN-10F Fire Javelin.mtf"
+    "name": "Javelin JVN-10N",
+    "bv2": 594,
+    "file": "Javelin JVN-10N.ssw"
   },
   {
-    "name": "Javelin JVN 10N",
-    "file": "assets/mechs/Javelin JVN-10N.mtf"
+    "name": "Javelin JVN-10P",
+    "bv2": 590,
+    "file": "Javelin JVN-10P.ssw"
   },
   {
-    "name": "Javelin JVN 10P",
-    "file": "assets/mechs/Javelin JVN-10P.mtf"
+    "name": "Javelin JVN-11A 'Fire Javelin'",
+    "bv2": 1073,
+    "file": "Javelin JVN-11A Fire Javelin.ssw"
   },
   {
-    "name": "Javelin JVN 11A Fire Javelin",
-    "file": "assets/mechs/Javelin JVN-11A Fire Javelin.mtf"
+    "name": "Javelin JVN-11B",
+    "bv2": 678,
+    "file": "Javelin JVN-11B.ssw"
   },
   {
-    "name": "Javelin JVN 11B",
-    "file": "assets/mechs/Javelin JVN-11B.mtf"
+    "name": "Javelin JVN-11D",
+    "bv2": 1104,
+    "file": "Javelin JVN-11D.ssw"
   },
   {
-    "name": "Javelin JVN 11D",
-    "file": "assets/mechs/Javelin JVN-11D.mtf"
+    "name": "Javelin JVN-11F",
+    "bv2": 827,
+    "file": "Javelin JVN-11F.ssw"
   },
   {
-    "name": "Javelin JVN 11F",
-    "file": "assets/mechs/Javelin JVN-11F.mtf"
+    "name": "Jenner JR7-A",
+    "bv2": 712,
+    "file": "Jenner JR7-A.ssw"
   },
   {
-    "name": "Jenner JR7 A",
-    "file": "assets/mechs/Jenner JR7-A.mtf"
+    "name": "Jenner JR7-C",
+    "bv2": 832,
+    "file": "Jenner JR7-C.ssw"
   },
   {
-    "name": "Jenner JR7 C",
-    "file": "assets/mechs/Jenner JR7-C.mtf"
+    "name": "Jenner JR7-C2",
+    "bv2": 769,
+    "file": "Jenner JR7-C2.ssw"
   },
   {
-    "name": "Jenner JR7 C2",
-    "file": "assets/mechs/Jenner JR7-C2.mtf"
+    "name": "Jenner JR7-C3",
+    "bv2": 1069,
+    "file": "Jenner JR7-C3.ssw"
   },
   {
-    "name": "Jenner JR7 C3",
-    "file": "assets/mechs/Jenner JR7-C3.mtf"
+    "name": "Jenner JR7-D",
+    "bv2": 875,
+    "file": "Jenner JR7-D.ssw"
   },
   {
-    "name": "Jenner JR7 D",
-    "file": "assets/mechs/Jenner JR7-D.mtf"
+    "name": "Jenner JR7-F",
+    "bv2": 1011,
+    "file": "Jenner JR7-F.ssw"
   },
   {
-    "name": "Jenner JR7 F",
-    "file": "assets/mechs/Jenner JR7-F.mtf"
+    "name": "Jenner JR7-K",
+    "bv2": 889,
+    "file": "Jenner JR7-K.ssw"
   },
   {
-    "name": "Jenner JR7 K",
-    "file": "assets/mechs/Jenner JR7-K.mtf"
+    "name": "Katana (Crockett) CRK-5003-2",
+    "bv2": 1629,
+    "file": "Katana (Crockett) CRK-5003-2.ssw"
   },
   {
-    "name": "Katana (Crockett) CRK 5003 2",
-    "file": "assets/mechs/Katana (Crockett) CRK-5003-2.mtf"
+    "name": "Katana (Crockett) CRK-5003-C",
+    "bv2": 1618,
+    "file": "Katana (Crockett) CRK-5003-C.ssw"
   },
   {
-    "name": "Katana (Crockett) CRK 5003 C",
-    "file": "assets/mechs/Katana (Crockett) CRK-5003-C.mtf"
+    "name": "Katana (Crockett) CRK-5003-CJ",
+    "bv2": 1844,
+    "file": "Katana (Crockett) CRK-5003-CJ.ssw"
   },
   {
-    "name": "Katana (Crockett) CRK 5003 CJ",
-    "file": "assets/mechs/Katana (Crockett) CRK-5003-CJ.mtf"
+    "name": "Katana (Crockett) CRK-5003-CM",
+    "bv2": 1554,
+    "file": "Katana (Crockett) CRK-5003-CM.ssw"
   },
   {
-    "name": "Katana (Crockett) CRK 5003 CM",
-    "file": "assets/mechs/Katana (Crockett) CRK-5003-CM.mtf"
+    "name": "King Crab KGC-0000",
+    "bv2": 1810,
+    "file": "King Crab KGC-0000.ssw"
   },
   {
-    "name": "King Crab KGC 0000",
-    "file": "assets/mechs/King Crab KGC-0000.mtf"
+    "name": "King Crab KGC-010",
+    "bv2": 2181,
+    "file": "King Crab KGC-010.ssw"
   },
   {
-    "name": "King Crab KGC 010",
-    "file": "assets/mechs/King Crab KGC-010.mtf"
+    "name": "Kintaro KTO-18",
+    "bv2": 1187,
+    "file": "Kintaro KTO-18.ssw"
   },
   {
-    "name": "Kintaro KTO 18",
-    "file": "assets/mechs/Kintaro KTO-18.mtf"
+    "name": "Lancelot LNC25-01X",
+    "bv2": 1659,
+    "file": "Lancelot LNC25-01X.ssw"
   },
   {
-    "name": "Lancelot LNC25 01X",
-    "file": "assets/mechs/Lancelot LNC25-01X.mtf"
+    "name": "Lancelot LNC25-02",
+    "bv2": 1236,
+    "file": "Lancelot LNC25-02.ssw"
   },
   {
-    "name": "Lancelot LNC25 02",
-    "file": "assets/mechs/Lancelot LNC25-02.mtf"
+    "name": "Locust LCT-1E",
+    "bv2": 553,
+    "file": "Locust LCT-1E.ssw"
   },
   {
-    "name": "Locust LCT 1E",
-    "file": "assets/mechs/Locust LCT-1E.mtf"
+    "name": "Locust LCT-1L",
+    "bv2": 474,
+    "file": "Locust LCT-1L.ssw"
   },
   {
-    "name": "Locust LCT 1L",
-    "file": "assets/mechs/Locust LCT-1L.mtf"
+    "name": "Locust LCT-1M",
+    "bv2": 424,
+    "file": "Locust LCT-1M.ssw"
   },
   {
-    "name": "Locust LCT 1M",
-    "file": "assets/mechs/Locust LCT-1M.mtf"
+    "name": "Locust LCT-1S",
+    "bv2": 440,
+    "file": "Locust LCT-1S.ssw"
   },
   {
-    "name": "Locust LCT 1S",
-    "file": "assets/mechs/Locust LCT-1S.mtf"
+    "name": "Locust LCT-1V",
+    "bv2": 432,
+    "file": "Locust LCT-1V.ssw"
   },
   {
-    "name": "Locust LCT 1V",
-    "file": "assets/mechs/Locust LCT-1V.mtf"
+    "name": "Locust LCT-3V",
+    "bv2": 490,
+    "file": "Locust LCT-3V.ssw"
   },
   {
-    "name": "Locust LCT 3D",
-    "file": "assets/mechs/Locust LCT-3D.mtf"
+    "name": "Longbow LGB-0W",
+    "bv2": 1337,
+    "file": "Longbow LGB-0W.ssw"
   },
   {
-    "name": "Locust LCT 3V",
-    "file": "assets/mechs/Locust LCT-3V.mtf"
+    "name": "Marauder II MAD-4A",
+    "bv2": 2073,
+    "file": "Marauder II MAD-4A.ssw"
   },
   {
-    "name": "Longbow LGB 0W",
-    "file": "assets/mechs/Longbow LGB-0W.mtf"
+    "name": "Marauder MAD-3D",
+    "bv2": 1470,
+    "file": "Marauder MAD-3D.ssw"
   },
   {
-    "name": "Marauder II MAD 4A",
-    "file": "assets/mechs/Marauder II MAD-4A.mtf"
+    "name": "Marauder MAD-3L",
+    "bv2": 1369,
+    "file": "Marauder MAD-3L.ssw"
   },
   {
-    "name": "Marauder MAD 3D",
-    "file": "assets/mechs/Marauder MAD-3D.mtf"
+    "name": "Marauder MAD-3M",
+    "bv2": 1335,
+    "file": "Marauder MAD-3M.ssw"
   },
   {
-    "name": "Marauder MAD 3L",
-    "file": "assets/mechs/Marauder MAD-3L.mtf"
+    "name": "Marauder MAD-3R",
+    "bv2": 1363,
+    "file": "Marauder MAD-3R.ssw"
   },
   {
-    "name": "Marauder MAD 3M",
-    "file": "assets/mechs/Marauder MAD-3M.mtf"
+    "name": "Mauler MAL-1BL",
+    "bv2": 2056,
+    "file": "Mauler MAL-1BL.ssw"
   },
   {
-    "name": "Marauder MAD 3R",
-    "file": "assets/mechs/Marauder MAD-3R.mtf"
+    "name": "Mauler MAL-1K",
+    "bv2": 1622,
+    "file": "Mauler MAL-1K.ssw"
   },
   {
-    "name": "Mauler MAL 1BL",
-    "file": "assets/mechs/Mauler MAL-1BL.mtf"
+    "name": "Mauler MAL-1R",
+    "bv2": 1460,
+    "file": "Mauler MAL-1R.ssw"
   },
   {
-    "name": "Mauler MAL 1K",
-    "file": "assets/mechs/Mauler MAL-1K.mtf"
+    "name": "Mauler MAL-2R",
+    "bv2": 1586,
+    "file": "Mauler MAL-2R.ssw"
   },
   {
-    "name": "Mauler MAL 1R",
-    "file": "assets/mechs/Mauler MAL-1R.mtf"
+    "name": "Mauler MAL-3R",
+    "bv2": 1877,
+    "file": "Mauler MAL-3R.ssw"
   },
   {
-    "name": "Mauler MAL 2R",
-    "file": "assets/mechs/Mauler MAL-2R.mtf"
+    "name": "Mauler MAL-C",
+    "bv2": 1562,
+    "file": "Mauler MAL-C1.ssw"
   },
   {
-    "name": "Mauler MAL 3R",
-    "file": "assets/mechs/Mauler MAL-3R.mtf"
+    "name": "Mongoose MON-67",
+    "bv2": 741,
+    "file": "Mongoose MON-67.ssw"
   },
   {
-    "name": "Mauler MAL C",
-    "file": "assets/mechs/Mauler MAL-C.mtf"
+    "name": "Mongoose MON-68",
+    "bv2": 676,
+    "file": "Mongoose MON-68.ssw"
   },
   {
-    "name": "Mauler MAL C1",
-    "file": "assets/mechs/Mauler MAL-C1.mtf"
+    "name": "Mongoose MON-68-BL",
+    "bv2": 872,
+    "file": "Mongoose MON-68-BL.ssw"
   },
   {
-    "name": "Mongoose MON 67",
-    "file": "assets/mechs/Mongoose MON-67.mtf"
+    "name": "Orion ON1-K",
+    "bv2": 1429,
+    "file": "Orion ON1-K.ssw"
   },
   {
-    "name": "Mongoose MON 68 BL",
-    "file": "assets/mechs/Mongoose MON-68-BL.mtf"
+    "name": "Orion ON1-K (Kerensky)",
+    "bv2": 1821,
+    "file": "Orion ON1-K (Kerensky).ssw"
   },
   {
-    "name": "Mongoose MON 68",
-    "file": "assets/mechs/Mongoose MON-68.mtf"
+    "name": "Orion ON1-M",
+    "bv2": 1414,
+    "file": "Orion ON1-M.ssw"
   },
   {
-    "name": "Orion ON1 K (Kerensky)",
-    "file": "assets/mechs/Orion ON1-K (Kerensky).mtf"
+    "name": "Orion ON1-M-DC",
+    "bv2": 1444,
+    "file": "Orion ON1-M-DC.ssw"
   },
   {
-    "name": "Orion ON1 K",
-    "file": "assets/mechs/Orion ON1-K.mtf"
+    "name": "Orion ON1-MA",
+    "bv2": 1501,
+    "file": "Orion ON1-MA.ssw"
   },
   {
-    "name": "Orion ON1 M DC",
-    "file": "assets/mechs/Orion ON1-M-DC.mtf"
+    "name": "Orion ON1-MB",
+    "bv2": 1472,
+    "file": "Orion ON1-MB.ssw"
   },
   {
-    "name": "Orion ON1 M",
-    "file": "assets/mechs/Orion ON1-M.mtf"
+    "name": "Orion ON1-MC",
+    "bv2": 1501,
+    "file": "Orion ON1-MC.ssw"
   },
   {
-    "name": "Orion ON1 MA",
-    "file": "assets/mechs/Orion ON1-MA.mtf"
+    "name": "Orion ON1-MD",
+    "bv2": 1597,
+    "file": "Orion ON1-MD.ssw"
   },
   {
-    "name": "Orion ON1 MB",
-    "file": "assets/mechs/Orion ON1-MB.mtf"
+    "name": "Orion ON1-V",
+    "bv2": 1298,
+    "file": "Orion ON1-V.ssw"
   },
   {
-    "name": "Orion ON1 MC",
-    "file": "assets/mechs/Orion ON1-MC.mtf"
+    "name": "Orion ON1-V-DC",
+    "bv2": 1310,
+    "file": "Orion ON1-V-DC.ssw"
   },
   {
-    "name": "Orion ON1 MD",
-    "file": "assets/mechs/Orion ON1-MD.mtf"
+    "name": "Orion ON1-VA",
+    "bv2": 1328,
+    "file": "Orion ON1-VA.ssw"
   },
   {
-    "name": "Orion ON1 V DC",
-    "file": "assets/mechs/Orion ON1-V-DC.mtf"
+    "name": "Orion ON2-M",
+    "bv2": 1828,
+    "file": "Orion ON2-M.ssw"
   },
   {
-    "name": "Orion ON1 V",
-    "file": "assets/mechs/Orion ON1-V.mtf"
+    "name": "Ostroc OSR-2C",
+    "bv2": 1228,
+    "file": "Ostroc OSR-2C.ssw"
   },
   {
-    "name": "Orion ON1 VA",
-    "file": "assets/mechs/Orion ON1-VA.mtf"
+    "name": "Ostroc OSR-2L",
+    "bv2": 1233,
+    "file": "Ostroc OSR-2L.ssw"
   },
   {
-    "name": "Orion ON2 M",
-    "file": "assets/mechs/Orion ON2-M.mtf"
+    "name": "Ostroc OSR-2M",
+    "bv2": 1239,
+    "file": "Ostroc OSR-2M.ssw"
   },
   {
-    "name": "Ostroc OSR 2C",
-    "file": "assets/mechs/Ostroc OSR-2C.mtf"
+    "name": "Ostroc OSR-3C",
+    "bv2": 1288,
+    "file": "Ostroc OSR-3C.ssw"
   },
   {
-    "name": "Ostroc OSR 2L",
-    "file": "assets/mechs/Ostroc OSR-2L.mtf"
+    "name": "Ostscout OTT-7J",
+    "bv2": 596,
+    "file": "Ostscout OTT-7J.ssw"
   },
   {
-    "name": "Ostroc OSR 2M",
-    "file": "assets/mechs/Ostroc OSR-2M.mtf"
+    "name": "Ostsol OTL-4D",
+    "bv2": 1277,
+    "file": "Ostsol OTL-4D.ssw"
   },
   {
-    "name": "Ostroc OSR 3C",
-    "file": "assets/mechs/Ostroc OSR-3C.mtf"
+    "name": "Ostsol OTL-4F",
+    "bv2": 1264,
+    "file": "Ostsol OTL-4F.ssw"
   },
   {
-    "name": "Ostscout OTT 7J",
-    "file": "assets/mechs/Ostscout OTT-7J.mtf"
+    "name": "Panther PNT-10BL",
+    "bv2": 944,
+    "file": "Panther PNT-10BL.ssw"
   },
   {
-    "name": "Ostsol OTL 4D",
-    "file": "assets/mechs/Ostsol OTL-4D.mtf"
+    "name": "Panther PNT-10K",
+    "bv2": 838,
+    "file": "Panther PNT-10K.ssw"
   },
   {
-    "name": "Ostsol OTL 4F",
-    "file": "assets/mechs/Ostsol OTL-4F.mtf"
+    "name": "Panther PNT-10KA",
+    "bv2": 797,
+    "file": "Panther PNT-10KA.ssw"
   },
   {
-    "name": "Panther PNT 10BL",
-    "file": "assets/mechs/Panther PNT-10BL.mtf"
+    "name": "Panther PNT-12A",
+    "bv2": 982,
+    "file": "Panther PNT-12A.ssw"
   },
   {
-    "name": "Panther PNT 10K",
-    "file": "assets/mechs/Panther PNT-10K.mtf"
+    "name": "Panther PNT-14S",
+    "bv2": 825,
+    "file": "Panther PNT-14S.ssw"
   },
   {
-    "name": "Panther PNT 10KA",
-    "file": "assets/mechs/Panther PNT-10KA.mtf"
+    "name": "Panther PNT-16K",
+    "bv2": 988,
+    "file": "Panther PNT-16K.ssw"
   },
   {
-    "name": "Panther PNT 12A",
-    "file": "assets/mechs/Panther PNT-12A.mtf"
+    "name": "Panther PNT-8Z",
+    "bv2": 741,
+    "file": "Panther PNT-8Z.ssw"
   },
   {
-    "name": "Panther PNT 14S",
-    "file": "assets/mechs/Panther PNT-14S.mtf"
+    "name": "Panther PNT-9R",
+    "bv2": 769,
+    "file": "Panther PNT-9R.ssw"
   },
   {
-    "name": "Panther PNT 16K",
-    "file": "assets/mechs/Panther PNT-16K.mtf"
+    "name": "Panther PNT-C",
+    "bv2": 833,
+    "file": "Panther PNT-C.ssw"
   },
   {
-    "name": "Panther PNT 8Z",
-    "file": "assets/mechs/Panther PNT-8Z.mtf"
+    "name": "Panther PNT-CA",
+    "bv2": 787,
+    "file": "Panther PNT-CA.ssw"
   },
   {
-    "name": "Panther PNT 9R",
-    "file": "assets/mechs/Panther PNT-9R.mtf"
+    "name": "Phoenix Hawk PXH-1",
+    "bv2": 1041,
+    "file": "Phoenix Hawk PXH-1.ssw"
   },
   {
-    "name": "Panther PNT C",
-    "file": "assets/mechs/Panther PNT-C.mtf"
+    "name": "Phoenix Hawk PXH-1D",
+    "bv2": 1083,
+    "file": "Phoenix Hawk PXH-1D.ssw"
   },
   {
-    "name": "Panther PNT CA",
-    "file": "assets/mechs/Panther PNT-CA.mtf"
+    "name": "Phoenix Hawk PXH-1K",
+    "bv2": 1073,
+    "file": "Phoenix Hawk PXH-1K.ssw"
   },
   {
-    "name": "Phoenix Hawk PXH 1",
-    "file": "assets/mechs/Phoenix Hawk PXH-1.mtf"
+    "name": "Quickdraw QKD-4G",
+    "bv2": 1192,
+    "file": "Quickdraw QKD-4G.ssw"
   },
   {
-    "name": "Phoenix Hawk PXH 1D",
-    "file": "assets/mechs/Phoenix Hawk PXH-1D.mtf"
+    "name": "Quickdraw QKD-4H",
+    "bv2": 1242,
+    "file": "Quickdraw QKD-4H.ssw"
   },
   {
-    "name": "Phoenix Hawk PXH 1K",
-    "file": "assets/mechs/Phoenix Hawk PXH-1K.mtf"
+    "name": "Quickdraw QKD-5A",
+    "bv2": 1196,
+    "file": "Quickdraw QKD-5A.ssw"
   },
   {
-    "name": "Quickdraw QKD 4G",
-    "file": "assets/mechs/Quickdraw QKD-4G.mtf"
+    "name": "Quickdraw QKD-5K",
+    "bv2": 1265,
+    "file": "Quickdraw QKD-5K.ssw"
   },
   {
-    "name": "Quickdraw QKD 4H",
-    "file": "assets/mechs/Quickdraw QKD-4H.mtf"
+    "name": "Quickdraw QKD-5K2",
+    "bv2": 1312,
+    "file": "Quickdraw QKD-5K2.ssw"
   },
   {
-    "name": "Quickdraw QKD 5A",
-    "file": "assets/mechs/Quickdraw QKD-5A.mtf"
+    "name": "Quickdraw QKD-5M",
+    "bv2": 1237,
+    "file": "Quickdraw QKD-5M.ssw"
   },
   {
-    "name": "Quickdraw QKD 5K",
-    "file": "assets/mechs/Quickdraw QKD-5K.mtf"
+    "name": "Quickdraw QKD-8K",
+    "bv2": 1583,
+    "file": "Quickdraw QKD-8K.ssw"
   },
   {
-    "name": "Quickdraw QKD 5K2",
-    "file": "assets/mechs/Quickdraw QKD-5K2.mtf"
+    "name": "Quickdraw QKD-C",
+    "bv2": 1225,
+    "file": "Quickdraw QKD-C.ssw"
   },
   {
-    "name": "Quickdraw QKD 5M",
-    "file": "assets/mechs/Quickdraw QKD-5M.mtf"
+    "name": "Raven RVN-1X",
+    "bv2": 639,
+    "file": "Raven RVN-1X.ssw"
   },
   {
-    "name": "Quickdraw QKD 8K",
-    "file": "assets/mechs/Quickdraw QKD-8K.mtf"
+    "name": "Raven RVN-2X",
+    "bv2": 887,
+    "file": "Raven RVN-2X.ssw"
   },
   {
-    "name": "Quickdraw QKD C",
-    "file": "assets/mechs/Quickdraw QKD-C.mtf"
+    "name": "Raven RVN-3L",
+    "bv2": 708,
+    "file": "Raven RVN-3L.ssw"
   },
   {
-    "name": "Raven RVN 1X",
-    "file": "assets/mechs/Raven RVN-1X.mtf"
+    "name": "Raven RVN-3M",
+    "bv2": 659,
+    "file": "Raven RVN-3M.ssw"
   },
   {
-    "name": "Raven RVN 2X",
-    "file": "assets/mechs/Raven RVN-2X.mtf"
+    "name": "Raven RVN-3X",
+    "bv2": 691,
+    "file": "Raven RVN-3X.ssw"
   },
   {
-    "name": "Raven RVN 3L",
-    "file": "assets/mechs/Raven RVN-3L.mtf"
+    "name": "Raven RVN-4L",
+    "bv2": 873,
+    "file": "Raven RVN-4L.ssw"
   },
   {
-    "name": "Raven RVN 3M",
-    "file": "assets/mechs/Raven RVN-3M.mtf"
+    "name": "Raven RVN-4LC",
+    "bv2": 871,
+    "file": "Raven RVN-4LC.ssw"
   },
   {
-    "name": "Raven RVN 3X",
-    "file": "assets/mechs/Raven RVN-3X.mtf"
+    "name": "Raven RVN-4X",
+    "bv2": 820,
+    "file": "Raven RVN-4X.ssw"
   },
   {
-    "name": "Raven RVN 4L",
-    "file": "assets/mechs/Raven RVN-4L.mtf"
+    "name": "Raven RVN-SR 'Shattered Raven'",
+    "bv2": 601,
+    "file": "Raven RVN-SR Shattered Raven.ssw"
   },
   {
-    "name": "Raven RVN 4LC",
-    "file": "assets/mechs/Raven RVN-4LC.mtf"
+    "name": "Raven RVN-SS 'Shattered Raven'",
+    "bv2": 904,
+    "file": "Raven RVN-SS Shattered Raven.ssw"
   },
   {
-    "name": "Raven RVN 4X",
-    "file": "assets/mechs/Raven RVN-4X.mtf"
+    "name": "Rifleman RFL-3C",
+    "bv2": 1066,
+    "file": "Rifleman RFL-3C.ssw"
   },
   {
-    "name": "Raven RVN SR Shattered Raven",
-    "file": "assets/mechs/Raven RVN-SR Shattered Raven.mtf"
+    "name": "Rifleman RFL-3N",
+    "bv2": 1039,
+    "file": "Rifleman RFL-3N.ssw"
   },
   {
-    "name": "Raven RVN SS Shattered Raven",
-    "file": "assets/mechs/Raven RVN-SS Shattered Raven.mtf"
+    "name": "Rifleman RFL-4D",
+    "bv2": 1173,
+    "file": "Rifleman RFL-4D.ssw"
   },
   {
-    "name": "Rifleman RFL 3C",
-    "file": "assets/mechs/Rifleman RFL-3C.mtf"
+    "name": "Scorpion SCP-1N",
+    "bv2": 1019,
+    "file": "Scorpion SCP-1N.ssw"
   },
   {
-    "name": "Rifleman RFL 3N",
-    "file": "assets/mechs/Rifleman RFL-3N.mtf"
+    "name": "Scorpion SCP-1N (Wednall)",
+    "bv2": 1043,
+    "file": "Scorpion SCP-1N (Wednall).ssw"
   },
   {
-    "name": "Rifleman RFL 4D",
-    "file": "assets/mechs/Rifleman RFL-4D.mtf"
+    "name": "Sentinel STN-1S",
+    "bv2": 632,
+    "file": "Sentinel STN-1S.ssw"
   },
   {
-    "name": "Scorpion SCP 1N (Wednall)",
-    "file": "assets/mechs/Scorpion SCP-1N (Wednall).mtf"
+    "name": "Sentinel STN-3K",
+    "bv2": 652,
+    "file": "Sentinel STN-3K.ssw"
   },
   {
-    "name": "Scorpion SCP 1N",
-    "file": "assets/mechs/Scorpion SCP-1N.mtf"
+    "name": "Sentinel STN-3KA",
+    "bv2": 847,
+    "file": "Sentinel STN-3KA.ssw"
   },
   {
-    "name": "Sentinel STN 1S",
-    "file": "assets/mechs/Sentinel STN-1S.mtf"
+    "name": "Sentinel STN-3KB",
+    "bv2": 823,
+    "file": "Sentinel STN-3KB.ssw"
   },
   {
-    "name": "Sentinel STN 3K",
-    "file": "assets/mechs/Sentinel STN-3K.mtf"
+    "name": "Shadow Hawk SDH-2ELH",
+    "bv2": 1306,
+    "file": "Shadow Hawk SDH-2ELH.ssw"
   },
   {
-    "name": "Sentinel STN 3KA",
-    "file": "assets/mechs/Sentinel STN-3KA.mtf"
+    "name": "Shadow Hawk SHD-1ELH",
+    "bv2": 1265,
+    "file": "Shadow Hawk SHD-1ELH.ssw"
   },
   {
-    "name": "Sentinel STN 3KB",
-    "file": "assets/mechs/Sentinel STN-3KB.mtf"
+    "name": "Shadow Hawk SHD-2D",
+    "bv2": 899,
+    "file": "Shadow Hawk SHD-2D.ssw"
   },
   {
-    "name": "Shadow Hawk SHD 2D",
-    "file": "assets/mechs/Shadow Hawk SHD-2D.mtf"
+    "name": "Shadow Hawk SHD-2ELH",
+    "bv2": 1265,
+    "file": "Shadow Hawk SHD-2ELH.ssw"
   },
   {
-    "name": "Shadow Hawk SHD 2H",
-    "file": "assets/mechs/Shadow Hawk SHD-2H.mtf"
+    "name": "Shadow Hawk SHD-2H",
+    "bv2": 1064,
+    "file": "Shadow Hawk SHD-2H.ssw"
   },
   {
-    "name": "Shadow Hawk SHD 2K",
-    "file": "assets/mechs/Shadow Hawk SHD-2K.mtf"
-  },
-  {
-    "name": "Shadow Hawk SHD 2 ELH",
-    "file": "assets/mechs/Shadow Hawk SDH-2ELH.mtf"
+    "name": "Shadow Hawk SHD-2K",
+    "bv2": 1147,
+    "file": "Shadow Hawk SHD-2K.ssw"
   },
   {
     "name": "Shogun C",
-    "file": "assets/mechs/Shogun C.mtf"
+    "bv2": 3032,
+    "file": "Shogun C.ssw"
   },
   {
-    "name": "Shogun SHG 2E",
-    "file": "assets/mechs/Shogun SHG-2E.mtf"
+    "name": "Shogun SHG-2E",
+    "bv2": 1823,
+    "file": "Shogun SHG-2E.ssw"
   },
   {
-    "name": "Shogun SHG 2F (Trisha)",
-    "file": "assets/mechs/Shogun SHG-2F (Trisha).mtf"
+    "name": "Shogun SHG-2F",
+    "bv2": 1804,
+    "file": "Shogun SHG-2F.ssw"
   },
   {
-    "name": "Shogun SHG 2F",
-    "file": "assets/mechs/Shogun SHG-2F.mtf"
+    "name": "Shogun SHG-2F (Trisha)",
+    "bv2": 1733,
+    "file": "Shogun SHG-2F (Trisha).ssw"
   },
   {
-    "name": "Spider SDR 5D",
-    "file": "assets/mechs/Spider SDR-5D.mtf"
+    "name": "Spider SDR-5D",
+    "bv2": 524,
+    "file": "Spider SDR-5D.ssw"
   },
   {
-    "name": "Spider SDR 5K",
-    "file": "assets/mechs/Spider SDR-5K.mtf"
+    "name": "Spider SDR-5K",
+    "bv2": 503,
+    "file": "Spider SDR-5K.ssw"
   },
   {
-    "name": "Spider SDR 5V",
-    "file": "assets/mechs/Spider SDR-5V.mtf"
+    "name": "Spider SDR-5V",
+    "bv2": 622,
+    "file": "Spider SDR-5V.ssw"
   },
   {
-    "name": "Spider SDR 7K",
-    "file": "assets/mechs/Spider SDR-7K.mtf"
+    "name": "Spider SDR-7K",
+    "bv2": 752,
+    "file": "Spider SDR-7K.ssw"
   },
   {
-    "name": "Spider SDR 7K2",
-    "file": "assets/mechs/Spider SDR-7K2.mtf"
+    "name": "Spider SDR-7K2",
+    "bv2": 884,
+    "file": "Spider SDR-7K2.ssw"
   },
   {
-    "name": "Spider SDR 7KC",
-    "file": "assets/mechs/Spider SDR-7KC.mtf"
+    "name": "Spider SDR-7KC",
+    "bv2": 732,
+    "file": "Spider SDR-7KC.ssw"
   },
   {
-    "name": "Spider SDR 7M",
-    "file": "assets/mechs/Spider SDR-7M.mtf"
+    "name": "Spider SDR-7M",
+    "bv2": 621,
+    "file": "Spider SDR-7M.ssw"
   },
   {
-    "name": "Spider SDR 8M",
-    "file": "assets/mechs/Spider SDR-8M.mtf"
+    "name": "Spider SDR-8M",
+    "bv2": 621,
+    "file": "Spider SDR-8M.ssw"
   },
   {
-    "name": "Spider SDR C",
-    "file": "assets/mechs/Spider SDR-C.mtf"
+    "name": "Spider SDR-C",
+    "bv2": 616,
+    "file": "Spider SDR-C.ssw"
   },
   {
-    "name": "Stalker STK 3F Jamison",
-    "file": "assets/mechs/Stalker STK-3F Jamison.mtf"
+    "name": "Stalker STK-3F",
+    "bv2": 1559,
+    "file": "Stalker STK-3F.ssw"
   },
   {
-    "name": "Stalker STK 3F",
-    "file": "assets/mechs/Stalker STK-3F.mtf"
+    "name": "Stalker STK-3F Jamison",
+    "bv2": 2707,
+    "file": "Stalker STK-3F Jamison.ssw"
   },
   {
-    "name": "Stalker STK 3H",
-    "file": "assets/mechs/Stalker STK-3H.mtf"
+    "name": "Stalker STK-3H",
+    "bv2": 1624,
+    "file": "Stalker STK-3H.ssw"
   },
   {
-    "name": "Stalker STK 4N",
-    "file": "assets/mechs/Stalker STK-4N.mtf"
+    "name": "Stalker STK-4N",
+    "bv2": 1558,
+    "file": "Stalker STK-4N.ssw"
   },
   {
-    "name": "Stalker STK 4P",
-    "file": "assets/mechs/Stalker STK-4P.mtf"
+    "name": "Stalker STK-4P",
+    "bv2": 1461,
+    "file": "Stalker STK-4P.ssw"
   },
   {
-    "name": "Stalker STK 5M",
-    "file": "assets/mechs/Stalker STK-5M.mtf"
+    "name": "Stalker STK-5M",
+    "bv2": 1655,
+    "file": "Stalker STK-5M.ssw"
   },
   {
-    "name": "Stalker STK 5S",
-    "file": "assets/mechs/Stalker STK-5S.mtf"
+    "name": "Stalker STK-5S",
+    "bv2": 1423,
+    "file": "Stalker STK-5S.ssw"
   },
   {
-    "name": "Stalker STK 6M",
-    "file": "assets/mechs/Stalker STK-6M.mtf"
+    "name": "Stalker STK-6M",
+    "bv2": 2029,
+    "file": "Stalker STK-6M.ssw"
   },
   {
-    "name": "Stalker STK 7D",
-    "file": "assets/mechs/Stalker STK-7D.mtf"
+    "name": "Stalker STK-7D",
+    "bv2": 1872,
+    "file": "Stalker STK-7D.ssw"
   },
   {
-    "name": "Stalker STK 8S",
-    "file": "assets/mechs/Stalker STK-8S.mtf"
+    "name": "Stalker STK-8S",
+    "bv2": 2020,
+    "file": "Stalker STK-8S.ssw"
   },
   {
-    "name": "Stinger STG 3G",
-    "file": "assets/mechs/Stinger STG-3G.mtf"
+    "name": "Stinger STG-3G",
+    "bv2": 497,
+    "file": "Stinger STG-3G.ssw"
   },
   {
-    "name": "Stinger STG 3R",
-    "file": "assets/mechs/Stinger STG-3R.mtf"
+    "name": "Stinger STG-3R",
+    "bv2": 359,
+    "file": "Stinger STG-3R.ssw"
   },
   {
-    "name": "Talos TLS 1B",
-    "file": "assets/mechs/Talos TLS-1B.mtf"
+    "name": "Thorn THE-F",
+    "bv2": 510,
+    "file": "Thorn THE-F.ssw"
   },
   {
-    "name": "Thorn THE F",
-    "file": "assets/mechs/Thorn THE-F.mtf"
+    "name": "Thorn THE-S",
+    "bv2": 510,
+    "file": "Thorn THE-S.ssw"
   },
   {
-    "name": "Thorn THE S",
-    "file": "assets/mechs/Thorn THE-S.mtf"
+    "name": "Thorn THE-T",
+    "bv2": 500,
+    "file": "Thorn THE-T.ssw"
   },
   {
-    "name": "Thorn THE T",
-    "file": "assets/mechs/Thorn THE-T.mtf"
+    "name": "Thug THG-10E",
+    "bv2": 1501,
+    "file": "Thug THG-10E.ssw"
   },
   {
-    "name": "Thug THG 10E",
-    "file": "assets/mechs/Thug THG-10E.mtf"
+    "name": "Thunderbolt TDR-5S",
+    "bv2": 1335,
+    "file": "Thunderbolt TDR-5S.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5D",
-    "file": "assets/mechs/Thunderbolt TDR-5D.mtf"
+    "name": "Thunderbolt TDR-5S Inferno",
+    "bv2": 1367,
+    "file": "Thunderbolt TDR-5S Inferno.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5S",
-    "file": "assets/mechs/Thunderbolt TDR-5S.mtf"
+    "name": "Thunderbolt TDR-5S1",
+    "bv2": 1367,
+    "file": "Thunderbolt TDR-5S1.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5S20",
-    "file": "assets/mechs/Thunderbolt TDR-5S20.mtf"
+    "name": "Thunderbolt TDR-5S20",
+    "bv2": 1408,
+    "file": "Thunderbolt TDR-5S20.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5SE ELH",
-    "file": "assets/mechs/Thunderbolt TDR-5SE ELH.ssw"
+    "name": "Thunderbolt TDR-5SE",
+    "bv2": 1414,
+    "file": "Thunderbolt TDR-5SE.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5SE",
-    "file": "assets/mechs/Thunderbolt TDR-5SE.mtf"
+    "name": "Thunderbolt TDR-5SE ELH",
+    "bv2": 1414,
+    "file": "Thunderbolt TDR-5SE ELH.ssw"
   },
   {
-    "name": "Thunderbolt TDR 5SS",
-    "file": "assets/mechs/Thunderbolt TDR-5SS.mtf"
+    "name": "Thunderbolt TDR-5SS",
+    "bv2": 1337,
+    "file": "Thunderbolt TDR-5SS.ssw"
   },
   {
-    "name": "Trebuchet TBT 3C",
-    "file": "assets/mechs/Trebuchet TBT-3C.mtf"
+    "name": "Trebuchet TBT-3C",
+    "bv2": 1342,
+    "file": "Trebuchet TBT-3C.ssw"
   },
   {
-    "name": "Trebuchet TBT 5J",
-    "file": "assets/mechs/Trebuchet TBT-5J.mtf"
+    "name": "Trebuchet TBT-5J",
+    "bv2": 1191,
+    "file": "Trebuchet TBT-5J.ssw"
   },
   {
-    "name": "Trebuchet TBT 5N",
-    "file": "assets/mechs/Trebuchet TBT-5N.mtf"
+    "name": "Trebuchet TBT-5N",
+    "bv2": 1191,
+    "file": "Trebuchet TBT-5N.ssw"
   },
   {
-    "name": "Trebuchet TBT 5S",
-    "file": "assets/mechs/Trebuchet TBT-5S.mtf"
+    "name": "Trebuchet TBT-5S",
+    "bv2": 984,
+    "file": "Trebuchet TBT-5S.ssw"
   },
   {
-    "name": "Trebuchet TBT 7K",
-    "file": "assets/mechs/Trebuchet TBT-7K.mtf"
+    "name": "Trebuchet TBT-7K",
+    "bv2": 996,
+    "file": "Trebuchet TBT-7K.ssw"
   },
   {
-    "name": "Trebuchet TBT 7M",
-    "file": "assets/mechs/Trebuchet TBT-7M.mtf"
+    "name": "Trebuchet TBT-7M",
+    "bv2": 1348,
+    "file": "Trebuchet TBT-7M.ssw"
   },
   {
-    "name": "Trebuchet TBT 8B",
-    "file": "assets/mechs/Trebuchet TBT-8B.mtf"
+    "name": "Trebuchet TBT-8B",
+    "bv2": 1314,
+    "file": "Trebuchet TBT-8B.ssw"
   },
   {
-    "name": "Trebuchet TBT 9K",
-    "file": "assets/mechs/Trebuchet TBT-9K.mtf"
+    "name": "Trebuchet TBT-9K",
+    "bv2": 1329,
+    "file": "Trebuchet TBT-9K.ssw"
   },
   {
-    "name": "Urbanmech UM R60",
-    "file": "assets/mechs/Urbanmech UM-R60.mtf"
+    "name": "UrbanMech UM-R63",
+    "bv2": 540,
+    "file": "UrbanMech UM-R63.ssw"
   },
   {
-    "name": "Urbanmech UM R60L",
-    "file": "assets/mechs/Urbanmech UM-R60L.mtf"
+    "name": "UrbanMech UM-R68",
+    "bv2": 561,
+    "file": "UrbanMech UM-R68.ssw"
   },
   {
-    "name": "UrbanMech UM R63",
-    "file": "assets/mechs/UrbanMech UM-R63.mtf"
+    "name": "UrbanMech UM-R69",
+    "bv2": 589,
+    "file": "UrbanMech UM-R69.ssw"
   },
   {
-    "name": "UrbanMech UM R68",
-    "file": "assets/mechs/UrbanMech UM-R68.mtf"
+    "name": "UrbanMech UM-R70",
+    "bv2": 724,
+    "file": "UrbanMech UM-R70.ssw"
   },
   {
-    "name": "UrbanMech UM R69",
-    "file": "assets/mechs/UrbanMech UM-R69.mtf"
+    "name": "Urbanmech UM-R60",
+    "bv2": 504,
+    "file": "Urbanmech UM-R60.ssw"
   },
   {
-    "name": "UrbanMech UM R70",
-    "file": "assets/mechs/UrbanMech UM-R70.mtf"
+    "name": "Urbanmech UM-R60L",
+    "bv2": 470,
+    "file": "Urbanmech UM-R60L.ssw"
   },
   {
-    "name": "Valkyrie VLK QA",
-    "file": "assets/mechs/Valkyrie VLK-QA.mtf"
+    "name": "Valkyrie VLK-QA",
+    "bv2": 723,
+    "file": "Valkyrie VLK-QA.ssw"
   },
   {
-    "name": "Valkyrie VLK QF",
-    "file": "assets/mechs/Valkyrie VLK-QF.mtf"
+    "name": "Valkyrie VLK-QF",
+    "bv2": 653,
+    "file": "Valkyrie VLK-QF.ssw"
   },
   {
     "name": "Victor C",
-    "file": "assets/mechs/Victor C.mtf"
+    "bv2": 1925,
+    "file": "Victor C.ssw"
   },
   {
-    "name": "Victor VTR 10D",
-    "file": "assets/mechs/Victor VTR-10D.mtf"
+    "name": "Victor VTR-10D",
+    "bv2": 1894,
+    "file": "Victor VTR-10D.ssw"
   },
   {
-    "name": "Victor VTR 10L",
-    "file": "assets/mechs/Victor VTR-10L.mtf"
+    "name": "Victor VTR-10L",
+    "bv2": 2279,
+    "file": "Victor VTR-10L.ssw"
   },
   {
-    "name": "Victor VTR 10S",
-    "file": "assets/mechs/Victor VTR-10S.mtf"
+    "name": "Victor VTR-10S",
+    "bv2": 2034,
+    "file": "Victor VTR-10S.ssw"
   },
   {
-    "name": "Victor VTR 11D",
-    "file": "assets/mechs/Victor VTR-11D.mtf"
+    "name": "Victor VTR-11D",
+    "bv2": 2021,
+    "file": "Victor VTR-11D.ssw"
   },
   {
-    "name": "Victor VTR 9A",
-    "file": "assets/mechs/Victor VTR-9A.mtf"
+    "name": "Victor VTR-9A",
+    "bv2": 1236,
+    "file": "Victor VTR-9A.ssw"
   },
   {
-    "name": "Victor VTR 9A1",
-    "file": "assets/mechs/Victor VTR-9A1.mtf"
+    "name": "Victor VTR-9A1",
+    "bv2": 1302,
+    "file": "Victor VTR-9A1.ssw"
   },
   {
-    "name": "Victor VTR 9B",
-    "file": "assets/mechs/Victor VTR-9B.mtf"
+    "name": "Victor VTR-9B",
+    "bv2": 1378,
+    "file": "Victor VTR-9B.ssw"
   },
   {
-    "name": "Victor VTR 9K",
-    "file": "assets/mechs/Victor VTR-9K.mtf"
+    "name": "Victor VTR-9K",
+    "bv2": 1717,
+    "file": "Victor VTR-9K.ssw"
   },
   {
-    "name": "Victor VTR 9S",
-    "file": "assets/mechs/Victor VTR-9S.mtf"
+    "name": "Victor VTR-9S",
+    "bv2": 1360,
+    "file": "Victor VTR-9S.ssw"
   },
   {
-    "name": "Victor VTR C",
-    "file": "assets/mechs/Victor VTR-C.mtf"
+    "name": "Victor VTR-C",
+    "bv2": 1717,
+    "file": "Victor VTR-C.ssw"
   },
   {
-    "name": "Vindicator VND 1AA Avenging Angel",
-    "file": "assets/mechs/Vindicator VND-1AA Avenging Angel.mtf"
+    "name": "Vindicator VND-1AA 'Avenging Angel'",
+    "bv2": 966,
+    "file": "Vindicator VND-1AA Avenging Angel.ssw"
   },
   {
-    "name": "Vindicator VND 1R (Vong)",
-    "file": "assets/mechs/Vindicator VND-1R (Vong).mtf"
+    "name": "Vindicator VND-1R",
+    "bv2": 1024,
+    "file": "Vindicator VND-1R.ssw"
   },
   {
-    "name": "Vindicator VND 1R",
-    "file": "assets/mechs/Vindicator VND-1R.mtf"
+    "name": "Vindicator VND-1R (Vong)",
+    "bv2": 1024,
+    "file": "Vindicator VND-1R (Vong).ssw"
   },
   {
-    "name": "Vindicator VND 1SIC",
-    "file": "assets/mechs/Vindicator VND-1SIC.mtf"
+    "name": "Vindicator VND-1SIC",
+    "bv2": 1020,
+    "file": "Vindicator VND-1SIC.ssw"
   },
   {
-    "name": "Vindicator VND 1X",
-    "file": "assets/mechs/Vindicator VND-1X.mtf"
+    "name": "Vindicator VND-1X",
+    "bv2": 1008,
+    "file": "Vindicator VND-1X.ssw"
   },
   {
-    "name": "Vindicator VND 3L",
-    "file": "assets/mechs/Vindicator VND-3L.mtf"
+    "name": "Vindicator VND-3L",
+    "bv2": 1105,
+    "file": "Vindicator VND-3L.ssw"
   },
   {
-    "name": "Vindicator VND 4L",
-    "file": "assets/mechs/Vindicator VND-4L.mtf"
+    "name": "Vindicator VND-4L",
+    "bv2": 1411,
+    "file": "Vindicator VND-4L.ssw"
   },
   {
-    "name": "Vindicator VND 5L",
-    "file": "assets/mechs/Vindicator VND-5L.mtf"
+    "name": "Vindicator VND-5L",
+    "bv2": 1484,
+    "file": "Vindicator VND-5L.ssw"
   },
   {
-    "name": "Vindicator VND 6L",
-    "file": "assets/mechs/Vindicator VND-6L.mtf"
+    "name": "Vindicator VND-6L",
+    "bv2": 1739,
+    "file": "Vindicator VND-6L.ssw"
   },
   {
-    "name": "Vulcan VL 2T",
-    "file": "assets/mechs/Vulcan VL-2T.mtf"
+    "name": "Vulcan VL-2T",
+    "bv2": 642,
+    "file": "Vulcan VL-2T.ssw"
   },
   {
-    "name": "Vulcan VL 5T",
-    "file": "assets/mechs/Vulcan VL-5T.mtf"
+    "name": "Vulcan VL-5T",
+    "bv2": 942,
+    "file": "Vulcan VL-5T.ssw"
   },
   {
-    "name": "Vulcan VT 5M",
-    "file": "assets/mechs/Vulcan VT-5M.mtf"
+    "name": "Vulcan VT-5M",
+    "bv2": 811,
+    "file": "Vulcan VT-5M.ssw"
   },
   {
-    "name": "Vulcan VT 5S",
-    "file": "assets/mechs/Vulcan VT-5S.mtf"
+    "name": "Vulcan VT-5S",
+    "bv2": 883,
+    "file": "Vulcan VT-5S.ssw"
   },
   {
-    "name": "Vulcan VT 6C",
-    "file": "assets/mechs/Vulcan VT-6C.mtf"
+    "name": "Vulcan VT-6C",
+    "bv2": 959,
+    "file": "Vulcan VT-6C.ssw"
   },
   {
-    "name": "Vulcan VT 6M",
-    "file": "assets/mechs/Vulcan VT-6M.mtf"
+    "name": "Vulcan VT-6M",
+    "bv2": 959,
+    "file": "Vulcan VT-6M.ssw"
   },
   {
-    "name": "Warhammer WHM 6D",
-    "file": "assets/mechs/Warhammer WHM-6D.mtf"
+    "name": "Warhammer WHM-6D",
+    "bv2": 1471,
+    "file": "Warhammer WHM-6D.ssw"
   },
   {
-    "name": "Warhammer WHM 6K",
-    "file": "assets/mechs/Warhammer WHM-6K.mtf"
+    "name": "Warhammer WHM-6K",
+    "bv2": 1305,
+    "file": "Warhammer WHM-6K.ssw"
   },
   {
-    "name": "Warhammer WHM 6L",
-    "file": "assets/mechs/Warhammer WHM-6L.mtf"
+    "name": "Warhammer WHM-6L",
+    "bv2": 1311,
+    "file": "Warhammer WHM-6L.ssw"
   },
   {
-    "name": "Warhammer WHM 6R",
-    "file": "assets/mechs/Warhammer WHM-6R.mtf"
+    "name": "Warhammer WHM-6R",
+    "bv2": 1299,
+    "file": "Warhammer WHM-6R.ssw"
   },
   {
-    "name": "Wasp WSP 1A",
-    "file": "assets/mechs/Wasp WSP-1A.mtf"
+    "name": "Wasp WSP-1A",
+    "bv2": 384,
+    "file": "Wasp WSP-1A.ssw"
   },
   {
-    "name": "Wasp WSP 1D",
-    "file": "assets/mechs/Wasp WSP-1D.mtf"
+    "name": "Wasp WSP-1D",
+    "bv2": 403,
+    "file": "Wasp WSP-1D.ssw"
   },
   {
-    "name": "Wasp WSP 1K",
-    "file": "assets/mechs/Wasp WSP-1K.mtf"
+    "name": "Wasp WSP-1K",
+    "bv2": 376,
+    "file": "Wasp WSP-1K.ssw"
   },
   {
-    "name": "Wasp WSP 1L",
-    "file": "assets/mechs/Wasp WSP-1L.mtf"
+    "name": "Wasp WSP-1L",
+    "bv2": 335,
+    "file": "Wasp WSP-1L.ssw"
   },
   {
-    "name": "Wasp WSP 1W",
-    "file": "assets/mechs/Wasp WSP-1W.mtf"
+    "name": "Wasp WSP-1W",
+    "bv2": 373,
+    "file": "Wasp WSP-1W.ssw"
   },
   {
-    "name": "Whitworth WTH 0",
-    "file": "assets/mechs/Whitworth WTH-0.mtf"
+    "name": "Whitworth WTH-0",
+    "bv2": 863,
+    "file": "Whitworth WTH-0.ssw"
   },
   {
-    "name": "Whitworth WTH 1",
-    "file": "assets/mechs/Whitworth WTH-1.mtf"
+    "name": "Whitworth WTH-1",
+    "bv2": 982,
+    "file": "Whitworth WTH-1.ssw"
   },
   {
-    "name": "Whitworth WTH 1H",
-    "file": "assets/mechs/Whitworth WTH-1H.mtf"
+    "name": "Whitworth WTH-1H",
+    "bv2": 993,
+    "file": "Whitworth WTH-1H.ssw"
   },
   {
-    "name": "Whitworth WTH 1S",
-    "file": "assets/mechs/Whitworth WTH-1S.mtf"
+    "name": "Whitworth WTH-1S",
+    "bv2": 917,
+    "file": "Whitworth WTH-1S.ssw"
   },
   {
-    "name": "Whitworth WTH 2",
-    "file": "assets/mechs/Whitworth WTH-2.mtf"
+    "name": "Whitworth WTH-2",
+    "bv2": 936,
+    "file": "Whitworth WTH-2.ssw"
   },
   {
-    "name": "Whitworth WTH 2A",
-    "file": "assets/mechs/Whitworth WTH-2A.mtf"
+    "name": "Whitworth WTH-2A",
+    "bv2": 1055,
+    "file": "Whitworth WTH-2A.ssw"
   },
   {
-    "name": "Whitworth WTH 3",
-    "file": "assets/mechs/Whitworth WTH-3.mtf"
+    "name": "Whitworth WTH-3",
+    "bv2": 882,
+    "file": "Whitworth WTH-3.ssw"
   },
   {
-    "name": "Whitworth WTH K",
-    "file": "assets/mechs/Whitworth WTH-K.mtf"
+    "name": "Whitworth WTH-K",
+    "bv2": 819,
+    "file": "Whitworth WTH-K.ssw"
   },
   {
-    "name": "Wolf Trap (Tora) WFT 1",
-    "file": "assets/mechs/Wolf Trap (Tora) WFT-1.mtf"
+    "name": "Wolf Trap (Tora) WFT-1",
+    "bv2": 1070,
+    "file": "Wolf Trap (Tora) WFT-1.ssw"
   },
   {
-    "name": "Wolf Trap (Tora) WFT 2",
-    "file": "assets/mechs/Wolf Trap (Tora) WFT-2.mtf"
+    "name": "Wolf Trap (Tora) WFT-2",
+    "bv2": 1227,
+    "file": "Wolf Trap (Tora) WFT-2.ssw"
   },
   {
-    "name": "Wolf Trap (Tora) WFT B",
-    "file": "assets/mechs/Wolf Trap (Tora) WFT-B.mtf"
+    "name": "Wolf Trap (Tora) WFT-B",
+    "bv2": 1021,
+    "file": "Wolf Trap (Tora) WFT-B.ssw"
   },
   {
-    "name": "Wolf Trap (Tora) WFT C",
-    "file": "assets/mechs/Wolf Trap (Tora) WFT-C.mtf"
+    "name": "Wolf Trap (Tora) WFT-C",
+    "bv2": 1001,
+    "file": "Wolf Trap (Tora) WFT-C.ssw"
   },
   {
-    "name": "Wolfhound IIC Grinner",
-    "file": "assets/mechs/Wolfhound IIC Grinner.mtf"
+    "name": "Wolfhound IIC 'Grinner'",
+    "bv2": 1579,
+    "file": "Wolfhound IIC Grinner.ssw"
   },
   {
-    "name": "Wolfhound WLF 1 (Allard)",
-    "file": "assets/mechs/Wolfhound WLF-1 (Allard).mtf"
+    "name": "Wolfhound WLF-1",
+    "bv2": 949,
+    "file": "Wolfhound WLF-1.ssw"
   },
   {
-    "name": "Wolfhound WLF 1",
-    "file": "assets/mechs/Wolfhound WLF-1.mtf"
+    "name": "Wolfhound WLF-1 (Allard)",
+    "bv2": 1941,
+    "file": "Wolfhound WLF-1 (Allard).ssw"
   },
   {
-    "name": "Wolfhound WLF 1A",
-    "file": "assets/mechs/Wolfhound WLF-1A.mtf"
+    "name": "Wolfhound WLF-1A",
+    "bv2": 967,
+    "file": "Wolfhound WLF-1A.ssw"
   },
   {
-    "name": "Wolfhound WLF 1B",
-    "file": "assets/mechs/Wolfhound WLF-1B.mtf"
+    "name": "Wolfhound WLF-1B",
+    "bv2": 967,
+    "file": "Wolfhound WLF-1B.ssw"
   },
   {
-    "name": "Wolfhound WLF 2",
-    "file": "assets/mechs/Wolfhound WLF-2.mtf"
+    "name": "Wolfhound WLF-2",
+    "bv2": 1061,
+    "file": "Wolfhound WLF-2.ssw"
   },
   {
-    "name": "Wolfhound WLF 3S",
-    "file": "assets/mechs/Wolfhound WLF-3S.mtf"
+    "name": "Wolfhound WLF-3S",
+    "bv2": 1176,
+    "file": "Wolfhound WLF-3S.ssw"
   },
   {
-    "name": "Wolfhound WLF 4W",
-    "file": "assets/mechs/Wolfhound WLF-4W.mtf"
+    "name": "Wolfhound WLF-4W",
+    "bv2": 1090,
+    "file": "Wolfhound WLF-4W.ssw"
   },
   {
-    "name": "Wolfhound WLF 4WA",
-    "file": "assets/mechs/Wolfhound WLF-4WA.mtf"
+    "name": "Wolfhound WLF-4WA",
+    "bv2": 1050,
+    "file": "Wolfhound WLF-4WA.ssw"
   },
   {
-    "name": "Wolverine WVR 6BL R",
-    "file": "assets/mechs/Wolverine WVR-6BL-R.mtf"
+    "name": "Wolverine WVR-6BL-M",
+    "bv2": 1870,
+    "file": "Wolverine WVR-6BL-M.ssw"
   },
   {
-    "name": "Wolverine WVR 6D",
-    "file": "assets/mechs/Wolverine WVR-6D.mtf"
+    "name": "Wolverine WVR-6BL-R",
+    "bv2": 1942,
+    "file": "Wolverine WVR-6BL-R.ssw"
   },
   {
-    "name": "Wolverine WVR 6K",
-    "file": "assets/mechs/Wolverine WVR-6K.mtf"
+    "name": "Wolverine WVR-6K",
+    "bv2": 1248,
+    "file": "Wolverine WVR-6K.ssw"
   },
   {
-    "name": "Wolverine WVR 6M ELH",
-    "file": "assets/mechs/Wolverine WVR-6M ELH.ssw"
+    "name": "Wolverine WVR-6M",
+    "bv2": 1291,
+    "file": "Wolverine WVR-6M.ssw"
   },
   {
-    "name": "Wolverine WVR 6M",
-    "file": "assets/mechs/Wolverine WVR-6M.mtf"
+    "name": "Wolverine WVR-6M ELH",
+    "bv2": 1291,
+    "file": "Wolverine WVR-6M ELH.ssw"
   },
   {
-    "name": "Wolverine WVR 6R",
-    "file": "assets/mechs/Wolverine WVR-6R.mtf"
+    "name": "Wolverine WVR-6R",
+    "bv2": 1101,
+    "file": "Wolverine WVR-6R.ssw"
   },
   {
-    "name": "Wyvern WVE 6N",
-    "file": "assets/mechs/Wyvern WVE-6N.mtf"
+    "name": "Wyvern WVE-6N",
+    "bv2": 1005,
+    "file": "Wyvern WVE-6N.ssw"
   },
   {
-    "name": "Zeus ZEU 10WB",
-    "file": "assets/mechs/Zeus ZEU-10WB.mtf"
+    "name": "Zeus ZEU-10WB",
+    "bv2": 2075,
+    "file": "Zeus ZEU-10WB.ssw"
   },
   {
-    "name": "Zeus ZEU 5S",
-    "file": "assets/mechs/Zeus ZEU-5S.mtf"
+    "name": "Zeus ZEU-5S",
+    "bv2": 1474,
+    "file": "Zeus ZEU-5S.ssw"
   },
   {
-    "name": "Zeus ZEU 5T",
-    "file": "assets/mechs/Zeus ZEU-5T.mtf"
+    "name": "Zeus ZEU-5T",
+    "bv2": 1729,
+    "file": "Zeus ZEU-5T.ssw"
   },
   {
-    "name": "Zeus ZEU 6A",
-    "file": "assets/mechs/Zeus ZEU-6A.mtf"
+    "name": "Zeus ZEU-6S",
+    "bv2": 1348,
+    "file": "Zeus ZEU-6S.ssw"
   },
   {
-    "name": "Zeus ZEU 6S",
-    "file": "assets/mechs/Zeus ZEU-6S.mtf"
+    "name": "Zeus ZEU-6T",
+    "bv2": 1436,
+    "file": "Zeus ZEU-6T.ssw"
   },
   {
-    "name": "Zeus ZEU 6T",
-    "file": "assets/mechs/Zeus ZEU-6T.mtf"
+    "name": "Zeus ZEU-9S",
+    "bv2": 1639,
+    "file": "Zeus ZEU-9S.ssw"
   },
   {
-    "name": "Zeus ZEU 9S DC",
-    "file": "assets/mechs/Zeus ZEU-9S-DC.mtf"
+    "name": "Zeus ZEU-9S-DC",
+    "bv2": 1612,
+    "file": "Zeus ZEU-9S-DC.ssw"
   },
   {
-    "name": "Zeus ZEU 9S",
-    "file": "assets/mechs/Zeus ZEU-9S.mtf"
+    "name": "Zeus ZEU-9S2",
+    "bv2": 1769,
+    "file": "Zeus ZEU-9S2.ssw"
   },
   {
-    "name": "Zeus ZEU 9S2",
-    "file": "assets/mechs/Zeus ZEU-9S2.mtf"
+    "name": "Zeus ZEU-9T",
+    "bv2": 1835,
+    "file": "Zeus ZEU-9T.ssw"
   },
   {
-    "name": "Zeus ZEU 9T",
-    "file": "assets/mechs/Zeus ZEU-9T.mtf"
-  },
-  {
-    "name": "Zeus X ZEU 9WD",
-    "file": "assets/mechs/Zeus-X ZEU-9WD.mtf"
+    "name": "Zeus-X ZEU-9WD",
+    "bv2": 1716,
+    "file": "Zeus-X ZEU-9WD.ssw"
   }
 ]
