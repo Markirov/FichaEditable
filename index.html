@@ -561,6 +561,59 @@
         .mrb-badge-btn img {
             display: block;
         }
+        /* Version counter below MRB badge */
+
+        /* Classic title emblem */
+        .classic-title-emblem {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 12px;
+            opacity: 0.9;
+        }
+
+        /* Video splash overlay */
+        .video-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .video-splash video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .video-splash-skip {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100001;
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        .version-tag {
+            position: fixed;
+            bottom: 4px;
+            left: 16px;
+            z-index: 99999;
+            font-family: var(--font-mono, 'Share Tech Mono', monospace);
+            font-size: 9px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 1px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
         /* Mech description and history in data panel */
         .mech-desc, .mech-history {
             font-family: var(--font-body, Inter, sans-serif);
@@ -8698,63 +8751,63 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         const ICONIC_MECHS = [
             {
                 name: "GM MAD-3D MARAUDER",
-                chassis: "GM Marauder (Pesado)",
-                mass: "75 TONS",
+                chassis: "GM Marauder",
+                mass: "75 Toneladas",
                 engine: "Vlar 300 Fusión",
                 speed: "43.2/64.8 km/h",
-                armor: "11.5 Tons Blindaje",
+                armor: "11.5 Toneladas Valiant Lamellor",
                 heatsinks: "20 Disipadores",
                 weapons: "2x PPC, 1x LL, 2x ML",
-                desc: "",
-                history: ""
+                desc: "El MAD-3D es una plataforma de asalto pesado que destaca por su diseño de cero munición. Físicamente mantiene su icónico perfil bajo y brazos extendidos, pero internamente ha sido reconfigurado para albergar un tercer gran láser en lugar del cañón automático tradicional. Esto lo convierte en un francotirador de energía capaz de mantener una cadencia de fuego constante mientras sus disipadores de calor aguanten el castigo.",
+                history: "Esta variante fue una respuesta directa de los Soles Federados a la escasez de repuestos durante las Guerras de Sucesión. Mientras que el modelo original MAD-3R sufría por la vulnerabilidad de su depósito de munición, el 3D de GM se ganó una reputación de inmortal. Es el ancestro espiritual de variantes posteriores como el MAD-5D, que incorporaría tecnología de Salto y ER PPCs durante la Invasión de los Clanes."
             },
             {
                 name: "STARCORPS WHM-6D WARHAMMER",
-                chassis: "StarCorps 100 (Pesado)",
-                mass: "70 TONS",
+                chassis: "StarCorps 100",
+                mass: "70 Toneladas Leviathon Plus",
                 engine: "VOX 280 Fusión",
                 speed: "43.2/64.8 km/h",
-                armor: "13 Tons Blindaje",
+                armor: "13 Toneladas Leviathon Plus",
                 heatsinks: "20 Disipadores",
                 weapons: "2x PPC, 2x ML, 2x SL",
-                desc: "",
-                history: ""
+                desc: "El WHM-6D es la versión limpia y blindada del Warhammer. Al eliminar las ametralladoras y los lanzamisiles SRM del modelo estándar, este diseño utiliza el tonelaje sobrante para maximizar su protección externa y su capacidad de enfriamiento. Es un mech de línea pura, diseñado para plantar cara al enemigo y abatir objetivos pesados con sus dos icónicos cañones de partículas (PPC).",
+                history: "Fabricado principalmente para la Mancomunidad de Lira, el 6D corrigió el mayor defecto del Warhammer original: su fragilidad ante el fuego concentrado. StarCorps logró crear un diseño tan robusto que muchos pilotos veteranos se negaron a actualizarse a modelos más modernos. En la historia de BattleTech, el Warhammer es el símbolo de la fuerza bruta, con variantes que van desde el 6R (estándar) hasta el temido WHM-7A de la Guardia Real de la Hegemonía."
             },
             {
                 name: "EARTHWERKS BLR-1G BATTLEMASTER",
-                chassis: "Hollis Hard Core (Asalto)",
-                mass: "85 TONS",
+                chassis: "Hollis Mark X",
+                mass: "85 Toneladas",
                 engine: "VOX 340 Fusión",
                 speed: "43.2/64.8 km/h",
-                armor: "14.5 Tons Blindaje",
+                armor: "14.5 Toneladas StarGuard IV",
                 heatsinks: "18 Disipadores",
                 weapons: "1x PPC, 6x ML, 1x SRM-6, 2x MG",
-                desc: "",
-                history: ""
+                desc: "El BLR-1G es una fortaleza andante. Su armamento es asimétrico y versátil, permitiéndole castigar a larga distancia con su PPC y devastar a corta distancia con una batería de seis láseres medios. Su cabina, protegida por una distintiva burbuja de cristal reforzado, ofrece una visibilidad y sistemas de mando superiores para coordinar batallones enteros desde la línea de fuego.",
+                history: "Originalmente una creación de Hollis Industries, la producción pasó a manos de Earthwerks y se convirtió en el mech de asalto más distribuido de la Esfera Interior. Su diseño es tan eficiente que ha inspirado innumerables variantes regionales, como el BLR-1D (que sacrifica el SRM por más blindaje) o el sofisticado BLR-3S de la Alianza Federada. Es, por derecho propio, el rey de los campos de batalla durante la era de LosTech."
             },
             {
                 name: "BERGAN LCT-1V LOCUST",
-                chassis: "Bergan XIV (Ligero)",
-                mass: "20 TONS",
+                chassis: "Bergan VII",
+                mass: "20 Toneladas",
                 engine: "LTV 160 Fusión",
                 speed: "86.4/129.6 km/h",
-                armor: "4 Tons Blindaje",
+                armor: "4 Toneladas StarSlab/1",
                 heatsinks: "10 Disipadores",
                 weapons: "1x ML, 2x MG",
-                desc: "",
-                history: ""
+                desc: "El LCT-1V es la definición de velocidad sobre blindaje. Con una silueta estrecha y piernas digitígradas diseñadas para la estabilidad a altas velocidades, este modelo sacrifica protección por una agilidad inigualable. Su armamento está optimizado para el combate antipersonal y el hostigamiento rápido, utilizando su láser central para ataques de precisión mientras sus ametralladoras barren infantería enemiga en pasadas de alta velocidad.",
+                history: "Introducido en 2499, el Locust de Bergan se convirtió en el estándar de oro de los mechs ligeros. Aunque el 1V es el más común, la versatilidad del chasis permitió variantes famosas como el LCT-1S, que cambia las ametralladoras por lanzamisiles SRM-2 para mayor pegada, o el LCT-1E, una versión energética pura, preferida por las Casas que buscaban eliminar la dependencia de munición. Su bajo coste lo hizo omnipresente en todas las Grandes Casas durante siglos."
             },
             {
                 name: "GENERAL MECHANICS WSP-1A WASP",
-                chassis: "Type 1000 (Ligero)",
-                mass: "20 TONS",
+                chassis: "1A Type 3",
+                mass: "20 Toneladas",
                 engine: "Hermes 120 Fusión",
                 speed: "64.8/97.2 km/h (Salto: 180m)",
-                armor: "3 Tons Blindaje",
+                armor: "3 Toneladas Durallex Light",
                 heatsinks: "10 Disipadores",
                 weapons: "1x ML, 1x SRM-2",
-                desc: "",
-                history: ""
+                desc: "El WSP-1A es un mech ligero equilibrado que prioriza la movilidad vertical. A diferencia del Locust, el Wasp cuenta con manos funcionales para manipulación de carga y chorros de salto integrados en las piernas. Su armamento mixto le permite enfrentarse tanto a blindados como a otros mechs ligeros, siendo especialmente útil en misiones de sabotaje y reconocimiento en terreno montañoso o urbano.",
+                history: "Como el primer BattleMech producido en masa con capacidad de salto, el Wasp de General Mechanics cambió la guerra para siempre. Es, estadísticamente, el mech más común en la historia de la humanidad. Su legado incluye variantes especializadas como el WSP-1L (utilizado por la Confederación de Capela con equipo de sigilo temprano) y ha servido de base para el diseño de su hermano mayor, el Stinger, con el que comparte muchas piezas logísticas"
             }
         ];
 
@@ -8897,11 +8950,11 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             var histHtml = mech.history ? '<div class="mech-history">' + mech.history + '</div>' : '';
             content.innerHTML = '<div class="mech-name">' + mech.name + '</div>'
                 + '<div class="mech-spec">CHASIS: ' + mech.chassis + '</div>'
-                + '<div class="mech-spec">MASA: ' + mech.mass + '</div>'
+                + '<div class="mech-spec">TONELAJE: ' + mech.mass + '</div>'
                 + '<div class="mech-spec">MOTOR: ' + mech.engine + '</div>'
                 + '<div class="mech-spec">VELOCIDAD: ' + mech.speed + '</div>'
                 + '<div class="mech-spec">BLINDAJE: ' + mech.armor + '</div>'
-                + '<div class="mech-spec">T\u00c9RMICO: ' + mech.heatsinks + '</div>'
+                + '<div class="mech-spec">DISIPACION: ' + mech.heatsinks + '</div>'
                 + '<div class="mech-spec">ARMAS: ' + mech.weapons + '</div>'
                 + descHtml + histHtml;
         }
@@ -9097,7 +9150,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <button id="mrb-theme-toggle" class="mrb-badge-btn" onclick="setUiTheme(document.body.classList.contains('theme-new') ? 'theme-classic' : 'theme-new')" title="Cambiar estilo visual">
         <img src="data:image/png;base64,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" alt="MRB" width="40" height="40">
     </button>
-
+    <div class="version-tag">v10.01</div>
+    <div id="video-splash" class="video-splash" style="display:none;" onclick="closeVideoSplash()">
+        <video id="splash-video" autoplay muted playsinline>
+            <source src="assets/video/intro.mp4" type="video/mp4">
+        </video>
+        <div class="video-splash-skip">CLICK PARA SALTAR</div>
+    </div>
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
@@ -9105,24 +9164,24 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div class="unit-identity">
                 <img class="unit-identity-emblem" src="data:image/png;base64,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" alt="Unit Emblem">
                 <div class="unit-identity-text">
-                    <span class="unit-identity-name" id="sidebar-unit-name">KING KARL'S KAURASSIERS</span>
-                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                    <span class="unit-identity-name" id="sidebar-unit-name">KING KARL'S KURASSIERS</span>
+                    <span class="unit-identity-sub">UNIDAD MERCENARIA</span>
                 </div>
             </div>
             <div class="sidebar-section-label">OPERACIONES</div>
-            <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> Comision</button>
+            <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> COMISIÓN</button>
             <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
-            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
+            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> BARRACONES</button>
             <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
             <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
 
             <div class="sidebar-section-label">TÁCTICO</div>
             <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
-            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
-            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
+            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> AYUDAS</button>
+            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> TECHNICHAL READOUT</button>
 
             <div class="sidebar-section-label">INTEL</div>
-            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> Crónicas</button>
+            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> CRÓNICAS</button>
         </aside>
 
         <header class="global-shell-header">
@@ -9185,23 +9244,23 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div class="unit-identity">
                 <img class="unit-identity-emblem" src="data:image/png;base64,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" alt="Unit Emblem">
                 <div class="unit-identity-text">
-                    <span class="unit-identity-name sidebar-unit-name-sync">KING KARL'S KAURASSIERS</span>
-                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                    <span class="unit-identity-name sidebar-unit-name-sync">KING KARL'S KURASSIERS</span>
+                    <span class="unit-identity-sub">UNIDAD MERCENARIA</span>
                 </div>
             </div>
             <div class="sidebar-section-label">OPERACIONES</div>
             <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
-            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
+            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> BARRACONES</button>
             <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
             <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
             
             <div class="sidebar-section-label">TÁCTICO</div>
             <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
-            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
-            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
+            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> AYUDAS</button>
+            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> TECHNICAL READOUT</button>
             
             <div class="sidebar-section-label">INTEL</div>
-            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> Crónicas</button>
+            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> CRÓNICAS</button>
         </nav>
         
         <!-- === HERO CENTER (Mech Scan) === -->
@@ -29888,7 +29947,7 @@ function volverHubCalculador(){
     }
     var title = document.querySelector('#landing-page .landing-title');
     if(title && !title.dataset.classic){
-      title.innerHTML = 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS<span class="classic-unit-subtitle" id="classic-unit-name"></span>';
+      title.innerHTML = '<img class="classic-title-emblem" src="data:image/png;base64,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" alt="">' + 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS<span class="classic-unit-subtitle" id="classic-unit-name"></span>';
       title.dataset.classic = '1';
     }
     // Sync unit name from config if available
@@ -29902,6 +29961,24 @@ function volverHubCalculador(){
     for(var i=0; i<yearEls.length; i++) yearEls[i].textContent = yearText;
   }
 
+
+  function playIntroVideo() {
+    var splash = document.getElementById('video-splash');
+    var video = document.getElementById('splash-video');
+    if (!splash || !video) return;
+    splash.style.display = 'flex';
+    video.currentTime = 0;
+    video.play().catch(function(){});
+    video.onended = function() { closeVideoSplash(); };
+  }
+
+  window.closeVideoSplash = function() {
+    var splash = document.getElementById('video-splash');
+    var video = document.getElementById('splash-video');
+    if (splash) splash.style.display = 'none';
+    if (video) { video.pause(); video.currentTime = 0; }
+  };
+
   window.setUiTheme = function(theme){
     const safe = (theme === 'theme-classic') ? 'theme-classic' : 'theme-new';
     document.body.classList.remove('theme-new','theme-classic');
@@ -29911,14 +29988,18 @@ function volverHubCalculador(){
 
     if (safe === 'theme-classic') {
       buildClassicLandingMenu();
+      if (!_themeInitializing) playIntroVideo();
     }
   };
 
+  var _themeInitializing = true;
   window.initUiTheme = function(){
     let saved = 'theme-new';
     try { saved = localStorage.getItem(THEME_KEY) || 'theme-new'; } catch(_) {}
     if (saved !== 'theme-classic') saved = 'theme-new';
+    _themeInitializing = true;
     setUiTheme(saved);
+    _themeInitializing = false;
   };
 
   if (document.readyState === 'loading') {
