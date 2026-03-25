@@ -561,6 +561,46 @@
         .mrb-badge-btn img {
             display: block;
         }
+        /* Mech description and history in data panel */
+        .mech-desc, .mech-history {
+            font-family: var(--font-body, Inter, sans-serif);
+            font-size: 10px;
+            color: var(--on-surface-variant, #d6c4ac);
+            line-height: 1.5;
+            padding: 10px 8px;
+            margin-top: 8px;
+            border-top: 1px solid var(--outline-variant, #514532);
+        }
+        .mech-desc::before {
+            content: 'DESCRIPCI\00d3N';
+            display: block;
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        .mech-history::before {
+            content: 'HISTORIA';
+            display: block;
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+        /* Classic theme green style */
+        body.theme-classic .mech-desc,
+        body.theme-classic .mech-history {
+            color: #00cc00;
+            border-top-color: #00aa00;
+            font-family: "Courier New", monospace;
+        }
+        body.theme-classic .mech-desc::before,
+        body.theme-classic .mech-history::before {
+            color: #00ff00;
+        }
+
         /* Unit Identity Block (sidebar top) */
         .unit-identity {
             display: flex;
@@ -1615,414 +1655,71 @@ body.theme-classic .classic-theme-float-switch {
 
     <script>
         // ============================================================================
-        // BASE DE DATOS UNIFICADA - ESFERA INTERIOR HASTA 3039
-        // BattleMechs y Vehículos de Combate
-        // Fuente: Master Unit List / Sarna.net / TRO 3039
         // ============================================================================
+        // BASE DE DATOS TRO — cargada dinámicamente desde assets/
+        // Formato index.json: [{"name":"Atlas AS7-D","bv2":1897,"file":"Atlas_AS7-D.ssw"}, ...]
+        // Vehículos añaden: "type":"Tracked"|"Wheeled"|"VTOL"|"Hover"|"Naval"
+        // ============================================================================
+        const MECH_CATALOG_URL = 'assets/mechs/index.json';
+        const VEHICLE_CATALOG_URL = 'assets/vehicles/index.json';
+        let MECH_DATABASE = [];
+        let VEHICLE_DATABASE = [];
+        let troCatalogsLoaded = false;
 
-        const MECH_DATABASE = [
-            // LIGHT MECHS (20-35 tons)
-            { name: "Locust LCT-1E", bv2: 553 },
-            { name: "Locust LCT-1L", bv2: 474 },
-            { name: "Locust LCT-1M", bv2: 424 },
-            { name: "Locust LCT-1S", bv2: 440 },
-            { name: "Locust LCT-1V", bv2: 432 },
-            { name: "Locust LCT-3V", bv2: 490 },
-            { name: "Wasp WSP-1A", bv2: 384 },
-            { name: "Wasp WSP-1D", bv2: 403 },
-            { name: "Wasp WSP-1K", bv2: 376 },
-            { name: "Wasp WSP-1L", bv2: 335 },
-            { name: "Wasp WSP-1W", bv2: 373 },
-            { name: "Stinger STG-3G", bv2: 497 },
-            { name: "Stinger STG-3R", bv2: 359 },
-            { name: "Flea FLE-4", bv2: 432 },
-            { name: "Flea FLE-15", bv2: 430 },
-            { name: "Commando COM-1D", bv2: 558 },
-            { name: "Commando COM-2D", bv2: 541 },
-            { name: "Commando COM-3A", bv2: 540 },
-            { name: "Mongoose MON-66", bv2: 758 },
-            { name: "Mongoose MON-67", bv2: 741 },
-            { name: "Mongoose MON-68", bv2: 737 },
-            { name: "Thorn THE-N", bv2: 546 },
-            { name: "Thorn THE-S", bv2: 510 },
-            { name: "Thorn THE-T", bv2: 500 },
-            { name: "Hornet HNT-151", bv2: 488 },
-            { name: "Hornet HNT-152", bv2: 475 },
-            { name: "Hussar HSR-200-D", bv2: 636 },
-            { name: "Hussar HSR-300-D", bv2: 543 },
-            { name: "Hussar HSR-350-D", bv2: 731 },
-            { name: "Hermes HER-1A", bv2: 601 },
-            { name: "Hermes HER-1B", bv2: 666 },
-            { name: "Falcon FLC-4N", bv2: 610 },
-            { name: "Falcon FLC-4P", bv2: 649 },
-            { name: "Javelin JVN-10F", bv2: 835 },
-            { name: "Javelin JVN-10N", bv2: 594 },
-            { name: "Spider SDR-5D", bv2: 524 },
-            { name: "Spider SDR-5K", bv2: 503 },
-            { name: "Spider SDR-5V", bv2: 622 },
-            { name: "UrbanMech UM-R60", bv2: 504 },
-            { name: "UrbanMech UM-R60L", bv2: 470 },
-            { name: "UrbanMech UM-R63", bv2: 540 },
-            { name: "Valkyrie VLK-QA", bv2: 723 },
-            { name: "Valkyrie VLK-QD", bv2: 807 },
-            { name: "Valkyrie VLK-QF", bv2: 653 },
-            { name: "Ostscout OTT-7J", bv2: 596 },
-            { name: "Ostscout OTT-7K", bv2: 484 },
-            { name: "Firestarter FS9-H", bv2: 694 },
-            { name: "Firestarter FS9-M", bv2: 798 },
-            { name: "Jenner JR7-D", bv2: 875 },
-            { name: "Jenner JR7-F", bv2: 1011 },
-            { name: "Panther PNT-8Z", bv2: 741 },
-            { name: "Panther PNT-9R", bv2: 769 },
-            { name: "Wolfhound WLF-1", bv2: 949 },
-            { name: "Wolfhound WLF-1A", bv2: 862 },
-            { name: "Wolfhound WLF-1B", bv2: 880 },
-            { name: "Wolfhound WLF-2", bv2: 1061 },
-            { name: "Raven RVN-1X", bv2: 747 },
-            { name: "Raven RVN-2X", bv2: 887 },
-            { name: "Raven RVN-3X", bv2: 708 },
-            { name: "Raven RVN-4X", bv2: 820 },
-            // MEDIUM MECHS (40-55 tons)
-            { name: "Cicada CDA-2A", bv2: 659 },
-            { name: "Cicada CDA-2B", bv2: 626 },
-            { name: "Cicada CDA-3C", bv2: 771 },
-            { name: "Assassin ASN-21", bv2: 749 },
-            { name: "Assassin ASN-23", bv2: 740 },
-            { name: "Assassin ASN-101", bv2: 757 },
-            { name: "Clint CLNT-1-2R", bv2: 707 },
-            { name: "Clint CLNT-2-3T", bv2: 770 },
-            { name: "Clint CLNT-2-4T", bv2: 619 },
-            { name: "Hermes II HER-2M", bv2: 910 },
-            { name: "Hermes II HER-2S", bv2: 784 },
-            { name: "Hermes II HER-4K", bv2: 976 },
-            { name: "Vulcan VL-2T", bv2: 642 },
-            { name: "Vulcan VL-5T", bv2: 942 },
-            { name: "Sentinel STN-1S", bv2: 664 },
-            { name: "Sentinel STN-3K", bv2: 652 },
-            { name: "Sentinel STN-3L", bv2: 717 },
-            { name: "Sentinel STN-3KB", bv2: 708 },
-            { name: "Whitworth WTH-0", bv2: 863 },
-            { name: "Whitworth WTH-1", bv2: 982 },
-            { name: "Whitworth WTH-1S", bv2: 917 },
-            { name: "Phoenix Hawk PXH-1", bv2: 1041 },
-            { name: "Phoenix Hawk PXH-1D", bv2: 1083 },
-            { name: "Phoenix Hawk PXH-1K", bv2: 1073 },
-            { name: "Blackjack BJ-1", bv2: 949 },
-            { name: "Blackjack BJ-1DB", bv2: 1015 },
-            { name: "Blackjack BJ-1DC", bv2: 917 },
-            { name: "Blackjack BJ-1X", bv2: 1148 },
-            { name: "Vindicator VND-1AA", bv2: 966 },
-            { name: "Vindicator VND-1R", bv2: 1024 },
-            { name: "Vindicator VND-1X", bv2: 1024 },
-            { name: "Scorpion SCP-1N", bv2: 1019 },
-            { name: "Hunchback HBK-4G", bv2: 1041 },
-            { name: "Hunchback HBK-4H", bv2: 1067 },
-            { name: "Hunchback HBK-4J", bv2: 1143 },
-            { name: "Hunchback HBK-4N", bv2: 1087 },
-            { name: "Hunchback HBK-4P", bv2: 1138 },
-            { name: "Hunchback HBK-4SP", bv2: 1043 },
-            { name: "Centurion CN9-A", bv2: 945 },
-            { name: "Centurion CN9-AH", bv2: 945 },
-            { name: "Centurion CN9-AL", bv2: 1057 },
-            { name: "Enforcer ENF-4R", bv2: 1032 },
-            { name: "Trebuchet TBT-5J", bv2: 1191 },
-            { name: "Trebuchet TBT-5N", bv2: 1191 },
-            { name: "Trebuchet TBT-5S", bv2: 984 },
-            { name: "Trebuchet TBT-7K", bv2: 996 },
-            { name: "Crab CRB-20", bv2: 1143 },
-            { name: "Crab CRB-27", bv2: 1198 },
-            { name: "Hatchetman HCT-3F", bv2: 854 },
-            { name: "Hatchetman HCT-3X", bv2: 812 },
-            { name: "Wyvern WVE-6N", bv2: 1005 },
-            { name: "Wyvern WVE-5N", bv2: 1089 },
-            { name: "Dervish DV-6M", bv2: 1146 },
-            { name: "Griffin GRF-1N", bv2: 1272 },
-            { name: "Griffin GRF-1S", bv2: 1253 },
-            { name: "Shadow Hawk SHD-2D", bv2: 899 },
-            { name: "Shadow Hawk SHD-2H", bv2: 1064 },
-            { name: "Shadow Hawk SHD-2K", bv2: 1147 },
-            { name: "Wolverine WVR-6K", bv2: 1248 },
-            { name: "Wolverine WVR-6M", bv2: 1291 },
-            { name: "Wolverine WVR-6R", bv2: 1101 },
-            { name: "Kintaro KTO-18", bv2: 1187 },
-            { name: "Kintaro KTO-19", bv2: 1160 },
-            { name: "Kintaro KTO-20", bv2: 1357 },
-            { name: "Champion CHP-1N", bv2: 1233 },
-            { name: "Champion CHP-2N", bv2: 1116 },
-            // HEAVY MECHS (60-75 tons)
-            { name: "Dragon DRG-1C", bv2: 1215 },
-            { name: "Dragon DRG-1N", bv2: 1125 },
-            { name: "Grand Dragon DRG-1G", bv2: 1300 },
-            { name: "Quickdraw QKD-4G", bv2: 1192 },
-            { name: "Quickdraw QKD-4H", bv2: 1242 },
-            { name: "Quickdraw QKD-5A", bv2: 1196 },
-            { name: "Rifleman RFL-3C", bv2: 1066 },
-            { name: "Rifleman RFL-3N", bv2: 1039 },
-            { name: "Rifleman RFL-4D", bv2: 1173 },
-            { name: "Lancelot LNC25-01", bv2: 1422 },
-            { name: "Lancelot LNC25-02", bv2: 1236 },
-            { name: "Ostroc OSR-2C", bv2: 1228 },
-            { name: "Ostroc OSR-2D", bv2: 1306 },
-            { name: "Ostroc OSR-2L", bv2: 1233 },
-            { name: "Ostroc OSR-2M", bv2: 1239 },
-            { name: "Ostroc OSR-3C", bv2: 1288 },
-            { name: "Ostsol OTL-4D", bv2: 1308 },
-            { name: "Ostsol OTL-4F", bv2: 1264 },
-            { name: "JagerMech JM6-A", bv2: 1122 },
-            { name: "JagerMech JM6-S", bv2: 901 },
-            { name: "Catapult CPLT-A1", bv2: 1285 },
-            { name: "Catapult CPLT-C1", bv2: 1399 },
-            { name: "Catapult CPLT-C1b", bv2: 1508 },
-            { name: "Catapult CPLT-C4", bv2: 1358 },
-            { name: "Catapult CPLT-K2", bv2: 1319 },
-            { name: "Thunderbolt TDR-5S", bv2: 1335 },
-            { name: "Thunderbolt TDR-5SE", bv2: 1414 },
-            { name: "Thunderbolt TDR-5SS", bv2: 1337 },
-            { name: "Crusader CRD-3D", bv2: 1338 },
-            { name: "Crusader CRD-3K", bv2: 1290 },
-            { name: "Crusader CRD-3L", bv2: 1297 },
-            { name: "Crusader CRD-3R", bv2: 1317 },
-            { name: "Guillotine GLT-3N", bv2: 1418 },
-            { name: "Guillotine GLT-4L", bv2: 1400 },
-            { name: "Cataphract CTF-1X", bv2: 1316 },
-            { name: "Cataphract CTF-2X", bv2: 1344 },
-            { name: "Bombardier BMB-10D", bv2: 1340 },
-            { name: "Bombardier BMB-12D", bv2: 1480 },
-            { name: "Grasshopper GHR-5H", bv2: 1427 },
-            { name: "Grasshopper GHR-5J", bv2: 1354 },
-            { name: "Grasshopper GHR-5N", bv2: 1493 },
-            { name: "Archer ARC-2K", bv2: 1356 },
-            { name: "Archer ARC-2R", bv2: 1477 },
-            { name: "Archer ARC-2Rb", bv2: 1627 },
-            { name: "Archer ARC-2S", bv2: 1393 },
-            { name: "Archer ARC-2W", bv2: 1338 },
-            { name: "Warhammer WHM-6D", bv2: 1471 },
-            { name: "Warhammer WHM-6K", bv2: 1305 },
-            { name: "Warhammer WHM-6L", bv2: 1311 },
-            { name: "Warhammer WHM-6R", bv2: 1299 },
-            { name: "Flashman FLS-7K", bv2: 1480 },
-            { name: "Flashman FLS-8K", bv2: 1779 },
-            { name: "Black Knight BL-6-KNT", bv2: 1551 },
-            { name: "Black Knight BL-7-KNT", bv2: 1443 },
-            { name: "Black Knight BL-7-KNT-L", bv2: 1409 },
-            { name: "Marauder MAD-3D", bv2: 1470 },
-            { name: "Marauder MAD-3L", bv2: 1369 },
-            { name: "Marauder MAD-3M", bv2: 1335 },
-            { name: "Marauder MAD-3R", bv2: 1363 },
-            { name: "Orion ON1-K", bv2: 1429 },
-            { name: "Orion ON1-M", bv2: 1414 },
-            { name: "Orion ON1-V", bv2: 1298 },
-            { name: "Orion ON1-VA", bv2: 1328 },
-            // ASSAULT MECHS (80-100 tons)
-            { name: "Thug THG-10E", bv2: 1501 },
-            { name: "Thug THG-11E", bv2: 1640 },
-            { name: "Goliath GOL-1H", bv2: 1449 },
-            { name: "Goliath GOL-3M", bv2: 1540 },
-            { name: "Awesome AWS-8Q", bv2: 1605 },
-            { name: "Awesome AWS-8R", bv2: 1470 },
-            { name: "Awesome AWS-8T", bv2: 1593 },
-            { name: "Awesome AWS-8V", bv2: 1510 },
-            { name: "Zeus ZEU-6S", bv2: 1348 },
-            { name: "Zeus ZEU-6T", bv2: 1436 },
-            { name: "Charger CGR-1A1", bv2: 981 },
-            { name: "Charger CGR-1A5", bv2: 1468 },
-            { name: "Charger CGR-1A9", bv2: 1397 },
-            { name: "Charger CGR-1L", bv2: 980 },
-            { name: "Charger CGR-SB", bv2: 1604 },
-            { name: "Victor VTR-9A", bv2: 1236 },
-            { name: "Victor VTR-9A1", bv2: 1302 },
-            { name: "Victor VTR-9B", bv2: 1378 },
-            { name: "Victor VTR-9S", bv2: 1360 },
-            { name: "BattleMaster BLR-1D", bv2: 1522 },
-            { name: "BattleMaster BLR-1G", bv2: 1519 },
-            { name: "BattleMaster BLR-1G-DC", bv2: 1498 },
-            { name: "BattleMaster BLR-1S", bv2: 1507 },
-            { name: "Stalker STK-3F", bv2: 1559 },
-            { name: "Stalker STK-3H", bv2: 1624 },
-            { name: "Stalker STK-4N", bv2: 1558 },
-            { name: "Longbow LGB-0W", bv2: 1337 },
-            { name: "Longbow LGB-7Q", bv2: 1618 },
-            { name: "Hatamoto-Chi HTM-26T", bv2: 1536 },
-            { name: "Hatamoto-Chi HTM-27T", bv2: 1607 },
-            { name: "Highlander HGN-732", bv2: 2227 },
-            { name: "Highlander HGN-733", bv2: 1801 },
-            { name: "Highlander HGN-733C", bv2: 1710 },
-            { name: "Highlander HGN-733P", bv2: 1696 },
-            { name: "Cyclops CP-10-Q", bv2: 1584 },
-            { name: "Cyclops CP-10-Z", bv2: 1317 },
-            { name: "Banshee BNC-3E", bv2: 1422 },
-            { name: "Banshee BNC-3M", bv2: 1595 },
-            { name: "Banshee BNC-3Q", bv2: 1394 },
-            { name: "Banshee BNC-3S", bv2: 1751 },
-            { name: "King Crab KGC-0000", bv2: 1810 },
-            { name: "King Crab KGC-000", bv2: 1906 },
-            { name: "King Crab KGC-010", bv2: 2181 },
-            { name: "Marauder II MAD-4A", bv2: 2073 },
-            { name: "Atlas AS7-D", bv2: 1897 },
-            { name: "Atlas AS7-D-DC", bv2: 1858 },
-            { name: "Atlas AS7-RS", bv2: 1849 },
-            // Additional Star League / Succession Wars Era
-            { name: "Sai S-3", bv2: 959 },
-            { name: "Sai S-4", bv2: 1005 },
-            { name: "Sai S-4C", bv2: 1778 },
-            { name: "Sai S-4X", bv2: 830 },
-            { name: "Sai S-7", bv2: 876 },
-            { name: "Sai S-8", bv2: 1304 },
-            { name: "Exterminator EXT-4A", bv2: 1345 },
-            { name: "Exterminator EXT-4C", bv2: 1228 },
-            { name: "Exterminator EXT-4D", bv2: 1385 },
-            { name: "Spector SPR-4F", bv2: 988 },
-            { name: "Spector SPR-5F", bv2: 1183 },
-            { name: "Mercury MCY-97", bv2: 469 },
-            { name: "Mercury MCY-98", bv2: 553 },
-            { name: "Mercury MCY-99", bv2: 590 },
-            { name: "Talon TLN-5W", bv2: 1175 },
-            { name: "Starslayer STY-2C", bv2: 1369 },
-            { name: "Albatross ALB-3U", bv2: 1668 },
-            { name: "Nightsky NGS-4S", bv2: 1159 },
-            { name: "Hoplite HOP-4B", bv2: 989 },
-            { name: "Hoplite HOP-4C", bv2: 1022 },
-            { name: "Hoplite HOP-4D", bv2: 1022 },
-            { name: "Buccaneer BCN-3R", bv2: 1434 },
-            { name: "Lineholder KW1-LH2", bv2: 1280 },
-            { name: "Lineholder KW1-LH3", bv2: 1214 },
-            { name: "Osprey OSP-15", bv2: 1106 },
-            { name: "Osprey OSP-25", bv2: 1183 },
-            { name: "Osprey OSP-26", bv2: 1122 },
-            { name: "Merlin MLN-1A", bv2: 1217 },
-            { name: "Merlin MLN-1B", bv2: 1205 },
-            { name: "Caesar CES-3R", bv2: 1578 },
-            { name: "Thanatos THS-4S", bv2: 2008 },
-            { name: "Cestus CTS-6X", bv2: 1600 },
-            { name: "Cestus CTS-6Y", bv2: 1701 },
-            { name: "Spartan SPT-NF", bv2: 1605 },
-            { name: "Spartan SPT-N1", bv2: 1573 },
-            { name: "Spartan SPT-N2", bv2: 1605 },
-            { name: "Crockett CRK-5003-0", bv2: 1704 },
-            { name: "Crockett CRK-5003-1", bv2: 1923 },
-            { name: "Emperor EMP-5A", bv2: 1571 },
-            { name: "Emperor EMP-6A", bv2: 1969 },
-            { name: "Pillager PLG-1N", bv2: 1622 },
-            { name: "Pillager PLG-3Z", bv2: 2697 },
-            { name: "Nightstar NSR-9J", bv2: 2399 }
-        ];
+        async function loadTROFromCatalogs(force) {
+            if (troCatalogsLoaded && !force) return;
+            console.log('📊 Cargando catálogos TRO desde assets/...');
+            try {
+                // Cargar mechs
+                var mechResp = await fetch(MECH_CATALOG_URL + '?v=' + Date.now(), {cache:'no-store'});
+                if (mechResp.ok) {
+                    var mechItems = await mechResp.json();
+                    if (Array.isArray(mechItems)) {
+                        // Filtrar items que tienen bv2 (los que no, se ignoran en TRO)
+                        var mechsWithBV = mechItems.filter(function(it){ return it.bv2 > 0; });
+                        // Mergear: añadir nuevos, actualizar existentes
+                        mechsWithBV.forEach(function(it){
+                            var existing = MECH_DATABASE.find(function(m){ return m.name === it.name; });
+                            if (existing) {
+                                existing.bv2 = it.bv2;
+                                if (it.file) existing.file = it.file;
+                            } else {
+                                MECH_DATABASE.push({name: it.name, bv2: it.bv2, file: it.file || ''});
+                            }
+                        });
+                        console.log('  Mechs: ' + MECH_DATABASE.length + ' unidades');
+                    }
+                }
+            } catch(e) { console.warn('⚠️ No se pudo cargar catálogo de mechs:', e.message); }
 
-        const VEHICLE_DATABASE = [
-            // VTOL / HELICOPTERS
-            { name: "Ferret Light Scout VTOL", bv2: 56, type: "VTOL" },
-            { name: "Ferret Light Scout VTOL (Armor)", bv2: 74, type: "VTOL" },
-            { name: "Ferret Light Scout VTOL (Cargo)", bv2: 17, type: "VTOL" },
-            { name: "Warrior H-7", bv2: 309, type: "VTOL" },
-            { name: "Warrior H-7A", bv2: 305, type: "VTOL" },
-            { name: "Warrior H-7C", bv2: 444, type: "VTOL" },
-            { name: "Karnov UR Transport", bv2: 125, type: "VTOL" },
-            { name: "Karnov UR Transport (AC)", bv2: 190, type: "VTOL" },
-            { name: "Karnov UR Transport (Artillery)", bv2: 169, type: "VTOL" },
-            { name: "Karnov UR Transport (Gunship)", bv2: 352, type: "VTOL" },
-            // HOVER
-            { name: "Savannah Master Hovercraft", bv2: 215, type: "Hover" },
-            { name: "Savannah Master Hovercraft (SL)", bv2: 194, type: "Hover" },
-            { name: "Swift Wind Scout Car", bv2: 83, type: "Wheeled" },
-            { name: "Swift Wind Scout Car (ICE)", bv2: 83, type: "Wheeled" },
-            { name: "Harasser Missile Platform", bv2: 433, type: "Hover" },
-            { name: "Harasser Laser Platform", bv2: 233, type: "Hover" },
-            { name: "Harasser Missile Platform (Flamer)", bv2: 253, type: "Hover" },
-            { name: "Harasser Missile Platform (LRM)", bv2: 412, type: "Hover" },
-            { name: "J. Edgar Light Hover Tank", bv2: 544, type: "Hover" },
-            { name: "J. Edgar Light Hover Tank (Flamer)", bv2: 454, type: "Hover" },
-            { name: "J. Edgar Light Hover Tank (ICE)", bv2: 320, type: "Hover" },
-            { name: "J. Edgar Light Hover Tank (MG)", bv2: 482, type: "Hover" },
-            { name: "Sea Skimmer Hydrofoil", bv2: 306, type: "Naval" },
-            { name: "Pegasus Scout Hovertank", bv2: 640, type: "Hover" },
-            { name: "Pegasus Scout Hovertank (Missile)", bv2: 652, type: "Hover" },
-            { name: "Pegasus Scout Hovertank (Sensors)", bv2: 476, type: "Hover" },
-            { name: "Saladin Assault Hover Tank", bv2: 596, type: "Hover" },
-            { name: "Saracen Medium Hover Tank", bv2: 673, type: "Hover" },
-            { name: "Scimitar Medium Hover Tank", bv2: 532, type: "Hover" },
-            { name: "Scimitar Medium Hover Tank (Missile)", bv2: 576, type: "Hover" },
-            { name: "Condor Heavy Hover Tank", bv2: 653, type: "Hover" },
-            { name: "Condor Heavy Hover Tank (Davion)", bv2: 611, type: "Hover" },
-            { name: "Condor Heavy Hover Tank (Liao)", bv2: 765, type: "Hover" },
-            { name: "Drillson Heavy Hover Tank", bv2: 969, type: "Hover" },
-            { name: "Drillson Heavy Hover Tank (SRM)", bv2: 945, type: "Hover" },
-            { name: "Maxim Heavy Hover Transport", bv2: 764, type: "Hover" },
-            { name: "APC (Hover)", bv2: 126, type: "Hover" },
-            { name: "APC (Hover LRM)", bv2: 165, type: "Hover" },
-            { name: "APC (Hover SRM)", bv2: 151, type: "Hover" },
-            { name: "Coolant Truck (Hover)", bv2: 108, type: "Hover" },
-            // WHEELED
-            { name: "APC (Wheeled)", bv2: 102, type: "Wheeled" },
-            { name: "APC (Wheeled LRM)", bv2: 137, type: "Wheeled" },
-            { name: "APC (Wheeled SRM)", bv2: 127, type: "Wheeled" },
-            { name: "Skulker Wheeled Scout Tank", bv2: 314, type: "Wheeled" },
-            { name: "Skulker Wheeled Scout Tank (MG)", bv2: 269, type: "Wheeled" },
-            { name: "Skulker Wheeled Scout Tank (SRM)", bv2: 319, type: "Wheeled" },
-            { name: "Packrat LRPV PKR-T5", bv2: 344, type: "Wheeled" },
-            { name: "Packrat LRPV PKR-T5 (ICE)", bv2: 253, type: "Wheeled" },
-            { name: "Hetzer Wheeled Assault Gun", bv2: 574, type: "Wheeled" },
-            { name: "Hetzer Wheeled Assault Gun (AC10)", bv2: 427, type: "Wheeled" },
-            { name: "Hetzer Wheeled Assault Gun (Laser)", bv2: 464, type: "Wheeled" },
-            { name: "Hetzer Wheeled Assault Gun (LRM)", bv2: 433, type: "Wheeled" },
-            { name: "Hetzer Wheeled Assault Gun (SRM)", bv2: 491, type: "Wheeled" },
-            { name: "J-27 Ordnance Transport", bv2: 34, type: "Tracked" },
-            { name: "M.A.S.H. Truck", bv2: 220, type: "Wheeled" },
-            { name: "Coolant Truck", bv2: 114, type: "Wheeled" },
-            // TRACKED
-            { name: "APC (Tracked)", bv2: 112, type: "Tracked" },
-            { name: "APC (Tracked LRM)", bv2: 148, type: "Tracked" },
-            { name: "APC (Tracked SRM)", bv2: 138, type: "Tracked" },
-            { name: "Scorpion Light Tank", bv2: 306, type: "Tracked" },
-            { name: "Scorpion Light Tank (LRM)", bv2: 388, type: "Tracked" },
-            { name: "Scorpion Light Tank (ML)", bv2: 330, type: "Tracked" },
-            { name: "Scorpion Light Tank (SRM)", bv2: 373, type: "Tracked" },
-            { name: "Hunter Light Support Tank", bv2: 648, type: "Tracked" },
-            { name: "Hunter Light Support Tank (LRM10)", bv2: 573, type: "Tracked" },
-            { name: "Hunter Light Support Tank (LRM15)", bv2: 656, type: "Tracked" },
-            { name: "Striker Light Tank", bv2: 564, type: "Wheeled" },
-            { name: "Striker Light Tank (LRM)", bv2: 605, type: "Wheeled" },
-            { name: "Engineering Vehicle", bv2: 152, type: "Tracked" },
-            { name: "Goblin Medium Tank", bv2: 555, type: "Tracked" },
-            { name: "Goblin Medium Tank (SRM)", bv2: 647, type: "Tracked" },
-            { name: "Goblin Medium Tank (LRM)", bv2: 656, type: "Tracked" },
-            { name: "Vedette Medium Tank", bv2: 475, type: "Tracked" },
-            { name: "Vedette Medium Tank (AC2)", bv2: 458, type: "Tracked" },
-            { name: "Vedette Medium Tank (Liao)", bv2: 494, type: "Tracked" },
-            { name: "Bulldog Medium Tank", bv2: 605, type: "Tracked" },
-            { name: "Bulldog Medium Tank (AC2)", bv2: 524, type: "Tracked" },
-            { name: "Bulldog Medium Tank (LRM)", bv2: 748, type: "Tracked" },
-            { name: "Manticore Heavy Tank", bv2: 993, type: "Tracked" },
-            { name: "LRM Carrier", bv2: 833, type: "Tracked" },
-            { name: "SRM Carrier", bv2: 816, type: "Tracked" },
-            { name: "AC/2 Carrier", bv2: 403, type: "Tracked" },
-            { name: "Laser Carrier", bv2: 689, type: "Tracked" },
-            { name: "Pike Support Vehicle", bv2: 648, type: "Tracked" },
-            { name: "Pike Support Vehicle (AC5)", bv2: 623, type: "Tracked" },
-            { name: "Pike Support Vehicle (Missile)", bv2: 847, type: "Tracked" },
-            { name: "Patton Tank", bv2: 943, type: "Tracked" },
-            { name: "Rommel Tank", bv2: 955, type: "Tracked" },
-            { name: "Von Luckner Heavy Tank VNL-K65N", bv2: 1101, type: "Tracked" },
-            { name: "Demolisher Heavy Tank", bv2: 981, type: "Tracked" },
-            { name: "Devastator Heavy Tank", bv2: 1058, type: "Tracked" },
-            { name: "Mobile Long Tom Artillery", bv2: 1471, type: "Tracked" },
-            { name: "Partisan Heavy Tank", bv2: 673, type: "Tracked" },
-            { name: "Partisan Heavy Tank (AC2)", bv2: 580, type: "Tracked" },
-            { name: "Partisan Heavy Tank (LRM)", bv2: 1021, type: "Tracked" },
-            { name: "Schrek PPC Carrier", bv2: 957, type: "Tracked" },
-            { name: "SturmFeur Heavy Tank", bv2: 1400, type: "Tracked" },
-            { name: "Ontos Heavy Tank", bv2: 960, type: "Tracked" },
-            { name: "Ontos Heavy Tank (LRM)", bv2: 1249, type: "Tracked" },
-            { name: "Behemoth Heavy Tank", bv2: 1173, type: "Tracked" },
-            { name: "Behemoth Heavy Tank (Flamer)", bv2: 1084, type: "Tracked" },
-            { name: "Mobile Headquarters", bv2: 319, type: "Wheeled" },
-            { name: "Hi-Scout Drone Carrier", bv2: 347, type: "Tracked" },
-            { name: "Galleon Light Tank GAL-100", bv2: 309, type: "Tracked" },
-            { name: "Galleon Light Tank GAL-200", bv2: 345, type: "Tracked" },
-            { name: "Axel Heavy Tank Mk 1", bv2: 610, type: "Tracked" },
-            { name: "Axel Heavy Tank Mk 2", bv2: 589, type: "Tracked" },
-            { name: "Zhukov Heavy Tank", bv2: 920, type: "Tracked" },
-            // NAVAL
-            { name: "Monitor Naval Vessel", bv2: 799, type: "Naval" },
-        ];
+            try {
+                // Cargar vehículos
+                var vehResp = await fetch(VEHICLE_CATALOG_URL + '?v=' + Date.now(), {cache:'no-store'});
+                if (vehResp.ok) {
+                    var vehItems = await vehResp.json();
+                    if (Array.isArray(vehItems)) {
+                        var vehsWithBV = vehItems.filter(function(it){ return it.bv2 > 0; });
+                        vehsWithBV.forEach(function(it){
+                            var existing = VEHICLE_DATABASE.find(function(v){ return v.name === it.name; });
+                            if (existing) {
+                                existing.bv2 = it.bv2;
+                                if (it.type) existing.type = it.type;
+                                if (it.file) existing.file = it.file;
+                            } else {
+                                VEHICLE_DATABASE.push({name: it.name, bv2: it.bv2, type: it.type || 'Unknown', file: it.file || ''});
+                            }
+                        });
+                        console.log('  Vehículos: ' + VEHICLE_DATABASE.length + ' unidades');
+                    }
+                }
+            } catch(e) { console.warn('⚠️ No se pudo cargar catálogo de vehículos:', e.message); }
+
+            troCatalogsLoaded = true;
+            console.log('📊 TRO cargado: ' + MECH_DATABASE.length + ' mechs, ' + VEHICLE_DATABASE.length + ' vehículos');
+            if (typeof updateTROStats === 'function') updateTROStats();
+        }
+
+        // CATALOG URLs (usadas también por el simulador)
 
         // ============================================================================
         // FUNCIONES DE BÚSQUEDA DE UNIDADES
@@ -2030,46 +1727,43 @@ body.theme-classic .classic-theme-float-switch {
 
         function searchMechs(query) {
             if (!query || query.trim() === '') return [];
-            const searchTerm = query.toLowerCase().trim();
-            return MECH_DATABASE.filter(mech => 
-                mech.name.toLowerCase().includes(searchTerm)
-            ).sort((a, b) => {
-                const aStartsWith = a.name.toLowerCase().startsWith(searchTerm);
-                const bStartsWith = b.name.toLowerCase().startsWith(searchTerm);
-                if (aStartsWith && !bStartsWith) return -1;
-                if (!aStartsWith && bStartsWith) return 1;
+            var searchTerm = query.toLowerCase().trim();
+            return MECH_DATABASE.filter(function(mech) {
+                return mech.name.toLowerCase().includes(searchTerm);
+            }).sort(function(a, b) {
+                var aS = a.name.toLowerCase().startsWith(searchTerm);
+                var bS = b.name.toLowerCase().startsWith(searchTerm);
+                if (aS && !bS) return -1;
+                if (!aS && bS) return 1;
                 return a.name.localeCompare(b.name);
             });
         }
 
         function searchVehicles(query) {
             if (!query || query.trim() === '') return [];
-            const searchTerm = query.toLowerCase().trim();
-            return VEHICLE_DATABASE.filter(vehicle => 
-                vehicle.name.toLowerCase().includes(searchTerm)
-            ).sort((a, b) => {
-                const aStartsWith = a.name.toLowerCase().startsWith(searchTerm);
-                const bStartsWith = b.name.toLowerCase().startsWith(searchTerm);
-                if (aStartsWith && !bStartsWith) return -1;
-                if (!aStartsWith && bStartsWith) return 1;
+            var searchTerm = query.toLowerCase().trim();
+            return VEHICLE_DATABASE.filter(function(vehicle) {
+                return vehicle.name.toLowerCase().includes(searchTerm);
+            }).sort(function(a, b) {
+                var aS = a.name.toLowerCase().startsWith(searchTerm);
+                var bS = b.name.toLowerCase().startsWith(searchTerm);
+                if (aS && !bS) return -1;
+                if (!aS && bS) return 1;
                 return a.name.localeCompare(b.name);
             });
         }
 
         function searchAllUnits(query) {
             if (!query || query.trim() === '') return { mechs: [], vehicles: [] };
-            return {
-                mechs: searchMechs(query),
-                vehicles: searchVehicles(query)
-            };
+            return { mechs: searchMechs(query), vehicles: searchVehicles(query) };
         }
 
         function getMechByName(name) {
-            return MECH_DATABASE.find(m => m.name.toLowerCase() === name.toLowerCase()) || null;
+            return MECH_DATABASE.find(function(m){ return m.name.toLowerCase() === name.toLowerCase(); }) || null;
         }
 
         function getVehicleByName(name) {
-            return VEHICLE_DATABASE.find(v => v.name.toLowerCase() === name.toLowerCase()) || null;
+            return VEHICLE_DATABASE.find(function(v){ return v.name.toLowerCase() === name.toLowerCase(); }) || null;
         }
 
         function getUnitByName(name) {
@@ -2077,18 +1771,19 @@ body.theme-classic .classic-theme-float-switch {
         }
 
         function getMechsByBVRange(minBV, maxBV) {
-            return MECH_DATABASE.filter(m => m.bv2 >= minBV && m.bv2 <= maxBV).sort((a, b) => a.bv2 - b.bv2);
+            return MECH_DATABASE.filter(function(m){ return m.bv2 >= minBV && m.bv2 <= maxBV; }).sort(function(a,b){ return a.bv2 - b.bv2; });
         }
 
         function getVehiclesByBVRange(minBV, maxBV) {
-            return VEHICLE_DATABASE.filter(v => v.bv2 >= minBV && v.bv2 <= maxBV).sort((a, b) => a.bv2 - b.bv2);
+            return VEHICLE_DATABASE.filter(function(v){ return v.bv2 >= minBV && v.bv2 <= maxBV; }).sort(function(a,b){ return a.bv2 - b.bv2; });
         }
 
         function getVehiclesByType(type) {
-            return VEHICLE_DATABASE.filter(v => v.type.toLowerCase() === type.toLowerCase()).sort((a, b) => a.bv2 - b.bv2);
+            return VEHICLE_DATABASE.filter(function(v){ return v.type && v.type.toLowerCase() === type.toLowerCase(); }).sort(function(a,b){ return a.bv2 - b.bv2; });
         }
 
-        console.log(`📊 Base de datos IS 3039: ${MECH_DATABASE.length} BattleMechs, ${VEHICLE_DATABASE.length} Vehículos`);
+
+
 
         // --- CONFIGURACIÓN GOOGLE APPS SCRIPT ---
         // Usa localStorage si hay una URL personalizada guardada, si no usa la por defecto
@@ -3772,15 +3467,22 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 return;
             }
 
-            const btn = document.querySelector('#quick-load-buttons button[onclick*="buscarEnNubeBarracones"], #barracones-toolbar button[onclick*="buscarEnNubeBarracones"]');
-            if (!btn) {
-                console.error('buscarEnNubeBarracones: Botón de carga no encontrado');
-                return;
+            // Find the player button that was clicked (optional, for UI feedback)
+            var clickedPlayerBtn = null;
+            if (nombreOverride) {
+                var allBtns = document.querySelectorAll('#quick-load-buttons button');
+                for (var bi = 0; bi < allBtns.length; bi++) {
+                    if (allBtns[bi].textContent.trim().toLowerCase().includes(nombreOverride.toLowerCase().split(' ')[0])) {
+                        clickedPlayerBtn = allBtns[bi];
+                        break;
+                    }
+                }
             }
-
-            const originalBtnText = btn.innerText;
-            btn.disabled = true;
-            btn.innerText = "BUSCANDO...";
+            var originalBtnText = clickedPlayerBtn ? clickedPlayerBtn.innerText : '';
+            if (clickedPlayerBtn) {
+                clickedPlayerBtn.disabled = true;
+                clickedPlayerBtn.innerText = "BUSCANDO...";
+            }
             if (resultsContainer) {
                 resultsContainer.style.display = 'none';
                 resultsContainer.innerHTML = '';
@@ -3793,8 +3495,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 return response.json();
             })
             .then(data => {
-                btn.disabled = false;
-                btn.innerText = originalBtnText;
+                if (clickedPlayerBtn) { clickedPlayerBtn.disabled = false; clickedPlayerBtn.innerText = originalBtnText; }
 
                 if (data.result === "success") {
                     const personajes = data.personajes;
@@ -3892,8 +3593,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 }
             })
             .catch(error => {
-                btn.disabled = false;
-                btn.innerText = originalBtnText;
+                if (clickedPlayerBtn) { clickedPlayerBtn.disabled = false; clickedPlayerBtn.innerText = originalBtnText; }
                 console.error("Error en buscarEnNubeBarracones:", error);
                 alert("Error de conexión con la nube: " + error);
             });
@@ -7588,9 +7288,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // ============================================================================
         // NAVEGACIÓN TRO: TECHNICAL READOUT
         // ============================================================================
-        function goToTRO() {
+        async function goToTRO() {
             hideAllSections();
             document.getElementById('tro-section').style.display = 'block';
+            await loadTROFromCatalogs();
             // Limpiar búsqueda anterior
             document.getElementById('tro-search-input').value = '';
             document.getElementById('tro-results').innerHTML = '';
@@ -8964,7 +8665,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 speed: "43.2/64.8 km/h",
                 armor: "11.5 Tons Blindaje",
                 heatsinks: "20 Disipadores",
-                weapons: "2x PPC, 1x LL, 2x ML"
+                weapons: "2x PPC, 1x LL, 2x ML",
+                desc: "",
+                history: ""
             },
             {
                 name: "STARCORPS WHM-6D WARHAMMER",
@@ -8974,7 +8677,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 speed: "43.2/64.8 km/h",
                 armor: "13 Tons Blindaje",
                 heatsinks: "20 Disipadores",
-                weapons: "2x PPC, 2x ML, 2x SL"
+                weapons: "2x PPC, 2x ML, 2x SL",
+                desc: "",
+                history: ""
             },
             {
                 name: "EARTHWERKS BLR-1G BATTLEMASTER",
@@ -8984,7 +8689,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 speed: "43.2/64.8 km/h",
                 armor: "14.5 Tons Blindaje",
                 heatsinks: "18 Disipadores",
-                weapons: "1x PPC, 6x ML, 1x SRM-6, 2x MG"
+                weapons: "1x PPC, 6x ML, 1x SRM-6, 2x MG",
+                desc: "",
+                history: ""
             },
             {
                 name: "BERGAN LCT-1V LOCUST",
@@ -8994,7 +8701,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 speed: "86.4/129.6 km/h",
                 armor: "4 Tons Blindaje",
                 heatsinks: "10 Disipadores",
-                weapons: "1x ML, 2x MG"
+                weapons: "1x ML, 2x MG",
+                desc: "",
+                history: ""
             },
             {
                 name: "GENERAL MECHANICS WSP-1A WASP",
@@ -9004,7 +8713,9 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 speed: "64.8/97.2 km/h (Salto: 180m)",
                 armor: "3 Tons Blindaje",
                 heatsinks: "10 Disipadores",
-                weapons: "1x ML, 1x SRM-2"
+                weapons: "1x ML, 1x SRM-2",
+                desc: "",
+                history: ""
             }
         ];
 
@@ -9143,16 +8854,17 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (!content) return;
             
             const mech = ICONIC_MECHS[currentMechIndex];
-            content.innerHTML = `
-                <div class="mech-name">${mech.name}</div>
-                <div class="mech-spec">CHASIS: ${mech.chassis}</div>
-                <div class="mech-spec">MASA: ${mech.mass}</div>
-                <div class="mech-spec">MOTOR: ${mech.engine}</div>
-                <div class="mech-spec">VELOCIDAD: ${mech.speed}</div>
-                <div class="mech-spec">BLINDAJE: ${mech.armor}</div>
-                <div class="mech-spec">TÉRMICO: ${mech.heatsinks}</div>
-                <div class="mech-spec">ARMAS: ${mech.weapons}</div>
-            `;
+            var descHtml = mech.desc ? '<div class="mech-desc">' + mech.desc + '</div>' : '';
+            var histHtml = mech.history ? '<div class="mech-history">' + mech.history + '</div>' : '';
+            content.innerHTML = '<div class="mech-name">' + mech.name + '</div>'
+                + '<div class="mech-spec">CHASIS: ' + mech.chassis + '</div>'
+                + '<div class="mech-spec">MASA: ' + mech.mass + '</div>'
+                + '<div class="mech-spec">MOTOR: ' + mech.engine + '</div>'
+                + '<div class="mech-spec">VELOCIDAD: ' + mech.speed + '</div>'
+                + '<div class="mech-spec">BLINDAJE: ' + mech.armor + '</div>'
+                + '<div class="mech-spec">T\u00c9RMICO: ' + mech.heatsinks + '</div>'
+                + '<div class="mech-spec">ARMAS: ' + mech.weapons + '</div>'
+                + descHtml + histHtml;
         }
         
         // Actualizar la silueta del blueprint lateral
@@ -26463,7 +26175,7 @@ function mechInitSession(data) {
 // ================================================================
 // CARGA DE ARCHIVO (LOCAL + CATALOGO GITHUB)
 // ================================================================
-const MECH_CATALOG_URL = 'assets/mechs/index.json';
+// MECH_CATALOG_URL defined in TRO section
 let mechCatalogLoaded = false;
 
 function calcSkillTIRFromCharacter(character, skillName){
@@ -29401,7 +29113,7 @@ function vehicleSearchAndLoad(){
 }
 
 
-const VEHICLE_CATALOG_URL = 'assets/vehicles/index.json';
+// VEHICLE_CATALOG_URL defined in TRO section
 const VEHICLE_LOCAL_CATALOG_KEY = 'vehicleCatalogLocalV1';
 let vehicleCatalogLoaded = false;
 
