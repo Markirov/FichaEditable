@@ -9011,9 +9011,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // ============================================
         const SCAN_MECHS = ['marauder-scan', 'warhammer-scan', 'battlemaster-scan', 'locust-scan', 'wasp-scan'];
         const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
+        const SCAN_LASER_COMP_MS = 0; // Compensación del láser vs animación mech
         const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
-                const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
-let currentScanMechIndex = 0;
+        const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
+        let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
         
         function initMechScanSystem() {
