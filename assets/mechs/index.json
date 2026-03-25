@@ -2,2661 +2,3193 @@
   {
     "name": "Annihilator ANH-1A",
     "bv2": 1434,
+    "era": "3009",
     "file": "Annihilator ANH-1A.ssw"
   },
   {
     "name": "Annihilator ANH-1BL",
     "bv2": 1746,
+    "era": "3068",
     "file": "Annihilator ANH-1BL.ssw"
   },
   {
     "name": "Annihilator ANH-2A",
     "bv2": 1595,
+    "era": "3048",
     "file": "Annihilator ANH-2A.ssw"
   },
   {
     "name": "Annihilator ANH-3A",
     "bv2": 1712,
+    "era": "3068",
     "file": "Annihilator ANH-3A.ssw"
   },
   {
     "name": "Annihilator ANH-4A",
     "bv2": 1726,
+    "era": "3069",
     "file": "Annihilator ANH-4A.ssw"
   },
   {
     "name": "Annihilator C",
     "bv2": 2520,
+    "era": "2848",
     "file": "Annihilator C.ssw"
   },
   {
     "name": "Annihilator C 2",
     "bv2": 2722,
+    "era": "2850",
     "file": "Annihilator C 2.ssw"
   },
   {
     "name": "Archer ARC-2K",
     "bv2": 1356,
+    "era": "2856",
     "file": "Archer ARC-2K.ssw"
   },
   {
     "name": "Archer ARC-2R",
     "bv2": 1477,
+    "era": "2474",
     "file": "Archer ARC-2R.ssw"
   },
   {
     "name": "Archer ARC-2S",
     "bv2": 1393,
+    "era": "2915",
     "file": "Archer ARC-2S.ssw"
   },
   {
     "name": "Archer ARC-2W",
     "bv2": 1338,
+    "era": "3010",
     "file": "Archer ARC-2W.ssw"
   },
   {
     "name": "Assassin 'Servitor'",
     "bv2": 1019,
+    "era": "3066",
     "file": "Assassin Servitor.ssw"
   },
   {
     "name": "Assassin ASN-101",
     "bv2": 757,
+    "era": "3024",
     "file": "Assassin ASN-101.ssw"
   },
   {
     "name": "Assassin ASN-21",
     "bv2": 749,
+    "era": "2676",
     "file": "Assassin ASN-21.ssw"
   },
   {
     "name": "Assassin ASN-23",
     "bv2": 740,
+    "era": "3050",
     "file": "Assassin ASN-23.ssw"
   },
   {
     "name": "Assassin ASN-30",
     "bv2": 925,
+    "era": "3061",
     "file": "Assassin ASN-30.ssw"
   },
   {
     "name": "Assassin ASN-99",
     "bv2": 1116,
+    "era": "3068",
     "file": "Assassin ASN-99.ssw"
   },
   {
     "name": "Atlas AS7-C",
     "bv2": 2163,
+    "era": "3050",
     "file": "Atlas AS7-C.ssw"
   },
   {
     "name": "Atlas AS7-CM",
     "bv2": 2036,
+    "era": "3050",
     "file": "Atlas AS7-CM.ssw"
   },
   {
     "name": "Atlas AS7-D",
     "bv2": 1897,
+    "era": "2755",
     "file": "Atlas AS7-D.ssw"
   },
   {
     "name": "Atlas AS7-D-DC",
     "bv2": 1858,
+    "era": "2776",
     "file": "Atlas AS7-D-DC.ssw"
   },
   {
     "name": "Atlas AS7-K",
     "bv2": 2175,
+    "era": "3049",
     "file": "Atlas AS7-K.ssw"
   },
   {
     "name": "Atlas AS7-K-DC",
     "bv2": 2158,
+    "era": "3050",
     "file": "Atlas AS7-K-DC.ssw"
   },
   {
     "name": "Atlas AS7-RS",
     "bv2": 1849,
+    "era": "2892",
     "file": "Atlas AS7-RS.ssw"
   },
   {
     "name": "Atlas AS7-S",
     "bv2": 1929,
+    "era": "3050",
     "file": "Atlas AS7-S.ssw"
   },
   {
     "name": "Atlas AS7-S2",
     "bv2": 2378,
+    "era": "3061",
     "file": "Atlas AS7-S2.ssw"
   },
   {
     "name": "Atlas AS7-S3",
     "bv2": 2378,
+    "era": "3062",
     "file": "Atlas AS7-S3.ssw"
   },
   {
     "name": "Atlas C",
     "bv2": 2174,
+    "era": "3050",
     "file": "Atlas C.ssw"
   },
   {
     "name": "Awesome AWS-10KM",
     "bv2": 1961,
+    "era": "3068",
     "file": "Awesome AWS-10KM.ssw"
   },
   {
     "name": "Awesome AWS-8Q",
     "bv2": 1605,
+    "era": "2665",
     "file": "Awesome AWS-8Q.ssw"
   },
   {
     "name": "Awesome AWS-8R",
     "bv2": 1470,
+    "era": "2683",
     "file": "Awesome AWS-8R.ssw"
   },
   {
     "name": "Awesome AWS-8T",
     "bv2": 1593,
+    "era": "2815",
     "file": "Awesome AWS-8T.ssw"
   },
   {
     "name": "Awesome AWS-8V",
     "bv2": 1510,
+    "era": "2980",
     "file": "Awesome AWS-8V.ssw"
   },
   {
     "name": "Awesome AWS-9M",
     "bv2": 1812,
+    "era": "3049",
     "file": "Awesome AWS-9M.ssw"
   },
   {
     "name": "Awesome AWS-9Ma",
     "bv2": 1836,
+    "era": "3051",
     "file": "Awesome AWS-9Ma.ssw"
   },
   {
     "name": "Awesome AWS-9Q",
     "bv2": 1875,
+    "era": "3057",
     "file": "Awesome AWS-9Q.ssw"
   },
   {
     "name": "Awesome AWS-9Q (Klatt)",
     "bv2": 1805,
+    "era": "3071",
     "file": "Awesome AWS-9Q (Klatt).ssw"
   },
   {
     "name": "Axman AXM-1BL",
     "bv2": 1600,
+    "era": "3058",
     "file": "Axman AXM-1BL.ssw"
   },
   {
     "name": "Axman AXM-1N",
     "bv2": 1374,
+    "era": "3048",
     "file": "Axman AXM-1N.ssw"
   },
   {
     "name": "Axman AXM-2N",
     "bv2": 1458,
+    "era": "3049",
     "file": "Axman AXM-2N.ssw"
   },
   {
     "name": "Axman AXM-4D",
     "bv2": 1222,
+    "era": "3071",
     "file": "Axman AXM-4D.ssw"
   },
   {
     "name": "Banshee BNC-3E",
     "bv2": 1422,
+    "era": "2475",
     "file": "Banshee BNC-3E.ssw"
   },
   {
     "name": "Banshee BNC-3M",
     "bv2": 1595,
+    "era": "2579",
     "file": "Banshee BNC-3M.ssw"
   },
   {
     "name": "Banshee BNC-3MC",
     "bv2": 1487,
+    "era": "3037",
     "file": "Banshee BNC-3MC.ssw"
   },
   {
     "name": "Banshee BNC-3Q",
     "bv2": 1394,
+    "era": "2915",
     "file": "Banshee BNC-3Q.ssw"
   },
   {
     "name": "Banshee BNC-3S",
     "bv2": 1751,
+    "era": "3026",
     "file": "Banshee BNC-3S.ssw"
   },
   {
     "name": "Banshee BNC-3S (Reinesblatt)",
     "bv2": 1678,
+    "era": "3029",
     "file": "Banshee BNC-3S (Reinesblatt).ssw"
   },
   {
     "name": "Banshee BNC-3SS",
     "bv2": 1751,
+    "era": "3026",
     "file": "Banshee BNC-3SS.ssw"
   },
   {
     "name": "Banshee BNC-5S",
     "bv2": 2065,
+    "era": "3053",
     "file": "Banshee BNC-5S.ssw"
   },
   {
     "name": "Banshee BNC-5S (Sawyer)",
     "bv2": 2094,
+    "era": "3057",
     "file": "Banshee BNC-5S (Sawyer).ssw"
   },
   {
     "name": "Banshee BNC-5S (Vandergriff)",
     "bv2": 1853,
+    "era": "3062",
     "file": "Banshee BNC-5S (Vandergriff).ssw"
   },
   {
     "name": "Banshee BNC-6S",
     "bv2": 1889,
+    "era": "3062",
     "file": "Banshee BNC-6S.ssw"
   },
   {
     "name": "Banshee BNC-7S",
     "bv2": 2126,
+    "era": "3063",
     "file": "Banshee BNC-7S.ssw"
   },
   {
     "name": "Banshee BNC-8S",
     "bv2": 2408,
+    "era": "3070",
     "file": "Banshee BNC-8S.ssw"
   },
   {
     "name": "Banshee BNC-9S",
     "bv2": 2496,
+    "era": "3071",
     "file": "Banshee BNC-9S.ssw"
   },
   {
     "name": "BattleMaster BLR-1G-DC",
     "bv2": 1494,
+    "era": "2855",
     "file": "BattleMaster BLR-1G-DC.ssw"
   },
   {
     "name": "Battlemaster BLR-1D",
     "bv2": 1522,
+    "era": "2867",
     "file": "Battlemaster BLR-1D.ssw"
   },
   {
     "name": "Battlemaster BLR-1G",
     "bv2": 1519,
+    "era": "2633",
     "file": "Battlemaster BLR-1G.ssw"
   },
   {
     "name": "Battlemaster BLR-1G-Bl",
     "bv2": 1551,
+    "era": "2633",
     "file": "Battlemaster BLR-1G-Bl.ssw"
   },
   {
     "name": "Battlemaster BLR-1S",
     "bv2": 1507,
+    "era": "3025",
     "file": "Battlemaster BLR-1S.ssw"
   },
   {
     "name": "Black Knight BL-7-KNT",
     "bv2": 1443,
+    "era": "2809",
     "file": "Black Knight BL-7-KNT.ssw"
   },
   {
     "name": "Black Knight BL-7-KNT-L",
     "bv2": 1409,
+    "era": "2809",
     "file": "Black Knight BL-7-KNT-L.ssw"
   },
   {
     "name": "Blackjack BJ-1",
     "bv2": 949,
+    "era": "2757",
     "file": "Blackjack BJ-1.ssw"
   },
   {
     "name": "Blackjack BJ-1DB",
     "bv2": 1015,
+    "era": "3023",
     "file": "Blackjack BJ-1DB.ssw"
   },
   {
     "name": "Blackjack BJ-1DC",
     "bv2": 917,
+    "era": "3024",
     "file": "Blackjack BJ-1DC.ssw"
   },
   {
     "name": "Blackjack BJ-1X",
     "bv2": 964,
+    "era": "2756",
     "file": "Blackjack BJ-1X.ssw"
   },
   {
     "name": "Blackjack BJ-2",
     "bv2": 1148,
+    "era": "3052",
     "file": "Blackjack BJ-2.ssw"
   },
   {
     "name": "Blackjack BJ-3",
     "bv2": 1271,
+    "era": "3042",
     "file": "Blackjack BJ-3.ssw"
   },
   {
     "name": "Blackjack BJ-4",
     "bv2": 1063,
+    "era": "3067",
     "file": "Blackjack BJ-4.ssw"
   },
   {
     "name": "Bombardier BMB-10D",
     "bv2": 1340,
+    "era": "2866",
     "file": "Bombardier BMB-10D.ssw"
   },
   {
     "name": "Caesar CES-3R",
     "bv2": 1578,
+    "era": "3049",
     "file": "Caesar CES-3R.ssw"
   },
   {
     "name": "Caesar CES-3R 'Archangel'",
     "bv2": 2098,
+    "era": "3057",
     "file": "Caesar CES-3R Archangel.ssw"
   },
   {
     "name": "Caesar CES-3R 'Gertrude'",
     "bv2": 1833,
+    "era": "3062",
     "file": "Caesar CES-3R Gertrude.ssw"
   },
   {
     "name": "Caesar CES-3S",
     "bv2": 1909,
+    "era": "3067",
     "file": "Caesar CES-3S.ssw"
   },
   {
     "name": "Caesar CES-4R",
     "bv2": 2024,
+    "era": "3067",
     "file": "Caesar CES-4R.ssw"
   },
   {
     "name": "Caesar CES-4S",
     "bv2": 1739,
+    "era": "3064",
     "file": "Caesar CES-4S.ssw"
   },
   {
     "name": "Cataphract CTF-1X",
     "bv2": 1316,
+    "era": "3025",
     "file": "Cataphract CTF-1X.ssw"
   },
   {
     "name": "Cataphract CTF-2X",
     "bv2": 1344,
+    "era": "3027",
     "file": "Cataphract CTF-2X.ssw"
   },
   {
     "name": "Cataphract CTF-3D",
     "bv2": 1325,
+    "era": "3050",
     "file": "Cataphract CTF-3D.ssw"
   },
   {
     "name": "Cataphract CTF-3L",
     "bv2": 1545,
+    "era": "3050",
     "file": "Cataphract CTF-3L.ssw"
   },
   {
     "name": "Cataphract CTF-3LL",
     "bv2": 1664,
+    "era": "3068",
     "file": "Cataphract CTF-3LL.ssw"
   },
   {
     "name": "Cataphract CTF-4L",
     "bv2": 2002,
+    "era": "3067",
     "file": "Cataphract CTF-4L.ssw"
   },
   {
     "name": "Cataphract CTF-4X",
     "bv2": 1216,
+    "era": "3029",
     "file": "Cataphract CTF-4X.ssw"
   },
   {
     "name": "Cataphract CTF-5D",
     "bv2": 1742,
+    "era": "3070",
     "file": "Cataphract CTF-5D.ssw"
   },
   {
     "name": "Catapult CPLT-A1",
     "bv2": 1285,
+    "era": "2563",
     "file": "Catapult CPLT-A1.ssw"
   },
   {
     "name": "Catapult CPLT-C1",
     "bv2": 1399,
+    "era": "2561",
     "file": "Catapult CPLT-C1.ssw"
   },
   {
     "name": "Catapult CPLT-C1 (Jenny) 'Butterbee'",
     "bv2": 1242,
+    "era": "3027",
     "file": "Catapult CPLT-C1 (Jenny) Butterbee.ssw"
   },
   {
     "name": "Catapult CPLT-C1b",
     "bv2": 1570,
+    "era": "2688",
     "file": "Catapult CPLT-C1b.ssw"
   },
   {
     "name": "Catapult CPLT-C2",
     "bv2": 1346,
+    "era": "3062",
     "file": "Catapult CPLT-C2.ssw"
   },
   {
     "name": "Catapult CPLT-C3",
     "bv2": 1368,
+    "era": "3049",
     "file": "Catapult CPLT-C3.ssw"
   },
   {
     "name": "Catapult CPLT-C4",
     "bv2": 1358,
+    "era": "2565",
     "file": "Catapult CPLT-C4.ssw"
   },
   {
     "name": "Catapult CPLT-C4C",
     "bv2": 1449,
+    "era": "3055",
     "file": "Catapult CPLT-C4C.ssw"
   },
   {
     "name": "Catapult CPLT-C5",
     "bv2": 1748,
+    "era": "3061",
     "file": "Catapult CPLT-C5.ssw"
   },
   {
     "name": "Catapult CPLT-C6",
     "bv2": 1874,
+    "era": "3069",
     "file": "Catapult CPLT-C6.ssw"
   },
   {
     "name": "Catapult CPLT-H2",
     "bv2": 1473,
+    "era": "3064",
     "file": "Catapult CPLT-H2.ssw"
   },
   {
     "name": "Catapult CPLT-K2",
     "bv2": 1319,
+    "era": "2603",
     "file": "Catapult CPLT-K2.ssw"
   },
   {
     "name": "Catapult CPLT-K2BL",
     "bv2": 1600,
+    "era": "3058",
     "file": "Catapult CPLT-K2BL.ssw"
   },
   {
     "name": "Catapult CPLT-K2K",
     "bv2": 1716,
+    "era": "3058",
     "file": "Catapult CPLT-K2K.ssw"
   },
   {
     "name": "Catapult CPLT-K3",
     "bv2": 1437,
+    "era": "3047",
     "file": "Catapult CPLT-K3.ssw"
   },
   {
     "name": "Catapult CPLT-K4",
     "bv2": 1880,
+    "era": "3068",
     "file": "Catapult CPLT-K4.ssw"
   },
   {
     "name": "Catapult CPLT-K5",
     "bv2": 1457,
+    "era": "3058",
     "file": "Catapult CPLT-K5.ssw"
   },
   {
     "name": "Centurion CN10-B",
     "bv2": 1243,
+    "era": "3057",
     "file": "Centurion CN10-B.ssw"
   },
   {
     "name": "Centurion CN9-A",
     "bv2": 945,
+    "era": "2801",
     "file": "Centurion CN9-A.ssw"
   },
   {
     "name": "Centurion CN9-AH",
     "bv2": 945,
+    "era": "2874",
     "file": "Centurion CN9-AH.ssw"
   },
   {
     "name": "Centurion CN9-AL",
     "bv2": 1057,
+    "era": "2915",
     "file": "Centurion CN9-AL.ssw"
   },
   {
     "name": "Centurion CN9-D",
     "bv2": 1130,
+    "era": "3049",
     "file": "Centurion CN9-D.ssw"
   },
   {
     "name": "Centurion CN9-D3",
     "bv2": 1324,
+    "era": "3052",
     "file": "Centurion CN9-D3.ssw"
   },
   {
     "name": "Centurion CN9-D3D",
     "bv2": 1373,
+    "era": "3060",
     "file": "Centurion CN9-D3D.ssw"
   },
   {
     "name": "Centurion CN9-D4D",
     "bv2": 1369,
+    "era": "3066",
     "file": "Centurion CN9-D4D.ssw"
   },
   {
     "name": "Centurion CN9-D5",
     "bv2": 1738,
+    "era": "3062",
     "file": "Centurion CN9-D5.ssw"
   },
   {
     "name": "Centurion CN9-D9",
     "bv2": 1638,
+    "era": "3071",
     "file": "Centurion CN9-D9.ssw"
   },
   {
     "name": "Centurion CN9-YLW 'Yen Lo Wang'",
     "bv2": 957,
+    "era": "3027",
     "file": "Centurion CN9-YLW Yen Lo Wang.ssw"
   },
   {
     "name": "Centurion CN9-YLW2 'Yen Lo Wang'",
     "bv2": 1435,
+    "era": "3051",
     "file": "Centurion CN9-YLW2 Yen Lo Wang.ssw"
   },
   {
     "name": "Champion CHP-1N2",
     "bv2": 1233,
+    "era": "2667",
     "file": "Champion CHP-1N2.ssw"
   },
   {
     "name": "Champion CHP-2N",
     "bv2": 1116,
+    "era": "2810",
     "file": "Champion CHP-2N.ssw"
   },
   {
     "name": "Charger CGR-1A1",
     "bv2": 981,
+    "era": "2665",
     "file": "Charger CGR-1A1.ssw"
   },
   {
     "name": "Charger CGR-1A5",
     "bv2": 1468,
+    "era": "3023",
     "file": "Charger CGR-1A5.ssw"
   },
   {
     "name": "Charger CGR-1A9",
     "bv2": 1397,
+    "era": "3034",
     "file": "Charger CGR-1A9.ssw"
   },
   {
     "name": "Charger CGR-1L",
     "bv2": 980,
+    "era": "3022",
     "file": "Charger CGR-1L.ssw"
   },
   {
     "name": "Charger CGR-2A2",
     "bv2": 1109,
+    "era": "3064",
     "file": "Charger CGR-2A2.ssw"
   },
   {
     "name": "Charger CGR-3K",
     "bv2": 1656,
+    "era": "3049",
     "file": "Charger CGR-3K.ssw"
   },
   {
     "name": "Charger CGR-C",
     "bv2": 1592,
+    "era": "3053",
     "file": "Charger CGR-C.ssw"
   },
   {
     "name": "Charger CGR-KMZ",
     "bv2": 1781,
+    "era": "3071",
     "file": "Charger CGR-KMZ.ssw"
   },
   {
     "name": "Charger CGR-SA5",
     "bv2": 2105,
+    "era": "3063",
     "file": "Charger CGR-SA5.ssw"
   },
   {
     "name": "Charger CGR-SB 'Challenger'",
     "bv2": 1604,
+    "era": "3025",
     "file": "Charger CGR-SB Challenger.ssw"
   },
   {
     "name": "Cicada CDA-2A",
     "bv2": 659,
+    "era": "2740",
     "file": "Cicada CDA-2A.ssw"
   },
   {
     "name": "Cicada CDA-2B",
     "bv2": 626,
+    "era": "2840",
     "file": "Cicada CDA-2B.ssw"
   },
   {
     "name": "Cicada CDA-3C",
     "bv2": 771,
+    "era": "2840",
     "file": "Cicada CDA-3C.ssw"
   },
   {
     "name": "Cicada CDA-3F",
     "bv2": 1329,
+    "era": "3052",
     "file": "Cicada CDA-3F.ssw"
   },
   {
     "name": "Cicada CDA-3G",
     "bv2": 1270,
+    "era": "3056",
     "file": "Cicada CDA-3G.ssw"
   },
   {
     "name": "Cicada CDA-3M",
     "bv2": 812,
+    "era": "3049",
     "file": "Cicada CDA-3M.ssw"
   },
   {
     "name": "Cicada CDA-3MA",
     "bv2": 1158,
+    "era": "3068",
     "file": "Cicada CDA-3MA.ssw"
   },
   {
     "name": "Cicada CDA-3P",
     "bv2": 1502,
+    "era": "3070",
     "file": "Cicada CDA-3P.ssw"
   },
   {
     "name": "Clint CLNT-1-2R",
     "bv2": 707,
+    "era": "2607",
     "file": "Clint CLNT-1-2R.ssw"
   },
   {
     "name": "Clint CLNT-2-3T",
     "bv2": 770,
+    "era": "2608",
     "file": "Clint CLNT-2-3T.ssw"
   },
   {
     "name": "Clint CLNT-2-3T (Denton)",
     "bv2": 873,
+    "era": "3033",
     "file": "Clint CLNT-2-3T (Denton).ssw"
   },
   {
     "name": "Clint CLNT-2-3U",
     "bv2": 1081,
+    "era": "3050",
     "file": "Clint CLNT-2-3U.ssw"
   },
   {
     "name": "Clint CLNT-2-3UL",
     "bv2": 1245,
+    "era": "3069",
     "file": "Clint CLNT-2-3UL.ssw"
   },
   {
     "name": "Clint CLNT-2-4T",
     "bv2": 619,
+    "era": "2950",
     "file": "Clint CLNT-2-4T.ssw"
   },
   {
     "name": "Clint CLNT-3-3T",
     "bv2": 901,
+    "era": "3069",
     "file": "Clint CLNT-3-3T.ssw"
   },
   {
     "name": "Clint CLNT-5U",
     "bv2": 1275,
+    "era": "3062",
     "file": "Clint CLNT-5U.ssw"
   },
   {
     "name": "Clint CLNT-6S",
     "bv2": 1334,
+    "era": "3069",
     "file": "Clint CLNT-6S.ssw"
   },
   {
     "name": "Commando COM-1B",
     "bv2": 616,
+    "era": "3015",
     "file": "Commando COM-1B.ssw"
   },
   {
     "name": "Commando COM-1C",
     "bv2": 458,
+    "era": "3020",
     "file": "Commando COM-1C.ssw"
   },
   {
     "name": "Commando COM-1D",
     "bv2": 558,
+    "era": "2480",
     "file": "Commando COM-1D.ssw"
   },
   {
     "name": "Commando COM-2D",
     "bv2": 541,
+    "era": "2486",
     "file": "Commando COM-2D.ssw"
   },
   {
     "name": "Commando COM-3A",
     "bv2": 540,
+    "era": "3025",
     "file": "Commando COM-3A.ssw"
   },
   {
     "name": "Commando COM-4H",
     "bv2": 691,
+    "era": "3058",
     "file": "Commando COM-4H.ssw"
   },
   {
     "name": "Commando COM-5S",
     "bv2": 557,
+    "era": "3050",
     "file": "Commando COM-5S.ssw"
   },
   {
     "name": "Commando COM-7B",
     "bv2": 602,
+    "era": "3068",
     "file": "Commando COM-7B.ssw"
   },
   {
     "name": "Commando COM-7S",
     "bv2": 658,
+    "era": "3059",
     "file": "Commando COM-7S.ssw"
   },
   {
     "name": "Crab CRB-20",
     "bv2": 1143,
+    "era": "2810",
     "file": "Crab CRB-20.ssw"
   },
   {
     "name": "Crusader CRD-3D",
     "bv2": 1338,
+    "era": "2756",
     "file": "Crusader CRD-3D.ssw"
   },
   {
     "name": "Crusader CRD-3K",
     "bv2": 1290,
+    "era": "2765",
     "file": "Crusader CRD-3K.ssw"
   },
   {
     "name": "Crusader CRD-3L",
     "bv2": 1297,
+    "era": "2753",
     "file": "Crusader CRD-3L.ssw"
   },
   {
     "name": "Crusader CRD-3LE",
     "bv2": 1411,
+    "era": "2752",
     "file": "Crusader CRD-3LE.ssw"
   },
   {
     "name": "Crusader CRD-3R",
     "bv2": 1317,
+    "era": "2752",
     "file": "Crusader CRD-3R.ssw"
   },
   {
     "name": "Cyclops CP-10-HQ",
     "bv2": 1113,
+    "era": "2753",
     "file": "Cyclops CP-10-HQ.ssw"
   },
   {
     "name": "Cyclops CP-10-Q",
     "bv2": 1584,
+    "era": "2801",
     "file": "Cyclops CP-10-Q.ssw"
   },
   {
     "name": "Cyclops CP-10-Z",
     "bv2": 1317,
+    "era": "2710",
     "file": "Cyclops CP-10-Z.ssw"
   },
   {
     "name": "Cyclops CP-11-A",
     "bv2": 1547,
+    "era": "3045",
     "file": "Cyclops CP-11-A.ssw"
   },
   {
     "name": "Cyclops CP-11-A-DC",
     "bv2": 1507,
+    "era": "3045",
     "file": "Cyclops CP-11-A-DC.ssw"
   },
   {
     "name": "Cyclops CP-11-C",
     "bv2": 1553,
+    "era": "3050",
     "file": "Cyclops CP-11-C.ssw"
   },
   {
     "name": "Cyclops CP-11-G",
     "bv2": 1981,
+    "era": "3058",
     "file": "Cyclops CP-11-G.ssw"
   },
   {
     "name": "Cyclops CP-11-H",
     "bv2": 1525,
+    "era": "3064",
     "file": "Cyclops CP-11-H.ssw"
   },
   {
     "name": "Cyclops CP-12-K",
     "bv2": 1699,
+    "era": "3059",
     "file": "Cyclops CP-12-K.ssw"
   },
   {
     "name": "Daboku DCMS-MX90-D",
     "bv2": 1290,
+    "era": "3038",
     "file": "Daboku DCMS-MX90-D.ssw"
   },
   {
     "name": "Dervish DV-6D",
     "bv2": 1321,
+    "era": "3062",
     "file": "Dervish DV-6D.ssw"
   },
   {
     "name": "Dervish DV-6M",
     "bv2": 1146,
+    "era": "2610",
     "file": "Dervish DV-6M.ssw"
   },
   {
     "name": "Dervish DV-6M ELH",
     "bv2": 1323,
+    "era": "3025",
     "file": "Dervish DV-6M ELH.ssw"
   },
   {
     "name": "Dervish DV-7BL-D",
     "bv2": 1568,
+    "era": "3047",
     "file": "Dervish DV-7BL-D.ssw"
   },
   {
     "name": "Dervish DV-7D",
     "bv2": 1412,
+    "era": "3047",
     "file": "Dervish DV-7D.ssw"
   },
   {
     "name": "Dervish DV-8D",
     "bv2": 1765,
+    "era": "3062",
     "file": "Dervish DV-8D.ssw"
   },
   {
     "name": "Dervish DV-9D",
     "bv2": 1518,
+    "era": "3068",
     "file": "Dervish DV-9D.ssw"
   },
   {
     "name": "Dragon DRG-1C",
     "bv2": 1215,
+    "era": "2752",
     "file": "Dragon DRG-1C.ssw"
   },
   {
     "name": "Dragon DRG-1N",
     "bv2": 1125,
+    "era": "2754",
     "file": "Dragon DRG-1N.ssw"
   },
   {
     "name": "Dragon DRG-5N",
     "bv2": 1223,
+    "era": "3047",
     "file": "Dragon DRG-5N.ssw"
   },
   {
     "name": "Dragon DRG-7N",
     "bv2": 1495,
+    "era": "3063",
     "file": "Dragon DRG-7N.ssw"
   },
   {
     "name": "Enforcer ENF-4R",
     "bv2": 1032,
+    "era": "2777",
     "file": "Enforcer ENF-4R.ssw"
   },
   {
     "name": "Enforcer ENF-5D",
     "bv2": 1308,
+    "era": "3050",
     "file": "Enforcer ENF-5D.ssw"
   },
   {
     "name": "Falcon FLC-4N",
     "bv2": 610,
+    "era": "2582",
     "file": "Falcon FLC-4N.ssw"
   },
   {
     "name": "Falcon FLC-4P",
     "bv2": 649,
+    "era": "3050",
     "file": "Falcon FLC-4P.ssw"
   },
   {
     "name": "Falcon FLC-5P",
     "bv2": 945,
+    "era": "3065",
     "file": "Falcon FLC-5P.ssw"
   },
   {
     "name": "Falcon FLC-6C",
     "bv2": 1290,
+    "era": "3065",
     "file": "Falcon FLC-6C.ssw"
   },
   {
     "name": "Firefly C",
     "bv2": 1290,
+    "era": "2839",
     "file": "Firefly C.ssw"
   },
   {
     "name": "Firefly FFL-4A",
     "bv2": 831,
+    "era": "2801",
     "file": "Firefly FFL-4A.ssw"
   },
   {
     "name": "Firefly FFL-4B",
     "bv2": 870,
+    "era": "3047",
     "file": "Firefly FFL-4B.ssw"
   },
   {
     "name": "Firefly FFL-4C",
     "bv2": 806,
+    "era": "3048",
     "file": "Firefly FFL-4C.ssw"
   },
   {
     "name": "Firefly FFL-4D",
     "bv2": 897,
+    "era": "3067",
     "file": "Firefly FFL-4D.ssw"
   },
   {
     "name": "Firefly FFL-4DA",
     "bv2": 921,
+    "era": "3067",
     "file": "Firefly FFL-4DA.ssw"
   },
   {
     "name": "Firestarter FS9-A",
     "bv2": 773,
+    "era": "2550",
     "file": "Firestarter FS9-A.ssw"
   },
   {
     "name": "Firestarter FS9-B",
     "bv2": 668,
+    "era": "3070",
     "file": "Firestarter FS9-B.ssw"
   },
   {
     "name": "Firestarter FS9-C",
     "bv2": 940,
+    "era": "3063",
     "file": "Firestarter FS9-C.ssw"
   },
   {
     "name": "Firestarter FS9-H",
     "bv2": 694,
+    "era": "2703",
     "file": "Firestarter FS9-H.ssw"
   },
   {
     "name": "Firestarter FS9-K",
     "bv2": 763,
+    "era": "2550",
     "file": "Firestarter FS9-K.ssw"
   },
   {
     "name": "Firestarter FS9-M 'Mirage'",
     "bv2": 798,
+    "era": "2893",
     "file": "Firestarter FS9-M Mirage.ssw"
   },
   {
     "name": "Firestarter FS9-P",
     "bv2": 775,
+    "era": "3064",
     "file": "Firestarter FS9-P.ssw"
   },
   {
     "name": "Firestarter FS9-S",
     "bv2": 754,
+    "era": "3049",
     "file": "Firestarter FS9-S.ssw"
   },
   {
     "name": "Firestarter FS9-S1",
     "bv2": 820,
+    "era": "3049",
     "file": "Firestarter FS9-S1.ssw"
   },
   {
     "name": "Firestarter FS9-S2",
     "bv2": 842,
+    "era": "3075",
     "file": "Firestarter FS9-S2.ssw"
   },
   {
     "name": "Firestarter FS9-S3",
     "bv2": 908,
+    "era": "3075",
     "file": "Firestarter FS9-S3.ssw"
   },
   {
     "name": "Flashman FLS-7K",
     "bv2": 1480,
+    "era": "2796",
     "file": "Flashman FLS-7K.ssw"
   },
   {
     "name": "Flea 'Fire Ant'",
     "bv2": 332,
+    "era": "3063",
     "file": "Flea Fire Ant.ssw"
   },
   {
     "name": "Flea FLE-15",
     "bv2": 430,
+    "era": "2523",
     "file": "Flea FLE-15.ssw"
   },
   {
     "name": "Flea FLE-17",
     "bv2": 510,
+    "era": "3049",
     "file": "Flea FLE-17.ssw"
   },
   {
     "name": "Flea FLE-19",
     "bv2": 381,
+    "era": "3068",
     "file": "Flea FLE-19.ssw"
   },
   {
     "name": "Flea FLE-20",
     "bv2": 791,
+    "era": "3071",
     "file": "Flea FLE-20.ssw"
   },
   {
     "name": "Flea FLE-4",
     "bv2": 432,
+    "era": "2501",
     "file": "Flea FLE-4.ssw"
   },
   {
     "name": "Goliath GOL-1H",
     "bv2": 1449,
+    "era": "2652",
     "file": "Goliath GOL-1H.ssw"
   },
   {
     "name": "Grand Dragon DRG-1G",
     "bv2": 1300,
+    "era": "3024",
     "file": "Grand Dragon DRG-1G.ssw"
   },
   {
     "name": "Grand Dragon DRG-5K",
     "bv2": 1358,
+    "era": "3050",
     "file": "Grand Dragon DRG-5K.ssw"
   },
   {
     "name": "Grand Dragon DRG-5K-DC",
     "bv2": 1322,
+    "era": "3050",
     "file": "Grand Dragon DRG-5K-DC.ssw"
   },
   {
     "name": "Grand Dragon DRG-7K",
     "bv2": 1702,
+    "era": "3063",
     "file": "Grand Dragon DRG-7K.ssw"
   },
   {
     "name": "Grand Dragon DRG-9KC",
     "bv2": 1147,
+    "era": "3071",
     "file": "Grand Dragon DRG-9KC.ssw"
   },
   {
     "name": "Grand Dragon DRG-C",
     "bv2": 1322,
+    "era": "3050",
     "file": "Grand Dragon DRG-C.ssw"
   },
   {
     "name": "Grasshopper GHR-5H",
     "bv2": 1427,
+    "era": "2780",
     "file": "Grasshopper GHR-5H.ssw"
   },
   {
     "name": "Grasshopper GHR-5H ELH",
     "bv2": 1417,
+    "era": "2780",
     "file": "Grasshopper GHR-5H ELH.ssw"
   },
   {
     "name": "Grasshopper GHR-5H ELH Mk II",
     "bv2": 1739,
+    "era": "3070",
     "file": "Grasshopper GHR-5H ELH Mk II.ssw"
   },
   {
     "name": "Grasshopper GHR-5J",
     "bv2": 1354,
+    "era": "3049",
     "file": "Grasshopper GHR-5J.ssw"
   },
   {
     "name": "Grasshopper GHR-5N",
     "bv2": 1511,
+    "era": "3040",
     "file": "Grasshopper GHR-5N.ssw"
   },
   {
     "name": "Grasshopper GHR-6K",
     "bv2": 1597,
+    "era": "3064",
     "file": "Grasshopper GHR-6K.ssw"
   },
   {
     "name": "Grasshopper GHR-7K",
     "bv2": 1806,
+    "era": "3068",
     "file": "Grasshopper GHR-7K.ssw"
   },
   {
     "name": "Grasshopper GHR-7K 'Gravedigger'",
     "bv2": 2084,
+    "era": "3071",
     "file": "Grasshopper GHR-7K Gravedigger.ssw"
   },
   {
     "name": "Grasshopper GHR-C",
     "bv2": 1366,
+    "era": "3052",
     "file": "Grasshopper GHR-C.ssw"
   },
   {
     "name": "Griffin GRF-1BL",
     "bv2": 1272,
+    "era": "2492",
     "file": "Griffin GRF-1BL.ssw"
   },
   {
     "name": "Griffin GRF-1E 'Sparky'",
     "bv2": 1449,
+    "era": "3035",
     "file": "Griffin GRF-1E Sparky.ssw"
   },
   {
     "name": "Griffin GRF-1N",
     "bv2": 1272,
+    "era": "2492",
     "file": "Griffin GRF-1N.ssw"
   },
   {
     "name": "Griffin GRF-1S",
     "bv2": 1253,
+    "era": "2857",
     "file": "Griffin GRF-1S.ssw"
   },
   {
     "name": "Guillotine GLT-4L",
     "bv2": 1400,
+    "era": "2825",
     "file": "Guillotine GLT-4L.ssw"
   },
   {
     "name": "Guillotine GLT-4P",
     "bv2": 1376,
+    "era": "2833",
     "file": "Guillotine GLT-4P.ssw"
   },
   {
     "name": "Hatamoto-Chi HTM-26T",
     "bv2": 1536,
+    "era": "3039",
     "file": "Hatamoto-Chi HTM-26T.ssw"
   },
   {
     "name": "Hatamoto-Chi HTM-27T",
     "bv2": 1607,
+    "era": "3042",
     "file": "Hatamoto-Chi HTM-27T.ssw"
   },
   {
     "name": "Hatamoto-Chi HTM-28T",
     "bv2": 2039,
+    "era": "3059",
     "file": "Hatamoto-Chi HTM-28T.ssw"
   },
   {
     "name": "Hatamoto-Chi HTM-28T (Shin)",
     "bv2": 2213,
+    "era": "3060",
     "file": "Hatamoto-Chi HTM-28T (Shin).ssw"
   },
   {
     "name": "Hatamoto-Hi HTM-27U",
     "bv2": 1627,
+    "era": "3047",
     "file": "Hatamoto-Hi HTM-27U.ssw"
   },
   {
     "name": "Hatamoto-Hi HTM-C",
     "bv2": 1627,
+    "era": "3050",
     "file": "Hatamoto-Hi HTM-C.ssw"
   },
   {
     "name": "Hatamoto-Hi HTM-CM",
     "bv2": 1573,
+    "era": "3050",
     "file": "Hatamoto-Hi HTM-CM.ssw"
   },
   {
     "name": "Hatamoto-Kaze HTM-27V",
     "bv2": 1595,
+    "era": "3048",
     "file": "Hatamoto-Kaze HTM-27V.ssw"
   },
   {
     "name": "Hatamoto-Ku HTM-27W",
     "bv2": 1563,
+    "era": "3048",
     "file": "Hatamoto-Ku HTM-27W.ssw"
   },
   {
     "name": "Hatamoto-Mizo HTM-27Y",
     "bv2": 1675,
+    "era": "3050",
     "file": "Hatamoto-Mizo HTM-27Y.ssw"
   },
   {
     "name": "Hatchetman HCT-3F",
     "bv2": 854,
+    "era": "3023",
     "file": "Hatchetman HCT-3F.ssw"
   },
   {
     "name": "Hatchetman HCT-5D",
     "bv2": 1012,
+    "era": "3062",
     "file": "Hatchetman HCT-5D.ssw"
   },
   {
     "name": "Hatchetman HCT-5DD",
     "bv2": 1112,
+    "era": "3065",
     "file": "Hatchetman HCT-5DD.ssw"
   },
   {
     "name": "Hatchetman HCT-5K",
     "bv2": 1070,
+    "era": "3075",
     "file": "Hatchetman HCT-5K.ssw"
   },
   {
     "name": "Hatchetman HCT-5S",
     "bv2": 1039,
+    "era": "3049",
     "file": "Hatchetman HCT-5S.ssw"
   },
   {
     "name": "Hatchetman HCT-6D",
     "bv2": 1611,
+    "era": "3062",
     "file": "Hatchetman HCT-6D.ssw"
   },
   {
     "name": "Hatchetman HCT-6S",
     "bv2": 1174,
+    "era": "3064",
     "file": "Hatchetman HCT-6S.ssw"
   },
   {
     "name": "Hermes HER-1A",
     "bv2": 601,
+    "era": "2856",
     "file": "Hermes HER-1A.ssw"
   },
   {
     "name": "Hermes HER-1B",
     "bv2": 687,
+    "era": "2856",
     "file": "Hermes HER-1B.ssw"
   },
   {
     "name": "Hermes II HER-2M 'Mercury'",
     "bv2": 910,
+    "era": "2802",
     "file": "Hermes II HER-2M Mercury.ssw"
   },
   {
     "name": "Hermes II HER-2S",
     "bv2": 784,
+    "era": "2798",
     "file": "Hermes II HER-2S.ssw"
   },
   {
     "name": "Hermes II HER-4K 'Hermes III'",
     "bv2": 976,
+    "era": "3025",
     "file": "Hermes II HER-4K Hermes III.ssw"
   },
   {
     "name": "Hermes II HER-5C",
     "bv2": 1119,
+    "era": "3062",
     "file": "Hermes II HER-5C.ssw"
   },
   {
     "name": "Hermes II HER-5ME 'Mercury Elite'",
     "bv2": 847,
+    "era": "3056",
     "file": "Hermes II HER-5ME Mercury Elite.ssw"
   },
   {
     "name": "Hermes II HER-5S",
     "bv2": 857,
+    "era": "3050",
     "file": "Hermes II HER-5S.ssw"
   },
   {
     "name": "Hermes II HER-5SA",
     "bv2": 924,
+    "era": "3068",
     "file": "Hermes II HER-5SA.ssw"
   },
   {
     "name": "Hermes II HER-6D",
     "bv2": 1106,
+    "era": "3062",
     "file": "Hermes II HER-6D.ssw"
   },
   {
     "name": "Highlander HGN-733",
     "bv2": 1801,
+    "era": "2866",
     "file": "Highlander HGN-733.ssw"
   },
   {
     "name": "Highlander HGN-733C",
     "bv2": 1857,
+    "era": "2866",
     "file": "Highlander HGN-733C.ssw"
   },
   {
     "name": "Highlander HGN-733P",
     "bv2": 1865,
+    "era": "2866",
     "file": "Highlander HGN-733P.ssw"
   },
   {
     "name": "Hoplite C",
     "bv2": 1736,
+    "era": "2840",
     "file": "Hoplite C.ssw"
   },
   {
     "name": "Hoplite HOP-4B",
     "bv2": 1162,
+    "era": "2682",
     "file": "Hoplite HOP-4B.ssw"
   },
   {
     "name": "Hoplite HOP-4C",
     "bv2": 986,
+    "era": "2584",
     "file": "Hoplite HOP-4C.ssw"
   },
   {
     "name": "Hoplite HOP-4D",
     "bv2": 1022,
+    "era": "3050",
     "file": "Hoplite HOP-4D.ssw"
   },
   {
     "name": "Hornet HNT-151",
     "bv2": 488,
+    "era": "2760",
     "file": "Hornet HNT-151.ssw"
   },
   {
     "name": "Hornet HNT-152",
     "bv2": 475,
+    "era": "2997",
     "file": "Hornet HNT-152.ssw"
   },
   {
     "name": "Hornet HNT-161",
     "bv2": 511,
+    "era": "3052",
     "file": "Hornet HNT-161.ssw"
   },
   {
     "name": "Hornet HNT-171",
     "bv2": 535,
+    "era": "3051",
     "file": "Hornet HNT-171.ssw"
   },
   {
     "name": "Hunchback HBK-4G",
     "bv2": 1041,
+    "era": "2572",
     "file": "Hunchback HBK-4G.ssw"
   },
   {
     "name": "Hunchback HBK-4H",
     "bv2": 1067,
+    "era": "2819",
     "file": "Hunchback HBK-4H.ssw"
   },
   {
     "name": "Hunchback HBK-4J",
     "bv2": 1143,
+    "era": "2856",
     "file": "Hunchback HBK-4J.ssw"
   },
   {
     "name": "Hunchback HBK-4N",
     "bv2": 1087,
+    "era": "2920",
     "file": "Hunchback HBK-4N.ssw"
   },
   {
     "name": "Hunchback HBK-4P",
     "bv2": 1138,
+    "era": "2937",
     "file": "Hunchback HBK-4P.ssw"
   },
   {
     "name": "Hunchback HBK-4SP",
     "bv2": 1043,
+    "era": "3025",
     "file": "Hunchback HBK-4SP.ssw"
   },
   {
     "name": "Hunchback HBK-5H",
     "bv2": 1097,
+    "era": "3064",
     "file": "Hunchback HBK-5H.ssw"
   },
   {
     "name": "Hunchback HBK-5M",
     "bv2": 1056,
+    "era": "3046",
     "file": "Hunchback HBK-5M.ssw"
   },
   {
     "name": "Hunchback HBK-5N",
     "bv2": 1041,
+    "era": "3057",
     "file": "Hunchback HBK-5N.ssw"
   },
   {
     "name": "Hunchback HBK-5P",
     "bv2": 1340,
+    "era": "3069",
     "file": "Hunchback HBK-5P.ssw"
   },
   {
     "name": "Hunchback HBK-5S",
     "bv2": 1350,
+    "era": "3058",
     "file": "Hunchback HBK-5S.ssw"
   },
   {
     "name": "Hunchback HBK-5SG",
     "bv2": 1577,
+    "era": "3068",
     "file": "Hunchback HBK-5SG.ssw"
   },
   {
     "name": "Hunchback HBK-5SS",
     "bv2": 1342,
+    "era": "3068",
     "file": "Hunchback HBK-5SS.ssw"
   },
   {
     "name": "Hunchback HBK-6N",
     "bv2": 1130,
+    "era": "3059",
     "file": "Hunchback HBK-6N.ssw"
   },
   {
     "name": "Hunchback HBK-6S",
     "bv2": 1380,
+    "era": "3063",
     "file": "Hunchback HBK-6S.ssw"
   },
   {
     "name": "Hussar HSR-300-D",
     "bv2": 543,
+    "era": "3035",
     "file": "Hussar HSR-300-D.ssw"
   },
   {
     "name": "Hussar HSR-350-D",
     "bv2": 731,
+    "era": "3038",
     "file": "Hussar HSR-350-D.ssw"
   },
   {
     "name": "Imp C",
     "bv2": 3070,
+    "era": "2863",
     "file": "Imp C.ssw"
   },
   {
     "name": "Imp IMP-2E",
     "bv2": 1969,
+    "era": "3005",
     "file": "Imp IMP-2E.ssw"
   },
   {
     "name": "Imp IMP-3E",
     "bv2": 1906,
+    "era": "3050",
     "file": "Imp IMP-3E.ssw"
   },
   {
     "name": "Imp IMP-4E",
     "bv2": 2263,
+    "era": "3060",
     "file": "Imp IMP-4E.ssw"
   },
   {
     "name": "JagerMech JM6-A",
     "bv2": 1122,
+    "era": "2778",
     "file": "JagerMech JM6-A.ssw"
   },
   {
     "name": "JagerMech JM6-DD",
     "bv2": 965,
+    "era": "3049",
     "file": "JagerMech JM6-DD.ssw"
   },
   {
     "name": "JagerMech JM6-DG",
     "bv2": 1625,
+    "era": "3054",
     "file": "JagerMech JM6-DG.ssw"
   },
   {
     "name": "JagerMech JM6-DGr",
     "bv2": 1661,
+    "era": "3058",
     "file": "JagerMech JM6-DGr.ssw"
   },
   {
     "name": "JagerMech JM6-H",
     "bv2": 1348,
+    "era": "3064",
     "file": "JagerMech JM6-H.ssw"
   },
   {
     "name": "JagerMech JM6-S",
     "bv2": 901,
+    "era": "2774",
     "file": "JagerMech JM6-S.ssw"
   },
   {
     "name": "JagerMech JM7-D",
     "bv2": 1500,
+    "era": "3057",
     "file": "JagerMech JM7-D.ssw"
   },
   {
     "name": "JagerMech JM7-F",
     "bv2": 1774,
+    "era": "3062",
     "file": "JagerMech JM7-F.ssw"
   },
   {
     "name": "JagerMech JM7-G",
     "bv2": 1275,
+    "era": "3068",
     "file": "JagerMech JM7-G.ssw"
   },
   {
     "name": "Javelin JVN-10F 'Fire Javelin'",
     "bv2": 835,
+    "era": "2819",
     "file": "Javelin JVN-10F Fire Javelin.ssw"
   },
   {
     "name": "Javelin JVN-10N",
     "bv2": 594,
+    "era": "2751",
     "file": "Javelin JVN-10N.ssw"
   },
   {
     "name": "Javelin JVN-10P",
     "bv2": 590,
+    "era": "3049",
     "file": "Javelin JVN-10P.ssw"
   },
   {
     "name": "Javelin JVN-11A 'Fire Javelin'",
     "bv2": 1073,
+    "era": "3053",
     "file": "Javelin JVN-11A Fire Javelin.ssw"
   },
   {
     "name": "Javelin JVN-11B",
     "bv2": 678,
+    "era": "3054",
     "file": "Javelin JVN-11B.ssw"
   },
   {
     "name": "Javelin JVN-11D",
     "bv2": 1104,
+    "era": "3062",
     "file": "Javelin JVN-11D.ssw"
   },
   {
     "name": "Javelin JVN-11F",
     "bv2": 827,
+    "era": "3070",
     "file": "Javelin JVN-11F.ssw"
   },
   {
     "name": "Jenner JR7-A",
     "bv2": 712,
+    "era": "2779",
     "file": "Jenner JR7-A.ssw"
   },
   {
     "name": "Jenner JR7-C",
     "bv2": 832,
+    "era": "3050",
     "file": "Jenner JR7-C.ssw"
   },
   {
     "name": "Jenner JR7-C2",
     "bv2": 769,
+    "era": "3071",
     "file": "Jenner JR7-C2.ssw"
   },
   {
     "name": "Jenner JR7-C3",
     "bv2": 1069,
+    "era": "3068",
     "file": "Jenner JR7-C3.ssw"
   },
   {
     "name": "Jenner JR7-D",
     "bv2": 875,
+    "era": "2785",
     "file": "Jenner JR7-D.ssw"
   },
   {
     "name": "Jenner JR7-F",
     "bv2": 1011,
+    "era": "2784",
     "file": "Jenner JR7-F.ssw"
   },
   {
     "name": "Jenner JR7-K",
     "bv2": 889,
+    "era": "3047",
     "file": "Jenner JR7-K.ssw"
   },
   {
     "name": "Katana (Crockett) CRK-5003-2",
     "bv2": 1629,
+    "era": "3035",
     "file": "Katana (Crockett) CRK-5003-2.ssw"
   },
   {
     "name": "Katana (Crockett) CRK-5003-C",
     "bv2": 1618,
+    "era": "3057",
     "file": "Katana (Crockett) CRK-5003-C.ssw"
   },
   {
     "name": "Katana (Crockett) CRK-5003-CJ",
     "bv2": 1844,
+    "era": "3071",
     "file": "Katana (Crockett) CRK-5003-CJ.ssw"
   },
   {
     "name": "Katana (Crockett) CRK-5003-CM",
     "bv2": 1554,
+    "era": "3057",
     "file": "Katana (Crockett) CRK-5003-CM.ssw"
   },
   {
     "name": "King Crab KGC-0000",
     "bv2": 1810,
+    "era": "2815",
     "file": "King Crab KGC-0000.ssw"
   },
   {
     "name": "King Crab KGC-010",
     "bv2": 2181,
+    "era": "2743",
     "file": "King Crab KGC-010.ssw"
   },
   {
     "name": "Kintaro KTO-18",
     "bv2": 1187,
+    "era": "2792",
     "file": "Kintaro KTO-18.ssw"
   },
   {
     "name": "Lancelot LNC25-01X",
     "bv2": 1659,
+    "era": "2765",
     "file": "Lancelot LNC25-01X.ssw"
   },
   {
     "name": "Lancelot LNC25-02",
     "bv2": 1236,
+    "era": "2864",
     "file": "Lancelot LNC25-02.ssw"
   },
   {
     "name": "Locust LCT-1E",
     "bv2": 553,
+    "era": "2811",
     "file": "Locust LCT-1E.ssw"
   },
   {
     "name": "Locust LCT-1L",
     "bv2": 474,
+    "era": "3030",
     "file": "Locust LCT-1L.ssw"
   },
   {
     "name": "Locust LCT-1M",
     "bv2": 424,
+    "era": "2571",
     "file": "Locust LCT-1M.ssw"
   },
   {
     "name": "Locust LCT-1S",
     "bv2": 440,
+    "era": "2567",
     "file": "Locust LCT-1S.ssw"
   },
   {
     "name": "Locust LCT-1V",
     "bv2": 432,
+    "era": "2499",
     "file": "Locust LCT-1V.ssw"
   },
   {
     "name": "Locust LCT-3V",
     "bv2": 490,
+    "era": "3004",
     "file": "Locust LCT-3V.ssw"
   },
   {
     "name": "Longbow LGB-0W",
     "bv2": 1337,
+    "era": "2529",
     "file": "Longbow LGB-0W.ssw"
   },
   {
     "name": "Marauder II MAD-4A",
     "bv2": 2073,
+    "era": "3012",
     "file": "Marauder II MAD-4A.ssw"
   },
   {
     "name": "Marauder MAD-3D",
     "bv2": 1470,
+    "era": "2834",
     "file": "Marauder MAD-3D.ssw"
   },
   {
     "name": "Marauder MAD-3L",
     "bv2": 1369,
+    "era": "2905",
     "file": "Marauder MAD-3L.ssw"
   },
   {
     "name": "Marauder MAD-3M",
     "bv2": 1335,
+    "era": "2873",
     "file": "Marauder MAD-3M.ssw"
   },
   {
     "name": "Marauder MAD-3R",
     "bv2": 1363,
+    "era": "2819",
     "file": "Marauder MAD-3R.ssw"
   },
   {
     "name": "Mauler MAL-1BL",
     "bv2": 2056,
+    "era": "3048",
     "file": "Mauler MAL-1BL.ssw"
   },
   {
     "name": "Mauler MAL-1K",
     "bv2": 1622,
+    "era": "3069",
     "file": "Mauler MAL-1K.ssw"
   },
   {
     "name": "Mauler MAL-1R",
     "bv2": 1460,
+    "era": "3048",
     "file": "Mauler MAL-1R.ssw"
   },
   {
     "name": "Mauler MAL-2R",
     "bv2": 1586,
+    "era": "3060",
     "file": "Mauler MAL-2R.ssw"
   },
   {
     "name": "Mauler MAL-3R",
     "bv2": 1877,
+    "era": "3062",
     "file": "Mauler MAL-3R.ssw"
   },
   {
     "name": "Mauler MAL-C",
     "bv2": 1562,
+    "era": "3051",
     "file": "Mauler MAL-C1.ssw"
   },
   {
     "name": "Mongoose MON-67",
     "bv2": 741,
+    "era": "2830",
     "file": "Mongoose MON-67.ssw"
   },
   {
     "name": "Mongoose MON-68",
     "bv2": 676,
+    "era": "3039",
     "file": "Mongoose MON-68.ssw"
   },
   {
     "name": "Mongoose MON-68-BL",
     "bv2": 872,
+    "era": "3070",
     "file": "Mongoose MON-68-BL.ssw"
   },
   {
     "name": "Orion ON1-K",
     "bv2": 1429,
+    "era": "2525",
     "file": "Orion ON1-K.ssw"
   },
   {
     "name": "Orion ON1-K (Kerensky)",
     "bv2": 1821,
+    "era": "2753",
     "file": "Orion ON1-K (Kerensky).ssw"
   },
   {
     "name": "Orion ON1-M",
     "bv2": 1414,
+    "era": "3049",
     "file": "Orion ON1-M.ssw"
   },
   {
     "name": "Orion ON1-M-DC",
     "bv2": 1444,
+    "era": "3053",
     "file": "Orion ON1-M-DC.ssw"
   },
   {
     "name": "Orion ON1-MA",
     "bv2": 1501,
+    "era": "3052",
     "file": "Orion ON1-MA.ssw"
   },
   {
     "name": "Orion ON1-MB",
     "bv2": 1472,
+    "era": "3058",
     "file": "Orion ON1-MB.ssw"
   },
   {
     "name": "Orion ON1-MC",
     "bv2": 1501,
+    "era": "3056",
     "file": "Orion ON1-MC.ssw"
   },
   {
     "name": "Orion ON1-MD",
     "bv2": 1597,
+    "era": "3062",
     "file": "Orion ON1-MD.ssw"
   },
   {
     "name": "Orion ON1-V",
     "bv2": 1298,
+    "era": "2799",
     "file": "Orion ON1-V.ssw"
   },
   {
     "name": "Orion ON1-V-DC",
     "bv2": 1310,
+    "era": "2913",
     "file": "Orion ON1-V-DC.ssw"
   },
   {
     "name": "Orion ON1-VA",
     "bv2": 1328,
+    "era": "2901",
     "file": "Orion ON1-VA.ssw"
   },
   {
     "name": "Orion ON2-M",
     "bv2": 1828,
+    "era": "3063",
     "file": "Orion ON2-M.ssw"
   },
   {
     "name": "Ostroc OSR-2C",
     "bv2": 1228,
+    "era": "2511",
     "file": "Ostroc OSR-2C.ssw"
   },
   {
     "name": "Ostroc OSR-2L",
     "bv2": 1233,
+    "era": "2884",
     "file": "Ostroc OSR-2L.ssw"
   },
   {
     "name": "Ostroc OSR-2M",
     "bv2": 1239,
+    "era": "2793",
     "file": "Ostroc OSR-2M.ssw"
   },
   {
     "name": "Ostroc OSR-3C",
     "bv2": 1288,
+    "era": "2876",
     "file": "Ostroc OSR-3C.ssw"
   },
   {
     "name": "Ostscout OTT-7J",
     "bv2": 596,
+    "era": "2600",
     "file": "Ostscout OTT-7J.ssw"
   },
   {
     "name": "Ostsol OTL-4D",
     "bv2": 1277,
+    "era": "2694",
     "file": "Ostsol OTL-4D.ssw"
   },
   {
     "name": "Ostsol OTL-4F",
     "bv2": 1264,
+    "era": "2871",
     "file": "Ostsol OTL-4F.ssw"
   },
   {
     "name": "Panther PNT-10BL",
     "bv2": 944,
+    "era": "3055",
     "file": "Panther PNT-10BL.ssw"
   },
   {
     "name": "Panther PNT-10K",
     "bv2": 838,
+    "era": "3051",
     "file": "Panther PNT-10K.ssw"
   },
   {
     "name": "Panther PNT-10KA",
     "bv2": 797,
+    "era": "3055",
     "file": "Panther PNT-10KA.ssw"
   },
   {
     "name": "Panther PNT-12A",
     "bv2": 982,
+    "era": "3064",
     "file": "Panther PNT-12A.ssw"
   },
   {
     "name": "Panther PNT-14S",
     "bv2": 825,
+    "era": "3069",
     "file": "Panther PNT-14S.ssw"
   },
   {
     "name": "Panther PNT-16K",
     "bv2": 988,
+    "era": "3070",
     "file": "Panther PNT-16K.ssw"
   },
   {
     "name": "Panther PNT-8Z",
     "bv2": 741,
+    "era": "2739",
     "file": "Panther PNT-8Z.ssw"
   },
   {
     "name": "Panther PNT-9R",
     "bv2": 769,
+    "era": "2759",
     "file": "Panther PNT-9R.ssw"
   },
   {
     "name": "Panther PNT-C",
     "bv2": 833,
+    "era": "3051",
     "file": "Panther PNT-C.ssw"
   },
   {
     "name": "Panther PNT-CA",
     "bv2": 787,
+    "era": "3055",
     "file": "Panther PNT-CA.ssw"
   },
   {
     "name": "Phoenix Hawk PXH-1",
     "bv2": 1041,
+    "era": "2568",
     "file": "Phoenix Hawk PXH-1.ssw"
   },
   {
     "name": "Phoenix Hawk PXH-1D",
     "bv2": 1083,
+    "era": "2586",
     "file": "Phoenix Hawk PXH-1D.ssw"
   },
   {
     "name": "Phoenix Hawk PXH-1K",
     "bv2": 1073,
+    "era": "2603",
     "file": "Phoenix Hawk PXH-1K.ssw"
   },
   {
     "name": "Quickdraw QKD-4G",
     "bv2": 1192,
+    "era": "2779",
     "file": "Quickdraw QKD-4G.ssw"
   },
   {
     "name": "Quickdraw QKD-4H",
     "bv2": 1242,
+    "era": "2847",
     "file": "Quickdraw QKD-4H.ssw"
   },
   {
     "name": "Quickdraw QKD-5A",
     "bv2": 1196,
+    "era": "3002",
     "file": "Quickdraw QKD-5A.ssw"
   },
   {
     "name": "Quickdraw QKD-5K",
     "bv2": 1265,
+    "era": "3049",
     "file": "Quickdraw QKD-5K.ssw"
   },
   {
     "name": "Quickdraw QKD-5K2",
     "bv2": 1312,
+    "era": "3057",
     "file": "Quickdraw QKD-5K2.ssw"
   },
   {
     "name": "Quickdraw QKD-5M",
     "bv2": 1237,
+    "era": "3049",
     "file": "Quickdraw QKD-5M.ssw"
   },
   {
     "name": "Quickdraw QKD-8K",
     "bv2": 1583,
+    "era": "3064",
     "file": "Quickdraw QKD-8K.ssw"
   },
   {
     "name": "Quickdraw QKD-C",
     "bv2": 1225,
+    "era": "3053",
     "file": "Quickdraw QKD-C.ssw"
   },
   {
     "name": "Raven RVN-1X",
     "bv2": 639,
+    "era": "3024",
     "file": "Raven RVN-1X.ssw"
   },
   {
     "name": "Raven RVN-2X",
     "bv2": 887,
+    "era": "3030",
     "file": "Raven RVN-2X.ssw"
   },
   {
     "name": "Raven RVN-3L",
     "bv2": 708,
+    "era": "3048",
     "file": "Raven RVN-3L.ssw"
   },
   {
     "name": "Raven RVN-3M",
     "bv2": 659,
+    "era": "3053",
     "file": "Raven RVN-3M.ssw"
   },
   {
     "name": "Raven RVN-3X",
     "bv2": 691,
+    "era": "3028",
     "file": "Raven RVN-3X.ssw"
   },
   {
     "name": "Raven RVN-4L",
     "bv2": 873,
+    "era": "3062",
     "file": "Raven RVN-4L.ssw"
   },
   {
     "name": "Raven RVN-4LC",
     "bv2": 871,
+    "era": "3062",
     "file": "Raven RVN-4LC.ssw"
   },
   {
     "name": "Raven RVN-4X",
     "bv2": 820,
+    "era": "3031",
     "file": "Raven RVN-4X.ssw"
   },
   {
     "name": "Raven RVN-SR 'Shattered Raven'",
     "bv2": 601,
+    "era": "3068",
     "file": "Raven RVN-SR Shattered Raven.ssw"
   },
   {
     "name": "Raven RVN-SS 'Shattered Raven'",
     "bv2": 904,
+    "era": "3069",
     "file": "Raven RVN-SS Shattered Raven.ssw"
   },
   {
     "name": "Rifleman RFL-3C",
     "bv2": 1066,
+    "era": "3026",
     "file": "Rifleman RFL-3C.ssw"
   },
   {
     "name": "Rifleman RFL-3N",
     "bv2": 1039,
+    "era": "2770",
     "file": "Rifleman RFL-3N.ssw"
   },
   {
     "name": "Rifleman RFL-4D",
     "bv2": 1173,
+    "era": "3021",
     "file": "Rifleman RFL-4D.ssw"
   },
   {
     "name": "Scorpion SCP-1N",
     "bv2": 1019,
+    "era": "2570",
     "file": "Scorpion SCP-1N.ssw"
   },
   {
     "name": "Scorpion SCP-1N (Wednall)",
     "bv2": 1043,
+    "era": "3030",
     "file": "Scorpion SCP-1N (Wednall).ssw"
   },
   {
     "name": "Sentinel STN-1S",
     "bv2": 632,
+    "era": "2651",
     "file": "Sentinel STN-1S.ssw"
   },
   {
     "name": "Sentinel STN-3K",
     "bv2": 652,
+    "era": "2830",
     "file": "Sentinel STN-3K.ssw"
   },
   {
     "name": "Sentinel STN-3KA",
     "bv2": 847,
+    "era": "2830",
     "file": "Sentinel STN-3KA.ssw"
   },
   {
     "name": "Sentinel STN-3KB",
     "bv2": 823,
+    "era": "2830",
     "file": "Sentinel STN-3KB.ssw"
   },
   {
     "name": "Shadow Hawk SDH-2ELH",
     "bv2": 1306,
+    "era": "3025",
     "file": "Shadow Hawk SDH-2ELH.ssw"
   },
   {
     "name": "Shadow Hawk SHD-1ELH",
     "bv2": 1265,
+    "era": "2803",
     "file": "Shadow Hawk SHD-1ELH.ssw"
   },
   {
     "name": "Shadow Hawk SHD-2D",
     "bv2": 899,
+    "era": "2796",
     "file": "Shadow Hawk SHD-2D.ssw"
   },
   {
     "name": "Shadow Hawk SHD-2ELH",
     "bv2": 1265,
+    "era": "2803",
     "file": "Shadow Hawk SHD-2ELH.ssw"
   },
   {
     "name": "Shadow Hawk SHD-2H",
     "bv2": 1064,
+    "era": "2550",
     "file": "Shadow Hawk SHD-2H.ssw"
   },
   {
     "name": "Shadow Hawk SHD-2K",
     "bv2": 1147,
+    "era": "2803",
     "file": "Shadow Hawk SHD-2K.ssw"
   },
   {
     "name": "Shogun C",
     "bv2": 3032,
+    "era": "2850",
     "file": "Shogun C.ssw"
   },
   {
     "name": "Shogun SHG-2E",
     "bv2": 1823,
+    "era": "3005",
     "file": "Shogun SHG-2E.ssw"
   },
   {
     "name": "Shogun SHG-2F",
     "bv2": 1804,
+    "era": "3029",
     "file": "Shogun SHG-2F.ssw"
   },
   {
     "name": "Shogun SHG-2F (Trisha)",
     "bv2": 1733,
+    "era": "3071",
     "file": "Shogun SHG-2F (Trisha).ssw"
   },
   {
     "name": "Spider SDR-5D",
     "bv2": 524,
+    "era": "2853",
     "file": "Spider SDR-5D.ssw"
   },
   {
     "name": "Spider SDR-5K",
     "bv2": 503,
+    "era": "2850",
     "file": "Spider SDR-5K.ssw"
   },
   {
     "name": "Spider SDR-5V",
     "bv2": 622,
+    "era": "2650",
     "file": "Spider SDR-5V.ssw"
   },
   {
     "name": "Spider SDR-7K",
     "bv2": 752,
+    "era": "3067",
     "file": "Spider SDR-7K.ssw"
   },
   {
     "name": "Spider SDR-7K2",
     "bv2": 884,
+    "era": "3068",
     "file": "Spider SDR-7K2.ssw"
   },
   {
     "name": "Spider SDR-7KC",
     "bv2": 732,
+    "era": "3070",
     "file": "Spider SDR-7KC.ssw"
   },
   {
     "name": "Spider SDR-7M",
     "bv2": 621,
+    "era": "3051",
     "file": "Spider SDR-7M.ssw"
   },
   {
     "name": "Spider SDR-8M",
     "bv2": 621,
+    "era": "3060",
     "file": "Spider SDR-8M.ssw"
   },
   {
     "name": "Spider SDR-C",
     "bv2": 616,
+    "era": "3054",
     "file": "Spider SDR-C.ssw"
   },
   {
     "name": "Stalker STK-3F",
     "bv2": 1559,
+    "era": "2594",
     "file": "Stalker STK-3F.ssw"
   },
   {
     "name": "Stalker STK-3F Jamison",
     "bv2": 2707,
+    "era": "3054",
     "file": "Stalker STK-3F Jamison.ssw"
   },
   {
     "name": "Stalker STK-3H",
     "bv2": 1624,
+    "era": "2638",
     "file": "Stalker STK-3H.ssw"
   },
   {
     "name": "Stalker STK-4N",
     "bv2": 1558,
+    "era": "2876",
     "file": "Stalker STK-4N.ssw"
   },
   {
     "name": "Stalker STK-4P",
     "bv2": 1461,
+    "era": "2998",
     "file": "Stalker STK-4P.ssw"
   },
   {
     "name": "Stalker STK-5M",
     "bv2": 1655,
+    "era": "3050",
     "file": "Stalker STK-5M.ssw"
   },
   {
     "name": "Stalker STK-5S",
     "bv2": 1423,
+    "era": "3050",
     "file": "Stalker STK-5S.ssw"
   },
   {
     "name": "Stalker STK-6M",
     "bv2": 2029,
+    "era": "3062",
     "file": "Stalker STK-6M.ssw"
   },
   {
     "name": "Stalker STK-7D",
     "bv2": 1872,
+    "era": "3062",
     "file": "Stalker STK-7D.ssw"
   },
   {
     "name": "Stalker STK-8S",
     "bv2": 2020,
+    "era": "3064",
     "file": "Stalker STK-8S.ssw"
   },
   {
     "name": "Stinger STG-3G",
     "bv2": 497,
+    "era": "2581",
     "file": "Stinger STG-3G.ssw"
   },
   {
     "name": "Stinger STG-3R",
     "bv2": 359,
+    "era": "2479",
     "file": "Stinger STG-3R.ssw"
   },
   {
     "name": "Thorn THE-F",
     "bv2": 510,
+    "era": "2490",
     "file": "Thorn THE-F.ssw"
   },
   {
     "name": "Thorn THE-S",
     "bv2": 510,
+    "era": "3035",
     "file": "Thorn THE-S.ssw"
   },
   {
     "name": "Thorn THE-T",
     "bv2": 500,
+    "era": "3038",
     "file": "Thorn THE-T.ssw"
   },
   {
     "name": "Thug THG-10E",
     "bv2": 1501,
+    "era": "2835",
     "file": "Thug THG-10E.ssw"
   },
   {
     "name": "Thunderbolt TDR-5S",
     "bv2": 1335,
+    "era": "2505",
     "file": "Thunderbolt TDR-5S.ssw"
   },
   {
     "name": "Thunderbolt TDR-5S Inferno",
     "bv2": 1367,
+    "era": "2505",
     "file": "Thunderbolt TDR-5S Inferno.ssw"
   },
   {
     "name": "Thunderbolt TDR-5S1",
     "bv2": 1367,
+    "era": "2505",
     "file": "Thunderbolt TDR-5S1.ssw"
   },
   {
     "name": "Thunderbolt TDR-5S20",
     "bv2": 1408,
+    "era": "2505",
     "file": "Thunderbolt TDR-5S20.ssw"
   },
   {
     "name": "Thunderbolt TDR-5SE",
     "bv2": 1414,
+    "era": "2910",
     "file": "Thunderbolt TDR-5SE.ssw"
   },
   {
     "name": "Thunderbolt TDR-5SE ELH",
     "bv2": 1414,
+    "era": "2910",
     "file": "Thunderbolt TDR-5SE ELH.ssw"
   },
   {
     "name": "Thunderbolt TDR-5SS",
     "bv2": 1337,
+    "era": "2930",
     "file": "Thunderbolt TDR-5SS.ssw"
   },
   {
     "name": "Trebuchet TBT-3C",
     "bv2": 1342,
+    "era": "2780",
     "file": "Trebuchet TBT-3C.ssw"
   },
   {
     "name": "Trebuchet TBT-5J",
     "bv2": 1191,
+    "era": "2850",
     "file": "Trebuchet TBT-5J.ssw"
   },
   {
     "name": "Trebuchet TBT-5N",
     "bv2": 1191,
+    "era": "2799",
     "file": "Trebuchet TBT-5N.ssw"
   },
   {
     "name": "Trebuchet TBT-5S",
     "bv2": 984,
+    "era": "2864",
     "file": "Trebuchet TBT-5S.ssw"
   },
   {
     "name": "Trebuchet TBT-7K",
     "bv2": 996,
+    "era": "3025",
     "file": "Trebuchet TBT-7K.ssw"
   },
   {
     "name": "Trebuchet TBT-7M",
     "bv2": 1348,
+    "era": "3048",
     "file": "Trebuchet TBT-7M.ssw"
   },
   {
     "name": "Trebuchet TBT-8B",
     "bv2": 1314,
+    "era": "3071",
     "file": "Trebuchet TBT-8B.ssw"
   },
   {
     "name": "Trebuchet TBT-9K",
     "bv2": 1329,
+    "era": "3059",
     "file": "Trebuchet TBT-9K.ssw"
   },
   {
     "name": "UrbanMech UM-R63",
     "bv2": 540,
+    "era": "3050",
     "file": "UrbanMech UM-R63.ssw"
   },
   {
     "name": "UrbanMech UM-R68",
     "bv2": 561,
+    "era": "3065",
     "file": "UrbanMech UM-R68.ssw"
   },
   {
     "name": "UrbanMech UM-R69",
     "bv2": 589,
+    "era": "3063",
     "file": "UrbanMech UM-R69.ssw"
   },
   {
     "name": "UrbanMech UM-R70",
     "bv2": 724,
+    "era": "3066",
     "file": "UrbanMech UM-R70.ssw"
   },
   {
     "name": "Urbanmech UM-R60",
     "bv2": 504,
+    "era": "2675",
     "file": "Urbanmech UM-R60.ssw"
   },
   {
     "name": "Urbanmech UM-R60L",
     "bv2": 470,
+    "era": "2925",
     "file": "Urbanmech UM-R60L.ssw"
   },
   {
     "name": "Valkyrie VLK-QA",
     "bv2": 723,
+    "era": "2787",
     "file": "Valkyrie VLK-QA.ssw"
   },
   {
     "name": "Valkyrie VLK-QF",
     "bv2": 653,
+    "era": "2967",
     "file": "Valkyrie VLK-QF.ssw"
   },
   {
     "name": "Victor C",
     "bv2": 1925,
+    "era": "3050",
     "file": "Victor C.ssw"
   },
   {
     "name": "Victor VTR-10D",
     "bv2": 1894,
+    "era": "3064",
     "file": "Victor VTR-10D.ssw"
   },
   {
     "name": "Victor VTR-10L",
     "bv2": 2279,
+    "era": "3066",
     "file": "Victor VTR-10L.ssw"
   },
   {
     "name": "Victor VTR-10S",
     "bv2": 2034,
+    "era": "3062",
     "file": "Victor VTR-10S.ssw"
   },
   {
     "name": "Victor VTR-11D",
     "bv2": 2021,
+    "era": "3065",
     "file": "Victor VTR-11D.ssw"
   },
   {
     "name": "Victor VTR-9A",
     "bv2": 1236,
+    "era": "2508",
     "file": "Victor VTR-9A.ssw"
   },
   {
     "name": "Victor VTR-9A1",
     "bv2": 1302,
+    "era": "2508",
     "file": "Victor VTR-9A1.ssw"
   },
   {
     "name": "Victor VTR-9B",
     "bv2": 1378,
+    "era": "2510",
     "file": "Victor VTR-9B.ssw"
   },
   {
     "name": "Victor VTR-9K",
     "bv2": 1717,
+    "era": "3049",
     "file": "Victor VTR-9K.ssw"
   },
   {
     "name": "Victor VTR-9S",
     "bv2": 1360,
+    "era": "2998",
     "file": "Victor VTR-9S.ssw"
   },
   {
     "name": "Victor VTR-C",
     "bv2": 1717,
+    "era": "3054",
     "file": "Victor VTR-C.ssw"
   },
   {
     "name": "Vindicator VND-1AA 'Avenging Angel'",
     "bv2": 966,
+    "era": "2863",
     "file": "Vindicator VND-1AA Avenging Angel.ssw"
   },
   {
     "name": "Vindicator VND-1R",
     "bv2": 1024,
+    "era": "2826",
     "file": "Vindicator VND-1R.ssw"
   },
   {
     "name": "Vindicator VND-1R (Vong)",
     "bv2": 1024,
+    "era": "3020",
     "file": "Vindicator VND-1R (Vong).ssw"
   },
   {
     "name": "Vindicator VND-1SIC",
     "bv2": 1020,
+    "era": "3031",
     "file": "Vindicator VND-1SIC.ssw"
   },
   {
     "name": "Vindicator VND-1X",
     "bv2": 1008,
+    "era": "2826",
     "file": "Vindicator VND-1X.ssw"
   },
   {
     "name": "Vindicator VND-3L",
     "bv2": 1105,
+    "era": "3051",
     "file": "Vindicator VND-3L.ssw"
   },
   {
     "name": "Vindicator VND-4L",
     "bv2": 1411,
+    "era": "3063",
     "file": "Vindicator VND-4L.ssw"
   },
   {
     "name": "Vindicator VND-5L",
     "bv2": 1484,
+    "era": "3060",
     "file": "Vindicator VND-5L.ssw"
   },
   {
     "name": "Vindicator VND-6L",
     "bv2": 1739,
+    "era": "3068",
     "file": "Vindicator VND-6L.ssw"
   },
   {
     "name": "Vulcan VL-2T",
     "bv2": 642,
+    "era": "2777",
     "file": "Vulcan VL-2T.ssw"
   },
   {
     "name": "Vulcan VL-5T",
     "bv2": 942,
+    "era": "2778",
     "file": "Vulcan VL-5T.ssw"
   },
   {
     "name": "Vulcan VT-5M",
     "bv2": 811,
+    "era": "3050",
     "file": "Vulcan VT-5M.ssw"
   },
   {
     "name": "Vulcan VT-5S",
     "bv2": 883,
+    "era": "3050",
     "file": "Vulcan VT-5S.ssw"
   },
   {
     "name": "Vulcan VT-6C",
     "bv2": 959,
+    "era": "3070",
     "file": "Vulcan VT-6C.ssw"
   },
   {
     "name": "Vulcan VT-6M",
     "bv2": 959,
+    "era": "3069",
     "file": "Vulcan VT-6M.ssw"
   },
   {
     "name": "Warhammer WHM-6D",
     "bv2": 1471,
+    "era": "2835",
     "file": "Warhammer WHM-6D.ssw"
   },
   {
     "name": "Warhammer WHM-6K",
     "bv2": 1305,
+    "era": "2830",
     "file": "Warhammer WHM-6K.ssw"
   },
   {
     "name": "Warhammer WHM-6L",
     "bv2": 1311,
+    "era": "2825",
     "file": "Warhammer WHM-6L.ssw"
   },
   {
     "name": "Warhammer WHM-6R",
     "bv2": 1299,
+    "era": "2515",
     "file": "Warhammer WHM-6R.ssw"
   },
   {
     "name": "Wasp WSP-1A",
     "bv2": 384,
+    "era": "2471",
     "file": "Wasp WSP-1A.ssw"
   },
   {
     "name": "Wasp WSP-1D",
     "bv2": 403,
+    "era": "2823",
     "file": "Wasp WSP-1D.ssw"
   },
   {
     "name": "Wasp WSP-1K",
     "bv2": 376,
+    "era": "2818",
     "file": "Wasp WSP-1K.ssw"
   },
   {
     "name": "Wasp WSP-1L",
     "bv2": 335,
+    "era": "2799",
     "file": "Wasp WSP-1L.ssw"
   },
   {
     "name": "Wasp WSP-1W",
     "bv2": 373,
+    "era": "3009",
     "file": "Wasp WSP-1W.ssw"
   },
   {
     "name": "Whitworth WTH-0",
     "bv2": 863,
+    "era": "2754",
     "file": "Whitworth WTH-0.ssw"
   },
   {
     "name": "Whitworth WTH-1",
     "bv2": 982,
+    "era": "2689",
     "file": "Whitworth WTH-1.ssw"
   },
   {
     "name": "Whitworth WTH-1H",
     "bv2": 993,
+    "era": "3066",
     "file": "Whitworth WTH-1H.ssw"
   },
   {
     "name": "Whitworth WTH-1S",
     "bv2": 917,
+    "era": "2610",
     "file": "Whitworth WTH-1S.ssw"
   },
   {
     "name": "Whitworth WTH-2",
     "bv2": 936,
+    "era": "3050",
     "file": "Whitworth WTH-2.ssw"
   },
   {
     "name": "Whitworth WTH-2A",
     "bv2": 1055,
+    "era": "3068",
     "file": "Whitworth WTH-2A.ssw"
   },
   {
     "name": "Whitworth WTH-3",
     "bv2": 882,
+    "era": "3069",
     "file": "Whitworth WTH-3.ssw"
   },
   {
     "name": "Whitworth WTH-K",
     "bv2": 819,
+    "era": "3070",
     "file": "Whitworth WTH-K.ssw"
   },
   {
     "name": "Wolf Trap (Tora) WFT-1",
     "bv2": 1070,
+    "era": "3051",
     "file": "Wolf Trap (Tora) WFT-1.ssw"
   },
   {
     "name": "Wolf Trap (Tora) WFT-2",
     "bv2": 1227,
+    "era": "3071",
     "file": "Wolf Trap (Tora) WFT-2.ssw"
   },
   {
     "name": "Wolf Trap (Tora) WFT-B",
     "bv2": 1021,
+    "era": "3069",
     "file": "Wolf Trap (Tora) WFT-B.ssw"
   },
   {
     "name": "Wolf Trap (Tora) WFT-C",
     "bv2": 1001,
+    "era": "3060",
     "file": "Wolf Trap (Tora) WFT-C.ssw"
   },
   {
     "name": "Wolfhound IIC 'Grinner'",
     "bv2": 1579,
+    "era": "3051",
     "file": "Wolfhound IIC Grinner.ssw"
   },
   {
     "name": "Wolfhound WLF-1",
     "bv2": 949,
+    "era": "3028",
     "file": "Wolfhound WLF-1.ssw"
   },
   {
     "name": "Wolfhound WLF-1 (Allard)",
     "bv2": 1941,
+    "era": "3062",
     "file": "Wolfhound WLF-1 (Allard).ssw"
   },
   {
     "name": "Wolfhound WLF-1A",
     "bv2": 967,
+    "era": "3028",
     "file": "Wolfhound WLF-1A.ssw"
   },
   {
     "name": "Wolfhound WLF-1B",
     "bv2": 967,
+    "era": "3028",
     "file": "Wolfhound WLF-1B.ssw"
   },
   {
     "name": "Wolfhound WLF-2",
     "bv2": 1061,
+    "era": "3052",
     "file": "Wolfhound WLF-2.ssw"
   },
   {
     "name": "Wolfhound WLF-3S",
     "bv2": 1176,
+    "era": "3064",
     "file": "Wolfhound WLF-3S.ssw"
   },
   {
     "name": "Wolfhound WLF-4W",
     "bv2": 1090,
+    "era": "3069",
     "file": "Wolfhound WLF-4W.ssw"
   },
   {
     "name": "Wolfhound WLF-4WA",
     "bv2": 1050,
+    "era": "3071",
     "file": "Wolfhound WLF-4WA.ssw"
   },
   {
     "name": "Wolverine WVR-6BL-M",
     "bv2": 1870,
+    "era": "3070",
     "file": "Wolverine WVR-6BL-M.ssw"
   },
   {
     "name": "Wolverine WVR-6BL-R",
     "bv2": 1942,
+    "era": "3070",
     "file": "Wolverine WVR-6BL-R.ssw"
   },
   {
     "name": "Wolverine WVR-6K",
     "bv2": 1248,
+    "era": "2598",
     "file": "Wolverine WVR-6K.ssw"
   },
   {
     "name": "Wolverine WVR-6M",
     "bv2": 1291,
+    "era": "2816",
     "file": "Wolverine WVR-6M.ssw"
   },
   {
     "name": "Wolverine WVR-6M ELH",
     "bv2": 1291,
+    "era": "2816",
     "file": "Wolverine WVR-6M ELH.ssw"
   },
   {
     "name": "Wolverine WVR-6R",
     "bv2": 1101,
+    "era": "2575",
     "file": "Wolverine WVR-6R.ssw"
   },
   {
     "name": "Wyvern WVE-6N",
     "bv2": 1005,
+    "era": "2821",
     "file": "Wyvern WVE-6N.ssw"
   },
   {
     "name": "Zeus ZEU-10WB",
     "bv2": 2075,
+    "era": "3070",
     "file": "Zeus ZEU-10WB.ssw"
   },
   {
     "name": "Zeus ZEU-5S",
     "bv2": 1474,
+    "era": "2788",
     "file": "Zeus ZEU-5S.ssw"
   },
   {
     "name": "Zeus ZEU-5T",
     "bv2": 1729,
+    "era": "2787",
     "file": "Zeus ZEU-5T.ssw"
   },
   {
     "name": "Zeus ZEU-6S",
     "bv2": 1348,
+    "era": "2898",
     "file": "Zeus ZEU-6S.ssw"
   },
   {
     "name": "Zeus ZEU-6T",
     "bv2": 1436,
+    "era": "3026",
     "file": "Zeus ZEU-6T.ssw"
   },
   {
     "name": "Zeus ZEU-9S",
     "bv2": 1639,
+    "era": "3048",
     "file": "Zeus ZEU-9S.ssw"
   },
   {
     "name": "Zeus ZEU-9S-DC",
     "bv2": 1612,
+    "era": "3049",
     "file": "Zeus ZEU-9S-DC.ssw"
   },
   {
     "name": "Zeus ZEU-9S2",
     "bv2": 1769,
+    "era": "3051",
     "file": "Zeus ZEU-9S2.ssw"
   },
   {
     "name": "Zeus ZEU-9T",
     "bv2": 1835,
+    "era": "3062",
     "file": "Zeus ZEU-9T.ssw"
   },
   {
     "name": "Zeus-X ZEU-9WD",
     "bv2": 1716,
+    "era": "3067",
     "file": "Zeus-X ZEU-9WD.ssw"
   }
 ]
