@@ -1481,9 +1481,42 @@ body.theme-classic .classic-theme-float-switch {
             top: 60px;
             width: 320px;
             height: 500px;
-            z-index: 8;
+            z-index: 35;
             display: block;
         }
+        /* Separator lines (positioned by JS) */
+        .scan-separator {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--surface-container-highest, #31353c);
+            z-index: 20;
+            pointer-events: none;
+            display: none;
+        }
+        body.theme-new .scan-separator { display: block; }
+        /* Move back-to-home buttons to not overlap sidebar in new theme */
+        body.theme-new .back-to-home-btn {
+            left: 240px !important;
+            top: 58px !important;
+        }
+
+        /* Fix bottom cutoff for all sections with global shell */
+        body.theme-new #barracones,
+        body.theme-new #pre-generacion,
+        body.theme-new #registro-combate,
+        body.theme-new #tro-section,
+        body.theme-new #battle-tracker,
+        body.theme-new #trr-hub-section,
+        body.theme-new #cronicas-hub-section,
+        body.theme-new #cronicas-section,
+        body.theme-new #historial-logros-section,
+        body.theme-new #combat-calculator-modal {
+            padding-top: 68px !important;
+            padding-left: 230px !important;
+        }
+
         
         /* === CLÁSICO: blueprint y data panel alineados, laser de borde a borde === */
         body.theme-classic #landing-page .scan-laser {
@@ -1509,7 +1542,7 @@ body.theme-classic .classic-theme-float-switch {
             top: 10%;
             width: 320px;
             height: 500px;
-            z-index: 8;
+            z-index: 35;
             display: block;
         }
         
@@ -3739,7 +3772,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 return;
             }
 
-            const btn = document.querySelector('#barracones-toolbar button[onclick*="buscarEnNubeBarracones"]');
+            const btn = document.querySelector('#quick-load-buttons button[onclick*="buscarEnNubeBarracones"], #barracones-toolbar button[onclick*="buscarEnNubeBarracones"]');
             if (!btn) {
                 console.error('buscarEnNubeBarracones: Botón de carga no encontrado');
                 return;
@@ -4208,7 +4241,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // === ACTUALIZAR UI DEL BOTÓN ===
             // Indicar visualmente que se está guardando (deshabilitar botón y cambiar texto)
             const originalText = "GUARDAR EN LA NUBE";
-            const btn = document.querySelector('#barracones-toolbar button[onclick*="guardarEnNubeBarracones"]');
+            const btn = document.querySelector('#quick-load-buttons button[onclick*="guardarEnNubeBarracones"], #barracones-toolbar button[onclick*="guardarEnNubeBarracones"]');
             if (btn) {
                 btn.disabled = true;
                 btn.innerText = "GUARDANDO...";
@@ -5469,8 +5502,28 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         // NAVEGACIÓN
+
+        // ============================================
+        // OCULTAR TODAS LAS SECCIONES (universal)
+        // ============================================
+        function hideAllSections() {
+            var ids = ['landing-page', 'pre-generacion', 'ficha-container', 'barracones', 
+                       'points-counter', 'registro-combate', 'trr-section', 'battle-tracker',
+                       'trr-hub-section', 'mech-hangar', 'vehicle-depot', 'galactic-map',
+                       'cronicas-section', 'cronicas-hub-section', 'historial-logros-section',
+                       'tro-section', 'trr-infantry', 'trr-utilities',
+                       'combat-calc-hub', 'calc-section-infantry', 'calc-section-mech',
+                       'calc-section-vehicle', 'combat-calculator-modal', 'vehicle-crit-resolution-modal'];
+            for (var i = 0; i < ids.length; i++) {
+                var el = document.getElementById(ids[i]);
+                if (el) el.style.display = 'none';
+            }
+            var toolbar = document.getElementById('barracones-toolbar');
+            if (toolbar) toolbar.style.display = 'none';
+        }
+
         function goToGenerator() {
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('pre-generacion').style.display = 'block';
             document.getElementById('points-counter').style.display = 'block';
         }
@@ -5830,13 +5883,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
          */
         function goToRegistroCombate() {
             console.log('🎯 Navegando a HOJA DE SERVICIO...');
-                // Ocultar todas las secciones
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('barracones').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
-                // Mostrar HOJA DE SERVICIO
+            hideAllSections();
             document.getElementById('registro-combate').style.display = 'block';
                 console.log('✅ HOJA DE SERVICIO mostrado');
         }
@@ -6840,20 +6887,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al landing page principal
          */
         function goToLanding() {
-            const toolbar = document.getElementById('barracones-toolbar');
-            if (toolbar) toolbar.style.display = 'none';
-            // Ocultar todas las secciones principales
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'battle-tracker', 'trr-hub-section',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'cronicas-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities',
-                              'combat-calc-hub', 'calc-section-infantry', 'calc-section-mech', 'calc-section-vehicle',
-                              'combat-calculator-modal', 'vehicle-crit-resolution-modal'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
+            hideAllSections();
             
             // Resetear sub-secciones de mech-hangar
             const mechLanding = document.getElementById('mech-hangar-landing');
@@ -6905,18 +6939,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al TRR Hub (centro de tablas)
          */
         function goToTRRHub() {
-            // Ocultar todas las secciones
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'cronicas-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            
-            // Mostrar TRR Hub
+            hideAllSections();
             document.getElementById('trr-hub-section').style.display = 'block';
         }
         
@@ -6924,18 +6947,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al Crónicas Hub
          */
         function goToCronicasHub() {
-            // Ocultar todas las secciones
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'trr-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            
-            // Mostrar Crónicas Hub
+            hideAllSections();
             document.getElementById('cronicas-hub-section').style.display = 'block';
         }
 
@@ -7577,11 +7589,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // NAVEGACIÓN TRO: TECHNICAL READOUT
         // ============================================================================
         function goToTRO() {
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('tro-section').style.display = 'block';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
             // Limpiar búsqueda anterior
             document.getElementById('tro-search-input').value = '';
             document.getElementById('tro-results').innerHTML = '';
@@ -7907,11 +7916,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 console.log('⚠️ No hay datos en el generador');
             }
                 // Cambiar a vista de Barracones
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('barracones').style.display = 'block';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
                 // Mostrar barra de herramientas de Barracones
             const toolbar = document.getElementById('barracones-toolbar');
             console.log('🔍 Toolbar element:', toolbar);
@@ -9056,43 +9062,47 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             const dataPanel = document.querySelector('.mech-data-panel');
             
             if (laser && mechContainer) {
-                // Posición vertical: sigue el clip-path del mech
-                var containerTop, containerH;
-                var rect = mechContainer.getBoundingClientRect();
-                containerTop = rect.top;
-                containerH = rect.height;
-                var laserY = containerTop + (progress * containerH);
+                // Rango vertical: el mayor de blueprint, mech y datapanel
+                var rangeTop = Infinity, rangeBottom = 0;
+                var mechRect = mechContainer.getBoundingClientRect();
+                rangeTop = Math.min(rangeTop, mechRect.top);
+                rangeBottom = Math.max(rangeBottom, mechRect.bottom);
+                if (blueprint && blueprint.offsetParent !== null) {
+                    var bpR = blueprint.getBoundingClientRect();
+                    rangeTop = Math.min(rangeTop, bpR.top);
+                    rangeBottom = Math.max(rangeBottom, bpR.bottom);
+                }
+                if (dataPanel && dataPanel.offsetParent !== null) {
+                    var dpR = dataPanel.getBoundingClientRect();
+                    rangeTop = Math.min(rangeTop, dpR.top);
+                    rangeBottom = Math.max(rangeBottom, dpR.bottom);
+                }
+                var laserY = rangeTop + (progress * (rangeBottom - rangeTop));
                 laser.style.top = laserY + 'px';
                 laser.style.position = 'fixed';
                 
-                // Ancho horizontal: de borde izquierdo de blueprint a borde derecho de data panel
-                var laserLeft = 0;
-                var laserRight = window.innerWidth;
-                
+                // Separators at blueprint right edge and data panel left edge
+                var sepLeft = 0, sepRight = window.innerWidth;
                 if (blueprint && blueprint.offsetParent !== null) {
-                    var bpRect = blueprint.getBoundingClientRect();
-                    laserLeft = bpRect.left;
+                    sepLeft = blueprint.getBoundingClientRect().right;
                 }
                 if (dataPanel && dataPanel.offsetParent !== null) {
-                    var dpRect = dataPanel.getBoundingClientRect();
-                    laserRight = dpRect.right;
+                    sepRight = dataPanel.getBoundingClientRect().left;
                 }
+                var sepBp = document.getElementById('sep-blueprint');
+                var sepDp = document.getElementById('sep-datapanel');
+                if (sepBp) sepBp.style.left = sepLeft + 'px';
+                if (sepDp) sepDp.style.left = sepRight + 'px';
+                laser.style.left = sepLeft + 'px';
+                laser.style.width = (sepRight - sepLeft) + 'px';
                 
-                laser.style.left = laserLeft + 'px';
-                laser.style.width = (laserRight - laserLeft) + 'px';
-            }
-            
-            // Clip-path mechs — sincronizado al frame con el laser
-            const layerCurrent = document.getElementById('mech-layer-current');
-            const layerNext = document.getElementById('mech-layer-next');
-            
-            if (layerCurrent) {
-                // Borrar de arriba a abajo
-                layerCurrent.style.clipPath = 'inset(' + pct + '% 0 0 0)';
-            }
-            if (layerNext) {
-                // Revelar de arriba a abajo
-                layerNext.style.clipPath = 'inset(0 0 ' + (100 - parseFloat(pct)).toFixed(2) + '% 0)';
+                // Clip-path: basado en laser vs mech container
+                var mechProg = Math.max(0, Math.min(1, (laserY - mechRect.top) / mechRect.height));
+                var mechPct = (mechProg * 100).toFixed(2);
+                var layerCurrent = document.getElementById('mech-layer-current');
+                var layerNext = document.getElementById('mech-layer-next');
+                if (layerCurrent) layerCurrent.style.clipPath = 'inset(' + mechPct + '% 0 0 0)';
+                if (layerNext) layerNext.style.clipPath = 'inset(0 0 ' + (100 - parseFloat(mechPct)).toFixed(2) + '% 0)';
             }
             
             // Ciclo completado → rotar
@@ -9403,6 +9413,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <!-- LANDING PAGE MILITAR BATTLETECH -->
     <!-- SCANLINE CRT OVERLAY -->
     <div class="scanline-overlay"></div>
+    <div class="scan-separator" id="sep-blueprint"></div>
+    <div class="scan-separator" id="sep-datapanel"></div>
     
     <div id="landing-page">
         <!-- === HEADER BAR (pegado arriba) === -->
@@ -11649,67 +11661,25 @@ function openUnifiedConfigPanel() {
     <div id="barracones" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 174, 0, 0.05) 2px, transparent 4px); background-size: 100% 100%, 100% 4px; z-index: 2000; overflow-y: auto; padding-top: 60px; padding-bottom: 200px;">
         <button class="back-to-home-btn no-print" onclick="goHomeFromBarracones()" style="position: fixed; top: 20px; left: 20px;">⚠️ SALIR AL MENÚ</button>
         
-        <!-- BOTONES DE CARGA RÁPIDA DE PERSONAJES -->
-        <div id="quick-load-buttons" class="no-print" style="position: fixed; top: 70px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 2001;">
-            <button onclick="cargarPersonajeRapido('Marcos')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Marcos</button>
-            <button onclick="cargarPersonajeRapido('Jaime')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Jaime</button>
-            <button onclick="cargarPersonajeRapido('Joan')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Joan</button>
-            <button onclick="cargarPersonajeRapido('Juan Palacios')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Juan Palacios</button>
-        </div>
+        
         
         <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <!-- PANEL DE CARGA Y GESTIÓN (float right, scrolls with content) -->
+            <div id="quick-load-buttons" class="no-print" style="float:right; width:240px; margin-left:20px; margin-bottom:15px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:6px;">
+                    <button onclick="cargarPersonajeRapido('Marcos')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#1a4a1a,#0a2a0a); border-color:#2d5a2d; color:#4ade80;">Marcos</button>
+                    <button onclick="cargarPersonajeRapido('Jaime')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#1a3a5a,#0a1a3a); border-color:#2d4a6d; color:#60a5fa;">Jaime</button>
+                    <button onclick="cargarPersonajeRapido('Joan')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4a3a1a,#2a1a0a); border-color:#6d5a2d; color:#fbbf24;">Joan</button>
+                    <button onclick="cargarPersonajeRapido('Juan Palacios')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4a1a4a,#2a0a2a); border-color:#6d2d6d; color:#c084fc;">Palacios</button>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+                    <button onclick="guardarEnNubeBarracones()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#ff8c42,#d67635); grid-column:span 2;">&#x2601;&#xFE0F; GUARDAR NUBE</button>
+                    <button onclick="generarPDFPersonaje()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4CAF50,#388E3C); grid-column:span 2;">&#x1F4C4; DESCARGAR PDF</button>
+                    <button onclick="exportarDatos()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#6c757d,#495057);">&#x1F4BE; BAJAR JSON</button>
+                    <button onclick="document.getElementById('file-input-barracones').click()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#6c757d,#495057);">&#x1F4C2; SUBIR JSON</button>
+                </div>
+                <div id="cloud-search-results-barracones" style="margin-top:7px;"></div>
+            </div>
             <!-- Scanner Effect -->
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 140, 66, 0.5), transparent); animation: scanner-sweep 30s linear infinite alternate; z-index: 0;"></div>
                 <style>
@@ -14699,18 +14669,10 @@ function openUnifiedConfigPanel() {
         </div>
     </div>
 
-    <!-- BARRA DE HERRAMIENTAS FIJA - GESTIÓN DE DATOS BARRACONES -->
-    <!-- Esta barra se muestra/oculta junto con Barracones -->
-    <div id="barracones-toolbar" style="display:none; position: fixed; top: 78px; right: 20px; left: auto; width: auto; max-width: 760px; background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, #000000 100%); border: 1px solid #5c4200; box-shadow: 0 0 20px rgba(255, 174, 0, 0.2); z-index: 3000; padding: 10px 13px;">
-        <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-end; flex-wrap: wrap;">
-            <button onclick="buscarEnNubeBarracones()" style="padding: 6px 10px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">CARGAR NUBE</button>
-            <button onclick="guardarEnNubeBarracones()" style="padding: 6px 10px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">☁️ GUARDAR NUBE</button>
-            <button onclick="exportarDatos()" style="padding: 6px 10px; background: linear-gradient(135deg, #6c757d 0%, #495057 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 8px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">💾 BAJAR JSON</button>
-            <input type="file" id="file-input-barracones" style="display: none;" onchange="importarDatos(this)">
-            <button onclick="document.getElementById('file-input-barracones').click()" style="padding: 6px 10px; background: linear-gradient(135deg, #6c757d 0%, #495057 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 8px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">📂 SUBIR JSON</button>
-            <button onclick="generarPDFPersonaje()" style="padding: 6px 10px; background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">📄 DESCARGAR PDF</button>
-        </div>
-        <div id="cloud-search-results-barracones" style="margin-top: 7px;"></div>
+    <!-- barracones-toolbar: merged into quick-load-buttons panel -->
+    <div id="barracones-toolbar" style="display:none;"></div>
+    <input type="file" id="file-input-barracones" style="display:none;" onchange="importarDatos(this)">
+
     </div>
 
 <script>
@@ -16282,14 +16244,7 @@ console.log('✅ Generador de PDF integrado correctamente');
  * Navega a la sección de Crónicas
  */
 function goToCronicas() {
-    // Ocultar todas las secciones
-    const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                      'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                      'mech-hangar', 'vehicle-depot', 'galactic-map', 'historial-logros-section'];
-    sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar sección
     document.getElementById('cronicas-section').style.display = 'block';
@@ -16484,14 +16439,7 @@ async function guardarConfiguracionCronicas() {
  * Navega a la sección de Historial y Logros
  */
 function goToHistorialLogros() {
-    // Ocultar todas las secciones
-    const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                      'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                      'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section'];
-    sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar sección
     document.getElementById('historial-logros-section').style.display = 'block';
@@ -18060,12 +18008,7 @@ function resetBattleTracker() {
 
 function goToBattleTracker() {
     console.log('🎯 Navegando a Battle Tracker...');
-    
-    // Ocultar todas las secciones
-    ['landing-page', 'pre-generacion', 'ficha-container', 'barracones', 'points-counter', 'registro-combate'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar Battle Tracker
     const bt = document.getElementById('battle-tracker');
@@ -18739,8 +18682,7 @@ function abrirCalculadorCombate() {
     const modal = document.getElementById('combat-calculator-modal');
     if (!modal) return;
     
-    // Ocultar landing page
-    document.getElementById('landing-page').style.display = 'none';
+    hideAllSections();
     
     // Ocultar paneles internos
     document.getElementById('combat-hp-panel').style.display = 'none';
@@ -26102,92 +26044,188 @@ function mechParseSSW(text){
   function xa(sel,attr,def=''){const e=doc.querySelector(sel);return e?(e.getAttribute(attr)||def):def;}
   const root=doc.querySelector('mech');
   if(!root){console.error('SSW: No se encontró elemento <mech>');return null;}
+
+  // === DATOS BÁSICOS ===
   const chassis=root.getAttribute('name')||'',model=root.getAttribute('model')||'';
-  const tonnage=parseInt(root.getAttribute('tons'))||parseInt(xt('tonnage'))||0;
-  const configRaw=(root.getAttribute('config')||xt('configuration')||xt('config')||'').trim();
-  let isQuad=/\bquad\b/i.test(configRaw);
+  const tonnage=parseInt(root.getAttribute('tons'))||0;
   const bv=parseInt(xt('battle_value'))||0;
-  const engRating=parseInt(xa('engine','rating'))||parseInt(xt('engine rating'))||0;
+
+  // Motive type / config
+  const motiveType=(xt('motive_type')||root.getAttribute('config')||xt('configuration')||'').trim();
+  let isQuad=/\bquad\b/i.test(motiveType);
+
+  // Engine
+  const engRating=parseInt(xa('engine','rating'))||0;
+  const engType=(doc.querySelector('engine')?.textContent||'').trim();
+  const isXL=/xl/i.test(engType);
+  const isLight=/light/i.test(engType);
   const walkMP=tonnage>0?Math.floor(engRating/tonnage):0;
   const runMP=Math.ceil(walkMP*1.5);
-  const jumpMP=doc.querySelectorAll('jumpjets location').length;
-  // Heatsinks: intentar atributo o elemento
+
+  // Jump jets
+  const jjLocations=Array.from(doc.querySelectorAll('jumpjets location'));
+  const jumpMP=jjLocations.length;
+
+  // Heat sinks
   const hsEl=doc.querySelector('heatsinks');
-  const hsCount=parseInt(hsEl?.getAttribute('number'))||parseInt(xt('heatsinks number'))||10;
-  const hsTypeText=(hsEl?.querySelector('type')?.textContent||hsEl?.getAttribute('type')||'single').toLowerCase();
+  const hsCount=parseInt(hsEl?.getAttribute('number'))||10;
+  const hsTypeText=(hsEl?.querySelector('type')?.textContent||'single').toLowerCase();
   const hsDouble=/double/i.test(hsTypeText);
   const diss=hsDouble?hsCount*2:hsCount;
-  // Leer armadura - intentar como elemento hijo o como atributo
+
+  // Actuators
+  const actEl=doc.querySelector('actuators');
+  const hasLLA=actEl?.getAttribute('lla')!=='FALSE';
+  const hasLH=actEl?.getAttribute('lh')==='TRUE';
+  const hasRLA=actEl?.getAttribute('rla')!=='FALSE';
+  const hasRH=actEl?.getAttribute('rh')==='TRUE';
+
+  // Armor
   function av(t){
-    const el = doc.querySelector('armor '+t);
-    if(el) return parseInt(el.textContent)||0;
-    const armorEl = doc.querySelector('armor');
-    if(armorEl) return parseInt(armorEl.getAttribute(t))||0;
+    const el=doc.querySelector('armor '+t);
+    if(el)return parseInt(el.textContent)||0;
     return 0;
   }
   const armor={HD:av('hd'),CTf:av('ct'),CTr:av('ctr'),LTf:av('lt'),LTr:av('ltr'),RTf:av('rt'),RTr:av('rtr'),LA:av('la'),RA:av('ra'),LL:av('ll'),RL:av('rl')};
   const is=MECH_IS_TABLE[tonnage]||MECH_IS_TABLE[100];
+
+  // === CRITICAL SLOTS: Fill standard equipment first ===
+  const LOCS=['HD','CT','LT','RT','LA','RA','LL','RL'];
+  const crits={};
+  LOCS.forEach(l=>crits[l]=Array(l==='HD'?6:(l==='LL'||l==='RL')?6:12).fill('-'));
+
+  // Head: Life Support, Sensors, Cockpit, -, Sensors, Life Support
+  crits.HD[0]='Life Support'; crits.HD[1]='Sensors'; crits.HD[2]='Cockpit';
+  crits.HD[4]='Sensors'; crits.HD[5]='Life Support';
+
+  // Center Torso: Engine (3 slots), Gyro (4 slots), Engine (3 slots if not XL)
+  for(var ei=0;ei<3;ei++) crits.CT[ei]='Fusion Engine';
+  for(var gi=3;gi<7;gi++) crits.CT[gi]='Gyro';
+  for(var ei2=7;ei2<10;ei2++) crits.CT[ei2]='Fusion Engine';
+
+  // XL/Light engine: side torso engine slots
+  if(isXL||isLight){
+    var sideEngSlots=isXL?3:2;
+    var lsStart=parseInt(xa('engine','lsstart'))||0;
+    var rsStart=parseInt(xa('engine','rsstart'))||0;
+    // If lsstart/rsstart are -1 or 0, put them at the end
+    if(lsStart<0) lsStart=12-sideEngSlots;
+    if(rsStart<0) rsStart=12-sideEngSlots;
+    for(var s=0;s<sideEngSlots;s++){
+      if(lsStart+s<12) crits.LT[lsStart+s]='Fusion Engine';
+      if(rsStart+s<12) crits.RT[rsStart+s]='Fusion Engine';
+    }
+  }
+
+  // Arms: Shoulder, Upper Arm, [Lower Arm], [Hand]
+  if(isQuad){
+    // Quad: front legs use Hip, Upper Leg, Lower Leg, Foot
+    crits.LA[0]='Hip'; crits.LA[1]='Upper Leg Actuator';
+    crits.LA[2]='Lower Leg Actuator'; crits.LA[3]='Foot Actuator';
+    crits.RA[0]='Hip'; crits.RA[1]='Upper Leg Actuator';
+    crits.RA[2]='Lower Leg Actuator'; crits.RA[3]='Foot Actuator';
+  } else {
+    crits.LA[0]='Shoulder'; crits.LA[1]='Upper Arm Actuator';
+    if(hasLLA) crits.LA[2]='Lower Arm Actuator';
+    if(hasLH) crits.LA[3]='Hand Actuator';
+    crits.RA[0]='Shoulder'; crits.RA[1]='Upper Arm Actuator';
+    if(hasRLA) crits.RA[2]='Lower Arm Actuator';
+    if(hasRH) crits.RA[3]='Hand Actuator';
+  }
+
+  // Legs: Hip, Upper Leg, Lower Leg, Foot
+  crits.LL[0]='Hip'; crits.LL[1]='Upper Leg Actuator';
+  crits.LL[2]='Lower Leg Actuator'; crits.LL[3]='Foot Actuator';
+  crits.RL[0]='Hip'; crits.RL[1]='Upper Leg Actuator';
+  crits.RL[2]='Lower Leg Actuator'; crits.RL[3]='Foot Actuator';
+
+  // === Place Jump Jets in crits ===
+  jjLocations.forEach(jjEl=>{
+    var loc=mwNormLoc(jjEl.textContent.trim());
+    var idx=parseInt(jjEl.getAttribute('index')||'',10);
+    if(!crits[loc]) return;
+    if(Number.isFinite(idx) && idx>=0 && idx<crits[loc].length){
+      crits[loc][idx]='Jump Jet';
+    } else {
+      var fi=crits[loc].findIndex(s=>s==='-');
+      if(fi>=0) crits[loc][fi]='Jump Jet';
+    }
+  });
+
+  // === Place heat sinks in crits (non-engine-integrated) ===
+  var engineHS=Math.min(hsCount, Math.floor(engRating/25));
+  var externalHS=hsCount-engineHS;
+  var hsSlots=hsDouble?3:1;
+  var hsInCrits=Array.from(doc.querySelectorAll('heatsinks location'));
+  hsInCrits.forEach(hsLoc=>{
+    var loc=mwNormLoc(hsLoc.textContent.trim());
+    var idx=parseInt(hsLoc.getAttribute('index')||'',10);
+    if(!crits[loc]) return;
+    var hsName=hsDouble?'Double Heat Sink':'Heat Sink';
+    if(Number.isFinite(idx) && idx>=0 && idx<crits[loc].length){
+      for(var si=0;si<hsSlots && idx+si<crits[loc].length;si++){
+        crits[loc][idx+si]=hsName;
+      }
+    } else {
+      for(var si2=0;si2<hsSlots;si2++){
+        var fi=crits[loc].findIndex(s=>s==='-');
+        if(fi>=0) crits[loc][fi]=hsName;
+      }
+    }
+  });
+
+  // === Place equipment in crits (SSW uses 0-BASED indices) ===
   const PASSIVE=['case','endo steel','ferro-fibrous','targeting computer','masc','guardian ecm','beagle active probe','angel ecm','null signature','chameleon'];
 
-  // PASO 1: Poblar array de críticos primero
-  const crits={};['HD','CT','LT','RT','LA','RA','LL','RL'].forEach(l=>crits[l]=Array(l==='HD'||l.endsWith('L')?6:12).fill('-'));
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const name = rawName.trim();
-    const locNodes = Array.from(eq.querySelectorAll('location'));
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var name=rawName.trim();
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(!locNodes.length) return;
 
     locNodes.forEach(locEl=>{
-      const loc = mwNormLoc(locEl.textContent.trim());
-      const slots = crits[loc];
+      var loc=mwNormLoc(locEl.textContent.trim());
+      var slots=crits[loc];
       if(!slots) return;
-
-      const idxRaw = parseInt(locEl.getAttribute('index')||'',10);
-      let idx = -1;
-
-      if(Number.isFinite(idxRaw)){
-        if(idxRaw >= 1 && idxRaw <= slots.length) idx = idxRaw - 1;
-        else if(idxRaw >= 0 && idxRaw < slots.length) idx = idxRaw;
+      // SSW uses 0-based indices — use directly, DO NOT subtract 1
+      var idx=parseInt(locEl.getAttribute('index')||'',10);
+      if(Number.isFinite(idx) && idx>=0 && idx<slots.length){
+        slots[idx]=name;
+      } else {
+        var fi=slots.findIndex(s=>s==='-');
+        if(fi>=0) slots[fi]=name;
       }
-
-      if(idx < 0) idx = slots.findIndex(s=>s==='-');
-      if(idx >= 0 && idx < slots.length) slots[idx] = name;
     });
   });
 
-  // PASO 2: Parsear armas y asignar slots específicos
-  const wMap={};let wid=1;
-  const ammoTonsByFamily = {};
-  const usedSlots = {}; // loc -> Set de índices ya asignados
+  // === Parse weapons ===
+  var wMap={};var wid=1;
+  var ammoTonsByFamily={};
+  var usedSlots={};
 
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
-    const locNodes=Array.from(eq.querySelectorAll('location'));
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(locNodes.length===0)return;
-    const rawLoc=locNodes[0]?.textContent?.trim()||'';
-    const slotsUsed=locNodes.length;
-    if(type==='ammunition' || rawName.toLowerCase().includes('ammo'))return;
+    var rawLoc=locNodes[0]?.textContent?.trim()||'';
+    var slotsUsed=locNodes.length;
+    if(type==='ammunition' || rawName.toLowerCase().includes('ammo') || rawName.includes('@ '))return;
     if(PASSIVE.some(p=>rawName.toLowerCase().includes(p)))return;
-    // Aceptar tipos de arma conocidos o si no hay tipo definido (asumiendo que es arma)
-    const weaponTypes=['energy','ballistic','missile','physical','equipment'];
-    const looksLikeWeapon=/laser|ppc|ac\/|autocannon|gauss|srm|lrm|mrm|flamer|mg|machine/i.test(rawName);
+    var weaponTypes=['energy','ballistic','missile','physical','equipment'];
+    var looksLikeWeapon=/laser|ppc|ac\/|autocannon|gauss|srm|lrm|mrm|flamer|mg|machine/i.test(rawName);
     if(type && !weaponTypes.includes(type) && !looksLikeWeapon)return;
 
-    const cleanName=rawName.replace(/^\(IS\)\s*/i,'').replace(/^\(CL\)\s*/i,'').trim();
-    const xmlHeat=parseInt(eq.querySelector('heat')?.textContent)||null;
-    const xmlDmg=eq.querySelector('damage')?.textContent?.trim()||null;
-    const xmlRange=eq.querySelector('range')?.textContent?.trim()||null;
-    const stats=mwLookup(rawName)||mwLookup(cleanName);
-    const loc=mwNormLoc(rawLoc);
+    var cleanName=rawName.replace(/^\(IS\)\s*/i,'').replace(/^\(CL\)\s*/i,'').trim();
+    var stats=mwLookup(rawName)||mwLookup(cleanName);
+    var loc=mwNormLoc(rawLoc);
 
-    // Buscar slots específicos de esta arma en los críticos (limitar a slotsUsed)
-    const slotIndices = [];
-    const normName = mechNormEquipName(rawName);
-    if(!usedSlots[loc]) usedSlots[loc] = new Set();
-    const locSlots = crits[loc] || [];
-
-    for(let si=0; si<locSlots.length && slotIndices.length < slotsUsed; si++){
+    // Find specific slot indices for this weapon (0-based)
+    var slotIndices=[];
+    var normName=mechNormEquipName(rawName);
+    if(!usedSlots[loc]) usedSlots[loc]=new Set();
+    var locSlots=crits[loc]||[];
+    for(var si=0;si<locSlots.length && slotIndices.length<slotsUsed;si++){
       if(usedSlots[loc].has(si)) continue;
       if(locSlots[si] && locSlots[si]!=='-' && mechNormEquipName(locSlots[si])===normName){
         slotIndices.push(si);
@@ -26195,50 +26233,60 @@ function mechParseSSW(text){
       }
     }
 
-    // Detectar si es arma trasera (R/Rear) o torreta (T/Turret)
-    const rearMatch = rawName.match(/\s*\((R|Rear|T|Turret)\)\s*$/i);
-    const posSuffix = rearMatch ? ` (${rearMatch[1][0].toUpperCase()})` : '';
-    const displayName = (stats ? stats.d : cleanName.replace(/\s*\((R|Rear|T|Turret)\)\s*$/i,'')) + posSuffix;
+    var rearMatch=rawName.match(/\s*\((R|Rear|T|Turret)\)\s*$/i);
+    var posSuffix=rearMatch?(' ('+rearMatch[1][0].toUpperCase()+')'):'';
+    var displayName=(stats?stats.d:cleanName.replace(/\s*\((R|Rear|T|Turret)\)\s*$/i,''))+posSuffix;
 
-    wMap[wid]={id:wid,name:displayName,rawName:rawName.trim(),loc,locRaw:rawLoc,
-      heat:xmlHeat??stats?.h??0,dmg:xmlDmg??stats?.dm??'?',r:xmlRange??stats?.r??'?',
-      ammo:null,ammoMax:null,count:1,slotsUsed,slotIndices};
+    wMap[wid]={id:wid,name:displayName,rawName:rawName.trim(),loc:loc,locRaw:rawLoc,
+      heat:stats?.h??0,dmg:stats?.dm??'?',r:stats?.r??'?',
+      ammo:null,ammoMax:null,count:1,slotsUsed:slotsUsed,slotIndices:slotIndices};
     wid++;
   });
 
-  // PASO 3: Construir ammoBins (un bin por tonelada de munición)
-  const ammoBins = [];
-  let binId = 0;
-  const usedAmmoSlots = {};
+  // === Parse ammo bins ===
+  var ammoBins=[];
+  var binId=0;
+  var usedAmmoSlots={};
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
+    var type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
     if(type!=='ammunition')return;
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const meta=mechAmmoMetaForWeapon({rawName});
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var meta=mechAmmoMetaForWeapon({rawName:rawName});
     if(!meta.familyKey) return;
-    const locNodes=Array.from(eq.querySelectorAll('location'));
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(!locNodes.length) return;
-    const rawLoc=locNodes[0]?.textContent?.trim()||'';
-    const loc=mwNormLoc(rawLoc);
-    const locSlots=crits[loc]||[];
-    const normName=mechNormEquipName(rawName);
+    var rawLoc=locNodes[0]?.textContent?.trim()||'';
+    var loc=mwNormLoc(rawLoc);
+    // Find the slot index for this ammo (0-based)
+    var idx=parseInt(locNodes[0].getAttribute('index')||'',10);
+    var slotIdx=-1;
+    if(Number.isFinite(idx) && idx>=0){
+      slotIdx=idx;
+    } else {
+      var locSlots2=crits[loc]||[];
+      var normName2=mechNormEquipName(rawName);
+      if(!usedAmmoSlots[loc]) usedAmmoSlots[loc]=new Set();
+      slotIdx=locSlots2.findIndex((s,i)=>!usedAmmoSlots[loc].has(i)&&s!=='-'&&mechNormEquipName(s)===normName2);
+    }
+    if(slotIdx<0) slotIdx=0;
     if(!usedAmmoSlots[loc]) usedAmmoSlots[loc]=new Set();
-    const slotIdx=locSlots.findIndex((s,i)=>!usedAmmoSlots[loc].has(i)&&s!=='-'&&mechNormEquipName(s)===normName);
-    if(slotIdx<0) return;
     usedAmmoSlots[loc].add(slotIdx);
-    const t1=parseFloat(eq.querySelector('tons')?.textContent||'');
-    const m=rawName.match(/(\d+(?:\.\d+)?)\s*ton/i);
-    const tons=Number.isFinite(t1)&&t1>0?t1:(m?parseFloat(m[1]):1);
-    const actualTons=Number.isFinite(tons)&&tons>0?tons:1;
-    const perTon=MECH_AMMO_PER_TON[meta.family]||0;
-    const max=Math.round(actualTons*perTon);
-    ammoTonsByFamily[meta.familyKey]=(ammoTonsByFamily[meta.familyKey]||0)+actualTons;
-    ammoBins.push({id:binId++,loc,slotIdx,familyKey:meta.familyKey,family:meta.family,perTon,current:max,max});
+
+    var perTon=MECH_AMMO_PER_TON[meta.family]||0;
+    var max=perTon;
+    ammoTonsByFamily[meta.familyKey]=(ammoTonsByFamily[meta.familyKey]||0)+1;
+    ammoBins.push({id:binId++,loc:loc,slotIdx:slotIdx,familyKey:meta.familyKey,family:meta.family,perTon:perTon,current:max,max:max});
   });
-  const inferredQuad = (crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||''))) && (crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
-  if(inferredQuad) isQuad = true;
-  const configType = isQuad ? 'QUAD' : (configRaw ? configRaw.toUpperCase() : 'BIPED');
-  return {source:'SSW',chassis,model,tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,configType,isQuad,engineRating:engRating,armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||'',armor,is,weapons:Object.values(wMap),crits,bv,ammoTonsByFamily,ammoBins};
+
+  // Infer quad from crits if not detected from motive_type
+  var inferredQuad=(crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')))&&(crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
+  if(inferredQuad) isQuad=true;
+  var configType=isQuad?'QUAD':(motiveType?motiveType.toUpperCase():'BIPED');
+
+  return {source:'SSW',chassis:chassis,model:model,tonnage:tonnage,walkMP:walkMP,runMP:runMP,jumpMP:jumpMP,
+    hsCount:hsCount,hsDouble:hsDouble,diss:diss,configType:configType,isQuad:isQuad,engineRating:engRating,
+    armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||xt('year')||'',
+    armor:armor,is:is,weapons:Object.values(wMap),crits:crits,bv:bv,ammoTonsByFamily:ammoTonsByFamily,ammoBins:ammoBins};
 }
 
 function mechParseMech(text){
