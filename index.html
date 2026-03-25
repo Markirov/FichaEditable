@@ -561,6 +561,57 @@
         .mrb-badge-btn img {
             display: block;
         }
+        /* Unit Identity Block (sidebar top) */
+        .unit-identity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 10px 16px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid var(--outline-variant, #514532);
+        }
+        .unit-identity-emblem {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+        .unit-identity-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+        }
+        .unit-identity-name {
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .unit-identity-sub {
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        /* Classic title unit subtitle */
+        .classic-unit-subtitle {
+            display: block;
+            font-size: 0.45em;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 3px;
+            margin-top: 8px;
+            opacity: 0.85;
+        }
+
         /* Recuperación visual del diseño clásico (index (7).html) */
         body.theme-classic #landing-page {
             display: flex;
@@ -9275,6 +9326,14 @@ let currentScanMechIndex = 0;
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
+            <!-- Unit Identity -->
+            <div class="unit-identity">
+                <img class="unit-identity-emblem" src="data:image/png;base64,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" alt="Unit Emblem">
+                <div class="unit-identity-text">
+                    <span class="unit-identity-name" id="sidebar-unit-name">KING KARL'S KAURASSIERS</span>
+                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                </div>
+            </div>
             <div class="sidebar-section-label">OPERACIONES</div>
             <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> Comision</button>
             <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
@@ -9345,6 +9404,14 @@ let currentScanMechIndex = 0;
         
         <!-- === SIDEBAR (pegado al lateral izquierdo) === -->
         <nav class="landing-sidebar">
+            <!-- Unit Identity -->
+            <div class="unit-identity">
+                <img class="unit-identity-emblem" src="data:image/png;base64,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" alt="Unit Emblem">
+                <div class="unit-identity-text">
+                    <span class="unit-identity-name sidebar-unit-name-sync">KING KARL'S KAURASSIERS</span>
+                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                </div>
+            </div>
             <div class="sidebar-section-label">OPERACIONES</div>
             <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
             <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
@@ -16319,6 +16386,8 @@ async function cargarConfiguracion() {
         
         if (data.result === 'success' && data.config) {
             configCargada = data.config;
+            // Sync unit name to sidebar
+            if (typeof syncUnitName === 'function') syncUnitName(data.config);
             
             // Rellenar campos del formulario
             document.getElementById('config-compania-nombre').value = data.config['COMPANIA_NOMBRE'] || '';
@@ -29969,6 +30038,20 @@ function volverHubCalculador(){
 </script>
 
 <script>
+
+    // === SYNC UNIT NAME FROM CONFIG ===
+    function syncUnitName(config) {
+        var name = (config && config['COMPANIA_NOMBRE']) || "KING KARL'S KAURASSIERS";
+        var el1 = document.getElementById('sidebar-unit-name');
+        if (el1) el1.textContent = name;
+        var el2 = document.getElementById('classic-unit-name');
+        if (el2) el2.textContent = name;
+        // Sync any other instances
+        document.querySelectorAll('.sidebar-unit-name-sync').forEach(function(el) {
+            el.textContent = name;
+        });
+    }
+
 (function(){
   const THEME_KEY = 'UI_THEME_PREF';
 
@@ -29989,9 +30072,11 @@ function volverHubCalculador(){
     }
     var title = document.querySelector('#landing-page .landing-title');
     if(title && !title.dataset.classic){
-      title.innerHTML = 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS';
+      title.innerHTML = 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS<span class="classic-unit-subtitle" id="classic-unit-name"></span>';
       title.dataset.classic = '1';
     }
+    // Sync unit name from config if available
+    if (typeof syncUnitName === 'function' && typeof configCargada !== 'undefined') syncUnitName(configCargada);
     var yearText = '3026';
     var el1 = document.getElementById('global-campaign-year');
     var el2 = document.getElementById('current-campaign-year');
