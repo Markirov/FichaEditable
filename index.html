@@ -1684,7 +1684,7 @@ body.theme-classic .classic-theme-float-switch {
                                 existing.bv2 = it.bv2;
                                 if (it.file) existing.file = it.file;
                             } else {
-                                MECH_DATABASE.push({name: it.name, bv2: it.bv2, file: it.file || ''});
+                                MECH_DATABASE.push({name: it.name, bv2: it.bv2, era: it.era || '', file: it.file || ''});
                             }
                         });
                         console.log('  Mechs: ' + MECH_DATABASE.length + ' unidades');
@@ -1706,7 +1706,7 @@ body.theme-classic .classic-theme-float-switch {
                                 if (it.type) existing.type = it.type;
                                 if (it.file) existing.file = it.file;
                             } else {
-                                VEHICLE_DATABASE.push({name: it.name, bv2: it.bv2, type: it.type || 'Unknown', file: it.file || ''});
+                                VEHICLE_DATABASE.push({name: it.name, bv2: it.bv2, era: it.era || '', type: it.type || 'Unknown', file: it.file || ''});
                             }
                         });
                         console.log('  Vehículos: ' + VEHICLE_DATABASE.length + ' unidades');
@@ -7368,7 +7368,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     mechs.forEach(mech => {
                         html += `<div class="tro-result-card" onclick="showTRODetail('mech', '${mech.name.replace(/'/g, "\\'")}')">
                             <div class="tro-result-name">${mech.name}</div>
-                            <div class="tro-result-bv">BV2: ${mech.bv2}</div>
+                            <div class="tro-result-bv">BV2: ${mech.bv2}${mech.era ? ' · ' + mech.era : ''}</div>
                         </div>`;
                     });
                     html += '</div>';
@@ -7380,7 +7380,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     vehicles.forEach(vehicle => {
                         html += `<div class="tro-result-card vehicle" onclick="showTRODetail('vehicle', '${vehicle.name.replace(/'/g, "\\'")}')">
                             <div class="tro-result-name">${vehicle.name}</div>
-                            <div class="tro-result-bv">BV2: ${vehicle.bv2}</div>
+                            <div class="tro-result-bv">BV2: ${vehicle.bv2}${vehicle.era ? ' · ' + vehicle.era : ''}</div>
                             <div class="tro-result-type">${vehicle.type}</div>
                         </div>`;
                     });
@@ -7406,6 +7406,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             html += '<div class="tro-detail-name">' + unit.name + '</div>';
             html += '<div class="tro-detail-stats">';
             html += '<div class="tro-stat"><span class="tro-stat-label">Battle Value 2:</span> <span class="tro-stat-value">' + (unit.bv2 || '\u2014') + '</span></div>';
+            if (unit.era) html += '<div class="tro-stat"><span class="tro-stat-label">A\u00f1o:</span> <span class="tro-stat-value">' + unit.era + '</span></div>';
             if (unit.type) html += '<div class="tro-stat"><span class="tro-stat-label">Tipo:</span> <span class="tro-stat-value">' + unit.type + '</span></div>';
             html += '</div>';
             html += '<div id="tro-detail-extra" style="margin-top:12px; color:#888; font-size:10px;">Cargando datos completos...</div>';
@@ -7464,6 +7465,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             h += '<div style="font-size:8px; color:#9e8e78;">TONELAJE</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.tonnage||'?') + 't</div></div>';
             h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
             h += '<div style="font-size:8px; color:#9e8e78;">DISIPADORES</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.diss||data.hsCount||'?') + '</div></div>';
+            // Total armor
+            if (data.armor) {
+                var totalArmor = 0;
+                for (var aKey in data.armor) { totalArmor += (data.armor[aKey] || 0); }
+                h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+                h += '<div style="font-size:8px; color:#9e8e78;">BLINDAJE</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + totalArmor + '</div></div>';
+            }
             h += '</div></div>';
             
             // Armor
@@ -7620,7 +7628,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             units.forEach(unit => {
                 html += `<div class="tro-result-card ${isMech ? '' : 'vehicle'}" onclick="showTRODetail('${isMech ? 'mech' : 'vehicle'}', '${unit.name.replace(/'/g, "\\'")}')">
                     <div class="tro-result-name">${unit.name}</div>
-                    <div class="tro-result-bv">BV2: ${unit.bv2}</div>
+                    <div class="tro-result-bv">BV2: ${unit.bv2}${unit.era ? ' · ' + unit.era : ''}</div>
                     ${unit.type ? '<div class="tro-result-type">' + unit.type + '</div>' : ''}
                 </div>`;
             });
