@@ -26269,7 +26269,9 @@ async function mechLoadFromCatalogItem(item){
   try{
     const st=document.getElementById('mech-catalog-status');
     if(st){ st.textContent='Cargando '+(item.name||item.file)+'...'; st.style.color='#60a5fa'; }
-    const resp=await fetch(item.file, { cache:'no-store' });
+    var baseUrl = MECH_CATALOG_URL.replace('index.json','');
+    var fileUrl = item.file.includes('/') ? item.file : baseUrl + item.file;
+    const resp=await fetch(fileUrl, { cache:'no-store' });
     if(!resp.ok) throw new Error('HTTP '+resp.status+' al leer '+item.file);
     const text=await resp.text();
     const data=mechParseMech(text);
@@ -29157,7 +29159,9 @@ async function vehicleLoadFromCatalogItem(item){
     if(item.content){
       text = String(item.content || '');
     }else{
-      const resp = await fetch(item.file, { cache:'no-store' });
+      var vBase = VEHICLE_CATALOG_URL.replace('index.json','');
+      var vUrl = item.file.includes('/') ? item.file : vBase + item.file;
+      const resp = await fetch(vUrl, { cache:'no-store' });
       if(!resp.ok) throw new Error('HTTP '+resp.status+' al leer '+item.file);
       text = await resp.text();
     }
@@ -29644,9 +29648,11 @@ async function vehicleLoadFromCatalogItem(item){
     } else {
       const cfg = githubSyncGetLocalConfig();
       if(cfg.owner && cfg.repo && cfg.branch && cfg.token){
-        text = await ghGetTextFile(item.file);
+        text = await ghGetTextFile(VEHICLE_CATALOG_URL.replace('index.json','') + item.file);
       } else {
-        const resp = await fetch(item.file, { cache:'no-store' });
+        var gvBase = VEHICLE_CATALOG_URL.replace('index.json','');
+        var gvUrl = item.file.includes('/') ? item.file : gvBase + item.file;
+        const resp = await fetch(gvUrl, { cache:'no-store' });
         if(!resp.ok) throw new Error('HTTP '+resp.status+' al leer '+item.file);
         text = await resp.text();
       }
