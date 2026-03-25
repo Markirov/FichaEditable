@@ -7393,86 +7393,117 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function showTRODetail(type, name) {
             const detailDiv = document.getElementById('tro-unit-detail');
-            let unit = type === 'mech' ? getMechByName(name) : getVehicleByName(name);
+            var unit = type === 'mech' ? getMechByName(name) : getVehicleByName(name);
             
             if (!unit) {
                 detailDiv.innerHTML = '<div class="tro-message">Unidad no encontrada.</div>';
                 return;
             }
 
-            let html = '<div class="tro-detail-card">';
-            html += '<div class="tro-detail-header">';
-            html += type === 'mech' ? '🤖 BATTLEMECH' : '🚛 VEHÍCULO';
-            html += '</div>';
+            // Show basic info immediately
+            var html = '<div class="tro-detail-card">';
+            html += '<div class="tro-detail-header">' + (type === 'mech' ? '\ud83e\udd16 BATTLEMECH' : '\ud83d\ude9b VEH\u00cdCULO') + '</div>';
             html += '<div class="tro-detail-name">' + unit.name + '</div>';
             html += '<div class="tro-detail-stats">';
-            html += '<div class="tro-stat"><span class="tro-stat-label">Battle Value 2:</span> <span class="tro-stat-value">' + unit.bv2 + '</span></div>';
-            if (unit.type) {
-                html += '<div class="tro-stat"><span class="tro-stat-label">Tipo:</span> <span class="tro-stat-value">' + unit.type + '</span></div>';
-            }
+            html += '<div class="tro-stat"><span class="tro-stat-label">Battle Value 2:</span> <span class="tro-stat-value">' + (unit.bv2 || '\u2014') + '</span></div>';
+            if (unit.type) html += '<div class="tro-stat"><span class="tro-stat-label">Tipo:</span> <span class="tro-stat-value">' + unit.type + '</span></div>';
             html += '</div>';
+            html += '<div id="tro-detail-extra" style="margin-top:12px; color:#888; font-size:10px;">Cargando datos completos...</div>';
             
-            // Botón para enviar al Battle Tracker
-            html += '<div class="tro-action-buttons" style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">';
-            html += `<button class="tro-send-btn" onclick="sendToBattleTracker('${unit.name.replace(/'/g, "\\'")}', ${unit.bv2})" style="
-                background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
-                border: 2px solid #ff4444;
-                color: #fff;
-                padding: 12px 25px;
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 13px;
-                font-weight: bold;
-                cursor: pointer;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                transition: all 0.3s;
-                clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(255, 68, 68, 0.6)'; this.style.transform='scale(1.02)'" 
-               onmouseout="this.style.boxShadow='none'; this.style.transform='scale(1)'">
-                🎯 ENVIAR A BATTLE TRACKER
-            </button>`;
-            html += `<button class="tro-send-btn" onclick="sendToBattleTrackerStay('${unit.name.replace(/'/g, "\\'")}', ${unit.bv2})" style="
-                background: rgba(183, 28, 28, 0.3);
-                border: 1px solid #b71c1c;
-                color: #ff8c42;
-                padding: 12px 25px;
-                font-family: 'Share Tech Mono', monospace;
-                font-size: 13px;
-                font-weight: bold;
-                cursor: pointer;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                transition: all 0.3s;
-            " onmouseover="this.style.background='rgba(183, 28, 28, 0.5)'" 
-               onmouseout="this.style.background='rgba(183, 28, 28, 0.3)'">
-                ➕ AÑADIR (QUEDARSE AQUÍ)
-            </button>`;
-            html += '</div>';
-            
-            // Buscar variantes del mismo chasis
-            const chassisName = unit.name.split(' ')[0];
-            let variants = type === 'mech' 
-                ? MECH_DATABASE.filter(m => m.name.startsWith(chassisName) && m.name !== unit.name)
-                : VEHICLE_DATABASE.filter(v => v.name.startsWith(chassisName) && v.name !== unit.name);
-            
-            if (variants.length > 0) {
-                html += '<div class="tro-variants-header">Otras variantes de ' + chassisName + ':</div>';
-                html += '<div class="tro-variants-list">';
-                variants.slice(0, 10).forEach(v => {
-                    html += `<span class="tro-variant-tag" onclick="showTRODetail('${type}', '${v.name.replace(/'/g, "\\'")}')">${v.name.split(' ').slice(1).join(' ')} (${v.bv2})</span>`;
-                });
-                if (variants.length > 10) {
-                    html += '<span class="tro-variant-more">+' + (variants.length - 10) + ' más</span>';
-                }
-                html += '</div>';
-            }
-            
-            html += '</div>';
+            // Action buttons
+            html += '<div class="tro-action-buttons" style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;">';
+            html += '<button class="tro-send-btn" onclick="sendToBattleTracker(\'' + unit.name.replace(/'/g, "\\'") + '\', ' + (unit.bv2||0) + ')" style="background:linear-gradient(135deg,#b71c1c,#8b0000); border:2px solid #ff4444; color:#fff; padding:10px 20px; font-family:inherit; font-size:11px; font-weight:bold; cursor:pointer; text-transform:uppercase; letter-spacing:1px;">\u2694\ufe0f A\u00d1ADIR AL BATTLE TRACKER</button>';
+            html += '</div></div>';
             detailDiv.innerHTML = html;
-            detailDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            detailDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // If unit has a file, fetch and parse for full details
+            if (unit.file) {
+                var baseUrl = type === 'mech' ? MECH_CATALOG_URL.replace('index.json','') : VEHICLE_CATALOG_URL.replace('index.json','');
+                var fileUrl = unit.file.includes('/') ? unit.file : baseUrl + unit.file;
+                fetch(fileUrl, {cache:'no-store'}).then(function(r){
+                    if(!r.ok) throw new Error('HTTP '+r.status);
+                    return r.text();
+                }).then(function(text){
+                    var data = null;
+                    try {
+                        if (type === 'mech') data = mechParseMech(text);
+                        else data = vehicleParseSAW(text, unit.name);
+                    } catch(e) { console.warn('TRO parse error:', e); }
+                    if (!data) { document.getElementById('tro-detail-extra').textContent = 'No se pudieron leer los datos del archivo.'; return; }
+                    troRenderFullDetail(data, type);
+                }).catch(function(e){
+                    var extra = document.getElementById('tro-detail-extra');
+                    if(extra) extra.textContent = 'Archivo no disponible: ' + e.message;
+                });
+            } else {
+                var extra = document.getElementById('tro-detail-extra');
+                if(extra) extra.textContent = 'Sin archivo de datos asociado.';
+            }
         }
 
-        // Función para enviar unidad al Battle Tracker e ir allí
+        function troRenderFullDetail(data, type) {
+            var extra = document.getElementById('tro-detail-extra');
+            if (!extra || !data) return;
+            
+            var h = '';
+            
+            // Movement
+            h += '<div style="margin-bottom:12px;">';
+            h += '<div style="font-size:9px; color:#9e8e78; letter-spacing:2px; margin-bottom:6px;">MOVIMIENTO</div>';
+            h += '<div style="display:flex; gap:12px; flex-wrap:wrap;">';
+            h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+            h += '<div style="font-size:8px; color:#9e8e78;">CAMINAR</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.walkMP||'?') + '</div></div>';
+            h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+            h += '<div style="font-size:8px; color:#9e8e78;">CORRER</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.runMP||'?') + '</div></div>';
+            if (data.jumpMP) {
+                h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+                h += '<div style="font-size:8px; color:#9e8e78;">SALTAR</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + data.jumpMP + '</div></div>';
+            }
+            h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+            h += '<div style="font-size:8px; color:#9e8e78;">TONELAJE</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.tonnage||'?') + 't</div></div>';
+            h += '<div style="text-align:center; padding:6px 14px; border:1px solid #514532; background:#181c22;">';
+            h += '<div style="font-size:8px; color:#9e8e78;">DISIPADORES</div><div style="font-size:18px; color:#ffd79b; font-weight:700;">' + (data.diss||data.hsCount||'?') + '</div></div>';
+            h += '</div></div>';
+            
+            // Armor
+            if (data.armor) {
+                h += '<div style="margin-bottom:12px;">';
+                h += '<div style="font-size:9px; color:#9e8e78; letter-spacing:2px; margin-bottom:6px;">BLINDAJE</div>';
+                h += '<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:4px;">';
+                var armorLabels = {HD:'CAB',CTf:'CT',CTr:'CT(R)',LTf:'TI',LTr:'TI(R)',RTf:'TD',RTr:'TD(R)',LA:'BI',RA:'BD',LL:'PI',RL:'PD'};
+                for (var ak in armorLabels) {
+                    if (data.armor[ak] !== undefined) {
+                        h += '<div style="padding:4px 6px; background:#181c22; border:1px solid #514532; display:flex; justify-content:space-between;">';
+                        h += '<span style="font-size:9px; color:#9e8e78;">' + armorLabels[ak] + '</span>';
+                        h += '<span style="font-size:11px; color:#ffd79b; font-weight:700;">' + data.armor[ak] + '</span></div>';
+                    }
+                }
+                h += '</div></div>';
+            }
+            
+            // Weapons
+            if (data.weapons && data.weapons.length) {
+                h += '<div style="margin-bottom:12px;">';
+                h += '<div style="font-size:9px; color:#9e8e78; letter-spacing:2px; margin-bottom:6px;">ARMAMENTO</div>';
+                h += '<table style="width:100%; border-collapse:collapse; font-size:10px;">';
+                h += '<tr style="border-bottom:1px solid #514532;"><th style="text-align:left; padding:4px; color:#9e8e78;">ARMA</th><th style="padding:4px; color:#9e8e78;">UBI</th><th style="padding:4px; color:#9e8e78;">CAL</th><th style="padding:4px; color:#9e8e78;">DA\u00d1O</th><th style="padding:4px; color:#9e8e78;">ALC</th></tr>';
+                data.weapons.forEach(function(w){
+                    h += '<tr style="border-bottom:1px solid #1c2026;">';
+                    h += '<td style="padding:3px 4px; color:#dfe2eb;">' + (w.name||w.rawName||'?') + '</td>';
+                    h += '<td style="padding:3px 4px; color:#d6c4ac; text-align:center;">' + (w.loc||'?') + '</td>';
+                    h += '<td style="padding:3px 4px; color:#ffba38; text-align:center;">' + (w.heat||0) + '</td>';
+                    h += '<td style="padding:3px 4px; color:#ffd79b; text-align:center;">' + (w.dmg||'?') + '</td>';
+                    h += '<td style="padding:3px 4px; color:#d6c4ac; text-align:center;">' + (w.r||'?') + '</td>';
+                    h += '</tr>';
+                });
+                h += '</table></div>';
+            }
+            
+            extra.innerHTML = h;
+        }
+
+
         function sendToBattleTracker(unitName, bv2) {
             // Añadir al estado del Battle Tracker
             const enemy = {
@@ -29595,20 +29626,17 @@ function vehicleCatalogRender(items){
   const sel = document.getElementById('vehicle-catalog-delete-select');
   const st = document.getElementById('vehicle-catalog-status');
   if(!box || !sel || !st) return;
-  box.innerHTML='';
+  // No renderizar botones - usar solo buscador
+  box.innerHTML = '';
+  box.style.display = 'none';
   sel.innerHTML='<option value="">(elige modelo para borrar)</option>';
   (items||[]).forEach(it=>{
-    const b=document.createElement('button');
-    b.textContent = it.name || it.file;
-    b.style.cssText='padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
-    b.onclick=()=>vehicleLoadFromCatalogItem(it);
-    box.appendChild(b);
-    const opt=document.createElement('option');
+    var opt=document.createElement('option');
     opt.value=it.file;
-    opt.textContent=it.name || it.file;
+    opt.textContent=(it.name||it.file);
     sel.appendChild(opt);
   });
-  st.textContent = `Modelos: ${(items||[]).length}`;
+  st.textContent = (items||[]).length ? ('Vehiculos: '+(items||[]).length) : 'Catalogo vacio';
   st.style.color = (items||[]).length ? '#4ade80' : '#888';
 }
 
