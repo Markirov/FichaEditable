@@ -530,10 +530,191 @@
         }
         .global-shell-sidebar .btn-icon { width: 20px; text-align: center; }
 
-        /* Evitar duplicado visual del header/sidebar internos del landing */
-        #landing-page > .landing-header,
-        #landing-page > .landing-sidebar {
-            display: none !important;
+        /* Selector de diseño: nuevo (anoche) vs clásico (anterior) */
+        body.theme-new #global-shell { display: block; }
+        body.theme-new #landing-page > .landing-header,
+        body.theme-new #landing-page > .landing-sidebar { display: none !important; }
+
+        body.theme-classic #global-shell { display: none !important; }
+        body.theme-classic #landing-page > .landing-header { display: none !important; }
+        body.theme-classic #landing-page > .landing-sidebar { display: none !important; }
+
+        /* MRB Badge — Theme Toggle Button */
+        .mrb-badge-btn {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            z-index: 99999;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s, transform 0.3s;
+            filter: drop-shadow(0 0 4px rgba(255, 174, 0, 0.4));
+        }
+        .mrb-badge-btn:hover {
+            opacity: 1;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px rgba(255, 174, 0, 0.7));
+        }
+        .mrb-badge-btn img {
+            display: block;
+        }
+        /* Unit Identity Block (sidebar top) */
+        .unit-identity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 10px 16px;
+            margin-bottom: 4px;
+            border-bottom: 1px solid var(--outline-variant, #514532);
+        }
+        .unit-identity-emblem {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+        .unit-identity-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+        }
+        .unit-identity-name {
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .unit-identity-sub {
+            font-family: var(--font-headline, 'Space Grotesk');
+            font-size: 8px;
+            color: var(--outline, #9e8e78);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        /* Classic title unit subtitle */
+        .classic-unit-subtitle {
+            display: block;
+            font-size: 0.45em;
+            color: var(--primary, #ffd79b);
+            letter-spacing: 3px;
+            margin-top: 8px;
+            opacity: 0.85;
+        }
+
+        /* Recuperación visual del diseño clásico (index (7).html) */
+        body.theme-classic #landing-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000 !important;
+            background-image: none !important;
+            grid-template-columns: none !important;
+            grid-template-rows: none !important;
+            grid-template-areas: none !important;
+            padding-left: 0 !important;
+            padding-top: 0 !important;
+            font-family: 'Orbitron', 'Impact', sans-serif;
+        }
+        body.theme-classic #landing-page .landing-hero {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+        }
+        
+body.theme-classic #landing-page .landing-title {
+            display: block !important;
+            font-size: clamp(18px, 3.5vw, 42px);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(255, 140, 66, 0.6), 0 0 30px rgba(255, 140, 66, 0.3);
+            margin-bottom: 40px;
+            border: 3px solid #4a5a6a;
+            padding: 15px 25px;
+            background: rgba(26, 26, 26, 0.4);
+            box-shadow: 0 0 20px rgba(255, 140, 66, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            color: #ff8c42;
+            position: relative;
+            z-index: 10;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+            text-align: center;
+            max-width: 90vw;
+            line-height: 1.2;
+        }
+        body.theme-classic #landing-page .landing-title .classic-subline {
+            font-size: 30px;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        body.theme-classic #landing-page .landing-menu {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 650px;
+            position: relative;
+            z-index: 10;
+        }
+        body.theme-classic #landing-page .landing-menu .cyber-button {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid #b71c1c;
+            color: #e0e0e0;
+            padding: 12px 10px;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            position: relative;
+        }
+        body.theme-classic #landing-page .landing-menu .cyber-button:hover {
+            background-color: #b71c1c;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(183, 28, 28, 0.6);
+            transform: translateY(-2px);
+        }
+                body.theme-classic #landing-page .landing-hero {
+            pointer-events: none;
+        }
+        body.theme-classic #landing-page .landing-menu,
+        body.theme-classic #landing-page .landing-title {
+            position: relative;
+            z-index: 20;
+            pointer-events: auto;
+        }
+        .classic-theme-float-switch {
+            display: none !important; /* Replaced by MRB badge */
+        }
+        
+        
+        
+
+        
+@media (max-width: 1280px) {
+            
+        
+}
+body.theme-classic .classic-theme-float-switch {
+            display: none !important; /* Replaced by MRB badge */
+        }
+        @media (max-width: 900px) {
+            body.theme-classic #landing-page .landing-title { font-size: 42px; }
+            body.theme-classic #landing-page .landing-title .classic-subline { font-size: 20px; }
+            body.theme-classic #landing-page .landing-menu { width: min(92vw, 650px); grid-template-columns: 1fr; }
+            body.theme-classic #landing-page .mech-data-panel { display: none; }
         }
 
         @media (max-width: 900px) {
@@ -571,13 +752,19 @@
             z-index: 2000;
             display: grid;
             grid-template-columns: 1fr 280px;
-            grid-template-rows: 48px 1fr;
+            grid-template-rows: 1fr;
             grid-template-areas:
-                "header header"
                 "hero datapanel";
             color: var(--on-surface, #dfe2eb);
             font-family: var(--font-body, Inter, sans-serif);
             overflow: hidden;
+        }
+        
+        /* New theme: offset for global shell sidebar + header */
+        body.theme-new #landing-page {
+            padding-left: 220px;
+            padding-top: 48px;
+            box-sizing: border-box;
         }
 
         #landing-page::before {
@@ -643,12 +830,12 @@
         /* Contenedores de SVGs ocultos */
         .mech-svg-storage {
             display: none;
-        }
-        
-        /* Línea de escaneo: de arriba a abajo */
+        }        /* Línea de escaneo: de arriba a abajo */
         @keyframes scan-line {
             0% { transform: translateY(0); }
             100% { transform: translateY(100vh); }
+        }
+100% { transform: translateX(35%); }
         }
         
         /* Mech nuevo: se revela de arriba a abajo */
@@ -1260,7 +1447,171 @@
         #exit-confirmation-modal button:active {
             transform: translateY(0);
         }
-    </style>
+    
+
+        
+        
+
+
+        /* ============================================================
+           THEME OVERRIDES — CONSOLIDATED (single source of truth)
+           ============================================================ */
+        
+        /* === NUEVO (Stitch): mech centrado en hero, silueta a la izquierda === */
+        body.theme-new #landing-page .scan-laser {
+            position: absolute;
+            top: 0;
+            z-index: 30;
+            /* left y width se calculan por JS para ir de blueprint a data panel */
+        }
+        
+        body.theme-new #landing-page .mech-reveal-container {
+            position: absolute;
+            left: 50%;
+            top: 2%;
+            width: 40%;
+            height: 96%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+        
+        body.theme-new #landing-page .mech-silhouette-container {
+            position: absolute;
+            left: 2%;
+            top: 60px;
+            width: 320px;
+            height: 500px;
+            z-index: 35;
+            display: block;
+        }
+        /* Separator lines (positioned by JS) */
+        .scan-separator {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--surface-container-highest, #31353c);
+            z-index: 20;
+            pointer-events: none;
+            display: none;
+        }
+        body.theme-new .scan-separator { display: block; }
+        /* Move back-to-home buttons to not overlap sidebar in new theme */
+        body.theme-new .back-to-home-btn {
+            left: 240px !important;
+            top: 58px !important;
+        }
+
+        /* Fix bottom cutoff for all sections with global shell */
+        body.theme-new #barracones,
+        body.theme-new #pre-generacion,
+        body.theme-new #registro-combate,
+        body.theme-new #tro-section,
+        body.theme-new #battle-tracker,
+        body.theme-new #trr-hub-section,
+        body.theme-new #cronicas-hub-section,
+        body.theme-new #cronicas-section,
+        body.theme-new #historial-logros-section,
+        body.theme-new #combat-calculator-modal {
+            padding-top: 68px !important;
+            padding-left: 230px !important;
+        }
+
+        
+        /* === CLÁSICO: blueprint y data panel alineados, laser de borde a borde === */
+        body.theme-classic #landing-page .scan-laser {
+            position: fixed;
+            top: 0;
+            z-index: 30;
+            /* left y width se calculan por JS para ir de blueprint a data panel */
+        }
+        
+        body.theme-classic #landing-page .mech-reveal-container {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            width: 25%;
+            height: 80%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        
+        body.theme-classic #landing-page .mech-silhouette-container {
+            position: fixed;
+            left: 20px;
+            top: 10%;
+            width: 320px;
+            height: 500px;
+            z-index: 35;
+            display: block;
+        }
+        
+        body.theme-classic #landing-page .mech-data-panel {
+            position: fixed;
+            right: 20px;
+            top: 10%;
+            width: 320px;
+            height: auto;
+            max-height: 80%;
+            z-index: 2001;
+            border-color: #00ff00;
+            box-shadow: 0 0 16px rgba(0, 255, 0, 0.35);
+        }
+        
+        body.theme-new #landing-page .mech-data-panel {
+            /* Override fixed positioning — use grid area instead */
+            position: relative;
+            right: auto;
+            top: auto;
+            width: auto;
+            min-height: auto;
+            grid-area: datapanel;
+            background: var(--surface-dim, #0a0e14);
+            border: none;
+            border-left: 1px solid var(--surface-container-highest, #31353c);
+            box-shadow: none;
+            pointer-events: auto;
+            padding: 16px;
+            overflow-y: auto;
+        }
+        body.theme-new #landing-page .mech-data-panel::before,
+        body.theme-new #landing-page .mech-data-panel::after {
+            display: none;
+        }
+        body.theme-new #landing-page .mech-name {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            color: var(--primary, #ffd79b);
+            text-shadow: none;
+            animation: none;
+            border-right: none;
+            overflow: visible;
+            white-space: normal;
+        }
+        body.theme-new #landing-page .mech-spec {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--on-surface-variant, #d6c4ac);
+            background: var(--surface-container-low, #181c22);
+            border-left: 2px solid var(--outline-variant, #514532);
+            text-shadow: none;
+            animation: none;
+            opacity: 1;
+            padding: 8px 10px;
+            margin: 0 0 2px 0;
+        }
+        
+        /* === RESPONSIVE OVERRIDES === */
+        @media (max-width: 1400px) {
+            body.theme-new #landing-page .mech-data-panel { display: none; }
+            body.theme-classic #landing-page .mech-data-panel { display: none; }
+        }
+        @media (max-width: 768px) {
+            body.theme-new #landing-page .mech-silhouette-container { display: none; }
+            body.theme-classic #landing-page .mech-silhouette-container { display: none; }
+        }
+
+</style>
 
     <script>
         // ============================================================================
@@ -3421,7 +3772,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 return;
             }
 
-            const btn = document.querySelector('#barracones-toolbar button[onclick*="buscarEnNubeBarracones"]');
+            const btn = document.querySelector('#quick-load-buttons button[onclick*="buscarEnNubeBarracones"], #barracones-toolbar button[onclick*="buscarEnNubeBarracones"]');
             if (!btn) {
                 console.error('buscarEnNubeBarracones: Botón de carga no encontrado');
                 return;
@@ -3890,7 +4241,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // === ACTUALIZAR UI DEL BOTÓN ===
             // Indicar visualmente que se está guardando (deshabilitar botón y cambiar texto)
             const originalText = "GUARDAR EN LA NUBE";
-            const btn = document.querySelector('#barracones-toolbar button[onclick*="guardarEnNubeBarracones"]');
+            const btn = document.querySelector('#quick-load-buttons button[onclick*="guardarEnNubeBarracones"], #barracones-toolbar button[onclick*="guardarEnNubeBarracones"]');
             if (btn) {
                 btn.disabled = true;
                 btn.innerText = "GUARDANDO...";
@@ -5151,15 +5502,35 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         // NAVEGACIÓN
+
+        // ============================================
+        // OCULTAR TODAS LAS SECCIONES (universal)
+        // ============================================
+        function hideAllSections() {
+            var ids = ['landing-page', 'pre-generacion', 'ficha-container', 'barracones', 
+                       'points-counter', 'registro-combate', 'trr-section', 'battle-tracker',
+                       'trr-hub-section', 'mech-hangar', 'vehicle-depot', 'galactic-map',
+                       'cronicas-section', 'cronicas-hub-section', 'historial-logros-section',
+                       'tro-section', 'trr-infantry', 'trr-utilities',
+                       'combat-calc-hub', 'calc-section-infantry', 'calc-section-mech',
+                       'calc-section-vehicle', 'combat-calculator-modal', 'vehicle-crit-resolution-modal'];
+            for (var i = 0; i < ids.length; i++) {
+                var el = document.getElementById(ids[i]);
+                if (el) el.style.display = 'none';
+            }
+            var toolbar = document.getElementById('barracones-toolbar');
+            if (toolbar) toolbar.style.display = 'none';
+        }
+
         function goToGenerator() {
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('pre-generacion').style.display = 'block';
             document.getElementById('points-counter').style.display = 'block';
         }
 
         function goHome() {
             if(confirm("¿Volver al inicio? Se perderán los datos no guardados.")) {
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('galactic-map').style.display = 'none';
@@ -5181,7 +5552,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goHomeNoConfirm() {
             clearCriticalInfoDisplays();
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -5197,7 +5568,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         function goHomeFromTRR() {
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'none';
@@ -5227,7 +5598,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // Personalizar mensaje según la sección
             const messages = {
                 'barracones': '¿Salir de Barracones?',
-                'generador': '¿Salir del Generador de Personajes?',
+                'generador': '¿Salir del RECLUTAMIENTO?',
                 'default': '¿Salir de esta sección?'
             };
                 const message = messages[section] || messages['default'];
@@ -5306,7 +5677,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
          *    - Armas (selectores, munición, daño, alcance)
          *    - Notas
          * 
-         * 2. 'generador': Limpia la interfaz del Generador de Personajes
+         * 2. 'generador': Limpia la interfaz del RECLUTAMIENTO
          *    - Contador de puntos (resetea a 150)
          *    - Campos de personaje (nombre, jugador, edad, planeta, etc.)
          *    - Campaña, década y año
@@ -5475,7 +5846,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Barracones...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('barracones').style.display = 'none';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
@@ -5494,7 +5865,7 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
                 // La limpieza se hace automáticamente en el modal antes de ejecutar este callback
                 console.log('🏠 Volviendo al menú desde Generador...');
                         clearCriticalInfoDisplays();
-                document.getElementById('landing-page').style.display = 'grid';
+                document.getElementById('landing-page').style.display = '';
                 document.getElementById('pre-generacion').style.display = 'none';
                 document.getElementById('ficha-container').style.display = 'none';
                 document.getElementById('barracones').style.display = 'none';
@@ -5507,34 +5878,28 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         }
 
         /**
-         * Navega a la sección de Registro de Combate
+         * Navega a la sección de HOJA DE SERVICIO
          * Esta sección permite registrar combates y distribuir recompensas (XP, dinero) de forma masiva
          */
         function goToRegistroCombate() {
-            console.log('🎯 Navegando a Registro de Combate...');
-                // Ocultar todas las secciones
-            document.getElementById('landing-page').style.display = 'none';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('barracones').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
-                // Mostrar Registro de Combate
+            console.log('🎯 Navegando a HOJA DE SERVICIO...');
+            hideAllSections();
             document.getElementById('registro-combate').style.display = 'block';
-                console.log('✅ Registro de Combate mostrado');
+                console.log('✅ HOJA DE SERVICIO mostrado');
         }
 
         /**
-         * Vuelve al menú principal desde Registro de Combate
+         * Vuelve al menú principal desde HOJA DE SERVICIO
          * No requiere confirmación porque no hay datos que guardar
          */
         function goHomeFromRegistroCombate() {
-            console.log('🏠 Volviendo al menú desde Registro de Combate...');
+            console.log('🏠 Volviendo al menú desde HOJA DE SERVICIO...');
                 // Cerrar modal si está abierto
             cerrarModalRecompensas();
-                // Ocultar Registro de Combate
+                // Ocultar HOJA DE SERVICIO
             document.getElementById('registro-combate').style.display = 'none';
                 // Mostrar menú principal
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
                 console.log('✅ Menú principal mostrado');
         }
 
@@ -5680,7 +6045,7 @@ let quirksComprados = {};
 // ============================================================================
 
 /**
- * Inicializa los controles de gastos XP al cargar Registro de Combate
+ * Inicializa los controles de gastos XP al cargar HOJA DE SERVICIO
  */
 function inicializarGastosXP() {
     console.log('🎮 Inicializando controles de gastos XP...');
@@ -6265,7 +6630,7 @@ async function registrarMisionConGastos() {
 // ============================================================================
 
 /*
-// Al cargar Registro de Combate:
+// Al cargar HOJA DE SERVICIO:
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('registro-combate')) {
         inicializarGastosXP();
@@ -6275,8 +6640,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // Al hacer click en "REGISTRAR MISIÓN":
 document.getElementById('btn-registrar-mision').onclick = registrarMisionConGastos;
 */
-
-
 
         /**
          * Cierra el modal de distribución de recompensas
@@ -6524,20 +6887,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al landing page principal
          */
         function goToLanding() {
-            const toolbar = document.getElementById('barracones-toolbar');
-            if (toolbar) toolbar.style.display = 'none';
-            // Ocultar todas las secciones principales
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'battle-tracker', 'trr-hub-section',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'cronicas-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities',
-                              'combat-calc-hub', 'calc-section-infantry', 'calc-section-mech', 'calc-section-vehicle',
-                              'combat-calculator-modal', 'vehicle-crit-resolution-modal'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
+            hideAllSections();
             
             // Resetear sub-secciones de mech-hangar
             const mechLanding = document.getElementById('mech-hangar-landing');
@@ -6576,7 +6926,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             if (modifiersTable) modifiersTable.style.display = 'none';
             
             // Mostrar landing
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             if (typeof cargarAnoCampana === 'function') {
                 cargarAnoCampana();
             }
@@ -6589,18 +6939,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al TRR Hub (centro de tablas)
          */
         function goToTRRHub() {
-            // Ocultar todas las secciones
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'cronicas-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            
-            // Mostrar TRR Hub
+            hideAllSections();
             document.getElementById('trr-hub-section').style.display = 'block';
         }
         
@@ -6608,18 +6947,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Navega al Crónicas Hub
          */
         function goToCronicasHub() {
-            // Ocultar todas las secciones
-            const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                              'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                              'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section',
-                              'trr-hub-section', 'historial-logros-section', 'tro-section',
-                              'trr-infantry', 'trr-utilities'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            
-            // Mostrar Crónicas Hub
+            hideAllSections();
             document.getElementById('cronicas-hub-section').style.display = 'block';
         }
 
@@ -7261,11 +7589,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // NAVEGACIÓN TRO: TECHNICAL READOUT
         // ============================================================================
         function goToTRO() {
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('tro-section').style.display = 'block';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
             // Limpiar búsqueda anterior
             document.getElementById('tro-search-input').value = '';
             document.getElementById('tro-results').innerHTML = '';
@@ -7275,7 +7600,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function backToHomeFromTRO() {
             document.getElementById('tro-section').style.display = 'none';
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
         }
 
         function updateTROStats() {
@@ -7591,11 +7916,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 console.log('⚠️ No hay datos en el generador');
             }
                 // Cambiar a vista de Barracones
-            document.getElementById('landing-page').style.display = 'none';
+            hideAllSections();
             document.getElementById('barracones').style.display = 'block';
-            document.getElementById('pre-generacion').style.display = 'none';
-            document.getElementById('ficha-container').style.display = 'none';
-            document.getElementById('points-counter').style.display = 'none';
                 // Mostrar barra de herramientas de Barracones
             const toolbar = document.getElementById('barracones-toolbar');
             console.log('🔍 Toolbar element:', toolbar);
@@ -7841,7 +8163,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         function init() {
             // Estado inicial: Landing Page visible, lo demás oculto
-            document.getElementById('landing-page').style.display = 'grid';
+            document.getElementById('landing-page').style.display = '';
             document.getElementById('pre-generacion').style.display = 'none';
             document.getElementById('ficha-container').style.display = 'none';
             document.getElementById('points-counter').style.display = 'none';
@@ -8690,66 +9012,111 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
 
         // ============================================
         // SISTEMA DE ROTACIÓN DE MECHS CON ESCANEO
+        // Un solo reloj (requestAnimationFrame) controla
+        // laser + clip-path del mech = sincronía perfecta
         // ============================================
         const SCAN_MECHS = ['marauder-scan', 'warhammer-scan', 'battlemaster-scan', 'locust-scan', 'wasp-scan'];
-        const SCAN_CYCLE_MS = 14000; // Duración total del ciclo
-        const SCAN_ANIM_S = (SCAN_CYCLE_MS / 1000).toFixed(2) + 's';
-        const SCAN_LASER_COMP_MS = 500; // Compensa render pesado de SVG
-        const SCAN_LASER_S = ((SCAN_CYCLE_MS + SCAN_LASER_COMP_MS) / 1000).toFixed(2) + 's';
+        const SCAN_CYCLE_MS = 14000;
         let currentScanMechIndex = 0;
         let nextScanMechIndex = 1;
+        let scanCycleStart = 0;
+        let scanAnimRunning = false;
         
         function initMechScanSystem() {
             const layerCurrent = document.getElementById('mech-layer-current');
             const layerNext = document.getElementById('mech-layer-next');
             const storage = document.getElementById('mech-svg-storage');
-            const laser = document.getElementById('scan-laser');
             
             if (!layerCurrent || !layerNext || !storage) return;
             
-            // Al inicio: el mech visible completo es el que se muestra en el lateral
-            // currentScanMechIndex = 0 (Marauder visible, se va borrando)
-            // nextScanMechIndex = 1 (Warhammer apareciendo)
-            // El lateral muestra Marauder (el visible)
+            // Cargar primer mech (visible, se borra)
+            const currentSrc = document.getElementById('mech-svg-' + SCAN_MECHS[currentScanMechIndex]);
+            if (currentSrc) layerCurrent.innerHTML = currentSrc.innerHTML;
             
-            // Cargar el primer mech en la capa actual (visible, se está borrando)
-            const currentSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[currentScanMechIndex]);
-            if (currentSvgContainer) {
-                layerCurrent.innerHTML = currentSvgContainer.innerHTML;
-                const currentSvg = layerCurrent.querySelector('svg');
-                if (currentSvg) {
-                    currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
-                }
-            }
+            // Cargar siguiente mech (apareciendo)
+            const nextSrc = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
+            if (nextSrc) layerNext.innerHTML = nextSrc.innerHTML;
             
-            // Cargar el siguiente mech en la capa next (apareciendo)
-            const nextSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
-            if (nextSvgContainer) {
-                layerNext.innerHTML = nextSvgContainer.innerHTML;
-                const nextSvg = layerNext.querySelector('svg');
-                if (nextSvg) {
-                    nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
-                }
-            }
-            
-            // El lateral muestra el mech que se está DIBUJANDO (nextScanMechIndex)
+            // Sidebar muestra el que se está dibujando
             currentMechIndex = nextScanMechIndex;
             updateSidebarMech();
             updateBlueprintSilhouette();
             
-            // Iniciar animación del láser
-            if (laser) {
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
+            // Iniciar el reloj único
+            scanCycleStart = performance.now();
+            scanAnimRunning = true;
+            requestAnimationFrame(scanAnimationFrame);
+        }
+        
+        function scanAnimationFrame(now) {
+            if (!scanAnimRunning) return;
+            
+            const elapsed = now - scanCycleStart;
+            const progress = Math.min(elapsed / SCAN_CYCLE_MS, 1);
+            const pct = (progress * 100).toFixed(2);
+            
+            // Posicionar laser: vertical = borde del clip-path, horizontal = de blueprint a data panel
+            const laser = document.getElementById('scan-laser');
+            const mechContainer = document.querySelector('.mech-reveal-container');
+            const blueprint = document.querySelector('.mech-silhouette-container');
+            const dataPanel = document.querySelector('.mech-data-panel');
+            
+            if (laser && mechContainer) {
+                // Rango vertical: el mayor de blueprint, mech y datapanel
+                var rangeTop = Infinity, rangeBottom = 0;
+                var mechRect = mechContainer.getBoundingClientRect();
+                rangeTop = Math.min(rangeTop, mechRect.top);
+                rangeBottom = Math.max(rangeBottom, mechRect.bottom);
+                if (blueprint && blueprint.offsetParent !== null) {
+                    var bpR = blueprint.getBoundingClientRect();
+                    rangeTop = Math.min(rangeTop, bpR.top);
+                    rangeBottom = Math.max(rangeBottom, bpR.bottom);
+                }
+                if (dataPanel && dataPanel.offsetParent !== null) {
+                    var dpR = dataPanel.getBoundingClientRect();
+                    rangeTop = Math.min(rangeTop, dpR.top);
+                    rangeBottom = Math.max(rangeBottom, dpR.bottom);
+                }
+                var laserY = rangeTop + (progress * (rangeBottom - rangeTop));
+                laser.style.top = laserY + 'px';
+                laser.style.position = 'fixed';
+                
+                // Separators at blueprint right edge and data panel left edge
+                var sepLeft = 0, sepRight = window.innerWidth;
+                if (blueprint && blueprint.offsetParent !== null) {
+                    sepLeft = blueprint.getBoundingClientRect().right;
+                }
+                if (dataPanel && dataPanel.offsetParent !== null) {
+                    sepRight = dataPanel.getBoundingClientRect().left;
+                }
+                var sepBp = document.getElementById('sep-blueprint');
+                var sepDp = document.getElementById('sep-datapanel');
+                if (sepBp) sepBp.style.left = sepLeft + 'px';
+                if (sepDp) sepDp.style.left = sepRight + 'px';
+                laser.style.left = sepLeft + 'px';
+                laser.style.width = (sepRight - sepLeft) + 'px';
+                
+                // Clip-path: basado en laser vs mech container
+                var mechProg = Math.max(0, Math.min(1, (laserY - mechRect.top) / mechRect.height));
+                var mechPct = (mechProg * 100).toFixed(2);
+                var layerCurrent = document.getElementById('mech-layer-current');
+                var layerNext = document.getElementById('mech-layer-next');
+                if (layerCurrent) layerCurrent.style.clipPath = 'inset(' + mechPct + '% 0 0 0)';
+                if (layerNext) layerNext.style.clipPath = 'inset(0 0 ' + (100 - parseFloat(mechPct)).toFixed(2) + '% 0)';
             }
             
-            // Rotar por ciclo sincronizado (sincronizado con la animación del láser)
-            setInterval(rotateScanMechs, SCAN_CYCLE_MS);
+            // Ciclo completado → rotar
+            if (progress >= 1) {
+                rotateScanMechs();
+                scanCycleStart = now;
+            }
+            
+            requestAnimationFrame(scanAnimationFrame);
         }
         
         function rotateScanMechs() {
             const layerCurrent = document.getElementById('mech-layer-current');
             const layerNext = document.getElementById('mech-layer-next');
-            const landingPage = document.getElementById('landing-page');
             
             if (!layerCurrent || !layerNext) return;
             
@@ -8757,43 +9124,17 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             currentScanMechIndex = nextScanMechIndex;
             nextScanMechIndex = (nextScanMechIndex + 1) % SCAN_MECHS.length;
             
-            // El lateral muestra el mech que se está DIBUJANDO (nextScanMechIndex)
+            // Sidebar muestra el que se está dibujando
             currentMechIndex = nextScanMechIndex;
             updateSidebarMech();
             updateBlueprintSilhouette();
             
-            // El mech que estaba en "next" pasa a "current" (ahora visible, se borra)
+            // Mech que era "next" pasa a "current"
             layerCurrent.innerHTML = layerNext.innerHTML;
             
-            // Cargar el nuevo mech en "next" (se va a dibujar)
-            const nextSvgContainer = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
-            if (nextSvgContainer) {
-                layerNext.innerHTML = nextSvgContainer.innerHTML;
-            }
-            
-            // Reiniciar animaciones de SVGs
-            const currentSvg = layerCurrent.querySelector('svg');
-            const nextSvg = layerNext.querySelector('svg');
-            
-            if (currentSvg) {
-                currentSvg.style.animation = 'none';
-                currentSvg.offsetHeight; // Trigger reflow
-                currentSvg.style.animation = 'mech-erase ' + SCAN_ANIM_S + ' linear forwards';
-            }
-            
-            if (nextSvg) {
-                nextSvg.style.animation = 'none';
-                nextSvg.offsetHeight; // Trigger reflow
-                nextSvg.style.animation = 'mech-reveal ' + SCAN_ANIM_S + ' linear forwards';
-            }
-            
-            // Reiniciar animación del láser
-            const laser = document.getElementById('scan-laser');
-            if (laser) {
-                laser.style.animation = 'none';
-                laser.offsetHeight; // Trigger reflow
-                laser.style.animation = 'scan-line ' + SCAN_LASER_S + ' linear forwards';
-            }
+            // Cargar nuevo mech en "next"
+            const nextSrc = document.getElementById('mech-svg-' + SCAN_MECHS[nextScanMechIndex]);
+            if (nextSrc) layerNext.innerHTML = nextSrc.innerHTML;
         }
         
         // Actualizar el panel de datos del mech lateral
@@ -8852,7 +9193,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // Para GitHub Pages: 'https://tu-usuario.github.io/tu-repo/svg/'
         // Para GitHub raw: 'https://raw.githubusercontent.com/tu-usuario/tu-repo/main/svg/'
         // Para local (mismo directorio): 'svg/'
-        const SVG_BASE_URL = 'svg/';
+        const SVG_BASE_URL = 'assets/svg/';
         
         /**
          * Carga un SVG externo y lo inyecta en un contenedor.
@@ -8999,19 +9340,33 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     </head>
-<body>
+<body class="theme-new">
+    <!-- Theme switcher moved to MRB badge -->
+    <!-- MRB BADGE — Theme Switcher (bottom-left) -->
+    <button id="mrb-theme-toggle" class="mrb-badge-btn" onclick="setUiTheme(document.body.classList.contains('theme-new') ? 'theme-classic' : 'theme-new')" title="Cambiar estilo visual">
+        <img src="data:image/png;base64,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" alt="MRB" width="40" height="40">
+    </button>
+
 
     <div id="global-shell">
         <aside class="global-shell-sidebar">
+            <!-- Unit Identity -->
+            <div class="unit-identity">
+                <img class="unit-identity-emblem" src="data:image/png;base64,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" alt="Unit Emblem">
+                <div class="unit-identity-text">
+                    <span class="unit-identity-name" id="sidebar-unit-name">KING KARL'S KAURASSIERS</span>
+                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                </div>
+            </div>
             <div class="sidebar-section-label">OPERACIONES</div>
             <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> Comision</button>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
             <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
 
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
             <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
             <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
 
@@ -9020,7 +9375,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         </aside>
 
         <header class="global-shell-header">
-            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
+            <span class="global-shell-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
             <div class="global-shell-info">
                 <span class="label">AÑO CAMPAÑA</span>
                 <span class="value" id="global-campaign-year">3026</span>
@@ -9058,11 +9413,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <!-- LANDING PAGE MILITAR BATTLETECH -->
     <!-- SCANLINE CRT OVERLAY -->
     <div class="scanline-overlay"></div>
+    <div class="scan-separator" id="sep-blueprint"></div>
+    <div class="scan-separator" id="sep-datapanel"></div>
     
     <div id="landing-page">
         <!-- === HEADER BAR (pegado arriba) === -->
         <header class="landing-header">
-            <span class="landing-header-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="toggleConfigDatabase()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
+            <span class="landing-header-brand">COMISIÓN DE REVISIÓN Y FIANZA DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="⚙️ Configuración Técnica">M</span>ERCENARIOS</span>
             <div class="landing-header-info">
                 <div class="header-stat">
                     <div class="header-stat-label">AÑO CAMPAÑA</div>
@@ -9073,14 +9430,22 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         
         <!-- === SIDEBAR (pegado al lateral izquierdo) === -->
         <nav class="landing-sidebar">
+            <!-- Unit Identity -->
+            <div class="unit-identity">
+                <img class="unit-identity-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAALZklEQVR42pWXeYyd1XnGf+d8y13m3jv7zJ3dy4y3qY0xtuNg8BgE2NjBBItxQxUkhNqGthRSJVRqBSUoUhsJIpU4ShVaoIniRGJcZNcQO8amGSDY2NgGL+MNz3j2fe6du99vOad/jAHTYqEc6fxzpO+8z3me5z3newQ3Gp2dBl1dvhSwZFVn88hE4oFIWWxLKbn2yijVrl1qZQq6mCsURzI595TrqX2rWxv2vXXw5Rl93fd8xRA3qG5Al3/LXQ839/dOPlVbHX3o1rVLKmtDistv76GxtZx7vvUoRjDGTDLD1aEEJ88M8FHPwMDMTPalb2xf/pNXnn8+/ek+fwwAAQhDouoWb3s0FLJfuH/TyvJvbl7BTN8n6r9e3cWUcrlz0+2Fm5bfFGpoWSB839UB29RKafoGE3LPwTP87vdnPkHrv7p65r8PaTpM6PZuBMD4YvFOaRjnVVXr5heWtNX/6Nkn7w1tuWOJZ9umGBmZkhdOXxR5pyC0wq2L1+fLq6uD+VyBYtGTRccT5dGgvuPWVr9tXrzqzIWRh3WwcTw7c+jYHIh+9RUMdJiGfMermH/3ixvWLXvimb+9y7Nt08gXfREMBsilkvT2XqT/6lVSI+OEyirY9q0/A63RGgwpkKbB7GyaqoqY6h8Y54c/PSzPXOh/bKbvrZ8//q8vBraveML/cgCdnYbY3eXXLrr3e2tuWvjCv/z9Ftf3taW0IJWa5cArv2b6aj9mUFPbvhBfCAIBk9alK/FEgHDIxvE0E8PjZCcm0IkMdzy0TROO8XdP/0r0n79y18jE8cNfzsA1t85f+Y01VWWxozuf26EiYdvIFxwRiUY5vOdNXn3pVZrKy2htnacTliEqqyr8ZHJWSu2ISNCk6GmmhhLY07MYdoDmeIyFD9xPcN2O2ZGLl2P//suD4//0o6efjwYt0/Nd35BSSY1GgaSrS2v9muE4+mePfbtDVlVERKHoCSklCBidnCRQVYqSBicHRsVwssDgZFoqDbmi4kx/itG+aRoDFk7eoaIhjqiNM3rqBPnkdGDdsmr1wJ1L4y//+Kffqawo6fc9b0z7ehytR7WQwyagKhe+vP3u25atvm31fD+ZyhmGIVFK4Tke99y/lZ4LFxkYGiGTcql2Ctx9y3oxNpVi0lc4mSkqTIPCVBonVSTxST8LVm8jf+4SrdOng5Fwnb5/VaXav/t3VWvLxCFg+gtdIATU1C/7t8cf2dgSr45qx/GlkAKBwCk6TI6NMTE2QWtbC20L6rDCVVrH6r3evkHj66va8FJpCrk85VqSS+fwo1GGhoYINNfSMG8+drRUlMVCvrRCJeeuGsHU1KWDMxUV9vf376fzBz+QMtx4R/uihdW3LltUK7I5x5CGBECjsYI2v933JsePHQd8ktPTaMvWllDEq0vYtOk2mufVU8xkMUsCRGsjrNz0dRpvbsOyDLRpINFk845cu6KReE1ke1PTjsDOJ58s7hBC7RDCl6YQW1ctn2+FQ7bvKwVag9YopYiEwvzpIw9TW1XNxJVBSiIlXLnYI0Nh21zQXK8v9Vwgl03jJYu4mTxaSWbTadoWLeL2u++mqrYW3/cpOp6sqYqopa31jUlvas1c43VKABmLhDYsXlCL76vPLwUhsC2T4x+e4sI7R1lVXc6aVe0sXzyPmPS53DfkT6cKzkcfn6d99U1seXQrweoqErMp2hYvon3lKsprauZ41HPTMqVa0lZPKGzdCjAxMSEAzNJYYFltVQTH8SRCoLQmaNv8alcXB/YeYLlhs3j9EiYGhjg5MIW2o4jirExklHHvfbfRe/kK5y9cYP2DG1TWlmJ6cFyU3lVKNpVGSPnZgZTWNDdUEA5by643oRkNBWqjJQF8pYUQYBoGqdk0773zAWHbpGlpM+HyKIZt49s5ymNRalsWupdPnbAPvXGAZDpLuWPx8YH3ZdvaVtysIp3MYJhyTs5rw/WUKIuFKAnY9QDd3RsVdCPtgBUyTQloBALf9wmFgwRLwlSUlSAiFhRd8o5Dk5fB7etnYCwRyGQy4r19J7CTUNvegOe49J/vxdUayzLRSqOvu2610tiWgWGb0bnV5zSABI24Jr7SCsu2KRSKTM/OwkCCwvAsjvKZTKcoM03CYZt8OqlN5bJp8zqcZIqP9x7HLbgUlYvvgBWw0OjPPKXF51OoL75JslDwcq47Z0AhBL6n2LNnP1ODo1SEQ+RDkrM9fRiJAo1/0kI2bBApibqR0mplWIq81kRryiiPhlCzeapqqtFaXEe/AA1CCgoFF8f1UnPrzwoAmc05Y6lMASmFtiybX+/q4rWuvdTEIlQvjxNEsiIe5+b1yzh7dZTC6UH6Thy3hfTldN8k+YBBKqA4feQyxpVpjNkMSujrntk5KUxD6sRsjlzRGQLo6Pj9XBsmU/lzI+MpopGw6u8f5M39h/GRrFrWwsjwFGUNFWRK4Q9nLzLVM0J9aYDO7few/YF7EOEAdkBQNGwKKMYzadKZPEIK9HU0azRSCgaHk2Rz7tkvSJDOFN65eGUcw5D4nkdjYz3/8NRj3LJuKcGyCOfe/oiSkkbmL2jHH59ibed93PfII1RW1xNfPp+W9gUkR6eoK4tQ1VJHzDZQ/hwD+poEEoHr+PL8pSFU0T8CUFNTowFMw5C/PXW2/59nkhm7paWR7373L2ioi6ONr5FJGFzpe4tNOx4gGIuR6h1j8vhHZLbdS2VDEzdHt2AFg0z17UTMZKhrbWZ6bBKB5lNna62xbVONTaTlxb7RwRVtzSe7R6Crq0sByMTAofOX+yfePXtxXEdLgn5dXRzX8wjYAZZ+7RbCpREyiQTFQp6H/vEJZpB88J+/wbQsQuESyquqaGtbjFQeAx+eRlZXYpoG+poJldKEg5Y6cqqf8YnU7u7uXxQ6OjrMTwmSWkMu57y45+BpobTG93wMw6CYy1PT3ECwPEZuYgoFWMCWJ77Duwe7GfjoLFYwSLFQJDkyxsIlbTS2L6Ft7c0oz0MIgdZgmoaeSebl/sOnHcPSPwPo3rjxs16U8Kyc6j34xpETl9//n6NXjLLSsO/5CqUVpmXgKc3w2fMYtk2xUKCmuZ6GtgUMnTiFME2KhSLp0WGi8Wrue+Z7xFsaKeYLIAS+0pSWBv29b52TfQOT/zF8/uAndHYaPPfcdQA6e4QQQodt829+vutdb3Q8Rcg2NcKgtKySirY2Tu4/RHZ0DMO20Y7DN596nLY7N+Dm8li2iSyv4MqRY+Snp7ECQcKRKIZpUxoNqg8/Hja79n0wsnxl/TNaI7mm/ee/5T09ms5OI/H266NGZF7iYu/01ns2tntTwwPy6IG9It62kPqmZmK11QSjEXzPI1ASJlpejvJcbNuial4Tve8dpaapAdcUvL/vNZTvKj9QqZ/78T7hOMXtxw7/pofOTklPj/r/uaCnR9PRYWZOHjyaditLrgznbq8LTvqpofNEYxGxYutWDDsw11KmhWZOX2mY+EoTLS9j0cb1BCtKGb10msxEr591kTu7Lsmhkck/v3pm3+s3imri/wYT09jtNy3d9sMd60uevvWWZtC+ZwppSDsoMIJYwRBWIABaYEiB67nks1lQDtnUrFbK86UVMi9cHne73pt57MzxPa/oDR0m3V+ejsQN0pK/dfODneGAfrG+Oly3uKmE0ohUJUGLVM4TSiNCQYtC0dPhgIllCDWdyonZrC8HJz1mZp2edLbwl6/ve/0PHR0dZnf3jaOZ+PJg3Gl0dXX51H67Zn5d8fu2LD48Lx6Jty+sIF4ZJBa2kELjOi7pIowlXM5dnmIkke8tKvulT46X7oSXcp/t88en4zkQu7u6fA2s2fLX8ZHh5Da0uzkcNFeEA1atFFi+ppgreqP5gndCSOuN+va1bx7b9WRKCHjwwa8uDvC/dBRpy1hNGw8AAAAASUVORK5CYII=" alt="Unit Emblem">
+                <div class="unit-identity-text">
+                    <span class="unit-identity-name sidebar-unit-name-sync">KING KARL'S KAURASSIERS</span>
+                    <span class="unit-identity-sub">MERCENARY UNIT</span>
+                </div>
+            </div>
             <div class="sidebar-section-label">OPERACIONES</div>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> Generador</button>
+            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
             <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> Barracones</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> Registro Combate</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> Calculador RPG</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
             
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> Battle Tracker</button>
+            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
             <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> Ayudas</button>
             <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> Tech Readout</button>
             
@@ -9141,7 +9506,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <label style="color: #00ff41; font-size: 12px; display: block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">📅 Año de Campaña:</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     <button onclick="ajustarAnoCampana(-1)" style="background: #1a1a1a; border: 1px solid #00ff41; color: #00ff41; width: 40px; height: 40px; cursor: pointer; font-size: 18px; font-weight: bold;">-</button>
-                    <input type="number" id="config-campaign-year" value="3026" min="2300" max="3200" style="flex: 1; background: #0a0a0a; border: 2px solid #00ff41; padding: 10px; color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 20px; text-align: center; font-weight: bold;">
+                    <input type="number" id="config-campaign-year" value="3000" min="3000" max="3099" style="flex: 1; background: #0a0a0a; border: 2px solid #00ff41; padding: 10px; color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 20px; text-align: center; font-weight: bold;">
                     <button onclick="ajustarAnoCampana(1)" style="background: #1a1a1a; border: 1px solid #00ff41; color: #00ff41; width: 40px; height: 40px; cursor: pointer; font-size: 18px; font-weight: bold;">+</button>
                 </div>
                 <p style="color: #00aa41; font-size: 10px; margin: 8px 0 0 0; text-align: center;">El año afectará a las unidades disponibles en el TRO</p>
@@ -9178,6 +9543,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         
         // Variable para saber qué panel abrir después de autenticar
         let configPanelPendiente = null;
+        const CAMPAIGN_MONTH_NAMES = ['ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO','JULIO','AGOSTO','SEPTIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'];
+
+        function formatCampaignDisplay(month, year){
+            const m = Math.min(12, Math.max(1, parseInt(month,10) || 1));
+            const y = Math.min(3099, Math.max(3000, parseInt(year,10) || 3000));
+            return `${CAMPAIGN_MONTH_NAMES[m-1]} ${y}`;
+        }
         
         /**
          * Muestra el modal de contraseña para configuración
@@ -9217,9 +9589,11 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                     console.log('✅ Contraseña correcta, panel a abrir:', panelAAbrir);
                     cerrarConfigPasswordModal();
                     
-                    // Unificado: siempre abrir panel único desde la M
-                    console.log('⚙️ Panel unificado: abrirPanelDatabase()');
-                    abrirPanelDatabase();
+                    if (panelAAbrir === 'unified') {
+                        openUnifiedConfigPanelAfterAuth();
+                    } else {
+                        abrirPanelDatabase();
+                    }
                 } else {
                     document.getElementById('config-password-error').style.display = 'block';
                     document.getElementById('config-password-input').value = '';
@@ -9302,7 +9676,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         function ajustarAnoCampana(delta) {
             const input = document.getElementById('config-campaign-year');
             let year = parseInt(input.value) || 3026;
-            year = Math.max(2300, Math.min(3200, year + delta));
+            year = Math.max(3000, Math.min(3099, year + delta));
             input.value = year;
         }
         
@@ -9310,88 +9684,105 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          * Guarda el año de campaña en localStorage Y en Google Sheets
          */
         async function guardarAnoCampana() {
-            const year = parseInt(document.getElementById('config-campaign-year')?.value) || 3026;
-            
+            const yEl = document.getElementById('config-campaign-year');
+            const mEl = document.getElementById('config-campaign-month');
+            const year = Math.min(3099, Math.max(3000, parseInt(yEl?.value, 10) || 3000));
+            const month = Math.min(12, Math.max(1, parseInt(mEl?.value, 10) || 1));
+
             // Guardar en localStorage
-            localStorage.setItem('CAMPAIGN_YEAR', year);
-            document.getElementById('current-campaign-year').textContent = year;
-            const yEl = document.getElementById('global-campaign-year'); if (yEl) yEl.textContent = year;
-            
-            // Sincronizar con input de crónicas si existe
+            localStorage.setItem('CAMPAIGN_YEAR', String(year));
+            localStorage.setItem('CAMPAIGN_MONTH', String(month));
+
+            // Reflejar en UI principal
+            const display = formatCampaignDisplay(month, year);
+            const currentEl = document.getElementById('current-campaign-year');
+            const globalEl = document.getElementById('global-campaign-year');
+            if (currentEl) currentEl.textContent = display;
+            if (globalEl) globalEl.textContent = display;
+
+            // Sincronizar con input de crónicas si existe (año)
             const cronicasInput = document.getElementById('config-año-campana');
-            if (cronicasInput) cronicasInput.value = year;
-            
+            if (cronicasInput) cronicasInput.value = String(year);
+
             // Guardar en Google Sheets
             try {
                 const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
                 if (scriptUrl) {
                     const params = new URLSearchParams({
                         action: 'saveConfiguracionBatch',
-                        config: JSON.stringify({ 'AÑO_CAMPANA': year.toString() })
+                        config: JSON.stringify({
+                            'AÑO_CAMPANA': String(year),
+                            'MES_CAMPANA': String(month)
+                        })
                     });
-                    
+
                     const response = await fetch(`${scriptUrl}?${params.toString()}`);
                     const data = await response.json();
-                    
+
                     if (data.result === 'success') {
-                        console.log('📅 Año sincronizado con Sheets:', year);
+                        console.log('📅 Fecha campaña sincronizada con Sheets:', month, year);
                     } else {
-                        console.warn('⚠️ Error al sincronizar año con Sheets:', data.msg);
+                        console.warn('⚠️ Error al sincronizar fecha campaña con Sheets:', data.msg);
                     }
                 }
             } catch (error) {
-                console.warn('⚠️ No se pudo sincronizar año con Sheets:', error.message);
+                console.warn('⚠️ No se pudo sincronizar fecha campaña con Sheets:', error.message);
             }
-            
-            console.log('📅 Año de campaña guardado:', year);
+
+            console.log('📅 Fecha de campaña guardada:', month, year);
         }
         
         /**
          * Carga el año de campaña desde Google Sheets (primero) o localStorage
          */
         async function cargarAnoCampana() {
-            let year = 3026;
-            
+            let year = 3000;
+            let month = 1;
+
             // Intentar cargar desde Sheets primero
             try {
                 const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
                 if (scriptUrl) {
                     const response = await fetch(`${scriptUrl}?action=getConfiguracion`);
                     const data = await response.json();
-                    
-                    if (data.result === 'success' && data.config && data.config['AÑO_CAMPANA']) {
-                        year = parseInt(data.config['AÑO_CAMPANA']) || 3026;
-                        localStorage.setItem('CAMPAIGN_YEAR', year);
-                        console.log('📅 Año cargado desde Sheets:', year);
+
+                    if (data.result === 'success' && data.config) {
+                        year = Math.min(3099, Math.max(3000, parseInt(data.config['AÑO_CAMPANA'], 10) || 3000));
+                        month = Math.min(12, Math.max(1, parseInt(data.config['MES_CAMPANA'], 10) || 1));
+                        localStorage.setItem('CAMPAIGN_YEAR', String(year));
+                        localStorage.setItem('CAMPAIGN_MONTH', String(month));
+                        console.log('📅 Fecha campaña cargada desde Sheets:', month, year);
                     }
                 }
             } catch (error) {
-                console.warn('⚠️ No se pudo cargar año desde Sheets, usando localStorage');
-                year = parseInt(localStorage.getItem('CAMPAIGN_YEAR')) || 3026;
+                console.warn('⚠️ No se pudo cargar fecha campaña desde Sheets, usando localStorage');
             }
-            
-            // Fallback a localStorage si no hay conexión
-            if (!year || year === 3026) {
-                const savedYear = localStorage.getItem('CAMPAIGN_YEAR');
-                if (savedYear) year = parseInt(savedYear);
-            }
-            
+
+            // Fallback localStorage
+            const savedYear = parseInt(localStorage.getItem('CAMPAIGN_YEAR'), 10);
+            const savedMonth = parseInt(localStorage.getItem('CAMPAIGN_MONTH'), 10);
+            if (!Number.isNaN(savedYear)) year = Math.min(3099, Math.max(3000, savedYear));
+            if (!Number.isNaN(savedMonth)) month = Math.min(12, Math.max(1, savedMonth));
+
             // Actualizar display en portada
+            const display = formatCampaignDisplay(month, year);
             const displayEl = document.getElementById('current-campaign-year');
             const globalDisplayEl = document.getElementById('global-campaign-year');
-            if (displayEl) displayEl.textContent = year;
-            if (globalDisplayEl) globalDisplayEl.textContent = year;
-            
-            // Actualizar input en config del panel Database
-            const inputEl = document.getElementById('config-campaign-year');
-            if (inputEl) inputEl.value = year;
-            
-            // Sincronizar con input de crónicas si existe
+            if (displayEl) displayEl.textContent = display;
+            if (globalDisplayEl) globalDisplayEl.textContent = display;
+
+            // Actualizar inputs en config del panel Database
+            const yInput = document.getElementById('config-campaign-year');
+            if (yInput) yInput.value = String(year);
+            const mInput = document.getElementById('config-campaign-month');
+            if (mInput) mInput.value = String(month);
+
+            // Sincronizar con input de crónicas si existe (año)
             const cronicasInput = document.getElementById('config-año-campana');
-            if (cronicasInput) cronicasInput.value = year;
-            
-            console.log('📅 Año de campaña:', year);
-            return year;
+            if (cronicasInput) cronicasInput.value = String(year);
+
+            console.log('📅 Fecha de campaña:', month, year);
+            return { month, year };
         }
         
         // Cargar año al iniciar
@@ -9444,6 +9835,177 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 console.error('Error de conexión:', error);
             }
         }
+
+        // ============================================================
+        // PANEL UNIFICADO DE CONFIGURACIÓN (M de MERCENARIOS)
+        // ============================================================
+        function sanitizeConfigForSheet(cfg) {
+            const clean = { ...(cfg || {}) };
+            delete clean.PILOTO_1_MECH;
+            delete clean.PILOTO_2_MECH;
+            delete clean.PILOTO_3_MECH;
+            delete clean.PILOTO_4_MECH;
+            return clean;
+        }
+function openUnifiedConfigPanel() {
+            mostrarConfigPasswordModal('unified', '⚙️ CONFIGURACIÓN UNIFICADA ⚙️');
+        }
+
+        function openUnifiedConfigPanelAfterAuth() {
+            const panel = document.getElementById('config-unified-panel');
+            if (!panel) return;
+            panel.style.display = 'flex';
+            loadUnifiedConfigData();
+        }
+
+        function closeUnifiedConfigPanel() {
+            const panel = document.getElementById('config-unified-panel');
+            if (panel) panel.style.display = 'none';
+        }
+
+        async function loadUnifiedConfigData() {
+            const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
+            const cfg = {};
+            try {
+                if (scriptUrl) {
+                    const r = await fetch(`${scriptUrl}?action=getConfiguracion`, { cache: 'no-store' });
+                    const d = await r.json();
+                    if (d?.result === 'success' && d?.config) Object.assign(cfg, d.config);
+                }
+            } catch (_) {}
+
+            const byId = (id, v) => { const el = document.getElementById(id); if (el) el.value = (v ?? ''); };
+            const campaignYear = parseInt(cfg['AÑO_CAMPANA'] || localStorage.getItem('CAMPAIGN_YEAR') || 3000, 10) || 3000;
+            const campaignMonth = parseInt(cfg['MES_CAMPANA'] || localStorage.getItem('CAMPAIGN_MONTH') || 1, 10) || 1;
+
+            // Técnica
+            const yearSel = document.getElementById('uc-year');
+            if (yearSel && !yearSel.options.length) {
+                for (let y = 3000; y <= 3099; y++) {
+                    const op = document.createElement('option');
+                    op.value = String(y);
+                    op.textContent = String(y);
+                    yearSel.appendChild(op);
+                }
+            }
+            const monthSel = document.getElementById('uc-month');
+            if (monthSel && !monthSel.options.length) {
+                CAMPAIGN_MONTH_NAMES.forEach((name, idx) => {
+                    const op = document.createElement('option');
+                    op.value = String(idx + 1);
+                    op.textContent = name;
+                    monthSel.appendChild(op);
+                });
+            }
+            byId('uc-year', campaignYear);
+            byId('uc-month', campaignMonth);
+            byId('uc-script-url', localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : ''));
+
+            // Crónicas
+            byId('uc-company', cfg['COMPANIA_NOMBRE'] || '');
+            byId('uc-system', cfg['SISTEMA_ACTUAL'] || '');
+            byId('uc-faction', cfg['FACCION_ACTUAL'] || '');
+            byId('uc-prompt', cfg['PROMPT_INSTRUCCIONES'] || '');
+            for (let i = 1; i <= 4; i++) {
+                byId(`uc-p${i}-name`, cfg[`PILOTO_${i}_NOMBRE`] || '');
+                byId(`uc-p${i}-rank`, cfg[`PILOTO_${i}_RANGO`] || '');
+                byId(`uc-p${i}-mech`, cfg[`PILOTO_${i}_MECH`] || '');
+            }
+
+            // Combate
+            let cc = {};
+            try { cc = JSON.parse(localStorage.getItem('combatConfig') || '{}'); } catch (_) {}
+            const defaults = {
+                rangeShort: 0, rangeMedium: 2, rangeLong: 4,
+                movStand: 0, movWalk: 1, movRun: 2, movJump: 3,
+                movTargetStand: 0, movTargetWalk: 1, movTargetRun: 2, movTargetJump: 3
+            };
+            const c = { ...defaults, ...cc };
+            byId('uc-range-short', c.rangeShort);
+            byId('uc-range-medium', c.rangeMedium);
+            byId('uc-range-long', c.rangeLong);
+            byId('uc-mov-stand', c.movStand);
+            byId('uc-mov-walk', c.movWalk);
+            byId('uc-mov-run', c.movRun);
+            byId('uc-mov-jump', c.movJump);
+            byId('uc-movt-stand', c.movTargetStand);
+            byId('uc-movt-walk', c.movTargetWalk);
+            byId('uc-movt-run', c.movTargetRun);
+            byId('uc-movt-jump', c.movTargetJump);
+        }
+
+        async function saveUnifiedConfigPanel() {
+            const val = (id, fb = '') => (document.getElementById(id)?.value ?? fb).toString().trim();
+            const year = Math.min(3099, Math.max(3000, parseInt(val('uc-year', '3000')) || 3000));
+            const month = Math.min(12, Math.max(1, parseInt(val('uc-month', '1')) || 1));
+
+            const scriptUrlInput = val('uc-script-url', '');
+            if (scriptUrlInput) localStorage.setItem('GOOGLE_SCRIPT_URL_CUSTOM', scriptUrlInput);
+            const scriptUrl = localStorage.getItem('GOOGLE_SCRIPT_URL_CUSTOM') || (typeof GOOGLE_SCRIPT_URL !== 'undefined' ? GOOGLE_SCRIPT_URL : '');
+
+            // 1) Guardar config global/crónicas en Sheets
+            const config = {
+                'AÑO_CAMPANA': String(year),
+                'MES_CAMPANA': String(month),
+                'COMPANIA_NOMBRE': val('uc-company'),
+                'SISTEMA_ACTUAL': val('uc-system'),
+                'FACCION_ACTUAL': val('uc-faction'),
+                'PROMPT_INSTRUCCIONES': val('uc-prompt'),
+                'PILOTO_1_NOMBRE': val('uc-p1-name'),
+                'PILOTO_1_RANGO': val('uc-p1-rank'),
+                'PILOTO_2_NOMBRE': val('uc-p2-name'),
+                'PILOTO_2_RANGO': val('uc-p2-rank'),
+                'PILOTO_3_NOMBRE': val('uc-p3-name'),
+                'PILOTO_3_RANGO': val('uc-p3-rank'),
+                'PILOTO_4_NOMBRE': val('uc-p4-name'),
+                'PILOTO_4_RANGO': val('uc-p4-rank'),
+            };
+
+            if (scriptUrl) {
+                try {
+                    const params = new URLSearchParams({
+                        action: 'saveConfiguracionBatch',
+                        config: JSON.stringify(sanitizeConfigForSheet(config))
+                    });
+                    await fetch(`${scriptUrl}?${params.toString()}`);
+                } catch (e) {
+                    console.warn('⚠️ No se pudo guardar config en Sheets:', e.message);
+                }
+            }
+
+            // 2) Guardar año local y reflejar
+            localStorage.setItem('CAMPAIGN_YEAR', String(year));
+            localStorage.setItem('CAMPAIGN_MONTH', String(month));
+            const campaignDisplay = formatCampaignDisplay(month, year);
+            const y1 = document.getElementById('current-campaign-year');
+            const y2 = document.getElementById('global-campaign-year');
+            if (y1) y1.textContent = campaignDisplay;
+            if (y2) y2.textContent = campaignDisplay;
+            const yInput = document.getElementById('config-campaign-year');
+            if (yInput) yInput.value = String(year);
+            const mInput = document.getElementById('config-campaign-month');
+            if (mInput) mInput.value = String(month);
+
+            // 3) Guardar config combate local y aplicar
+            const combatConfig = {
+                rangeShort: parseInt(val('uc-range-short', '0')) || 0,
+                rangeMedium: parseInt(val('uc-range-medium', '2')) || 2,
+                rangeLong: parseInt(val('uc-range-long', '4')) || 4,
+                movStand: parseInt(val('uc-mov-stand', '0')) || 0,
+                movWalk: parseInt(val('uc-mov-walk', '1')) || 1,
+                movRun: parseInt(val('uc-mov-run', '2')) || 2,
+                movJump: parseInt(val('uc-mov-jump', '3')) || 3,
+                movTargetStand: parseInt(val('uc-movt-stand', '0')) || 0,
+                movTargetWalk: parseInt(val('uc-movt-walk', '1')) || 1,
+                movTargetRun: parseInt(val('uc-movt-run', '2')) || 2,
+                movTargetJump: parseInt(val('uc-movt-jump', '3')) || 3
+            };
+            localStorage.setItem('combatConfig', JSON.stringify(combatConfig));
+            if (typeof aplicarConfigARadios === 'function') aplicarConfigARadios(combatConfig);
+
+            closeUnifiedConfigPanel();
+            alert('✅ Configuración unificada guardada');
+        }
         </script>
     </div>
 
@@ -9457,6 +10019,70 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             <div style="display: flex; gap: 10px; margin-top: 15px;">
                 <button onclick="verificarConfigPassword()" style="flex: 1; padding: 10px; background: #ffae00; color: #000; border: none; cursor: pointer; font-family: monospace; font-weight: bold;">ACCEDER</button>
                 <button onclick="cerrarConfigPasswordModal()" style="flex: 1; padding: 10px; background: #333; color: #fff; border: none; cursor: pointer; font-family: monospace;">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL UNIFICADO DE CONFIGURACIÓN -->
+    <div id="config-unified-panel" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:10000; align-items:center; justify-content:center; padding:16px; box-sizing:border-box;">
+        <div style="width:min(1100px, 96vw); max-height:92vh; overflow:auto; background:#10141a; border:2px solid #ffae00; box-shadow:0 0 30px rgba(255,174,0,0.25); padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; border-bottom:1px solid #5c4200; padding-bottom:10px; margin-bottom:12px;">
+                <h3 style="margin:0; color:#ffae00; font-family:'Share Tech Mono', monospace; letter-spacing:1px;">⚙️ CONFIGURACIÓN UNIFICADA</h3>
+                <div style="display:flex; gap:8px;">
+                    <button onclick="saveUnifiedConfigPanel()" style="background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; padding:8px 12px; cursor:pointer; font-family:'Share Tech Mono', monospace; font-size:12px;">💾 GUARDAR</button>
+                    <button onclick="closeUnifiedConfigPanel()" style="background:#2a1a0a; border:1px solid #ffae00; color:#ffae00; padding:8px 12px; cursor:pointer; font-family:'Share Tech Mono', monospace; font-size:12px;">✖ CERRAR</button>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:repeat(2,minmax(280px,1fr)); gap:12px;">
+                <div style="background:rgba(255,174,0,0.08); border:1px solid #5c4200; padding:10px;">
+                    <div style="color:#ffae00; font-size:12px; margin-bottom:8px;">Database / Sistema</div>
+                    <label style="color:#aaa; font-size:11px;">Mes campaña</label>
+                    <select id="uc-month" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#00ff41; padding:8px; box-sizing:border-box;"></select>
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Año campaña</label>
+                    <select id="uc-year" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#00ff41; padding:8px; box-sizing:border-box;"></select>
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">URL Apps Script</label>
+                    <input id="uc-script-url" type="text" placeholder="https://script.google.com/macros/s/..." style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                </div>
+
+                <div style="background:rgba(255,174,0,0.08); border:1px solid #5c4200; padding:10px;">
+                    <div style="color:#ffae00; font-size:12px; margin-bottom:8px;">Crónicas / Campaña</div>
+                    <label style="color:#aaa; font-size:11px;">Compañía</label>
+                    <input id="uc-company" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Sistema</label>
+                    <input id="uc-system" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Facción</label>
+                    <input id="uc-faction" type="text" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;">
+                    <label style="color:#aaa; font-size:11px; margin-top:8px; display:block;">Prompt instrucciones</label>
+                    <textarea id="uc-prompt" rows="3" style="width:100%; background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; padding:8px; box-sizing:border-box;"></textarea>
+                </div>
+
+                <div style="grid-column:1 / -1; background:rgba(0,255,65,0.05); border:1px solid #2d5a2d; padding:10px;">
+                    <div style="color:#4ade80; font-size:12px; margin-bottom:8px;">Pilotos (Crónicas)</div>
+                    <div style="display:grid; grid-template-columns:repeat(4,minmax(180px,1fr)); gap:8px;">
+                        <div><input id="uc-p1-name" placeholder="Piloto 1" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p1-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p1-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p2-name" placeholder="Piloto 2" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p2-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p2-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p3-name" placeholder="Piloto 3" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p3-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p3-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                        <div><input id="uc-p4-name" placeholder="Piloto 4" style="width:100%; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p4-rank" placeholder="Rango" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box;"><input id="uc-p4-mech" placeholder="Mech" readonly title="Solo lectura (desde Sheets)" style="width:100%; margin-top:6px; background:#0a0a0a; border:1px solid #2d5a2d; color:#e0e0e0; padding:6px; box-sizing:border-box; opacity:.75; cursor:not-allowed;"></div>
+                    </div>
+                </div>
+
+                <div style="grid-column:1 / -1; background:rgba(96,165,250,0.08); border:1px solid #2d4a6d; padding:10px;">
+                    <div style="color:#60a5fa; font-size:12px; margin-bottom:8px;">Combate (modificadores)</div>
+                    <div style="display:grid; grid-template-columns:repeat(11,minmax(60px,1fr)); gap:6px;">
+                        <input id="uc-range-short" title="Distancia corto" placeholder="Corto" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-range-medium" title="Distancia medio" placeholder="Medio" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-range-long" title="Distancia largo" placeholder="Largo" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-stand" title="Mi parado" placeholder="M Parado" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-walk" title="Mi camina" placeholder="M Camina" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-run" title="Mi corre" placeholder="M Corre" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-mov-jump" title="Mi salto" placeholder="M Salta" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-stand" title="Obj parado" placeholder="O Parado" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-walk" title="Obj camina" placeholder="O Camina" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-run" title="Obj corre" placeholder="O Corre" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                        <input id="uc-movt-jump" title="Obj salto" placeholder="O Salta" style="background:#0a0a0a; border:1px solid #2d4a6d; color:#e0e0e0; padding:6px;">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -9886,7 +10512,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                         <span id="mech-catalog-status" style="color:#666; font-size:9px; font-style:italic;">Pendiente de carga...</span>
                         <select id="mech-catalog-delete-select" style="background:#0a0a0a; border:1px solid #5c4200; color:#e0e0e0; font-family:inherit; font-size:9px; padding:3px 6px; min-width:220px;"><option value="">(elige modelo para borrar)</option></select>
                     </div>
-                    <div id="mech-catalog-buttons" style="display:flex; flex-wrap:wrap; gap:6px;"></div>
+                    <div id="mech-catalog-buttons" style="display:none;"></div>
                 </div>
 
                 <!-- FICHA COMPLETA (oculta hasta cargar mech) -->
@@ -11035,67 +11661,25 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <div id="barracones" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 174, 0, 0.05) 2px, transparent 4px); background-size: 100% 100%, 100% 4px; z-index: 2000; overflow-y: auto; padding-top: 60px; padding-bottom: 200px;">
         <button class="back-to-home-btn no-print" onclick="goHomeFromBarracones()" style="position: fixed; top: 20px; left: 20px;">⚠️ SALIR AL MENÚ</button>
         
-        <!-- BOTONES DE CARGA RÁPIDA DE PERSONAJES -->
-        <div id="quick-load-buttons" class="no-print" style="position: fixed; top: 70px; left: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 2001;">
-            <button onclick="cargarPersonajeRapido('Marcos')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Marcos</button>
-            <button onclick="cargarPersonajeRapido('Jaime')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Jaime</button>
-            <button onclick="cargarPersonajeRapido('Joan')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Joan</button>
-            <button onclick="cargarPersonajeRapido('Juan Palacios')" style="
-                padding: 7px 16px; 
-                background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); 
-                border: 1px solid #00ff41; 
-                color: #ffffff; 
-                font-weight: bold; 
-                font-size: 10px; 
-                cursor: pointer; 
-                font-family: 'Share Tech Mono', monospace;
-                clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);
-                transition: all 0.3s;
-                text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
-                box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
-            " onmouseover="this.style.boxShadow='0 0 20px rgba(0, 255, 65, 0.8)'; this.style.transform='scale(1.05)'" onmouseout="this.style.boxShadow='0 0 10px rgba(255, 140, 66, 0.4)'; this.style.transform='scale(1)'">Juan Palacios</button>
-        </div>
+        
         
         <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            <!-- PANEL DE CARGA Y GESTIÓN (float right, scrolls with content) -->
+            <div id="quick-load-buttons" class="no-print" style="float:right; width:240px; margin-left:20px; margin-bottom:15px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:6px;">
+                    <button onclick="cargarPersonajeRapido('Marcos')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#1a4a1a,#0a2a0a); border-color:#2d5a2d; color:#4ade80;">Marcos</button>
+                    <button onclick="cargarPersonajeRapido('Jaime')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#1a3a5a,#0a1a3a); border-color:#2d4a6d; color:#60a5fa;">Jaime</button>
+                    <button onclick="cargarPersonajeRapido('Joan')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4a3a1a,#2a1a0a); border-color:#6d5a2d; color:#fbbf24;">Joan</button>
+                    <button onclick="cargarPersonajeRapido('Juan Palacios')" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4a1a4a,#2a0a2a); border-color:#6d2d6d; color:#c084fc;">Palacios</button>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px;">
+                    <button onclick="guardarEnNubeBarracones()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#ff8c42,#d67635); grid-column:span 2;">&#x2601;&#xFE0F; GUARDAR NUBE</button>
+                    <button onclick="generarPDFPersonaje()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#4CAF50,#388E3C); grid-column:span 2;">&#x1F4C4; DESCARGAR PDF</button>
+                    <button onclick="exportarDatos()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#6c757d,#495057);">&#x1F4BE; BAJAR JSON</button>
+                    <button onclick="document.getElementById('file-input-barracones').click()" style="padding:7px 12px; border:1px solid #5c4200; color:#fff; font-weight:bold; font-size:10px; cursor:pointer; font-family:inherit; text-transform:uppercase; background:linear-gradient(135deg,#6c757d,#495057);">&#x1F4C2; SUBIR JSON</button>
+                </div>
+                <div id="cloud-search-results-barracones" style="margin-top:7px;"></div>
+            </div>
             <!-- Scanner Effect -->
             <div style="position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(255, 140, 66, 0.5), transparent); animation: scanner-sweep 30s linear infinite alternate; z-index: 0;"></div>
                 <style>
@@ -14085,18 +14669,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         </div>
     </div>
 
-    <!-- BARRA DE HERRAMIENTAS FIJA - GESTIÓN DE DATOS BARRACONES -->
-    <!-- Esta barra se muestra/oculta junto con Barracones -->
-    <div id="barracones-toolbar" style="display:none; position: fixed; top: 78px; right: 20px; left: auto; width: auto; max-width: 760px; background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, #000000 100%); border: 1px solid #5c4200; box-shadow: 0 0 20px rgba(255, 174, 0, 0.2); z-index: 3000; padding: 10px 13px;">
-        <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-end; flex-wrap: wrap;">
-            <button onclick="buscarEnNubeBarracones()" style="padding: 6px 10px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">CARGAR NUBE</button>
-            <button onclick="guardarEnNubeBarracones()" style="padding: 6px 10px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">☁️ GUARDAR NUBE</button>
-            <button onclick="exportarDatos()" style="padding: 6px 10px; background: linear-gradient(135deg, #6c757d 0%, #495057 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 8px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">💾 BAJAR JSON</button>
-            <input type="file" id="file-input-barracones" style="display: none;" onchange="importarDatos(this)">
-            <button onclick="document.getElementById('file-input-barracones').click()" style="padding: 6px 10px; background: linear-gradient(135deg, #6c757d 0%, #495057 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 8px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">📂 SUBIR JSON</button>
-            <button onclick="generarPDFPersonaje()" style="padding: 6px 10px; background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); border: 1px solid #00ff41; color: #ffffff; font-weight: bold; font-size: 9px; cursor: pointer; font-family: 'Share Tech Mono', monospace; clip-path: polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0 30%);">📄 DESCARGAR PDF</button>
-        </div>
-        <div id="cloud-search-results-barracones" style="margin-top: 7px;"></div>
+    <!-- barracones-toolbar: merged into quick-load-buttons panel -->
+    <div id="barracones-toolbar" style="display:none;"></div>
+    <input type="file" id="file-input-barracones" style="display:none;" onchange="importarDatos(this)">
+
     </div>
 
 <script>
@@ -14964,8 +15540,6 @@ function obtenerDatosPersonajeActual() {
     return datos;
 }
 
-
-
 /**
  * Genera el HTML completo para el PDF (FORMATO CORRECTO DEL GENERADOR)
  */
@@ -15383,7 +15957,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto1-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto1-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto1-mech" placeholder="Mech (ej: Marauder MAD-3R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto1-mech" readonly disabled placeholder="Mech (ej: Marauder MAD-3R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 2 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15392,7 +15966,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto2-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto2-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto2-mech" placeholder="Mech (ej: Warhammer WHM-6R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto2-mech" readonly disabled placeholder="Mech (ej: Warhammer WHM-6R)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 3 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15401,7 +15975,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto3-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto3-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto3-mech" placeholder="Mech (ej: Griffin GRF-1N)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto3-mech" readonly disabled placeholder="Mech (ej: Griffin GRF-1N)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                     <!-- Piloto 4 -->
                     <div style="background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid #333;">
@@ -15410,7 +15984,7 @@ console.log('✅ Generador de PDF integrado correctamente');
                             <input type="text" id="config-piloto4-nombre" placeholder="Nombre" style="flex: 2; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                             <input type="text" id="config-piloto4-rango" placeholder="Rango" style="flex: 1; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                         </div>
-                        <input type="text" id="config-piloto4-mech" placeholder="Mech (ej: Shadow Hawk SHD-2H)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
+                        <input type="text" id="config-piloto4-mech" readonly disabled placeholder="Mech (ej: Shadow Hawk SHD-2H)" style="width: 100%; background: #0a0a0a; border: 1px solid #5c4200; padding: 6px; color: #e0e0e0; font-size: 11px; box-sizing: border-box;">
                     </div>
                 </div>
             </div>
@@ -15670,14 +16244,7 @@ console.log('✅ Generador de PDF integrado correctamente');
  * Navega a la sección de Crónicas
  */
 function goToCronicas() {
-    // Ocultar todas las secciones
-    const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                      'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                      'mech-hangar', 'vehicle-depot', 'galactic-map', 'historial-logros-section'];
-    sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar sección
     document.getElementById('cronicas-section').style.display = 'block';
@@ -15693,7 +16260,7 @@ function goToCronicas() {
  */
 function goHomeFromCronicas() {
     document.getElementById('cronicas-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
 }
 
 /**
@@ -15788,6 +16355,8 @@ async function cargarConfiguracion() {
         
         if (data.result === 'success' && data.config) {
             configCargada = data.config;
+            // Sync unit name to sidebar
+            if (typeof syncUnitName === 'function') syncUnitName(data.config);
             
             // Rellenar campos del formulario
             document.getElementById('config-compania-nombre').value = data.config['COMPANIA_NOMBRE'] || '';
@@ -15822,22 +16391,18 @@ async function guardarConfiguracionCronicas() {
         'PROMPT_INSTRUCCIONES': document.getElementById('config-prompt-instrucciones').value,
         'PILOTO_1_NOMBRE': document.getElementById('config-piloto1-nombre').value,
         'PILOTO_1_RANGO': document.getElementById('config-piloto1-rango').value,
-        'PILOTO_1_MECH': document.getElementById('config-piloto1-mech').value,
         'PILOTO_2_NOMBRE': document.getElementById('config-piloto2-nombre').value,
         'PILOTO_2_RANGO': document.getElementById('config-piloto2-rango').value,
-        'PILOTO_2_MECH': document.getElementById('config-piloto2-mech').value,
         'PILOTO_3_NOMBRE': document.getElementById('config-piloto3-nombre').value,
         'PILOTO_3_RANGO': document.getElementById('config-piloto3-rango').value,
-        'PILOTO_3_MECH': document.getElementById('config-piloto3-mech').value,
         'PILOTO_4_NOMBRE': document.getElementById('config-piloto4-nombre').value,
         'PILOTO_4_RANGO': document.getElementById('config-piloto4-rango').value,
-        'PILOTO_4_MECH': document.getElementById('config-piloto4-mech').value
     };
     
     try {
         const params = new URLSearchParams({
             action: 'saveConfiguracionBatch',
-            config: JSON.stringify(config)
+            config: JSON.stringify(sanitizeConfigForSheet(config))
         });
         
         const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`);
@@ -15874,14 +16439,7 @@ async function guardarConfiguracionCronicas() {
  * Navega a la sección de Historial y Logros
  */
 function goToHistorialLogros() {
-    // Ocultar todas las secciones
-    const sections = ['pre-generacion', 'ficha-container', 'barracones', 'points-counter', 
-                      'registro-combate', 'trr-section', 'landing-page', 'battle-tracker',
-                      'mech-hangar', 'vehicle-depot', 'galactic-map', 'cronicas-section'];
-    sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar sección
     document.getElementById('historial-logros-section').style.display = 'block';
@@ -15897,7 +16455,7 @@ function goToHistorialLogros() {
  */
 function goHomeFromHistorial() {
     document.getElementById('historial-logros-section').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
 }
 
 /**
@@ -17378,7 +17936,7 @@ function renderResults() {
 // ============================================
 
 function goToRegistroAndCopy() {
-    console.log('📋 Copiando XP y navegando al Registro de Combate...');
+    console.log('📋 Copiando XP y navegando al HOJA DE SERVICIO...');
     
     const results = calculateResults();
     console.log('📊 XP calculados:', results);
@@ -17394,20 +17952,20 @@ function goToRegistroAndCopy() {
     
     // Pequeño delay para asegurar que el DOM se actualice
     setTimeout(() => {
-        // Navegar al Registro de Combate
+        // Navegar al HOJA DE SERVICIO
         goToRegistroCombate();
         
         // Verificar que el Registro está visible
         const registro = document.getElementById('registro-combate');
         if (registro && registro.style.display === 'block') {
-            console.log('✓ Registro de Combate está visible');
+            console.log('✓ HOJA DE SERVICIO está visible');
             
             // Abrir modal automáticamente con los XP
             setTimeout(() => {
                 abrirModalRecompensasConXP(results);
             }, 300);
         } else {
-            console.error('❌ Registro de Combate NO está visible');
+            console.error('❌ HOJA DE SERVICIO NO está visible');
         }
         
         console.log('✅ Navegación completada');
@@ -17450,12 +18008,7 @@ function resetBattleTracker() {
 
 function goToBattleTracker() {
     console.log('🎯 Navegando a Battle Tracker...');
-    
-    // Ocultar todas las secciones
-    ['landing-page', 'pre-generacion', 'ficha-container', 'barracones', 'points-counter', 'registro-combate'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-    });
+    hideAllSections();
     
     // Mostrar Battle Tracker
     const bt = document.getElementById('battle-tracker');
@@ -18129,8 +18682,7 @@ function abrirCalculadorCombate() {
     const modal = document.getElementById('combat-calculator-modal');
     if (!modal) return;
     
-    // Ocultar landing page
-    document.getElementById('landing-page').style.display = 'none';
+    hideAllSections();
     
     // Ocultar paneles internos
     document.getElementById('combat-hp-panel').style.display = 'none';
@@ -18165,7 +18717,7 @@ function abrirCalculadorCombate() {
 
 function cerrarCalculadorCombate() {
     document.getElementById('combat-calculator-modal').style.display = 'none';
-    document.getElementById('landing-page').style.display = 'grid';
+    document.getElementById('landing-page').style.display = '';
     console.log('⚔️ Calculador cerrado');
 }
 
@@ -25492,92 +26044,188 @@ function mechParseSSW(text){
   function xa(sel,attr,def=''){const e=doc.querySelector(sel);return e?(e.getAttribute(attr)||def):def;}
   const root=doc.querySelector('mech');
   if(!root){console.error('SSW: No se encontró elemento <mech>');return null;}
+
+  // === DATOS BÁSICOS ===
   const chassis=root.getAttribute('name')||'',model=root.getAttribute('model')||'';
-  const tonnage=parseInt(root.getAttribute('tons'))||parseInt(xt('tonnage'))||0;
-  const configRaw=(root.getAttribute('config')||xt('configuration')||xt('config')||'').trim();
-  let isQuad=/\bquad\b/i.test(configRaw);
+  const tonnage=parseInt(root.getAttribute('tons'))||0;
   const bv=parseInt(xt('battle_value'))||0;
-  const engRating=parseInt(xa('engine','rating'))||parseInt(xt('engine rating'))||0;
+
+  // Motive type / config
+  const motiveType=(xt('motive_type')||root.getAttribute('config')||xt('configuration')||'').trim();
+  let isQuad=/\bquad\b/i.test(motiveType);
+
+  // Engine
+  const engRating=parseInt(xa('engine','rating'))||0;
+  const engType=(doc.querySelector('engine')?.textContent||'').trim();
+  const isXL=/xl/i.test(engType);
+  const isLight=/light/i.test(engType);
   const walkMP=tonnage>0?Math.floor(engRating/tonnage):0;
   const runMP=Math.ceil(walkMP*1.5);
-  const jumpMP=doc.querySelectorAll('jumpjets location').length;
-  // Heatsinks: intentar atributo o elemento
+
+  // Jump jets
+  const jjLocations=Array.from(doc.querySelectorAll('jumpjets location'));
+  const jumpMP=jjLocations.length;
+
+  // Heat sinks
   const hsEl=doc.querySelector('heatsinks');
-  const hsCount=parseInt(hsEl?.getAttribute('number'))||parseInt(xt('heatsinks number'))||10;
-  const hsTypeText=(hsEl?.querySelector('type')?.textContent||hsEl?.getAttribute('type')||'single').toLowerCase();
+  const hsCount=parseInt(hsEl?.getAttribute('number'))||10;
+  const hsTypeText=(hsEl?.querySelector('type')?.textContent||'single').toLowerCase();
   const hsDouble=/double/i.test(hsTypeText);
   const diss=hsDouble?hsCount*2:hsCount;
-  // Leer armadura - intentar como elemento hijo o como atributo
+
+  // Actuators
+  const actEl=doc.querySelector('actuators');
+  const hasLLA=actEl?.getAttribute('lla')!=='FALSE';
+  const hasLH=actEl?.getAttribute('lh')==='TRUE';
+  const hasRLA=actEl?.getAttribute('rla')!=='FALSE';
+  const hasRH=actEl?.getAttribute('rh')==='TRUE';
+
+  // Armor
   function av(t){
-    const el = doc.querySelector('armor '+t);
-    if(el) return parseInt(el.textContent)||0;
-    const armorEl = doc.querySelector('armor');
-    if(armorEl) return parseInt(armorEl.getAttribute(t))||0;
+    const el=doc.querySelector('armor '+t);
+    if(el)return parseInt(el.textContent)||0;
     return 0;
   }
   const armor={HD:av('hd'),CTf:av('ct'),CTr:av('ctr'),LTf:av('lt'),LTr:av('ltr'),RTf:av('rt'),RTr:av('rtr'),LA:av('la'),RA:av('ra'),LL:av('ll'),RL:av('rl')};
   const is=MECH_IS_TABLE[tonnage]||MECH_IS_TABLE[100];
+
+  // === CRITICAL SLOTS: Fill standard equipment first ===
+  const LOCS=['HD','CT','LT','RT','LA','RA','LL','RL'];
+  const crits={};
+  LOCS.forEach(l=>crits[l]=Array(l==='HD'?6:(l==='LL'||l==='RL')?6:12).fill('-'));
+
+  // Head: Life Support, Sensors, Cockpit, -, Sensors, Life Support
+  crits.HD[0]='Life Support'; crits.HD[1]='Sensors'; crits.HD[2]='Cockpit';
+  crits.HD[4]='Sensors'; crits.HD[5]='Life Support';
+
+  // Center Torso: Engine (3 slots), Gyro (4 slots), Engine (3 slots if not XL)
+  for(var ei=0;ei<3;ei++) crits.CT[ei]='Fusion Engine';
+  for(var gi=3;gi<7;gi++) crits.CT[gi]='Gyro';
+  for(var ei2=7;ei2<10;ei2++) crits.CT[ei2]='Fusion Engine';
+
+  // XL/Light engine: side torso engine slots
+  if(isXL||isLight){
+    var sideEngSlots=isXL?3:2;
+    var lsStart=parseInt(xa('engine','lsstart'))||0;
+    var rsStart=parseInt(xa('engine','rsstart'))||0;
+    // If lsstart/rsstart are -1 or 0, put them at the end
+    if(lsStart<0) lsStart=12-sideEngSlots;
+    if(rsStart<0) rsStart=12-sideEngSlots;
+    for(var s=0;s<sideEngSlots;s++){
+      if(lsStart+s<12) crits.LT[lsStart+s]='Fusion Engine';
+      if(rsStart+s<12) crits.RT[rsStart+s]='Fusion Engine';
+    }
+  }
+
+  // Arms: Shoulder, Upper Arm, [Lower Arm], [Hand]
+  if(isQuad){
+    // Quad: front legs use Hip, Upper Leg, Lower Leg, Foot
+    crits.LA[0]='Hip'; crits.LA[1]='Upper Leg Actuator';
+    crits.LA[2]='Lower Leg Actuator'; crits.LA[3]='Foot Actuator';
+    crits.RA[0]='Hip'; crits.RA[1]='Upper Leg Actuator';
+    crits.RA[2]='Lower Leg Actuator'; crits.RA[3]='Foot Actuator';
+  } else {
+    crits.LA[0]='Shoulder'; crits.LA[1]='Upper Arm Actuator';
+    if(hasLLA) crits.LA[2]='Lower Arm Actuator';
+    if(hasLH) crits.LA[3]='Hand Actuator';
+    crits.RA[0]='Shoulder'; crits.RA[1]='Upper Arm Actuator';
+    if(hasRLA) crits.RA[2]='Lower Arm Actuator';
+    if(hasRH) crits.RA[3]='Hand Actuator';
+  }
+
+  // Legs: Hip, Upper Leg, Lower Leg, Foot
+  crits.LL[0]='Hip'; crits.LL[1]='Upper Leg Actuator';
+  crits.LL[2]='Lower Leg Actuator'; crits.LL[3]='Foot Actuator';
+  crits.RL[0]='Hip'; crits.RL[1]='Upper Leg Actuator';
+  crits.RL[2]='Lower Leg Actuator'; crits.RL[3]='Foot Actuator';
+
+  // === Place Jump Jets in crits ===
+  jjLocations.forEach(jjEl=>{
+    var loc=mwNormLoc(jjEl.textContent.trim());
+    var idx=parseInt(jjEl.getAttribute('index')||'',10);
+    if(!crits[loc]) return;
+    if(Number.isFinite(idx) && idx>=0 && idx<crits[loc].length){
+      crits[loc][idx]='Jump Jet';
+    } else {
+      var fi=crits[loc].findIndex(s=>s==='-');
+      if(fi>=0) crits[loc][fi]='Jump Jet';
+    }
+  });
+
+  // === Place heat sinks in crits (non-engine-integrated) ===
+  var engineHS=Math.min(hsCount, Math.floor(engRating/25));
+  var externalHS=hsCount-engineHS;
+  var hsSlots=hsDouble?3:1;
+  var hsInCrits=Array.from(doc.querySelectorAll('heatsinks location'));
+  hsInCrits.forEach(hsLoc=>{
+    var loc=mwNormLoc(hsLoc.textContent.trim());
+    var idx=parseInt(hsLoc.getAttribute('index')||'',10);
+    if(!crits[loc]) return;
+    var hsName=hsDouble?'Double Heat Sink':'Heat Sink';
+    if(Number.isFinite(idx) && idx>=0 && idx<crits[loc].length){
+      for(var si=0;si<hsSlots && idx+si<crits[loc].length;si++){
+        crits[loc][idx+si]=hsName;
+      }
+    } else {
+      for(var si2=0;si2<hsSlots;si2++){
+        var fi=crits[loc].findIndex(s=>s==='-');
+        if(fi>=0) crits[loc][fi]=hsName;
+      }
+    }
+  });
+
+  // === Place equipment in crits (SSW uses 0-BASED indices) ===
   const PASSIVE=['case','endo steel','ferro-fibrous','targeting computer','masc','guardian ecm','beagle active probe','angel ecm','null signature','chameleon'];
 
-  // PASO 1: Poblar array de críticos primero
-  const crits={};['HD','CT','LT','RT','LA','RA','LL','RL'].forEach(l=>crits[l]=Array(l==='HD'||l.endsWith('L')?6:12).fill('-'));
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const name = rawName.trim();
-    const locNodes = Array.from(eq.querySelectorAll('location'));
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var name=rawName.trim();
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(!locNodes.length) return;
 
     locNodes.forEach(locEl=>{
-      const loc = mwNormLoc(locEl.textContent.trim());
-      const slots = crits[loc];
+      var loc=mwNormLoc(locEl.textContent.trim());
+      var slots=crits[loc];
       if(!slots) return;
-
-      const idxRaw = parseInt(locEl.getAttribute('index')||'',10);
-      let idx = -1;
-
-      if(Number.isFinite(idxRaw)){
-        if(idxRaw >= 1 && idxRaw <= slots.length) idx = idxRaw - 1;
-        else if(idxRaw >= 0 && idxRaw < slots.length) idx = idxRaw;
+      // SSW uses 0-based indices — use directly, DO NOT subtract 1
+      var idx=parseInt(locEl.getAttribute('index')||'',10);
+      if(Number.isFinite(idx) && idx>=0 && idx<slots.length){
+        slots[idx]=name;
+      } else {
+        var fi=slots.findIndex(s=>s==='-');
+        if(fi>=0) slots[fi]=name;
       }
-
-      if(idx < 0) idx = slots.findIndex(s=>s==='-');
-      if(idx >= 0 && idx < slots.length) slots[idx] = name;
     });
   });
 
-  // PASO 2: Parsear armas y asignar slots específicos
-  const wMap={};let wid=1;
-  const ammoTonsByFamily = {};
-  const usedSlots = {}; // loc -> Set de índices ya asignados
+  // === Parse weapons ===
+  var wMap={};var wid=1;
+  var ammoTonsByFamily={};
+  var usedSlots={};
 
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
-    const locNodes=Array.from(eq.querySelectorAll('location'));
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(locNodes.length===0)return;
-    const rawLoc=locNodes[0]?.textContent?.trim()||'';
-    const slotsUsed=locNodes.length;
-    if(type==='ammunition' || rawName.toLowerCase().includes('ammo'))return;
+    var rawLoc=locNodes[0]?.textContent?.trim()||'';
+    var slotsUsed=locNodes.length;
+    if(type==='ammunition' || rawName.toLowerCase().includes('ammo') || rawName.includes('@ '))return;
     if(PASSIVE.some(p=>rawName.toLowerCase().includes(p)))return;
-    // Aceptar tipos de arma conocidos o si no hay tipo definido (asumiendo que es arma)
-    const weaponTypes=['energy','ballistic','missile','physical','equipment'];
-    const looksLikeWeapon=/laser|ppc|ac\/|autocannon|gauss|srm|lrm|mrm|flamer|mg|machine/i.test(rawName);
+    var weaponTypes=['energy','ballistic','missile','physical','equipment'];
+    var looksLikeWeapon=/laser|ppc|ac\/|autocannon|gauss|srm|lrm|mrm|flamer|mg|machine/i.test(rawName);
     if(type && !weaponTypes.includes(type) && !looksLikeWeapon)return;
 
-    const cleanName=rawName.replace(/^\(IS\)\s*/i,'').replace(/^\(CL\)\s*/i,'').trim();
-    const xmlHeat=parseInt(eq.querySelector('heat')?.textContent)||null;
-    const xmlDmg=eq.querySelector('damage')?.textContent?.trim()||null;
-    const xmlRange=eq.querySelector('range')?.textContent?.trim()||null;
-    const stats=mwLookup(rawName)||mwLookup(cleanName);
-    const loc=mwNormLoc(rawLoc);
+    var cleanName=rawName.replace(/^\(IS\)\s*/i,'').replace(/^\(CL\)\s*/i,'').trim();
+    var stats=mwLookup(rawName)||mwLookup(cleanName);
+    var loc=mwNormLoc(rawLoc);
 
-    // Buscar slots específicos de esta arma en los críticos (limitar a slotsUsed)
-    const slotIndices = [];
-    const normName = mechNormEquipName(rawName);
-    if(!usedSlots[loc]) usedSlots[loc] = new Set();
-    const locSlots = crits[loc] || [];
-
-    for(let si=0; si<locSlots.length && slotIndices.length < slotsUsed; si++){
+    // Find specific slot indices for this weapon (0-based)
+    var slotIndices=[];
+    var normName=mechNormEquipName(rawName);
+    if(!usedSlots[loc]) usedSlots[loc]=new Set();
+    var locSlots=crits[loc]||[];
+    for(var si=0;si<locSlots.length && slotIndices.length<slotsUsed;si++){
       if(usedSlots[loc].has(si)) continue;
       if(locSlots[si] && locSlots[si]!=='-' && mechNormEquipName(locSlots[si])===normName){
         slotIndices.push(si);
@@ -25585,50 +26233,60 @@ function mechParseSSW(text){
       }
     }
 
-    // Detectar si es arma trasera (R/Rear) o torreta (T/Turret)
-    const rearMatch = rawName.match(/\s*\((R|Rear|T|Turret)\)\s*$/i);
-    const posSuffix = rearMatch ? ` (${rearMatch[1][0].toUpperCase()})` : '';
-    const displayName = (stats ? stats.d : cleanName.replace(/\s*\((R|Rear|T|Turret)\)\s*$/i,'')) + posSuffix;
+    var rearMatch=rawName.match(/\s*\((R|Rear|T|Turret)\)\s*$/i);
+    var posSuffix=rearMatch?(' ('+rearMatch[1][0].toUpperCase()+')'):'';
+    var displayName=(stats?stats.d:cleanName.replace(/\s*\((R|Rear|T|Turret)\)\s*$/i,''))+posSuffix;
 
-    wMap[wid]={id:wid,name:displayName,rawName:rawName.trim(),loc,locRaw:rawLoc,
-      heat:xmlHeat??stats?.h??0,dmg:xmlDmg??stats?.dm??'?',r:xmlRange??stats?.r??'?',
-      ammo:null,ammoMax:null,count:1,slotsUsed,slotIndices};
+    wMap[wid]={id:wid,name:displayName,rawName:rawName.trim(),loc:loc,locRaw:rawLoc,
+      heat:stats?.h??0,dmg:stats?.dm??'?',r:stats?.r??'?',
+      ammo:null,ammoMax:null,count:1,slotsUsed:slotsUsed,slotIndices:slotIndices};
     wid++;
   });
 
-  // PASO 3: Construir ammoBins (un bin por tonelada de munición)
-  const ammoBins = [];
-  let binId = 0;
-  const usedAmmoSlots = {};
+  // === Parse ammo bins ===
+  var ammoBins=[];
+  var binId=0;
+  var usedAmmoSlots={};
   doc.querySelectorAll('equipment').forEach(eq=>{
-    const type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
+    var type=(eq.querySelector('type')?.textContent?.trim()||'').toLowerCase();
     if(type!=='ammunition')return;
-    const rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
-    const meta=mechAmmoMetaForWeapon({rawName});
+    var rawName=(eq.querySelector('name')?.textContent?.trim()||'').replace(/\n/g,'');
+    var meta=mechAmmoMetaForWeapon({rawName:rawName});
     if(!meta.familyKey) return;
-    const locNodes=Array.from(eq.querySelectorAll('location'));
+    var locNodes=Array.from(eq.querySelectorAll('location'));
     if(!locNodes.length) return;
-    const rawLoc=locNodes[0]?.textContent?.trim()||'';
-    const loc=mwNormLoc(rawLoc);
-    const locSlots=crits[loc]||[];
-    const normName=mechNormEquipName(rawName);
+    var rawLoc=locNodes[0]?.textContent?.trim()||'';
+    var loc=mwNormLoc(rawLoc);
+    // Find the slot index for this ammo (0-based)
+    var idx=parseInt(locNodes[0].getAttribute('index')||'',10);
+    var slotIdx=-1;
+    if(Number.isFinite(idx) && idx>=0){
+      slotIdx=idx;
+    } else {
+      var locSlots2=crits[loc]||[];
+      var normName2=mechNormEquipName(rawName);
+      if(!usedAmmoSlots[loc]) usedAmmoSlots[loc]=new Set();
+      slotIdx=locSlots2.findIndex((s,i)=>!usedAmmoSlots[loc].has(i)&&s!=='-'&&mechNormEquipName(s)===normName2);
+    }
+    if(slotIdx<0) slotIdx=0;
     if(!usedAmmoSlots[loc]) usedAmmoSlots[loc]=new Set();
-    const slotIdx=locSlots.findIndex((s,i)=>!usedAmmoSlots[loc].has(i)&&s!=='-'&&mechNormEquipName(s)===normName);
-    if(slotIdx<0) return;
     usedAmmoSlots[loc].add(slotIdx);
-    const t1=parseFloat(eq.querySelector('tons')?.textContent||'');
-    const m=rawName.match(/(\d+(?:\.\d+)?)\s*ton/i);
-    const tons=Number.isFinite(t1)&&t1>0?t1:(m?parseFloat(m[1]):1);
-    const actualTons=Number.isFinite(tons)&&tons>0?tons:1;
-    const perTon=MECH_AMMO_PER_TON[meta.family]||0;
-    const max=Math.round(actualTons*perTon);
-    ammoTonsByFamily[meta.familyKey]=(ammoTonsByFamily[meta.familyKey]||0)+actualTons;
-    ammoBins.push({id:binId++,loc,slotIdx,familyKey:meta.familyKey,family:meta.family,perTon,current:max,max});
+
+    var perTon=MECH_AMMO_PER_TON[meta.family]||0;
+    var max=perTon;
+    ammoTonsByFamily[meta.familyKey]=(ammoTonsByFamily[meta.familyKey]||0)+1;
+    ammoBins.push({id:binId++,loc:loc,slotIdx:slotIdx,familyKey:meta.familyKey,family:meta.family,perTon:perTon,current:max,max:max});
   });
-  const inferredQuad = (crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||''))) && (crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
-  if(inferredQuad) isQuad = true;
-  const configType = isQuad ? 'QUAD' : (configRaw ? configRaw.toUpperCase() : 'BIPED');
-  return {source:'SSW',chassis,model,tonnage,walkMP,runMP,jumpMP,hsCount,hsDouble,diss,configType,isQuad,engineRating:engRating,armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||'',armor,is,weapons:Object.values(wMap),crits,bv,ammoTonsByFamily,ammoBins};
+
+  // Infer quad from crits if not detected from motive_type
+  var inferredQuad=(crits.LA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')))&&(crits.RA||[]).some(s=>/^\s*Hip\s*$/i.test(String(s||'')));
+  if(inferredQuad) isQuad=true;
+  var configType=isQuad?'QUAD':(motiveType?motiveType.toUpperCase():'BIPED');
+
+  return {source:'SSW',chassis:chassis,model:model,tonnage:tonnage,walkMP:walkMP,runMP:runMP,jumpMP:jumpMP,
+    hsCount:hsCount,hsDouble:hsDouble,diss:diss,configType:configType,isQuad:isQuad,engineRating:engRating,
+    armorType:xt('armor type'),techBase:xt('techbase'),era:xa('year','')||xt('year')||'',
+    armor:armor,is:is,weapons:Object.values(wMap),crits:crits,bv:bv,ammoTonsByFamily:ammoTonsByFamily,ammoBins:ammoBins};
 }
 
 function mechParseMech(text){
@@ -25931,14 +26589,11 @@ async function mechLoadCatalog(force){
     const items = await resp.json();
     if(!Array.isArray(items)) throw new Error('index.json debe ser un array');
 
-    items.forEach(item => {
-      if(!item || !item.file) return;
-      const btn=document.createElement('button');
-      btn.textContent=item.name || item.file;
-      btn.style.cssText='padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
-      btn.onclick=()=>mechLoadFromCatalogItem(item);
-      box.appendChild(btn);
-    });
+    // UI optimizada: no renderizar 500+ botones, solo buscador + select de borrado
+    if (box) {
+      box.innerHTML = '';
+      box.style.display = 'none';
+    }
 
     st.textContent = items.length ? ('Mechs: '+items.length) : 'Catalogo vacio';
     st.style.color = items.length ? '#4ade80' : '#888';
@@ -29172,14 +29827,17 @@ function mechCatalogRender(items){
   if(!box||!st) return;
   box.innerHTML='';
   if(sel) sel.innerHTML='<option value="">(elige modelo para borrar)</option>';
+  // UI optimizada: no renderizar lista de botones enorme
+  if (box) {
+    box.innerHTML = '';
+    box.style.display = 'none';
+  }
   (items||[]).forEach(item=>{
-    const btn=document.createElement('button');
-    btn.textContent=item.name || item.file;
-    btn.style.cssText='padding:4px 8px; background:#0a1f2a; border:1px solid #60a5fa; color:#cbe3ff; font-family:inherit; font-size:9px; cursor:pointer;';
-    btn.onclick=()=>mechLoadFromCatalogItem(item);
-    box.appendChild(btn);
     if(sel){
-      const op=document.createElement('option'); op.value=item.file; op.textContent=(item.name||item.file); sel.appendChild(op);
+      const op=document.createElement('option');
+      op.value=item.file;
+      op.textContent=(item.name||item.file);
+      sel.appendChild(op);
     }
   });
   st.textContent = items?.length ? ('Mechs: '+items.length) : 'Catalogo vacio';
@@ -29441,115 +30099,81 @@ function volverHubCalculador(){
 // switchMechTab removed — single view layout
 </script>
 
+<script>
+
+    // === SYNC UNIT NAME FROM CONFIG ===
+    function syncUnitName(config) {
+        var name = (config && config['COMPANIA_NOMBRE']) || "KING KARL'S KAURASSIERS";
+        var el1 = document.getElementById('sidebar-unit-name');
+        if (el1) el1.textContent = name;
+        var el2 = document.getElementById('classic-unit-name');
+        if (el2) el2.textContent = name;
+        // Sync any other instances
+        document.querySelectorAll('.sidebar-unit-name-sync').forEach(function(el) {
+            el.textContent = name;
+        });
+    }
+
+(function(){
+  const THEME_KEY = 'UI_THEME_PREF';
+
+  function buildClassicLandingMenu(){
+    var menu = document.querySelector('#landing-page .landing-menu');
+    if(!menu) return;
+    if(!menu.dataset.built){
+      menu.innerHTML = ''
+        + '<button class="cyber-button" onclick="goToGenerator()">RECLUTAMIENTO</button>'
+        + '<button class="cyber-button" onclick="goToBarracones()">Barracones</button>'
+        + '<button class="cyber-button" onclick="goToTRRHub()">&#x1F4CB; Ayudas</button>'
+        + '<button class="cyber-button" onclick="goToCronicasHub()">&#x1F4DC; Cr\u00f3nicas & Historial</button>'
+        + '<button class="cyber-button" onclick="abrirCalculadorCombate()">&#x2694;&#xFE0F; SIMULADOR</button>'
+        + '<button class="cyber-button" onclick="goToRegistroCombate()">HOJA DE SERVICIO</button>'
+        + '<button class="cyber-button" onclick="goToBattleTracker()">&#x1F3AF; HUD TACTICO</button>'
+        + '<button class="cyber-button" onclick="goToTRO()">TRO: Technical Readout</button>';
+      menu.dataset.built = '1';
+    }
+    var title = document.querySelector('#landing-page .landing-title');
+    if(title && !title.dataset.classic){
+      title.innerHTML = 'COMISI\u00d3N DE REVISI\u00d3N Y FIANZA<br>DE <span class="hidden-config" onclick="openUnifiedConfigPanel()" title="Configuraci\u00f3n" style="cursor:pointer;">M</span>ERCENARIOS<span class="classic-unit-subtitle" id="classic-unit-name"></span>';
+      title.dataset.classic = '1';
+    }
+    // Sync unit name from config if available
+    if (typeof syncUnitName === 'function' && typeof configCargada !== 'undefined') syncUnitName(configCargada);
+    var yearText = '3026';
+    var el1 = document.getElementById('global-campaign-year');
+    var el2 = document.getElementById('current-campaign-year');
+    if(el1) yearText = el1.textContent.trim();
+    else if(el2) yearText = el2.textContent.trim();
+    var yearEls = document.querySelectorAll('.classic-campaign-year');
+    for(var i=0; i<yearEls.length; i++) yearEls[i].textContent = yearText;
+  }
+
+  window.setUiTheme = function(theme){
+    const safe = (theme === 'theme-classic') ? 'theme-classic' : 'theme-new';
+    document.body.classList.remove('theme-new','theme-classic');
+    document.body.classList.add(safe);
+    try { localStorage.setItem(THEME_KEY, safe); } catch(_) {}
+    document.querySelectorAll('.ui-theme-switcher').forEach(sel => { sel.value = safe; });
+
+    if (safe === 'theme-classic') {
+      buildClassicLandingMenu();
+    }
+  };
+
+  window.initUiTheme = function(){
+    let saved = 'theme-new';
+    try { saved = localStorage.getItem(THEME_KEY) || 'theme-new'; } catch(_) {}
+    if (saved !== 'theme-classic') saved = 'theme-new';
+    setUiTheme(saved);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUiTheme);
+  } else {
+    initUiTheme();
+  }
+})();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
