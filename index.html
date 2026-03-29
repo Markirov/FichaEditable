@@ -6,6 +6,16 @@
     <title>Generador de Ficha MechWarrior Interactiva</title>
     <style>
         /* === STITCH DESIGN SYSTEM VARIABLES === */
+
+        /* === TRIPLE PALETTE SYSTEM === */
+        /* AMBER — Civil (Barracones, Crónicas, Landing) */
+        .palette-amber { --p: #ffd79b; --p-bright: #ffae00; --p-surface: #1a1610; --p-text: #e8d5b8; --p-outline: #9e8e78; --p-accent: #d4a556; --p-border: rgba(158,142,120,0.3); }
+        /* BLUE — Tech/Intel (TRO, Config, Ayudas) */
+        .palette-blue { --p: #bdf4ff; --p-bright: #60a5fa; --p-surface: #0a141e; --p-text: #cbe3ff; --p-outline: #4a6a8a; --p-accent: #38bdf8; --p-border: rgba(74,106,138,0.3); }
+        /* GREEN — Military (Simulador, Battle Tracker, HUD) */
+        .palette-green { --p: #4ade80; --p-bright: #00ff41; --p-surface: #0a1a0f; --p-text: #b8f0c8; --p-outline: #2d5a3d; --p-accent: #22c55e; --p-border: rgba(45,90,61,0.3); }
+
+
         :root {
             --surface: #10141a;
             --surface-dim: #0a0e14;
@@ -540,6 +550,665 @@
         body.theme-classic #landing-page > .landing-sidebar { display: none !important; }
 
         /* MRB Badge — Theme Toggle Button */
+
+        /* === COLLAPSIBLE SIDEBAR (theme-new only) === */
+        .sidebar-hamburger {
+            display: none;
+            position: fixed;
+            top: 6px;
+            left: 8px;
+            z-index: 10002;
+            background: rgba(16,20,26,0.9);
+            border: 1px solid rgba(255,215,155,0.2);
+            color: #ffd79b;
+            width: 34px;
+            height: 34px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0;
+            line-height: 34px;
+            text-align: center;
+            padding: 0;
+            transition: all 300ms ease;
+            clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px);
+        }
+        .sidebar-hamburger:hover {
+            background: var(--surface-container-high);
+            border-color: var(--primary);
+        }
+        body.theme-new .sidebar-hamburger { display: block; }
+        body.theme-classic .sidebar-hamburger { display: none; }
+
+        body.theme-new.sidebar-collapsed .global-shell-sidebar {
+            transform: translateX(-220px);
+        }
+        body.theme-new.sidebar-collapsed .global-shell-main {
+            padding-left: 0 !important;
+        }
+        body.theme-new.sidebar-collapsed .global-shell-header {
+            left: 0 !important;
+        }
+        body.theme-new.sidebar-collapsed .sidebar-hamburger {
+            left: 8px;
+        }
+        body.theme-new:not(.sidebar-collapsed) .sidebar-hamburger {
+            left: 222px;
+            top: 6px;
+        }
+        body.theme-new .global-shell-sidebar {
+            transition: transform 300ms ease;
+        }
+        body.theme-new .global-shell-main {
+            transition: padding-left 300ms ease;
+        }
+        body.theme-new .global-shell-header {
+            transition: left 300ms ease;
+        }
+        /* Back-to-home buttons follow sidebar */
+        body.theme-new.sidebar-collapsed .back-to-home-btn {
+            left: 20px !important;
+        }
+
+        /* === SECTION PALETTE APPLICATION === */
+        body.theme-new [data-palette="amber"] { --p: #ffd79b; --p-bright: #ffae00; --p-surface: #1a1610; --p-text: #e8d5b8; --p-outline: #9e8e78; }
+        body.theme-new [data-palette="blue"] { --p: #bdf4ff; --p-bright: #60a5fa; --p-surface: #0a141e; --p-text: #cbe3ff; --p-outline: #4a6a8a; }
+        body.theme-new [data-palette="green"] { --p: #4ade80; --p-bright: #00ff41; --p-surface: #0a1a0f; --p-text: #b8f0c8; --p-outline: #2d5a3d; }
+
+
+
+
+        body.theme-new #mech-crits-grid::before {
+            content: '';
+            display: none;
+        }
+
+
+
+
+
+        /* --- 3|6|3 GRID LAYOUT --- */
+        body.theme-classic #mech-full-sheet { display: block !important; }
+        body.theme-new #mech-full-sheet {
+            display: grid;
+            grid-template-columns: 3fr 6fr 3fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "header  header  header"
+                "pilot   diagram weapons"
+                "crits   crits   crits";
+            gap: 12px;
+        }
+        body.theme-new #mech-full-sheet > .sim-header { grid-area: header; }
+        body.theme-new #mech-full-sheet > .sim-col-pilot { grid-area: pilot; }
+        body.theme-new #mech-full-sheet > .sim-col-diagram { grid-area: diagram; }
+        body.theme-new #mech-full-sheet > .sim-col-weapons { grid-area: weapons; display: flex !important; }
+        body.theme-new #mech-full-sheet > .sim-col-crits { grid-area: crits; }
+
+        /* Hide back-to-home in theme-new */
+        body.theme-new .back-to-home-btn { display: none !important; }
+
+        /* Section tabs hidden in classic */
+        body.theme-new #combat-calc-hub { display: none !important; }
+        body.theme-new #calc-section-mech > div:first-child,
+        body.theme-new #calc-section-infantry > div:first-child,
+        body.theme-new #calc-section-vehicle > div:first-child { display: none !important; }
+
+        /* --- RESPONSIVE: TABLETS (< 1200px) --- */
+        @media (max-width: 1200px) {
+            body.theme-new #mech-full-sheet {
+                grid-template-columns: 1fr 1fr !important;
+                grid-template-areas:
+                    "header  header"
+                    "pilot   weapons"
+                    "diagram diagram"
+                    "crits   crits" !important;
+            }
+            body.theme-new #mech-crits-grid {
+                grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+            }
+        }
+
+        /* --- RESPONSIVE: MOBILE (< 768px) --- */
+        @media (max-width: 768px) {
+            body.theme-new .global-shell-sidebar {
+                transform: translateX(-220px);
+            }
+            body.theme-new .global-shell-main {
+                padding-left: 0 !important;
+            }
+            body.theme-new .global-shell-header {
+                left: 0 !important;
+            }
+            body.theme-new .sidebar-hamburger {
+                left: 8px !important;
+            }
+            body.theme-new #combat-calculator-modal {
+                padding: 56px 6px 30px 6px !important;
+            }
+            body.theme-new #combat-calculator-modal > div {
+                padding: 8px !important;
+            }
+            body.theme-new #mech-full-sheet {
+                grid-template-columns: 1fr !important;
+                grid-template-areas:
+                    "header"
+                    "pilot"
+                    "weapons"
+                    "diagram"
+                    "crits" !important;
+                gap: 8px !important;
+            }
+            body.theme-new #mech-sheet-stats {
+                flex-wrap: wrap !important;
+            }
+            body.theme-new #mech-sheet-stats > div {
+                min-width: 44px !important;
+                padding: 3px 6px !important;
+            }
+            body.theme-new #mech-crits-grid {
+                grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+            }
+            body.theme-new .sim-header {
+                padding: 8px 10px !important;
+            }
+            body.theme-new #mech-sheet-name {
+                font-size: 14px !important;
+            }
+            body.theme-new .sim-col-pilot > div,
+            body.theme-new .sim-col-diagram > div,
+            body.theme-new .sim-col-weapons > div {
+                padding: 10px !important;
+            }
+            /* Toolbar buttons wrap better */
+            body.theme-new #calc-section-mech > div[style*="display:flex"] {
+                flex-direction: column !important;
+                gap: 6px !important;
+            }
+            /* Pilot buttons row */
+            body.theme-new #calc-section-mech div[style*="PILOTO"] {
+                flex-wrap: wrap !important;
+            }
+            /* Mech quick row */
+            body.theme-new #mech-pilot-quick-row {
+                flex-direction: column !important;
+            }
+        }
+
+        /* --- RESPONSIVE: SMALL MOBILE (< 480px) --- */
+        @media (max-width: 480px) {
+            body.theme-new #mech-crits-grid {
+                grid-template-columns: 1fr !important;
+            }
+            body.theme-new #mech-full-sheet {
+                gap: 6px !important;
+            }
+            body.theme-new #mech-pilot-panel div[style*="font-size:20px"],
+            body.theme-new #mech-pilot-panel div[style*="font-size:28px"] {
+                font-size: 22px !important;
+            }
+        }
+
+
+
+        /* --- GRADIENT FADE AT BOTTOM --- */
+        body.theme-new #calc-section-mech::before {
+            content: '';
+            position: sticky;
+            bottom: 0;
+            display: block;
+            height: 40px;
+            background: linear-gradient(to top, #10141a, transparent);
+            pointer-events: none;
+            z-index: 30;
+            margin-top: -40px;
+        }
+
+
+
+
+
+
+        /* Barracones inside content area (theme-new) */
+        body.theme-new #barracones {
+            position: fixed !important;
+            top: 48px !important;
+            left: 220px !important;
+            width: calc(100% - 220px) !important;
+            height: calc(100% - 48px) !important;
+            z-index: 3000 !important;
+            padding: 48px 20px 40px 20px !important;
+            background: #10141a !important;
+        }
+        body.theme-new.sidebar-collapsed #barracones {
+            left: 0 !important;
+            width: 100% !important;
+        }
+        /* === SECTION TABS IN HEADER === */
+        body.theme-classic #global-section-tabs { display: none !important; }
+        body.theme-new.sidebar-collapsed #global-section-tabs { left: 0 !important; }
+        body.theme-new #global-section-tabs { transition: left 300ms ease; }
+        .section-tab {
+            padding: 10px 16px;
+            color: rgba(255,215,155,0.4);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            font-family: var(--font-headline);
+        }
+        .section-tab:hover { color: rgba(255,215,155,0.7); background: rgba(255,215,155,0.05); }
+        .section-tab.active { color: #ffd79b; border-bottom-color: #ffd79b; }
+        /* Offset content when tabs visible */
+        /* padding handled above */
+        /* Hide hub cards in theme-new (header tabs replace them) */
+        body.theme-new #combat-calc-hub { display: none !important; }
+        /* Hide VOLVER A SECCIONES buttons in theme-new */
+        body.theme-new #calc-section-mech > div:first-child,
+        body.theme-new #calc-section-infantry > div:first-child,
+        body.theme-new #calc-section-vehicle > div:first-child { display: none !important; }
+
+
+
+        /* Modal positioned inside content area */
+        body.theme-new #combat-calculator-modal {
+            position: fixed !important;
+            top: 48px !important;
+            left: 220px !important;
+            width: calc(100% - 220px) !important;
+            height: calc(100% - 48px) !important;
+            z-index: 3000 !important;
+            padding: 48px 20px 40px 20px !important;
+        }
+        body.theme-new.sidebar-collapsed #combat-calculator-modal {
+            left: 0 !important;
+            width: 100% !important;
+        }
+        @media (max-width: 768px) {
+            body.theme-new #combat-calculator-modal {
+                left: 0 !important;
+                width: 100% !important;
+            }
+        }
+
+        /* ============================================================
+           STITCH PALETTE — Complete Color Override (theme-new)
+           Matches AI Studio prototype colors exactly
+           ============================================================ */
+
+        /* --- GLOBAL SIMULATOR BACKGROUND --- */
+        body.theme-new #combat-calculator-modal {
+            background: #10141a !important;
+            background-image: linear-gradient(to bottom, transparent 50%, rgba(189,244,255,0.02) 50%) !important;
+            background-size: 100% 4px !important;
+        }
+        /* Subtle radial glow */
+        body.theme-new #combat-calculator-modal::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.04;
+            background: radial-gradient(circle at 50% 40%, #bdf4ff 0%, transparent 60%);
+            z-index: -1;
+        }
+
+        /* --- INNER WRAPPER: full width --- */
+        body.theme-new #combat-calculator-modal > div[style*="max-width"] {
+            max-width: 100% !important;
+            padding: 8px 16px !important;
+            background: transparent !important;
+        }
+
+        /* --- CALCULADOR HEADER (the "CALCULADOR DE COMBATE" box) --- */
+        body.theme-new #combat-calculator-modal > div > div[style*="CALCULADOR"] {
+            display: none !important;
+        }
+
+        /* --- ALL TOOLBAR ROWS --- */
+        body.theme-new #calc-section-mech > div[style*="background:rgba(0,255,65"],
+        body.theme-new #calc-section-mech > div[style*="background:rgba(0, 255, 65"],
+        body.theme-new #calc-section-mech > div[style*="border:1px solid #00ff41"],
+        body.theme-new #calc-section-mech > div[style*="border: 1px solid #00ff41"] {
+            background: rgba(24,28,34,0.8) !important;
+            border-color: rgba(255,215,155,0.12) !important;
+        }
+
+        /* --- FILE LOAD BAR --- */
+        body.theme-new #calc-section-mech label[style*="background:rgba(0,255,65"],
+        body.theme-new #calc-section-mech label[style*="border:1px solid #00ff41"] {
+            background: rgba(255,215,155,0.12) !important;
+            border-color: rgba(255,215,155,0.3) !important;
+            color: #ffd79b !important;
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px) !important;
+        }
+
+        /* --- CATALOG/PILOT ROWS --- */
+        body.theme-new #mech-pilot-quick-row,
+        body.theme-new #mech-remote-catalog,
+        body.theme-new #calc-section-mech div[style*="background:rgba(96,165,250"] {
+            background: rgba(24,28,34,0.6) !important;
+            border-color: rgba(153,207,218,0.12) !important;
+        }
+        body.theme-new #calc-section-mech div[style*="color:#60a5fa"],
+        body.theme-new #calc-section-mech span[style*="color:#60a5fa"] {
+            color: #99cfda !important;
+        }
+
+        /* --- SLOT TABS --- */
+        body.theme-new #mech-slot-tabs {
+            background: rgba(24,28,34,0.8) !important;
+            border-color: rgba(255,215,155,0.1) !important;
+        }
+
+        /* --- PILOT BUTTON ROW --- */
+        body.theme-new #calc-section-mech div[style*="PILOTO"] {
+            background: rgba(24,28,34,0.5) !important;
+            border-color: rgba(255,215,155,0.1) !important;
+        }
+        body.theme-new #calc-section-mech div[style*="PILOTO"] span[style*="color:#00ff41"] {
+            color: #ffd79b !important;
+        }
+
+        /* --- MECH FULL SHEET HEADER --- */
+        body.theme-new .sim-header {
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%) !important;
+            background: rgba(24,28,34,0.9) !important;
+            border: none !important;
+            border-left: 4px solid #ffd79b !important;
+            background-image: linear-gradient(to right, rgba(255,215,155,0.08), transparent) !important;
+            padding: 10px 16px !important;
+        }
+        body.theme-new #mech-sheet-name {
+            color: #ffd79b !important;
+            font-family: var(--font-headline) !important;
+            font-size: 20px !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.5px !important;
+        }
+        body.theme-new #mech-sheet-meta {
+            color: rgba(153,207,218,0.5) !important;
+            font-family: var(--font-mono) !important;
+            font-size: 9px !important;
+        }
+
+        /* --- STAT BOXES (movement) --- */
+        body.theme-new #mech-sheet-stats > div,
+        body.theme-new #mech-stats-inline > div {
+            clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px) !important;
+            background: #0a0e14 !important;
+            border: 1px solid rgba(153,207,218,0.15) !important;
+        }
+        body.theme-new #mech-sheet-stats > div > div:first-child,
+        body.theme-new #mech-stats-inline > div > div:first-child {
+            color: rgba(153,207,218,0.5) !important;
+            font-size: 8px !important;
+            font-family: var(--font-mono) !important;
+            letter-spacing: 2px !important;
+        }
+        body.theme-new #mech-sheet-stats > div > div:last-child,
+        body.theme-new #mech-stats-inline > div > div:last-child {
+            color: #fff8f4 !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            font-family: var(--font-mono) !important;
+        }
+
+
+        /* Hide CALCULADOR DE COMBATE header (replaced by section tabs) */
+        body.theme-new #calc-header-bar {
+            display: none !important;
+        }
+
+
+        /* Hide redundant elements in theme-new */
+        body.theme-new #mech-remote-catalog { display: none !important; }
+        body.theme-new #mech-sheet-stats { display: none !important; }
+        /* Hide toolbar (MTF/SSW + CATALOGO/SUBIR/BORRAR/GITHUB) */
+        body.theme-new #mech-toolbar-row {
+            display: none !important;
+        }
+        /* Hide CATALOGO MECH (GITHUB) delete row */
+        body.theme-new #mech-remote-catalog {
+            display: none !important;
+        }
+        /* Hide stats in header (redundant - shown in pilot column) */
+        body.theme-new #mech-sheet-stats {
+            display: none !important;
+        }
+        /* --- ALL PANELS (chamfered, dark) --- */
+        body.theme-new .sim-col-pilot > div,
+        body.theme-new .sim-col-weapons > div {
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px) !important;
+            background: #181c22 !important;
+            border: none !important;
+            border-left: 2px solid rgba(255,215,155,0.2) !important;
+            padding: 14px !important;
+        }
+        body.theme-new .sim-col-diagram > div {
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px) !important;
+            background: #1c2026 !important;
+            border: none !important;
+            border-top: 2px solid rgba(255,215,155,0.25) !important;
+            padding: 16px !important;
+        }
+
+        /* --- SECTION TITLES (amber uppercase) --- */
+        body.theme-new .sim-section-title,
+        body.theme-new .sim-col-pilot div[style*="color:#ffae00"],
+        body.theme-new .sim-col-diagram div[style*="color:#ffae00"],
+        body.theme-new .sim-col-weapons div[style*="color:#ffae00"],
+        body.theme-new div[style*="DATOS DEL MECH"],
+        body.theme-new div[style*="ARMAMENTO"],
+        body.theme-new div[style*="BLINDAJE"] {
+            font-family: var(--font-headline) !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #ffd79b !important;
+            letter-spacing: 3px !important;
+            text-transform: uppercase !important;
+            border-bottom-color: rgba(78,69,58,0.5) !important;
+        }
+
+        /* --- PILOT DATA (big numbers) --- */
+        body.theme-new #mech-pilot-panel div[style*="font-size:20px"] {
+            font-size: 28px !important;
+            font-family: var(--font-mono) !important;
+            color: #fff8f4 !important;
+        }
+        body.theme-new #mech-pilot-panel div[style*="DISPARO"],
+        body.theme-new #mech-pilot-panel div[style*="PILOTAJE"] {
+            color: rgba(153,207,218,0.5) !important;
+            font-family: var(--font-mono) !important;
+            letter-spacing: 2px !important;
+        }
+        body.theme-new #mech-pilot-panel div[style*="HERIDAS"] {
+            color: rgba(153,207,218,0.5) !important;
+        }
+        /* Pilot info box backgrounds */
+        body.theme-new #mech-pilot-panel div[style*="text-align:center"][style*="background"] {
+            clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px) !important;
+            background: #0a0e14 !important;
+            border: 1px solid rgba(153,207,218,0.15) !important;
+        }
+        /* Wound boxes */
+        body.theme-new #mech-pilot-panel div[style*="width:16px"],
+        body.theme-new #mech-pilot-panel div[style*="width: 16px"] {
+            width: 22px !important;
+            height: 22px !important;
+            border-color: rgba(255,180,171,0.5) !important;
+        }
+        /* Pilot name */
+        body.theme-new #mech-pilot-panel div[style*="color:#60a5fa"] {
+            color: #99cfda !important;
+        }
+        /* TN text */
+        body.theme-new #mech-pilot-panel div[style*="color:#888"] {
+            color: rgba(153,207,218,0.4) !important;
+        }
+
+
+        /* Heat preview in weapons column */
+        body.theme-new #mech-heat-preview {
+            clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px) !important;
+            background: #0a0e14 !important;
+            border: 1px solid rgba(255,215,155,0.15) !important;
+        }
+        /* --- WEAPON ROWS --- */
+        body.theme-new .mech-wpn-row {
+            background: #0a0e14 !important;
+            border: none !important;
+            border-left: 2px solid rgba(153,207,218,0.3) !important;
+            padding: 8px 10px !important;
+            margin-bottom: 3px !important;
+            transition: all 0.2s !important;
+        }
+        body.theme-new .mech-wpn-row:hover {
+            background: rgba(153,207,218,0.04) !important;
+        }
+        body.theme-new .mech-wpn-row[style*="border-color:#60a5fa"] {
+            border-left-color: #99cfda !important;
+            box-shadow: 0 0 10px rgba(153,207,218,0.2) !important;
+        }
+        body.theme-new .mech-wpn-row div[style*="font-weight:bold"] {
+            color: #fff8f4 !important;
+            font-family: var(--font-mono) !important;
+        }
+        body.theme-new .mech-wpn-row span[style*="color:#888"] {
+            color: rgba(153,207,218,0.4) !important;
+        }
+        /* DISP button */
+        body.theme-new .mech-wpn-row button {
+            clip-path: polygon(4px 0%, 100% 0%, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0% 100%, 0% 4px) !important;
+        }
+
+        /* --- ARMOR DIAGRAM --- */
+        body.theme-new div[id^="mslot-"] {
+            background: rgba(10,14,26,0.7) !important;
+            border: 1px solid rgba(153,207,218,0.12) !important;
+        }
+        body.theme-new .mech-loc-title {
+            color: #ffd79b !important;
+            font-family: var(--font-mono) !important;
+            font-size: 9px !important;
+        }
+        /* Armor pips → cyan */
+        body.theme-new .mech-pip[style*="background:#ffae00"],
+        body.theme-new .mech-pip[style*="background: #ffae00"] {
+            background: #99cfda !important;
+            border-color: rgba(153,207,218,0.3) !important;
+        }
+        /* Rear armor pips → lighter cyan */
+        body.theme-new .mech-pip[style*="background:#ff8c42"],
+        body.theme-new .mech-pip[style*="background: #ff8c42"] {
+            background: rgba(153,207,218,0.6) !important;
+            border-color: rgba(153,207,218,0.25) !important;
+        }
+        /* IS pips stay red */
+        /* Empty armor pips */
+        body.theme-new .mech-pip[style*="background:#110800"],
+        body.theme-new .mech-pip[style*="background:#110500"],
+        body.theme-new .mech-pip[style*="background: #110800"],
+        body.theme-new .mech-pip[style*="background: #110500"] {
+            background: transparent !important;
+            border-color: rgba(153,207,218,0.15) !important;
+        }
+        /* Armor text colors */
+        body.theme-new div[style*="color:#ffae00"][style*="ARM "],
+        body.theme-new div[style*="color: #ffae00"][style*="ARM "] {
+            color: rgba(153,207,218,0.6) !important;
+        }
+        /* Blueprint SVG → cyan tint */
+        body.theme-new svg[viewBox="0 0 100 100"] * {
+            stroke: rgba(153,207,218,0.25) !important;
+        }
+        body.theme-new svg[viewBox="0 0 100 100"] rect[fill],
+        body.theme-new svg[viewBox="0 0 100 100"] path[fill] {
+            fill: rgba(153,207,218,0.04) !important;
+        }
+
+
+        /* Mech blueprint image toggle */
+        body.theme-new #mech-bg-image { opacity: 0.12 !important; filter: grayscale(100%) brightness(2) contrast(0.8) !important; mix-blend-mode: screen !important; }
+        body.theme-new #mech-bg-blueprint { opacity: 1 !important; }
+        /* When image is loaded, dim the blueprint */
+        body.theme-new .has-mech-image #mech-bg-blueprint { opacity: 0.4 !important; }
+        body.theme-new .has-mech-image #mech-bg-image { opacity: 0.15 !important; }
+        /* --- DAMAGE CONTROL --- */
+        body.theme-new #mech-dmgctrl-panel {
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px) !important;
+            background: #181c22 !important;
+            border: none !important;
+            border-top: 2px solid rgba(153,207,218,0.12) !important;
+        }
+
+        /* --- CRITICAL SLOTS --- */
+        body.theme-new .sim-col-crits {
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+            background: #181c22;
+            padding: 16px;
+            border-top: 2px solid rgba(153,207,218,0.12);
+        }
+        body.theme-new .sim-col-crits > div {
+            border: none !important;
+            background: transparent !important;
+        }
+        body.theme-new #mech-crits-grid > div {
+            background: rgba(10,14,26,0.5) !important;
+            border: none !important;
+            border-top: 1px solid rgba(153,207,218,0.1) !important;
+            padding: 6px !important;
+        }
+        /* Crit location headers */
+        body.theme-new #mech-crits-grid > div > div[style*="color:#ffae00"] {
+            color: rgba(153,207,218,0.5) !important;
+            font-family: var(--font-mono) !important;
+            font-size: 9px !important;
+            letter-spacing: 2px !important;
+            border-bottom: 1px solid rgba(78,69,58,0.3) !important;
+            padding-bottom: 3px !important;
+            margin-bottom: 3px !important;
+        }
+        /* Crit entries → left border system */
+        body.theme-new #mech-crits-grid > div > div[style*="font-size:9px"] {
+            font-family: var(--font-mono) !important;
+            font-size: 8px !important;
+            padding: 2px 0 2px 6px !important;
+            margin-bottom: 1px !important;
+        }
+        body.theme-new #mech-crits-grid > div > div[style*="color:#aaa"] {
+            border-left: 2px solid rgba(153,207,218,0.25) !important;
+            background: rgba(153,207,218,0.04) !important;
+            color: #dfe2eb !important;
+        }
+        body.theme-new #mech-crits-grid > div > div[style*="color:#333"] {
+            border-left: 2px solid rgba(78,69,58,0.2) !important;
+            background: transparent !important;
+            color: rgba(223,226,235,0.15) !important;
+        }
+        body.theme-new #mech-crits-grid > div > div[style*="color:#ff4444"] {
+            border-left: 2px solid #c21120 !important;
+            background: rgba(194,17,32,0.06) !important;
+        }
+
+        /* --- HEAT PANEL (vertical bar in pilot column) --- */
+        body.theme-new #mech-heat-panel-inline {
+            background: #181c22 !important;
+            border-left: 2px solid rgba(255,215,155,0.2) !important;
+        }
+
+        /* --- HEAT PANEL (classic horizontal, in crits area) --- */
+        body.theme-new div[style*="CALOR"][style*="font-size:8px"],
+        body.theme-new div[style*="TABLA DE CALOR"] {
+            color: #ffd79b !important;
+            font-family: var(--font-headline) !important;
+        }
+
+        /* --- CUSTOM SCROLLBAR --- */
+        body.theme-new #combat-calculator-modal::-webkit-scrollbar { width: 6px; }
+        body.theme-new #combat-calculator-modal::-webkit-scrollbar-track { background: #0a0e14; }
+        body.theme-new #combat-calculator-modal::-webkit-scrollbar-thumb { background: rgba(78,69,58,0.5); }
+        body.theme-new #combat-calculator-modal::-webkit-scrollbar-thumb:hover { background: #ffd79b; }
+
+
         .mrb-badge-btn {
             position: fixed;
             bottom: 16px;
@@ -993,6 +1662,13 @@ body.theme-classic .classic-theme-float-switch {
             color: var(--primary, #ffd79b);
             transform: none;
             box-shadow: none;
+        }
+
+        /* Active sidebar button */
+        body.theme-new .cyber-button.sidebar-active {
+            background: rgba(255,215,155,0.12) !important;
+            border-left: 3px solid #ffd79b !important;
+            color: #ffd79b !important;
         }
         .cyber-button.active {
             background: var(--primary, #ffd79b);
@@ -1596,6 +2272,7 @@ body.theme-classic .classic-theme-float-switch {
             left: 240px !important;
             top: 58px !important;
         }
+        body.theme-new .back-to-home-btn { display: none !important; }
 
         /* Fix bottom cutoff for all sections with global shell */
         body.theme-new #barracones,
@@ -1606,11 +2283,11 @@ body.theme-classic .classic-theme-float-switch {
         body.theme-new #trr-hub-section,
         body.theme-new #cronicas-hub-section,
         body.theme-new #cronicas-section,
-        body.theme-new #historial-logros-section,
-        body.theme-new #combat-calculator-modal {
+        body.theme-new #historial-logros-section {
             padding-top: 68px !important;
             padding-left: 230px !important;
         }
+        /* combat-calculator-modal positioning handled by Stitch CSS */
 
         
         /* === CLÁSICO: blueprint y data panel alineados, laser de borde a borde === */
@@ -5262,6 +5939,8 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         // OCULTAR TODAS LAS SECCIONES (universal)
         // ============================================
         function hideAllSections() {
+            if(typeof hideSectionTabs==='function') hideSectionTabs();
+            if(typeof setSidebarActive==='function') setSidebarActive('landing');
             var ids = ['landing-page', 'pre-generacion', 'ficha-container', 'barracones', 
                        'points-counter', 'registro-combate', 'trr-section', 'battle-tracker',
                        'trr-hub-section', 'mech-hangar', 'vehicle-depot', 'galactic-map',
@@ -5279,6 +5958,8 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
 
         function goToGenerator() {
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('pre-generacion');
+            if(typeof setSidebarActive==='function') setSidebarActive('reclutamiento');
             document.getElementById('pre-generacion').style.display = 'block';
             document.getElementById('points-counter').style.display = 'block';
         }
@@ -5639,6 +6320,8 @@ async function registrarReversionMejoraEnFormulario(jugador, xpDevuelto, tipo, n
         function goToRegistroCombate() {
             console.log('🎯 Navegando a HOJA DE SERVICIO...');
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('registro-combate');
+            if(typeof setSidebarActive==='function') setSidebarActive('hoja');
             document.getElementById('registro-combate').style.display = 'block';
                 console.log('✅ HOJA DE SERVICIO mostrado');
         }
@@ -6608,6 +7291,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         }
 
         function goToGalacticMap() {
+            if(typeof showSectionTabs==='function') showSectionTabs('galactic-map');
+            if(typeof setSidebarActive==='function') setSidebarActive('');
             document.getElementById('landing-page').style.display = 'none';
             document.getElementById('galactic-map').style.display = 'block';
             document.getElementById('trr-infantry').style.display = 'none';
@@ -6643,6 +7328,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          */
         function goToLanding() {
             hideAllSections();
+            if(typeof hideSectionTabs==='function') hideSectionTabs();
+            if(typeof setSidebarActive==='function') setSidebarActive('landing');
             
             // Resetear sub-secciones de mech-hangar
             const mechLanding = document.getElementById('mech-hangar-landing');
@@ -6695,6 +7382,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          */
         function goToTRRHub() {
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('trr-hub-section');
+            if(typeof setSidebarActive==='function') setSidebarActive('ayudas');
             document.getElementById('trr-hub-section').style.display = 'block';
         }
         
@@ -6703,6 +7392,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
          */
         function goToCronicasHub() {
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('cronicas-hub-section');
+            if(typeof setSidebarActive==='function') setSidebarActive('cronicas');
             document.getElementById('cronicas-hub-section').style.display = 'block';
         }
 
@@ -7345,6 +8036,8 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         // ============================================================================
         async function goToTRO() {
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('tro-section');
+            if(typeof setSidebarActive==='function') setSidebarActive('tro');
             document.getElementById('tro-section').style.display = 'block';
             await loadTROFromCatalogs();
             // Limpiar búsqueda anterior
@@ -7712,7 +8405,13 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
             }
                 // Cambiar a vista de Barracones
             hideAllSections();
+            if(typeof showSectionTabs==='function') showSectionTabs('barracones','ficha');
+            if(typeof setSidebarActive==='function') setSidebarActive('barracones');
             document.getElementById('barracones').style.display = 'block';
+            var fichaTab = document.getElementById('barracones-tab-ficha');
+            var combateTab = document.getElementById('barracones-tab-combate');
+            if (fichaTab) fichaTab.style.display = '';
+            if (combateTab) combateTab.style.display = 'none';
                 // Mostrar barra de herramientas de Barracones
             const toolbar = document.getElementById('barracones-toolbar');
             console.log('🔍 Toolbar element:', toolbar);
@@ -9152,7 +9851,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
     <button id="mrb-theme-toggle" class="mrb-badge-btn" onclick="setUiTheme(document.body.classList.contains('theme-new') ? 'theme-classic' : 'theme-new')" title="Cambiar estilo visual">
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAAOJklEQVR42sWYa4xd1XXH/3ufxz3n3nvu+zVPz8P24BnbGGwTXAIYCOYlS4R2qNpGSWgiIqqoSEmrVq2q8XxBqqhaRaEoJG3VFtKCJzzaAAl1BDZQGoLfHo/H43n4zvu+77n3nnvee/eDQTUhTnlY7fpypKNz1v7ttc7Za/0XcBWMj4ECwBtPpMP//lRH8PJ7/+/2AcjcwZ3R9ceuf+/it0feWhm7epCfycHBUQhkHIy/sy9B5+hrb55q7zq76ny+WEu8+viXsiEyDvZZIcmnfXFsDHR8HGzm6d+LTL977DmhTu6ezrdcIhLSk1LEjpT4ZnhAvHfHH582+BgoGQe7qoB8DBQjowQTwOHhIgGAvQeO+AcOjJH9ay8Lu75/zH38SwOZUtt7tDOS2yDni7/T26kyy3LFw8vOmQd2JjcOa9YxfyB4V9c3jrWPPrxT2lkbYBgFPvC5dyTDAeDA2Qk+foUNfOoIvvr0DZHYMf1nJ2tpOS4GlOrc+aHdW1O8obfIfIW2g/DpYApKR049/HKrsP+bT5ZaVyWCfHRUIBMT/vJjWx+KKOpdDcv2W4G0g3Tv23yAHJx+r37vzXT5/maDDzeq7vZq3YHv+7C4gM64ANvjaLcc5BTAYMQbSMkiD5AzLETPchDqcsocjxOHy0yTPK5JhE7ONp6/6cnzPzo4Oio8ODHhX84jfgT5/XTWKv4thtH87bmCCUaa8NW1r7693Pry3lv36AHK9yueBU49pqVFtHyJyJQSn3HIIkEiLCIsMMguE+seZ01L2FZe9rZZDQMKJag7ACcEccHHto4gUHPXAPwoXSx+JGDilUKrZHL1haMLnu37XlTm4snZIgkEtFsSlQtwI6a3aoDm1y0KTtD0AQYgKXG0fQJGBTAGOMwHCKWTSPgFW2HMFHATKzHGIXTlNJR0y1upmqJEqXEljisCBptFVREg1hwXc6ImJq7pRZYSdqLUIheKrqi0TTgWhyoSeAxo+gQQOMA5BEpAAQQIgesz3Bx1hZEtmqCpEvKrYcgBGarK8XbFhywJYsP26Cc+BzkAn3FM6iJiuQFsHeiASAndPbSRUK0HZYMhFiBo+YBDRWgyASgQlAVIAoVIKQCCkCLgdL7Vmnh3vfUfZwvLbxab/5RLSnxhxYBnc/igYJR+8oM6IFJSsoBMVwcG02G4lg3DtFBvtrClJw1Bi6Bk+vCpCDCGlsNQtxkM1wf3fXDOIArco5TgjO787dnBG+/5z3Xp1F3ffPRVSQmSoABe8wlaHiDzK58mvzLFnIOs/BkDU1Qkw0E0TReyLMJ2PLQME1EtBJtIaLsclHJIkgw5HITheFhjgEAYRM8BNR0hSiw8MJL9SjYt7G80AsOLP/zhfVqaY2tfhJgQ4fgEFuMiB8jhjwXY2SKEgM//CW/HQgouNE3kUnGIoAjKEiBQlEwXus0w0NePTCoGRZZBKcHsUgEGA2KpBCIigeh7ZHa1gkq1lPOOvZMTBInzWoO/WxPpjUNRXNcbhG36OD5ntgjAjw61CI58GEf45epB/mjNf/XpGyIjTDpQLlu5shsgAnOIFlTQkYpBEkWsFirY3pdFVAuhXGuiYRiYyRdgOy58x0G9YYBwDvgeNnVnEcmk+bmKyYnv0oAiEdfxUWh4yMQkxIICwiFBHbyePHf/92YtPgY6fgT8I4Af1Mujh3ZGt8yynzoVd3dcZjxfs2nToSjXm1gu1WDbDrrTcZTrTZxfLCAcVOD5HLbrQVMDoIIA2/VBJQnM55hbWkMqrJItg70kX6xB9SwEJAG26UNRRBIOitz1ec+2YOjmbD89eNN3DedySHo5XO2Na2Obp8hrM5ONPScWWl4yItNuNGEabazXW3Bcho09OZTrTeTXq4iGFRQqOtYrOvZsHcRQfxd2DG3Ajo1dWForo2VaCAdVnMuvo643MDy8GWWPQuA+BEJBwKHKhL56smpOLlo3P9yXfqPwxHD48i5IGBsDvW0c7MSL18b4Gfm1+anm52ZmdK8jpYi+JGFJdzFT9UHAcdv1Q5hZLMByPPiMYWGtDMtxcfuuLWg025gr1FBpGMhEVGQTURybvgi9bUENB+E4LmSBQlRVmLUaREFAIibwdFjC+ZJTfuas/i+awK8LWOTuP7yVvJB+zLT5GKhw+AjwrUO7k9ELwk8nT+k3/Pyc7iUjqhiPyKABCau6h2bbR1dnBm3LgeV6KJTqmF0qAZyhtyMJxjjWqg2EggFYHsNSoYZQQIJpOqjqTayWdaihEGzG4YsyfNNCmHuIRQMkGhJ4q+VHVEmxy4O/8V/1tr2nPyDct3Vf+dld43CE8TGIX690/8PqOX3f9EXDHR7KShs7AiCyCJESFJo+Cg0HiagGcI5kPAruuejKxhFSFQxt6MB6RQelFBeWiqibLkJaGJR56MslAQDX9OYgiQIGO9Oo6AZc24ZlWuhKKZBkSso+5cPdkd72Sn7nS8v8sc/lwg/1tkJ3jHQGXqKYAl8tqyWVE8iU88XVGqZWDOiGB5EChBL09HbBtB2ko0H4ogwlnUFfLgYtGEA6HkUiqqFab6JlmLAMA6JjIhvXkIprCKkBdKXjGNmQRUpTkFJF8IAKK56D7fnQHQ45IJOlSpO59br78I7MVzoCDK3VtmYZviDwKWCqM/4et9t3yKFA92rV8fSGTaWAhJGcggtFC6IShet6CAUkTK9W8eOLBtbrJjbnogjKIlZKNaxX6vB8H4RxMM6hhVQkI2FIooBS/VKam20blApgjCESVMDsJlLxEKYu6iiutogSDuELnW7mwlz5+J8/v7z3B/NGRQBAH55aN9yl+vMj/Yl9XblwZ013vEw0QLMasKp7MIkKyn0wTpAKitixIY05S0LRJejXBBgeQ0QLI6oG0JlJIJ2KIRgKIRiQoAUv/TCJaBhrFR0cHK7vg3BA5RZ6ExJWCi1ooYB3x9aYuLCoHzt4snr3sxWnysdAhSMAPzgK4S9OwNgQcF7YmgzdOZiWOxnz/d6ERM+XbKiRNMp1HUFFQkhRkQ1LiDg6iNVGRW+iP5tAKh6F6XpQ1AAi8SiqLQtzywU0mwZapoWAJKJsWCg2LXj+pQhHmY5oUETVIt6eAU1cWqwd/7sTlbufmGmVD45C2PokmAAAE1OXIB993WkNmPYLfSnlzv6c2klEziq6Q5Z1jqH+DkwvlVFttFFrtFCsGbBsBwL30Z2MIqxKKOptcBB0xDUwy0R+rQLTttAyTFR1A6tVA4JA0dOZRnW9iN4oQSYssN6YLOTz+vF/fju/73sXncrBUQgPTsD/UCX5APKRt51WSlJe2JwU74mG5EwmIvJGtU5myzYyXVnUmgbAgaimYqAnC8dlsDwXa9Um8sU6LNdD23ZhWTaUkIp0MgbDZQD3EVED6O7qwPnzC9jTAQzlFMY5yFJeP/nimcV9f7OAD8F9pBZPTIFPjg7Lv/v6QvNP78oNJSTxxrIDvzsdomathvMlGwMD3SjUDajBIGq1S+VvvdZGywM8xkE4g2eZWK80YJs2IoqEUEACBUF/RxLz0xdwY5eERFyG67q+Rokws24+9cg7jZ8c3blTuvNna96v7QdHhtOMA4S5TKacQbR9UBDctCWJPtJCfiaP3Zs7YegNnJ5dAvN8bO7JoDOeQF8yhb54AplkEpu6UtAbBn4xOQ/u+ehKx3Hu9Dl8oVvE9TkZUZ+h7YnwCYUsIMAB0gyH+f/asB6+JPV4w+Ys78vIx0MoWT5sJqD/xh7Eww4mj09h68Zu7BneAM91EY6G0TmkoX+7ir7rQkh0aFBECY7v47Zd1yAd13Bh8iz29Gtw+xJYiAhodcqwIiJ8xiEJ4ATgH6uj3vv+VYOIWc9A7NZVzBEd0wASt6ygawvH5jBw6uRZdGXiuHnbZpQbRUR638N8/SSK7ATEDaex0jBx++5h+Izj335+Dt0dUQRDBJXeFSzEGzgqtmFuK+GCYSFIryiNriyafGYiHunHqalBxLYEQMNRnJkuIaLo2NhTBAoWzp06h3Q2Cwgiuvu/iLKtQFUkUH8WrnUe9QpglNagJLNY4AI2+TrSqTuh5xvgjEOLxlAXToC4Bf6JASNCi1uJfq+oxz055EGJZVEtiECoGw0rj2xHjEajDg3xCi+pWTbP7xCk2e/C1jIo9t+OLZFT6Iu4iHYm8eI6ZXWXM4tTtML3QBsmcIoVuB0bvCq5CK82Rz8xYJNGNPPsKXEHl8Sw3wI/C+yiFE5BQEYLo0kAISyzVDBIu7kpnPnXv8RuqQ67vY7Ty4u4tieIiMghw2NhUaDzTYH2KQTTB/8KwVAYKhFRfb0pJu063tKyRUDHx9IkB3CEAcC5gjPhtAoLWcFhNS5SKgNtB9C4T+eIwIgk/2Znp7bt2XdXV+cL5Zcf3J79fXUgIRpNB1J5BUcLFKIsejs7g2JI18+u6Opzpy7oYoxWuO36XKQA8UXmaBF6y46eX+CVGWDvEfbLmuRTD48e260l796UPjLZ9FX3/q9/Q3jpmVf29EBe1j0+lzdIMiJ7gxuS4vml+il7cWHfl0+j+GnWEX/d+O3w4Vt/5bdRypTogxNTFe7y2+7a1vVG1/yhQ69bpj9bFGAYLolHAt4Nm6LiVL5y+sdTi/uemUdxdHhY/oP0FANu/Yi/w3v3svHxcfY/spcTAgIQ8M80XQWAsc3h1LHRnuPTX9vEn7qty33u3j538dHt/Cf7e07fGULm8mf/z+2Dhb/z+Vz60Bf7Tr311a188pFt/JX9PWe+1o/sJ4XjnBPOQf6+8Z3f+n7zr0euKuRDG8PpQw8Mnnn5vu7Jb28PfbrIvT8C+cfmEyNPrj2eueqT/oc3I/WtzeHU1UzrfwPRGwtQuWeLJQAAAABJRU5ErkJggg==" alt="MRB" width="40" height="40">
     </button>
-    <div class="version-tag">v10.02</div>
+    <div class="version-tag">v10.22</div>
     <div id="video-splash" class="video-splash" style="display:none;" onclick="closeVideoSplash()">
         <video id="splash-video" autoplay muted playsinline style="border:none;outline:none;display:block;">
             <source src="assets/video/intro.mp4" type="video/mp4">
@@ -9160,6 +9859,7 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
         <div class="video-splash-skip">CLICK PARA SALTAR</div>
     </div>
 
+    <button class="sidebar-hamburger" id="sidebar-toggle" onclick="toggleSidebar()" title="Mostrar/ocultar menú">&#9776;</button>
     <div id="global-shell">
         <aside class="global-shell-sidebar">
             <!-- Unit Identity -->
@@ -9171,19 +9871,19 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 </div>
             </div>
             <div class="sidebar-section-label">OPERACIONES</div>
-            <button class="cyber-button" onclick="goToLanding()"><span class="btn-icon">🏛️</span> COMISIÓN</button>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
-            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> BARRACONES</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
+            <button class="cyber-button" onclick="goToLanding()" data-section="landing"><span class="btn-icon">🏛️</span> COMISIÓN</button>
+            <button class="cyber-button" onclick="goToGenerator()" data-section="reclutamiento"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
+            <button class="cyber-button" onclick="goToBarracones()" data-section="barracones"><span class="btn-icon">🏠</span> BARRACONES</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()" data-section="hoja"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()" data-section="simulador"><span class="btn-icon">⚔️</span> SIMULADOR</button>
 
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
-            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> AYUDAS</button>
-            <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> TECHNICHAL READOUT</button>
+            <button class="cyber-button" onclick="goToBattleTracker()" data-section="hud"><span class="btn-icon">🎯</span> HUD TACTICO</button>
+            <button class="cyber-button" onclick="goToTRRHub()" data-section="ayudas"><span class="btn-icon">📋</span> AYUDAS</button>
+            <button class="cyber-button" onclick="goToTRO()" data-section="tro"><span class="btn-icon">📖</span> TECHNICHAL READOUT</button>
 
             <div class="sidebar-section-label">INTEL</div>
-            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> CRÓNICAS</button>
+            <button class="cyber-button" onclick="goToCronicasHub()" data-section="cronicas"><span class="btn-icon">📜</span> CRÓNICAS</button>
         </aside>
 
         <header class="global-shell-header">
@@ -9193,6 +9893,10 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 <span class="value" id="global-campaign-year">3026</span>
             </div>
         </header>
+        <!-- Dynamic section tabs -->
+        <div id="global-section-tabs" style="display:none; position:fixed; top:48px; left:220px; right:0; z-index:3999; background:rgba(16,20,26,0.98); border-bottom:1px solid rgba(255,215,155,0.1); padding:0 20px; backdrop-filter:blur(8px);">
+            <div id="section-tabs-content" style="display:flex; gap:0; font-family:var(--font-headline); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px;"></div>
+        </div>
     </div>
 
     <!-- MODAL DE CONFIRMACIÓN DE SALIDA -->
@@ -9251,18 +9955,18 @@ document.getElementById('btn-registrar-mision').onclick = registrarMisionConGast
                 </div>
             </div>
             <div class="sidebar-section-label">OPERACIONES</div>
-            <button class="cyber-button" onclick="goToGenerator()"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
-            <button class="cyber-button" onclick="goToBarracones()"><span class="btn-icon">🏠</span> BARRACONES</button>
-            <button class="cyber-button" onclick="goToRegistroCombate()"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
-            <button class="cyber-button" onclick="abrirCalculadorCombate()"><span class="btn-icon">⚔️</span> SIMULADOR</button>
+            <button class="cyber-button" onclick="goToGenerator()" data-section="reclutamiento"><span class="btn-icon">👤</span> RECLUTAMIENTO</button>
+            <button class="cyber-button" onclick="goToBarracones()" data-section="barracones"><span class="btn-icon">🏠</span> BARRACONES</button>
+            <button class="cyber-button" onclick="goToRegistroCombate()" data-section="hoja"><span class="btn-icon">📝</span> HOJA DE SERVICIO</button>
+            <button class="cyber-button" onclick="abrirCalculadorCombate()" data-section="simulador"><span class="btn-icon">⚔️</span> SIMULADOR</button>
             
             <div class="sidebar-section-label">TÁCTICO</div>
-            <button class="cyber-button" onclick="goToBattleTracker()"><span class="btn-icon">🎯</span> HUD TACTICO</button>
-            <button class="cyber-button" onclick="goToTRRHub()"><span class="btn-icon">📋</span> AYUDAS</button>
+            <button class="cyber-button" onclick="goToBattleTracker()" data-section="hud"><span class="btn-icon">🎯</span> HUD TACTICO</button>
+            <button class="cyber-button" onclick="goToTRRHub()" data-section="ayudas"><span class="btn-icon">📋</span> AYUDAS</button>
             <button class="cyber-button" onclick="goToTRO()"><span class="btn-icon">📖</span> TECHNICAL READOUT</button>
             
             <div class="sidebar-section-label">INTEL</div>
-            <button class="cyber-button" onclick="goToCronicasHub()"><span class="btn-icon">📜</span> CRÓNICAS</button>
+            <button class="cyber-button" onclick="goToCronicasHub()" data-section="cronicas"><span class="btn-icon">📜</span> CRÓNICAS</button>
         </nav>
         
         <!-- === HERO CENTER (Mech Scan) === -->
@@ -9977,7 +10681,7 @@ function openUnifiedConfigPanel() {
         <div style="max-width: 800px; margin: 0 auto; padding: 20px 20px 60px 20px; font-family: 'Share Tech Mono', monospace;">
             
             <!-- Header -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px; background: rgba(255, 174, 0, 0.1); border: 2px solid #5c4200;">
+            <div id="calc-header-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 15px; background: rgba(255, 174, 0, 0.1); border: 2px solid #5c4200;">
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <span style="font-size: 24px; cursor: default; opacity: 0.75;" title="Configuración disponible desde la M de MERCENARIOS">⚔️</span>
                     <h2 style="color: #ffae00; margin: 0; font-size: 18px; letter-spacing: 3px;">CALCULADOR DE COMBATE</h2>
@@ -10003,259 +10707,12 @@ function openUnifiedConfigPanel() {
 
             <!-- ===== SECCIÓN INFANTERÍA ===== -->
             <div id="calc-section-infantry" style="display: none;">
-
-            <div style="margin-bottom:12px;"><button onclick="volverHubCalculador()" style="background: none; border: 1px solid #ffae00; color: #ffae00; padding: 6px 10px; cursor: pointer; font-family: inherit; font-size: 10px;">◀ VOLVER A SECCIONES</button></div>
-            <!-- Cargar Personaje -->
-            <div style="background: rgba(255, 174, 0, 0.1); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
-                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Cargar Personaje:</span>
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <button onclick="cargarPersonajePorJugador('Marcos')" class="combat-player-btn" style="background: linear-gradient(135deg, #1a4a1a 0%, #0a2a0a 100%); border: 1px solid #2d5a2d; color: #4ade80; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Marcos</button>
-                        <button onclick="cargarPersonajePorJugador('Jaime')" class="combat-player-btn" style="background: linear-gradient(135deg, #1a3a5a 0%, #0a1a3a 100%); border: 1px solid #2d4a6d; color: #60a5fa; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Jaime</button>
-                        <button onclick="cargarPersonajePorJugador('Joan')" class="combat-player-btn" style="background: linear-gradient(135deg, #4a3a1a 0%, #2a1a0a 100%); border: 1px solid #6d5a2d; color: #fbbf24; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Joan</button>
-                        <button onclick="cargarPersonajePorJugador('Juan')" class="combat-player-btn" style="background: linear-gradient(135deg, #4a1a4a 0%, #2a0a2a 100%); border: 1px solid #6d2d6d; color: #c084fc; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Juan P.</button>
-                    </div>
+                <div style="text-align:center; padding:60px 20px; color:#888;">
+                    <div style="font-size:48px; margin-bottom:16px;">🪖</div>
+                    <div style="color:#ffd79b; font-size:16px; font-weight:bold; letter-spacing:2px; margin-bottom:8px; font-family:var(--font-headline);">INFANTERÍA / BATTLE ARMOR</div>
+                    <div style="color:rgba(153,207,218,0.5); font-size:12px; font-family:var(--font-mono);">Próximamente: pelotones convencionales + escuadras BA</div>
+                    <div style="color:rgba(153,207,218,0.3); font-size:10px; margin-top:12px; font-family:var(--font-mono);">El combate personal RPG se ha movido a BARRACONES → COMBATE</div>
                 </div>
-                <div id="combat-loaded-char" style="color: #4ade80; font-size: 13px; margin-top: 10px;"></div>
-            </div>
-            
-            <!-- Estado Físico - Silueta Humana -->
-            <div id="combat-hp-panel" style="display: none; background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Estado Físico</span>
-                    <button onclick="limpiarDanosCombate()" style="background: none; border: 1px solid #4ade80; color: #4ade80; padding: 3px 8px; font-size: 9px; cursor: pointer; font-family: inherit;">💚 Limpiar</button>
-                </div>
-                <div id="combat-silueta-container" style="display: flex; justify-content: center;">
-                    <!-- Silueta generada dinámicamente -->
-                </div>
-            </div>
-            
-            <!-- Armamento -->
-            <div id="combat-weapons-panel" style="display: none; background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                <div style="margin-bottom: 10px;">
-                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Armamento</span>
-                </div>
-                <div id="combat-weapons-list" style="display: flex; flex-direction: column; gap: 6px;">
-                    <!-- Armas generadas dinámicamente -->
-                </div>
-            </div>
-            
-            <!-- Grid: Habilidad + Alcance | Movimientos -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                
-                <!-- Columna Izquierda -->
-                <div>
-                    <!-- Habilidad (auto-seleccionada al elegir arma) -->
-                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Habilidad</label>
-                        <!-- Selector oculto para mantener funcionalidad -->
-                        <select id="combat-skill-select" onchange="actualizarCalculoCombate()" style="display: none;">
-                            <option value="">-- Seleccionar Habilidad --</option>
-                        </select>
-                        <!-- Display de habilidad seleccionada -->
-                        <div id="combat-skill-display" style="background: #0a0a0a; border: 1px solid #333; color: #666; padding: 10px; font-size: 12px; font-style: italic;">
-                            Selecciona un arma...
-                        </div>
-                        <div style="background: rgba(255, 174, 0, 0.1); border: 1px solid #5c4200; padding: 12px; margin-top: 10px; text-align: center;">
-                            <div style="color: #666; font-size: 9px; text-transform: uppercase; letter-spacing: 1px;">TIR Base</div>
-                            <div id="result-tir-base" style="color: #ffae00; font-size: 24px; font-weight: bold;">--</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Alcance -->
-                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
-                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Alcance al Objetivo</label>
-                        <div id="combat-range-group" style="display: flex; flex-direction: column; gap: 6px;">
-                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #4ade80;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Corto</span>
-                                </div>
-                                <span style="color: #4ade80; font-size: 12px;">+0</span>
-                                <input type="radio" name="combat-range" value="0" checked style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Medio</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+2</span>
-                                <input type="radio" name="combat-range" value="2" style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Largo</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+4</span>
-                                <input type="radio" name="combat-range" value="4" style="display: none;">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Columna Derecha -->
-                <div>
-                    <!-- Mi Movimiento -->
-                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Mi Movimiento</label>
-                        <div id="combat-mov-self-group" style="display: flex; flex-direction: column; gap: 6px;">
-                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; background: #4ade80;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Parado</span>
-                                </div>
-                                <span style="color: #4ade80; font-size: 12px;">+0</span>
-                                <input type="radio" name="combat-mov-self" value="0" checked style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Caminando</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+1</span>
-                                <input type="radio" name="combat-mov-self" value="1" style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Corriendo</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+2</span>
-                                <input type="radio" name="combat-mov-self" value="2" style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Esquivando</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+3</span>
-                                <input type="radio" name="combat-mov-self" value="3" style="display: none;">
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <!-- Mov Objetivo -->
-                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
-                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Mov. Objetivo</label>
-                        <div id="combat-mov-target-group" style="display: flex; flex-direction: column; gap: 6px;">
-                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; background: #4ade80;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Parado</span>
-                                </div>
-                                <span style="color: #4ade80; font-size: 12px;">+0</span>
-                                <input type="radio" name="combat-mov-target" value="0" checked style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Caminando</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+1</span>
-                                <input type="radio" name="combat-mov-target" value="1" style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Corriendo</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+2</span>
-                                <input type="radio" name="combat-mov-target" value="2" style="display: none;">
-                            </label>
-                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
-                                    <span style="color: #e0e0e0; font-size: 12px;">Esquivando</span>
-                                </div>
-                                <span style="color: #888; font-size: 12px;">+3</span>
-                                <input type="radio" name="combat-mov-target" value="3" style="display: none;">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Panel de Resultado y Acciones -->
-            <div style="background: linear-gradient(135deg, rgba(255, 174, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); border: 2px solid #5c4200; padding: 20px; margin-bottom: 15px;">
-                <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
-                    <!-- Desglose -->
-                    <div style="font-size: 11px;">
-                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
-                            <span style="color: #888;">Alcance:</span>
-                            <span id="result-range" style="color: #ffae00;">+0</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
-                            <span style="color: #888;">Mi Mov:</span>
-                            <span id="result-mov-self" style="color: #ffae00;">+0</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
-                            <span style="color: #888;">Mov Obj:</span>
-                            <span id="result-mov-target" style="color: #ffae00;">+0</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding: 3px 0;">
-                            <span style="color: #888;">Mod Arma:</span>
-                            <span id="combat-weapon-mod-display" style="color: #888;">+0</span>
-                        </div>
-                    </div>
-                    
-                    <!-- TN Final Grande -->
-                    <div style="text-align: center;">
-                        <div style="color: #ff8c42; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">TN Final</div>
-                        <div id="result-tn-final" style="color: #ffae00; font-size: 56px; font-weight: bold; text-shadow: 0 0 30px rgba(255, 174, 0, 0.6); line-height: 1;">--</div>
-                        <div id="combat-selected-weapon-display" style="color: #4ade80; font-size: 10px; margin-top: 5px;"></div>
-                    </div>
-                    
-                    <!-- Botones de Acción -->
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
-                        <button onclick="registrarDisparo()" style="padding: 12px 20px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 2px solid #ffae00; color: #000; font-family: inherit; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">🎯 DISPARAR</button>
-                        <button onclick="siguienteTurno()" style="padding: 10px 20px; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid #ffae00; color: #ffae00; font-family: inherit; font-size: 11px; cursor: pointer;">⏭️ SIG. TURNO</button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Log de Combate -->
-            <div style="background: rgba(255, 174, 0, 0.05); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <span style="color: #ffae00; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">📜 Log de Combate</span>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span id="combat-turn-counter" style="color: #ffae00; font-size: 11px; font-weight: bold;">Turno 1</span>
-                        <button onclick="limpiarLogCombate()" style="background: none; border: 1px solid #5c4200; color: #ffae00; padding: 3px 8px; font-size: 9px; cursor: pointer; font-family: inherit;">Limpiar</button>
-                    </div>
-                </div>
-                <div id="combat-log" style="max-height: 100px; overflow-y: auto; font-size: 10px; font-family: 'Share Tech Mono', monospace;">
-                    <div style="color: #666; font-style: italic;">Sin acciones registradas...</div>
-                </div>
-            </div>
-            
-            <!-- PX y Recompensas -->
-            <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                        <span style="color: #ffae00; font-size: 10px; text-transform: uppercase;">⭐ PX:</span>
-                        <input type="number" id="combat-px-ganados" value="0" min="0" style="width: 60px; background: #0a0a0a; border: 1px solid #ffae00; color: #ffae00; padding: 6px; text-align: center; font-family: inherit; font-size: 16px; font-weight: bold;">
-                        <!-- Botones rápidos en línea -->
-                        <div style="display: flex; gap: 2px;">
-                            <button onclick="ajustarPXCombate(1)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+1</button>
-                            <button onclick="ajustarPXCombate(5)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+5</button>
-                            <button onclick="ajustarPXCombate(10)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+10</button>
-                            <button onclick="ajustarPXCombate(25)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+25</button>
-                            <button onclick="ajustarPXCombate(50)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+50</button>
-                            <button onclick="ajustarPXCombate(100)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+100</button>
-                        </div>
-                        <div style="display: flex; gap: 2px;">
-                            <button onclick="ajustarPXCombate(-1)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-1</button>
-                            <button onclick="ajustarPXCombate(-5)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-5</button>
-                            <button onclick="ajustarPXCombate(-10)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-10</button>
-                            <button onclick="ajustarPXCombate(-25)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-25</button>
-                            <button onclick="ajustarPXCombate(-50)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-50</button>
-                            <button onclick="ajustarPXCombate(-100)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-100</button>
-                        </div>
-                    </div>
-                    <button onclick="irARegistroCombate()" style="background: linear-gradient(135deg, #1a4a1a 0%, #0a2a0a 100%); border: 1px solid #4ade80; color: #4ade80; padding: 8px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">💰 RECOMPENSAS</button>
-                </div>
-            </div>
-            
             </div><!-- /calc-section-infantry -->
 
             <!-- ===== SECCIÓN MECH — VISTA ÚNICA ESTILO FS ===== -->
@@ -10263,7 +10720,7 @@ function openUnifiedConfigPanel() {
 
                 <div style="margin-bottom:12px; display:flex; gap:8px; flex-wrap:wrap;"><button onclick="volverHubCalculador()" style="background: none; border: 1px solid #00ff41; color: #00ff41; padding: 6px 10px; cursor: pointer; font-family: inherit; font-size: 10px;">◀ VOLVER A SECCIONES</button><button onclick="switchBetweenMechVehicle('mech')" style="background: none; border: 1px solid #60a5fa; color: #60a5fa; padding: 6px 10px; cursor: pointer; font-family: inherit; font-size: 10px;">⇄ IR A VEHÍCULOS</button></div>
                 <!-- Barra superior: cargar + reset + siguiente turno -->
-                <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:10px; padding:8px 10px; background:rgba(0,255,65,0.04); border:1px solid #00ff4120;">
+                <div id="mech-toolbar-row" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:10px; padding:8px 10px; background:rgba(0,255,65,0.04); border:1px solid #00ff4120;">
                     <label style="padding:5px 12px; background:rgba(0,255,65,0.1); border:1px solid #00ff41; color:#00ff41; font-family:'Share Tech Mono',monospace; font-size:10px; font-weight:bold; cursor:pointer; letter-spacing:1px; white-space:nowrap; clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);">
                         📁 MTF / SSW
                         <input type="file" accept=".mtf,.ssw" style="display:none" onchange="mechParser_loadFile(event)">
@@ -10331,7 +10788,7 @@ function openUnifiedConfigPanel() {
                 <div id="mech-full-sheet" style="display:none;">
 
     <!-- HEADER DEL MECH -->
-    <div style="background:rgba(0,0,0,0.8); border:2px solid #00ff41; padding:8px 12px; margin-bottom:8px; clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);">
+    <div class="sim-header" style="background:rgba(0,0,0,0.8); border:2px solid #00ff41; padding:8px 12px; margin-bottom:8px; clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:6px;">
             <div style="display:flex; align-items:center; gap:10px;">
                 <div style="display:flex; gap:4px;">
@@ -10339,157 +10796,191 @@ function openUnifiedConfigPanel() {
                     <button onclick="mechReset()" style="padding:4px 8px; background:#2a0a0a; border:1px solid #ff4444; color:#ff4444; font-family:inherit; font-size:9px; font-weight:bold; cursor:pointer;">↺ RESET</button>
                 </div>
                 <div>
-                    <div id="mech-sheet-name" style="color:#00ff41; font-size:15px; font-weight:bold; letter-spacing:2px;"></div>
-                    <div id="mech-sheet-meta" style="color:#555; font-size:8px; letter-spacing:1px; margin-top:1px;"></div>
+                    <div id="mech-sheet-name" class="mech-name-display" style="color:#00ff41; font-size:15px; font-weight:bold; letter-spacing:2px;"></div>
+                    <div id="mech-sheet-meta" class="mech-meta-display" style="color:#555; font-size:8px; letter-spacing:1px; margin-top:1px;"></div>
                 </div>
             </div>
             <div id="mech-sheet-stats" style="display:flex; gap:5px; flex-wrap:wrap;"></div>
         </div>
     </div>
 
-    <!-- BLOQUE SUPERIOR: DATOS+ARMAS | BLINDAJE+IS -->
-    <div style="display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,0.95fr); gap:8px; margin-bottom:8px; align-items:start;">
-
-        <!-- COLUMNA IZQUIERDA: DATOS DEL MECH Y ARMAMENTO -->
-        <div style="display:flex; flex-direction:column; gap:6px;">
-            <div style="padding:6px 8px; background:rgba(0,0,0,0.45); border:1px solid #5c4200;">
-                <div style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:4px;">DATOS DEL MECH</div>
-                <div id="mech-pilot-panel" style="padding:6px 0 2px 0;"></div>
-            </div>
-
-            <div style="padding:6px 8px; background:rgba(0,0,0,0.4); border:1px solid #5c4200;">
-                <div style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:5px; border-bottom:1px solid #5c4200; padding-bottom:3px;">ARMAMENTO</div>
-                <div id="mech-weapons-list" style="display:flex; flex-direction:column; gap:3px;"></div>
-                <div id="mech-heat-summary" style="margin-top:6px; font-size:9px; color:#555; border-top:1px solid #222; padding-top:5px;"></div>
-            </div>
+    <!-- COLUMNA IZQUIERDA (3): DATOS PILOTO + CALOR -->
+    <div class="sim-col-pilot" style="display:flex; flex-direction:column; gap:6px;">
+        <div class="sim-panel" style="padding:6px 8px; background:rgba(0,0,0,0.45); border:1px solid #5c4200;">
+            <div class="sim-section-title" style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:4px;">DATOS DEL MECH</div>
+            <div id="mech-pilot-panel" style="padding:6px 0 2px 0;"></div>
         </div>
+        <!-- Movement stats (populated by JS) -->
+        <div class="sim-panel" id="mech-movement-panel" style="padding:6px 8px; background:rgba(0,0,0,0.45); border:1px solid #5c4200; display:none;">
+            <div class="sim-section-title" style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:4px;">MOVIMIENTO</div>
+            <div id="mech-stats-inline" style="display:flex; gap:5px; flex-wrap:wrap;"></div>
+        </div>
+        <!-- THERMAL STATUS (Stitch vertical bar) -->
+        <div class="sim-panel" id="mech-heat-panel-inline" style="padding:6px 8px; background:rgba(0,0,0,0.45); border:1px solid #5c4200; display:none;">
+            <div class="sim-section-title" style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:4px;">ESTADO TÉRMICO</div>
+            <div style="display:flex; height:180px; gap:10px;">
+                <!-- Vertical Heat Scale -->
+                <div style="flex:1; position:relative;">
+                    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;opacity:0.2;">
+                        <div style="border-top:1px solid #ffd79b;width:100%;"></div>
+                        <div style="border-top:1px solid #ffd79b;width:100%;"></div>
+                        <div style="border-top:1px solid #ffd79b;width:100%;"></div>
+                        <div style="border-top:1px solid #ffd79b;width:100%;"></div>
+                        <div style="border-top:1px solid #ffd79b;width:100%;"></div>
+                    </div>
+                    <div id="mech-heat-fill-inline" style="position:absolute;bottom:0;left:0;right:0;height:0%;background:linear-gradient(to top,rgba(20,80,89,0.8),rgba(194,17,32,0.9));transition:height 0.5s;">
+                        <div style="position:absolute;top:0;width:100%;height:1px;background:#fff;box-shadow:0 0 8px #fff;"></div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;font-family:var(--font-mono);font-size:9px;color:rgba(153,207,218,0.4);z-index:1;position:relative;padding-left:2px;">
+                        <span>30</span><span>24</span><span>18</span><span>12</span><span>06</span><span>00</span>
+                    </div>
+                </div>
+                <!-- Current Values -->
+                <div style="width:50%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;font-family:var(--font-mono);">
+                    <div style="text-align:right;">
+                        <span style="display:block;font-size:9px;color:rgba(153,207,218,0.5);text-transform:uppercase;">Current</span>
+                        <span id="mech-heat-value-inline" style="font-size:28px;color:#ffd79b;font-weight:bold;">0</span>
+                    </div>
+                    <div id="mech-heat-turn-inline" style="text-align:right;border-top:1px solid rgba(78,69,58,0.5);padding-top:4px;">
+                        <span style="display:block;font-size:9px;color:rgba(153,207,218,0.5);text-transform:uppercase;">Disipadores</span>
+                        <span id="mech-heat-sinks-inline" style="font-size:14px;color:var(--secondary,#99cfda);">10</span>
+                    </div>
+                </div>
+            </div>
+            <div id="mech-heat-warning-inline" style="margin-top:6px;padding:4px 6px;font-family:var(--font-mono);font-size:9px;text-transform:uppercase;color:var(--secondary,#99cfda);background:rgba(153,207,218,0.05);border:1px solid rgba(153,207,218,0.2);">SYSTEM OPTIMAL</div>
+        </div>
+    </div>
 
-        <!-- COLUMNA DERECHA: BLINDAJE + ESTRUCTURA INTERNA -->
-        <div style="padding:6px 8px; background:rgba(0,0,0,0.4); border:1px solid #5c4200;">
+    <!-- COLUMNA CENTRAL (6): BLINDAJE+IS + ARMAMENTO -->
+    <div class="sim-col-diagram" style="display:flex; flex-direction:column; gap:6px;">
+        <div class="sim-panel" style="padding:6px 8px; background:rgba(0,0,0,0.4); border:1px solid #5c4200;">
             <div style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:6px; border-bottom:1px solid #5c4200; padding-bottom:3px;">BLINDAJE Y ESTRUCTURA INTERNA</div>
             <div style="position:relative;">
-              <!-- SVG SILUETA BÍPEDO — blueprint técnico, fondo decorativo -->
-              <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"
+              <!-- MECH SILHOUETTE: Blueprint TRO + optional image bg -->
+              <!-- Image background (optional - set src to your GitHub-hosted image) -->
+              <img id="mech-bg-image" src="" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;pointer-events:none;z-index:0;filter:grayscale(100%) brightness(1.8);mix-blend-mode:screen;transition:opacity 0.5s;">
+              
+              <!-- SVG Blueprint (shown when no image or as overlay) -->
+              <svg id="mech-bg-blueprint" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"
                    viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-
-                <!-- ═══ SILUETA EXTERIOR GENERAL ═══ -->
-                <!-- Cuerpo completo: torso+brazos (fila 2), forma trapezoidal con hombros -->
-                <path d="M 19,16 L 81,16 L 100,16 L 100,47 L 81,47 L 81,16 L 62,16
-                         L 62,47 L 38,47 L 38,16 L 19,16 L 0,16 L 0,47 L 19,47 Z"
-                      fill="none" stroke="#ffae0018" stroke-width="0.3" opacity="0.6"/>
-
-                <!-- ═══ FILA 1: CABEZA (col CT) ═══ -->
-                <!-- Zona HD: caja rectangular con visor y detalles técnicos -->
-                <rect x="38.5" y="0.5" width="23" height="15" rx="1.5"
-                      fill="rgba(255,174,0,0.09)" stroke="#ffae00" stroke-width="0.45" opacity="0.75"/>
-                <!-- Visor horizontal -->
-                <line x1="38.5" y1="7.5" x2="61.5" y2="7.5" stroke="#ffae00" stroke-width="0.35" opacity="0.55"/>
-                <!-- Ranura superior (antenas/sensores) -->
-                <line x1="45" y1="0.5" x2="45" y2="2.5"   stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-                <line x1="55" y1="0.5" x2="55" y2="2.5"   stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-                <!-- Puntos esquina (remaches) -->
-                <circle cx="40" cy="2"  r="0.5" fill="#ffae00" opacity="0.45"/>
-                <circle cx="60" cy="2"  r="0.5" fill="#ffae00" opacity="0.45"/>
-                <circle cx="40" cy="13.5" r="0.5" fill="#ffae00" opacity="0.45"/>
-                <circle cx="60" cy="13.5" r="0.5" fill="#ffae00" opacity="0.45"/>
-
-                <!-- Cuello: conexión cabeza → CT -->
-                <rect x="45.5" y="15" width="9" height="1.4" rx="0.6"
-                      fill="rgba(255,174,0,0.08)" stroke="#ffae00" stroke-width="0.3" opacity="0.6"/>
-
-                <!-- ═══ FILA 2: TORSOS FRONTALES + BRAZOS ═══ -->
-                <!-- Brazo Izquierdo (LA, col 1) -->
-                <rect x="0.5" y="16.5" width="18" height="30" rx="2.5"
-                      fill="rgba(255,174,0,0.06)" stroke="#ffae00" stroke-width="0.4" opacity="0.55"/>
-                <!-- Detalle puño/mano en LA -->
-                <rect x="1.5" y="43" width="16" height="3" rx="1"
-                      fill="rgba(255,174,0,0.10)" stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-
-                <!-- Torso Izquierdo frontal (LT, col 2) -->
-                <rect x="19.5" y="16.5" width="18" height="30" rx="1.5"
-                      fill="rgba(255,174,0,0.07)" stroke="#ffae00" stroke-width="0.4" opacity="0.6"/>
-                <!-- Detalle diagonal hombro LT -->
-                <line x1="19.5" y1="16.5" x2="24" y2="20" stroke="#ffae00" stroke-width="0.25" opacity="0.4"/>
-
-                <!-- Torso Central frontal (CT, col 3) — más prominente -->
-                <rect x="38.5" y="16" width="23" height="31" rx="2"
-                      fill="rgba(255,174,0,0.10)" stroke="#ffae00" stroke-width="0.5" opacity="0.7"/>
-                <!-- Panel de pecho CT: líneas horizontales técnicas -->
-                <line x1="38.5" y1="24" x2="61.5" y2="24" stroke="#ffae00" stroke-width="0.2" opacity="0.35"/>
-                <line x1="38.5" y1="33" x2="61.5" y2="33" stroke="#ffae00" stroke-width="0.2" opacity="0.25"/>
-                <!-- Cruz central CT (escotilla de reactor) -->
-                <circle cx="50" cy="28.5" r="3.5" fill="none" stroke="#ffae00" stroke-width="0.3" opacity="0.45"/>
-                <line x1="50" y1="25.5" x2="50" y2="31.5" stroke="#ffae00" stroke-width="0.25" opacity="0.35"/>
-                <line x1="46.5" y1="28.5" x2="53.5" y2="28.5" stroke="#ffae00" stroke-width="0.25" opacity="0.35"/>
-
-                <!-- Torso Derecho frontal (RT, col 4) -->
-                <rect x="62" y="16.5" width="18" height="30" rx="1.5"
-                      fill="rgba(255,174,0,0.07)" stroke="#ffae00" stroke-width="0.4" opacity="0.6"/>
-                <!-- Detalle diagonal hombro RT -->
-                <line x1="80" y1="16.5" x2="75.5" y2="20" stroke="#ffae00" stroke-width="0.25" opacity="0.4"/>
-
-                <!-- Brazo Derecho (RA, col 5) -->
-                <rect x="81.5" y="16.5" width="18" height="30" rx="2.5"
-                      fill="rgba(255,174,0,0.06)" stroke="#ffae00" stroke-width="0.4" opacity="0.55"/>
-                <!-- Detalle puño/mano en RA -->
-                <rect x="82.5" y="43" width="16" height="3" rx="1"
-                      fill="rgba(255,174,0,0.10)" stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-
-                <!-- Articulaciones de hombro (juntas esféricas) -->
-                <circle cx="19.25" cy="17.5" r="1.3" fill="rgba(255,174,0,0.15)" stroke="#ffae00" stroke-width="0.45" opacity="0.8"/>
-                <circle cx="80.75" cy="17.5" r="1.3" fill="rgba(255,174,0,0.15)" stroke="#ffae00" stroke-width="0.45" opacity="0.8"/>
-
-                <!-- ═══ SEPARADOR FRONTAL → TRASERO ═══ -->
-                <!-- Línea divisoria naranja punteada (indica zona posterior) -->
-                <line x1="19.5" y1="47.2" x2="80.5" y2="47.2"
-                      stroke="#ff8c42" stroke-width="0.35" stroke-dasharray="1.8,0.9" opacity="0.55"/>
-
-                <!-- ═══ FILA 3: TORSOS TRASEROS ═══ -->
-                <!-- LT trasero -->
-                <rect x="19.5" y="47.5" width="18" height="15" rx="1"
-                      fill="rgba(255,140,66,0.07)" stroke="#ff8c42" stroke-width="0.35" opacity="0.6"/>
-                <!-- CT trasero -->
-                <rect x="38.5" y="47.5" width="23" height="15" rx="1.5"
-                      fill="rgba(255,140,66,0.09)" stroke="#ff8c42" stroke-width="0.4" opacity="0.65"/>
-                <!-- RT trasero -->
-                <rect x="62" y="47.5" width="18" height="15" rx="1"
-                      fill="rgba(255,140,66,0.07)" stroke="#ff8c42" stroke-width="0.35" opacity="0.6"/>
-                <!-- Label REAR (símbolo ◀ implícito en el color, reforzado con patrón) -->
-                <line x1="19.5" y1="55" x2="37.5" y2="55" stroke="#ff8c42" stroke-width="0.2" opacity="0.3"/>
-                <line x1="38.5" y1="55" x2="61.5" y2="55" stroke="#ff8c42" stroke-width="0.2" opacity="0.3"/>
-                <line x1="62" y1="55" x2="80" y2="55" stroke="#ff8c42" stroke-width="0.2" opacity="0.3"/>
-
-                <!-- ═══ SEPARADOR TORSO → PIERNAS (CADERA) ═══ -->
-                <!-- Pieza de cadera: dos trapecios convergiendo a las piernas -->
-                <path d="M 19.5,62.5 Q 28,64 38,64.5" fill="none" stroke="#ffae00" stroke-width="0.4" opacity="0.4"/>
-                <path d="M 80.5,62.5 Q 72,64 62,64.5" fill="none" stroke="#ffae00" stroke-width="0.4" opacity="0.4"/>
-                <!-- Articulaciones de cadera -->
-                <circle cx="28.5" cy="63.5" r="1.0" fill="none" stroke="#ffae00" stroke-width="0.4" opacity="0.6"/>
-                <circle cx="71.5" cy="63.5" r="1.0" fill="none" stroke="#ffae00" stroke-width="0.4" opacity="0.6"/>
-
-                <!-- ═══ FILA 4: PIERNAS ═══ -->
-                <!-- Pierna Izquierda (LL, col 2) — perfil ligeramente cónico -->
-                <path d="M 19.5,64.5 L 37.5,64.5 L 36,99.5 L 21,99.5 Z"
-                      fill="rgba(255,174,0,0.07)" stroke="#ffae00" stroke-width="0.4" opacity="0.55"/>
-                <!-- Rodilla LL -->
-                <line x1="19.5" y1="80" x2="37.5" y2="80" stroke="#ffae00" stroke-width="0.25" opacity="0.35"/>
-                <!-- Pie LL -->
-                <rect x="19" y="97" width="18" height="2.5" rx="1"
-                      fill="rgba(255,174,0,0.12)" stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-
-                <!-- Zona central inferior (control daños, col 3) — muy sutil -->
-                <rect x="38.5" y="64.5" width="23" height="35" rx="1"
-                      fill="rgba(255,174,0,0.02)" stroke="#ffae0025" stroke-width="0.2" opacity="0.4"/>
-
-                <!-- Pierna Derecha (RL, col 4) — perfil ligeramente cónico -->
-                <path d="M 62.5,64.5 L 80.5,64.5 L 79,99.5 L 64,99.5 Z"
-                      fill="rgba(255,174,0,0.07)" stroke="#ffae00" stroke-width="0.4" opacity="0.55"/>
-                <!-- Rodilla RL -->
-                <line x1="62.5" y1="80" x2="80.5" y2="80" stroke="#ffae00" stroke-width="0.25" opacity="0.35"/>
-                <!-- Pie RL -->
-                <rect x="63" y="97" width="18" height="2.5" rx="1"
-                      fill="rgba(255,174,0,0.12)" stroke="#ffae00" stroke-width="0.3" opacity="0.5"/>
-
+                
+                <defs>
+                  <pattern id="bp-grid" width="5" height="5" patternUnits="userSpaceOnUse">
+                    <path d="M 5 0 L 0 0 0 5" fill="none" stroke="rgba(153,207,218,0.04)" stroke-width="0.15"/>
+                  </pattern>
+                  <filter id="bp-glow">
+                    <feGaussianBlur stdDeviation="0.4" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                
+                <!-- Grid background -->
+                <rect width="100" height="100" fill="url(#bp-grid)"/>
+                <!-- Center axis -->
+                <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(153,207,218,0.05)" stroke-width="0.2" stroke-dasharray="1.5,1.5"/>
+                
+                <g stroke="#99cfda" fill="none" filter="url(#bp-glow)" opacity="0.25">
+                  <!-- ═══ HEAD ═══ -->
+                  <polygon points="43,2 57,2 59,6 56,14 44,14 41,6" stroke-width="0.4"/>
+                  <rect x="46" y="4" width="8" height="3" rx="0.5" fill="rgba(153,207,218,0.06)" stroke-width="0.3"/>
+                  <line x1="43" y1="8" x2="57" y2="8" stroke-width="0.2" opacity="0.5"/>
+                  <!-- Sensors -->
+                  <circle cx="47" cy="5.5" r="0.6" fill="rgba(153,207,218,0.15)"/>
+                  <circle cx="53" cy="5.5" r="0.6" fill="rgba(153,207,218,0.15)"/>
+                  
+                  <!-- Neck -->
+                  <rect x="46" y="14" width="8" height="2" rx="0.5" stroke-width="0.25" fill="rgba(153,207,218,0.03)"/>
+                  
+                  <!-- ═══ LEFT ARM ═══ -->
+                  <path d="M18,17 L1,17 L0,18 L0,45 L1,46 L18,46" stroke-width="0.35"/>
+                  <!-- Shoulder joint -->
+                  <circle cx="18.5" cy="17.5" r="1.2" fill="rgba(153,207,218,0.08)" stroke-width="0.4"/>
+                  <!-- Upper arm -->
+                  <rect x="2" y="18" width="15" height="12" rx="1" fill="rgba(153,207,218,0.03)" stroke-width="0.25"/>
+                  <!-- Elbow -->
+                  <line x1="1" y1="30" x2="17" y2="30" stroke-width="0.2" opacity="0.4"/>
+                  <!-- Lower arm + hand -->
+                  <rect x="2" y="31" width="15" height="10" rx="1" fill="rgba(153,207,218,0.02)" stroke-width="0.25"/>
+                  <rect x="3" y="42" width="13" height="4" rx="0.8" fill="rgba(153,207,218,0.04)" stroke-width="0.3"/>
+                  <!-- Weapon barrel hint -->
+                  <line x1="5" y1="46" x2="3" y2="48" stroke-width="0.5" opacity="0.3"/>
+                  <line x1="9" y1="46" x2="7" y2="48" stroke-width="0.5" opacity="0.3"/>
+                  
+                  <!-- ═══ LEFT TORSO ═══ -->
+                  <rect x="19.5" y="16.5" width="18" height="30" rx="1" stroke-width="0.35"/>
+                  <line x1="20" y1="25" x2="37" y2="25" stroke-width="0.15" opacity="0.3"/>
+                  <line x1="20" y1="35" x2="37" y2="35" stroke-width="0.15" opacity="0.3"/>
+                  <!-- Diagonal armor plate -->
+                  <line x1="20" y1="17" x2="25" y2="22" stroke-width="0.2" opacity="0.3"/>
+                  
+                  <!-- ═══ CENTER TORSO ═══ -->
+                  <rect x="38.5" y="16" width="23" height="31" rx="1.5" stroke-width="0.45"/>
+                  <!-- Engine housing -->
+                  <ellipse cx="50" cy="26" rx="8" ry="5" fill="rgba(153,207,218,0.04)" stroke-width="0.3"/>
+                  <text x="50" y="27.5" text-anchor="middle" font-size="2.5" fill="rgba(153,207,218,0.15)" font-family="monospace">ENGINE</text>
+                  <!-- Gyro -->
+                  <circle cx="50" cy="36" r="3" fill="rgba(153,207,218,0.03)" stroke-width="0.25"/>
+                  <text x="50" y="37" text-anchor="middle" font-size="2" fill="rgba(153,207,218,0.12)" font-family="monospace">GYRO</text>
+                  <!-- CT divider -->
+                  <line x1="50" y1="16" x2="50" y2="47" stroke-width="0.15" opacity="0.2" stroke-dasharray="1,1"/>
+                  
+                  <!-- ═══ RIGHT TORSO ═══ -->
+                  <rect x="62" y="16.5" width="18" height="30" rx="1" stroke-width="0.35"/>
+                  <line x1="63" y1="25" x2="80" y2="25" stroke-width="0.15" opacity="0.3"/>
+                  <line x1="63" y1="35" x2="80" y2="35" stroke-width="0.15" opacity="0.3"/>
+                  <line x1="80" y1="17" x2="75" y2="22" stroke-width="0.2" opacity="0.3"/>
+                  
+                  <!-- ═══ RIGHT ARM ═══ -->
+                  <path d="M82,17 L99,17 L100,18 L100,45 L99,46 L82,46" stroke-width="0.35"/>
+                  <circle cx="81.5" cy="17.5" r="1.2" fill="rgba(153,207,218,0.08)" stroke-width="0.4"/>
+                  <rect x="83" y="18" width="15" height="12" rx="1" fill="rgba(153,207,218,0.03)" stroke-width="0.25"/>
+                  <line x1="83" y1="30" x2="99" y2="30" stroke-width="0.2" opacity="0.4"/>
+                  <rect x="83" y="31" width="15" height="10" rx="1" fill="rgba(153,207,218,0.02)" stroke-width="0.25"/>
+                  <rect x="84" y="42" width="13" height="4" rx="0.8" fill="rgba(153,207,218,0.04)" stroke-width="0.3"/>
+                  <line x1="95" y1="46" x2="97" y2="48" stroke-width="0.5" opacity="0.3"/>
+                  <line x1="91" y1="46" x2="93" y2="48" stroke-width="0.5" opacity="0.3"/>
+                  
+                  <!-- ═══ REAR DIVIDER ═══ -->
+                  <line x1="19.5" y1="47" x2="80.5" y2="47" stroke-width="0.3" stroke-dasharray="1.5,0.8" opacity="0.4"/>
+                  <text x="50" y="49.5" text-anchor="middle" font-size="1.8" fill="rgba(153,207,218,0.12)" font-family="monospace">REAR</text>
+                  
+                  <!-- ═══ REAR TORSOS ═══ -->
+                  <rect x="19.5" y="48" width="18" height="14.5" rx="0.8" stroke-width="0.25" opacity="0.5"/>
+                  <rect x="38.5" y="48" width="23" height="14.5" rx="1" stroke-width="0.3" opacity="0.5"/>
+                  <rect x="62" y="48" width="18" height="14.5" rx="0.8" stroke-width="0.25" opacity="0.5"/>
+                  
+                  <!-- ═══ HIP JOINTS ═══ -->
+                  <circle cx="28.5" cy="63.5" r="1.5" fill="rgba(153,207,218,0.06)" stroke-width="0.35"/>
+                  <circle cx="71.5" cy="63.5" r="1.5" fill="rgba(153,207,218,0.06)" stroke-width="0.35"/>
+                  <path d="M20,63 Q28,65 38,65" stroke-width="0.25" opacity="0.3"/>
+                  <path d="M80,63 Q72,65 62,65" stroke-width="0.25" opacity="0.3"/>
+                  
+                  <!-- ═══ LEFT LEG ═══ -->
+                  <path d="M20,65 L37,65 L35.5,98 L21.5,98 Z" stroke-width="0.35"/>
+                  <line x1="20" y1="80" x2="37" y2="80" stroke-width="0.2" opacity="0.35"/>
+                  <text x="28.5" y="82" text-anchor="middle" font-size="1.8" fill="rgba(153,207,218,0.1)" font-family="monospace">KNEE</text>
+                  <rect x="19" y="96" width="18" height="3.5" rx="0.8" fill="rgba(153,207,218,0.04)" stroke-width="0.3"/>
+                  
+                  <!-- ═══ CENTER LOWER (empty/dmg ctrl) ═══ -->
+                  <rect x="39" y="65" width="22" height="33" rx="0.8" stroke-width="0.15" opacity="0.15" stroke-dasharray="2,2"/>
+                  
+                  <!-- ═══ RIGHT LEG ═══ -->
+                  <path d="M63,65 L80,65 L78.5,98 L64.5,98 Z" stroke-width="0.35"/>
+                  <line x1="63" y1="80" x2="80" y2="80" stroke-width="0.2" opacity="0.35"/>
+                  <text x="71.5" y="82" text-anchor="middle" font-size="1.8" fill="rgba(153,207,218,0.1)" font-family="monospace">KNEE</text>
+                  <rect x="63" y="96" width="18" height="3.5" rx="0.8" fill="rgba(153,207,218,0.04)" stroke-width="0.3"/>
+                  
+                  <!-- ═══ DIMENSION LINES ═══ -->
+                  <!-- Height reference -->
+                  <line x1="-3" y1="2" x2="-3" y2="98" stroke-width="0.15" stroke-dasharray="1,1.5" opacity="0.3"/>
+                  <line x1="-4.5" y1="2" x2="-1.5" y2="2" stroke-width="0.15" opacity="0.3"/>
+                  <line x1="-4.5" y1="98" x2="-1.5" y2="98" stroke-width="0.15" opacity="0.3"/>
+                  <!-- Width reference -->
+                  <line x1="0" y1="-2" x2="100" y2="-2" stroke-width="0.15" stroke-dasharray="1,1.5" opacity="0.2"/>
+                </g>
+                
+                <!-- Technical label -->
+                <text x="50" y="99.5" text-anchor="middle" font-size="1.5" fill="rgba(153,207,218,0.08)" font-family="monospace" letter-spacing="0.5">STANDARD BIPEDAL CHASSIS — TECHNICAL READOUT</text>
               </svg>
 
               <!-- GRID ANATÓMICO: 5 columnas = LA | LT | CT | RT | RA -->
@@ -10532,10 +11023,31 @@ function openUnifiedConfigPanel() {
 
             </div>
 </div>
+    </div><!-- /sim-col-diagram -->
+
+    <!-- COLUMNA DERECHA: ARMAMENTO -->
+    <div class="sim-col-weapons" style="display:flex; flex-direction:column; gap:6px;">
+        <div class="sim-panel" style="padding:6px 8px; background:rgba(0,0,0,0.4); border:1px solid #5c4200;">
+            <div class="sim-section-title" style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:5px; border-bottom:1px solid #5c4200; padding-bottom:3px;">ARMAMENTO</div>
+            <div id="mech-weapons-list" style="display:flex; flex-direction:column; gap:3px;"></div>
+            <div id="mech-heat-summary" style="margin-top:6px; font-size:9px; color:#555; border-top:1px solid #222; padding-top:5px;"></div>
+            <!-- Next Turn Heat Preview -->
+            <div id="mech-heat-preview" style="margin-top:8px; padding:8px; background:rgba(0,0,0,0.4); border:1px solid #5c4200; display:none;">
+                <div style="font-size:8px; color:#ffae00; letter-spacing:2px; margin-bottom:6px;">PREVISIÓN CALOR</div>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="flex:1; height:10px; background:#0a0500; border:1px solid #5c4200; position:relative; overflow:hidden;">
+                        <div id="mech-heat-preview-bar-current" style="position:absolute;top:0;left:0;height:100%;width:0%;background:rgba(153,207,218,0.3);transition:width 0.3s;"></div>
+                        <div id="mech-heat-preview-bar-next" style="position:absolute;top:0;left:0;height:100%;width:0%;background:linear-gradient(to right,#ffae00,#ff4444);transition:width 0.3s;opacity:0.7;"></div>
+                    </div>
+                    <div id="mech-heat-preview-value" style="font-size:16px; font-weight:bold; color:#ffae00; font-family:var(--font-mono); min-width:28px; text-align:right;">0</div>
+                </div>
+                <div id="mech-heat-preview-detail" style="font-size:8px; color:#888; margin-top:4px;"></div>
+            </div>
+        </div>
     </div>
 
-    <!-- BLOQUE INFERIOR: 3 COLUMNAS CRITICOS + 1 COLUMNA CALOR -->
-    <div style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,0.95fr); gap:8px; align-items:start;">
+    <!-- BLOQUE INFERIOR: CRITICOS (ancho completo) -->
+    <div class="sim-col-crits" style="display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,0.95fr); gap:8px; align-items:start;">
         <div style="grid-column:1 / span 3; background:rgba(0,0,0,0.4); border:1px solid #2a1a00; padding:6px 8px;">
             <div style="color:#ffae00; font-size:9px; letter-spacing:2px; user-select:none; margin-bottom:5px;">SLOTS CRITICOS</div>
             <div id="mech-crits-grid" style="display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:4px;"></div>
@@ -11472,9 +11984,8 @@ function openUnifiedConfigPanel() {
     <!-- BARRACONES SECTION -->
     <div id="barracones" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #000000; background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.95)), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 174, 0, 0.05) 2px, transparent 4px); background-size: 100% 100%, 100% 4px; z-index: 2000; overflow-y: auto; padding-top: 60px; padding-bottom: 200px;">
         <button class="back-to-home-btn no-print" onclick="goHomeFromBarracones()" style="position: fixed; top: 20px; left: 20px;">⚠️ SALIR AL MENÚ</button>
-        
-        
-        
+      <!-- TAB: FICHA -->
+      <div id="barracones-tab-ficha">
         <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
             <!-- PANEL DE CARGA Y GESTIÓN (float right, scrolls with content) -->
             <div id="quick-load-buttons" class="no-print" style="float:right; width:240px; margin-left:20px; margin-bottom:15px;">
@@ -12278,7 +12789,264 @@ function openUnifiedConfigPanel() {
                 </div>
             </div>
         </div>
-    </div>
+      </div><!-- /barracones-tab-ficha -->
+      <!-- TAB: COMBATE (RPG personal combat) -->
+      <div id="barracones-tab-combate" style="display:none; max-width:900px; margin:0 auto; padding:20px;">
+
+            <div style="margin-bottom:12px;"><button onclick="volverHubCalculador()" style="background: none; border: 1px solid #ffae00; color: #ffae00; padding: 6px 10px; cursor: pointer; font-family: inherit; font-size: 10px;">◀ VOLVER A SECCIONES</button></div>
+            <!-- Cargar Personaje -->
+            <div style="background: rgba(255, 174, 0, 0.1); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Cargar Personaje:</span>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button onclick="cargarPersonajePorJugador('Marcos')" class="combat-player-btn" style="background: linear-gradient(135deg, #1a4a1a 0%, #0a2a0a 100%); border: 1px solid #2d5a2d; color: #4ade80; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Marcos</button>
+                        <button onclick="cargarPersonajePorJugador('Jaime')" class="combat-player-btn" style="background: linear-gradient(135deg, #1a3a5a 0%, #0a1a3a 100%); border: 1px solid #2d4a6d; color: #60a5fa; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Jaime</button>
+                        <button onclick="cargarPersonajePorJugador('Joan')" class="combat-player-btn" style="background: linear-gradient(135deg, #4a3a1a 0%, #2a1a0a 100%); border: 1px solid #6d5a2d; color: #fbbf24; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Joan</button>
+                        <button onclick="cargarPersonajePorJugador('Juan')" class="combat-player-btn" style="background: linear-gradient(135deg, #4a1a4a 0%, #2a0a2a 100%); border: 1px solid #6d2d6d; color: #c084fc; padding: 6px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">Juan P.</button>
+                    </div>
+                </div>
+                <div id="combat-loaded-char" style="color: #4ade80; font-size: 13px; margin-top: 10px;"></div>
+            </div>
+            
+            <!-- Estado Físico - Silueta Humana -->
+            <div id="combat-hp-panel" style="display: none; background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Estado Físico</span>
+                    <button onclick="limpiarDanosCombate()" style="background: none; border: 1px solid #4ade80; color: #4ade80; padding: 3px 8px; font-size: 9px; cursor: pointer; font-family: inherit;">💚 Limpiar</button>
+                </div>
+                <div id="combat-silueta-container" style="display: flex; justify-content: center;">
+                    <!-- Silueta generada dinámicamente -->
+                </div>
+            </div>
+            
+            <!-- Armamento -->
+            <div id="combat-weapons-panel" style="display: none; background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    <span style="color: #ffae00; font-size: 11px; text-transform: uppercase; letter-spacing: 2px;">Armamento</span>
+                </div>
+                <div id="combat-weapons-list" style="display: flex; flex-direction: column; gap: 6px;">
+                    <!-- Armas generadas dinámicamente -->
+                </div>
+            </div>
+            
+            <!-- Grid: Habilidad + Alcance | Movimientos -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                
+                <!-- Columna Izquierda -->
+                <div>
+                    <!-- Habilidad (auto-seleccionada al elegir arma) -->
+                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Habilidad</label>
+                        <!-- Selector oculto para mantener funcionalidad -->
+                        <select id="combat-skill-select" onchange="actualizarCalculoCombate()" style="display: none;">
+                            <option value="">-- Seleccionar Habilidad --</option>
+                        </select>
+                        <!-- Display de habilidad seleccionada -->
+                        <div id="combat-skill-display" style="background: #0a0a0a; border: 1px solid #333; color: #666; padding: 10px; font-size: 12px; font-style: italic;">
+                            Selecciona un arma...
+                        </div>
+                        <div style="background: rgba(255, 174, 0, 0.1); border: 1px solid #5c4200; padding: 12px; margin-top: 10px; text-align: center;">
+                            <div style="color: #666; font-size: 9px; text-transform: uppercase; letter-spacing: 1px;">TIR Base</div>
+                            <div id="result-tir-base" style="color: #ffae00; font-size: 24px; font-weight: bold;">--</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alcance -->
+                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
+                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Alcance al Objetivo</label>
+                        <div id="combat-range-group" style="display: flex; flex-direction: column; gap: 6px;">
+                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #4ade80;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Corto</span>
+                                </div>
+                                <span style="color: #4ade80; font-size: 12px;">+0</span>
+                                <input type="radio" name="combat-range" value="0" checked style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Medio</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+2</span>
+                                <input type="radio" name="combat-range" value="2" style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'range')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Largo</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+4</span>
+                                <input type="radio" name="combat-range" value="4" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Columna Derecha -->
+                <div>
+                    <!-- Mi Movimiento -->
+                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Mi Movimiento</label>
+                        <div id="combat-mov-self-group" style="display: flex; flex-direction: column; gap: 6px;">
+                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; background: #4ade80;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Parado</span>
+                                </div>
+                                <span style="color: #4ade80; font-size: 12px;">+0</span>
+                                <input type="radio" name="combat-mov-self" value="0" checked style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Caminando</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+1</span>
+                                <input type="radio" name="combat-mov-self" value="1" style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Corriendo</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+2</span>
+                                <input type="radio" name="combat-mov-self" value="2" style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-self')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Esquivando</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+3</span>
+                                <input type="radio" name="combat-mov-self" value="3" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Mov Objetivo -->
+                    <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
+                        <label style="color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Mov. Objetivo</label>
+                        <div id="combat-mov-target-group" style="display: flex; flex-direction: column; gap: 6px;">
+                            <label class="combat-radio-option selected" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 100, 0, 0.2); border: 1px solid #2d5a2d; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #4ade80; border-radius: 50%; background: #4ade80;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Parado</span>
+                                </div>
+                                <span style="color: #4ade80; font-size: 12px;">+0</span>
+                                <input type="radio" name="combat-mov-target" value="0" checked style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Caminando</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+1</span>
+                                <input type="radio" name="combat-mov-target" value="1" style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Corriendo</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+2</span>
+                                <input type="radio" name="combat-mov-target" value="2" style="display: none;">
+                            </label>
+                            <label class="combat-radio-option" onclick="seleccionarOpcionCombate(this, 'mov-target')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid #333; cursor: pointer;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span class="combat-radio-indicator" style="width: 14px; height: 14px; border: 2px solid #666; border-radius: 50%;"></span>
+                                    <span style="color: #e0e0e0; font-size: 12px;">Esquivando</span>
+                                </div>
+                                <span style="color: #888; font-size: 12px;">+3</span>
+                                <input type="radio" name="combat-mov-target" value="3" style="display: none;">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Panel de Resultado y Acciones -->
+            <div style="background: linear-gradient(135deg, rgba(255, 174, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%); border: 2px solid #5c4200; padding: 20px; margin-bottom: 15px;">
+                <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
+                    <!-- Desglose -->
+                    <div style="font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
+                            <span style="color: #888;">Alcance:</span>
+                            <span id="result-range" style="color: #ffae00;">+0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
+                            <span style="color: #888;">Mi Mov:</span>
+                            <span id="result-mov-self" style="color: #ffae00;">+0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #333;">
+                            <span style="color: #888;">Mov Obj:</span>
+                            <span id="result-mov-target" style="color: #ffae00;">+0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 3px 0;">
+                            <span style="color: #888;">Mod Arma:</span>
+                            <span id="combat-weapon-mod-display" style="color: #888;">+0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- TN Final Grande -->
+                    <div style="text-align: center;">
+                        <div style="color: #ff8c42; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px;">TN Final</div>
+                        <div id="result-tn-final" style="color: #ffae00; font-size: 56px; font-weight: bold; text-shadow: 0 0 30px rgba(255, 174, 0, 0.6); line-height: 1;">--</div>
+                        <div id="combat-selected-weapon-display" style="color: #4ade80; font-size: 10px; margin-top: 5px;"></div>
+                    </div>
+                    
+                    <!-- Botones de Acción -->
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <button onclick="registrarDisparo()" style="padding: 12px 20px; background: linear-gradient(135deg, #ff8c42 0%, #d67635 100%); border: 2px solid #ffae00; color: #000; font-family: inherit; font-size: 12px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;">🎯 DISPARAR</button>
+                        <button onclick="siguienteTurno()" style="padding: 10px 20px; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid #ffae00; color: #ffae00; font-family: inherit; font-size: 11px; cursor: pointer;">⏭️ SIG. TURNO</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Log de Combate -->
+            <div style="background: rgba(255, 174, 0, 0.05); border: 1px solid #5c4200; padding: 15px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="color: #ffae00; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;">📜 Log de Combate</span>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span id="combat-turn-counter" style="color: #ffae00; font-size: 11px; font-weight: bold;">Turno 1</span>
+                        <button onclick="limpiarLogCombate()" style="background: none; border: 1px solid #5c4200; color: #ffae00; padding: 3px 8px; font-size: 9px; cursor: pointer; font-family: inherit;">Limpiar</button>
+                    </div>
+                </div>
+                <div id="combat-log" style="max-height: 100px; overflow-y: auto; font-size: 10px; font-family: 'Share Tech Mono', monospace;">
+                    <div style="color: #666; font-style: italic;">Sin acciones registradas...</div>
+                </div>
+            </div>
+            
+            <!-- PX y Recompensas -->
+            <div style="background: rgba(255, 174, 0, 0.08); border: 1px solid #5c4200; padding: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <span style="color: #ffae00; font-size: 10px; text-transform: uppercase;">⭐ PX:</span>
+                        <input type="number" id="combat-px-ganados" value="0" min="0" style="width: 60px; background: #0a0a0a; border: 1px solid #ffae00; color: #ffae00; padding: 6px; text-align: center; font-family: inherit; font-size: 16px; font-weight: bold;">
+                        <!-- Botones rápidos en línea -->
+                        <div style="display: flex; gap: 2px;">
+                            <button onclick="ajustarPXCombate(1)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+1</button>
+                            <button onclick="ajustarPXCombate(5)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+5</button>
+                            <button onclick="ajustarPXCombate(10)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+10</button>
+                            <button onclick="ajustarPXCombate(25)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+25</button>
+                            <button onclick="ajustarPXCombate(50)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+50</button>
+                            <button onclick="ajustarPXCombate(100)" style="padding:3px 5px; background:#1a4a1a; border:1px solid #4ade80; color:#4ade80; font-size:9px; cursor:pointer; font-family:inherit;">+100</button>
+                        </div>
+                        <div style="display: flex; gap: 2px;">
+                            <button onclick="ajustarPXCombate(-1)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-1</button>
+                            <button onclick="ajustarPXCombate(-5)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-5</button>
+                            <button onclick="ajustarPXCombate(-10)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-10</button>
+                            <button onclick="ajustarPXCombate(-25)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-25</button>
+                            <button onclick="ajustarPXCombate(-50)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-50</button>
+                            <button onclick="ajustarPXCombate(-100)" style="padding:3px 5px; background:#4a1a1a; border:1px solid #ef4444; color:#ef4444; font-size:9px; cursor:pointer; font-family:inherit;">-100</button>
+                        </div>
+                    </div>
+                    <button onclick="irARegistroCombate()" style="background: linear-gradient(135deg, #1a4a1a 0%, #0a2a0a 100%); border: 1px solid #4ade80; color: #4ade80; padding: 8px 16px; cursor: pointer; font-family: inherit; font-size: 11px;">💰 RECOMPENSAS</button>
+                </div>
+            </div>
+            
+      </div><!-- /barracones-tab-combate -->
+    </div><!-- /barracones -->
 
     <!-- POPUP SELECCIÓN DE HABILIDAD -->
     <div id="popup-seleccion-habilidad" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:4000; overflow-y:auto;">
@@ -13657,10 +14425,10 @@ function openUnifiedConfigPanel() {
             <div id="map-container" style="background: #0a0a0a; border: 2px solid #ff8c42; padding: 20px; border-radius: 8px; overflow: auto; max-height: 70vh; cursor: grab;">
                 <div id="map-wrapper" style="display: inline-block; transition: width 0.2s, height 0.2s;">
                     <object id="stellar-map-display" 
-                            data="3025_Inner_Sphere__Sarna_.svg" 
+                            data="assets/maps/3025_Inner_Sphere__Sarna_.svg" 
                             type="image/svg+xml"
                             style="width: 1400px; height: auto; display: block;">
-                        <img src="3025_Inner_Sphere__Sarna_.svg" alt="Mapa Esfera Interior" style="width: 1400px;">
+                        <img src="assets/maps/3025_Inner_Sphere__Sarna_.svg" alt="Mapa Esfera Interior" style="width: 1400px;">
                     </object>
                 </div>
             </div>
@@ -13682,7 +14450,7 @@ function openUnifiedConfigPanel() {
     function cambiarMapaEstelar(year) {
         // Actualizar el mapa
         const mapDisplay = document.getElementById('stellar-map-display');
-        const fileName = year + '_Inner_Sphere__Sarna_.svg';
+        const fileName = 'assets/maps/' + year + '_Inner_Sphere__Sarna_.svg';
         mapDisplay.data = fileName;
         
         // Actualizar el label del año
@@ -17821,6 +18589,8 @@ function resetBattleTracker() {
 function goToBattleTracker() {
     console.log('🎯 Navegando a Battle Tracker...');
     hideAllSections();
+    if(typeof showSectionTabs==='function') showSectionTabs('battle-tracker');
+    if(typeof setSidebarActive==='function') setSidebarActive('hud');
     
     // Mostrar Battle Tracker
     const bt = document.getElementById('battle-tracker');
@@ -18491,22 +19261,60 @@ const COMBAT_CONFIG_DEFAULTS = {
  * Abre el calculador de combate
  */
 function abrirCalculadorCombate() {
-    const modal = document.getElementById('combat-calculator-modal');
-    if (!modal) return;
+    console.log('⚔️ abrirCalculadorCombate called');
+    var modal = document.getElementById('combat-calculator-modal');
+    if (!modal) { console.error('Modal not found!'); return; }
     
     hideAllSections();
+    // Extra: force-hide landing in case it persists
+    var lp = document.getElementById('landing-page');
+    if (lp) lp.style.display = 'none';
     
+    // SHOW MODAL FIRST
+    modal.style.display = 'block';
+    // Force-show the inner content wrapper too
+    var innerWrapper = modal.querySelector('div[style*="max-width"]');
+    if (innerWrapper) innerWrapper.style.display = 'block';
+    // In theme-new: position inside content area (not fullscreen overlay)
+    if (document.body.classList.contains('theme-new')) {
+      var sidebarW = document.body.classList.contains('sidebar-collapsed') ? 0 : 220;
+      modal.style.top = '48px';
+      modal.style.left = sidebarW + 'px';
+      modal.style.width = 'calc(100% - ' + sidebarW + 'px)';
+      modal.style.height = 'calc(100% - 48px)';
+      modal.style.padding = '48px 20px 40px 20px';
+      modal.style.background = '#10141a';
+      modal.style.zIndex = '3000';
+    }
+    console.log('⚔️ Modal shown, theme:', document.body.className);
+    
+    try {
     // Ocultar paneles internos
-    document.getElementById('combat-hp-panel').style.display = 'none';
-    document.getElementById('combat-weapons-panel').style.display = 'none';
-    const hub = document.getElementById('combat-calc-hub');
-    const inf = document.getElementById('calc-section-infantry');
-    const mech = document.getElementById('calc-section-mech');
-    const veh = document.getElementById('calc-section-vehicle');
-    if (hub) hub.style.display = 'grid';
-    if (inf) inf.style.display = 'none';
-    if (mech) mech.style.display = 'none';
-    if (veh) veh.style.display = 'none';
+    // Infantry combat panels are now in Barracones/Combate
+    // Only hide if they exist in current context
+    try {
+      var hpPanel = document.getElementById('combat-hp-panel');
+      var wpPanel = document.getElementById('combat-weapons-panel');
+      if (hpPanel) hpPanel.style.display = 'none';
+      if (wpPanel) wpPanel.style.display = 'none';
+    } catch(e) {}
+    var hub = document.getElementById('combat-calc-hub');
+    var inf = document.getElementById('calc-section-infantry');
+    var mech = document.getElementById('calc-section-mech');
+    var veh = document.getElementById('calc-section-vehicle');
+    if (document.body.classList.contains('theme-new')) {
+      if (hub) hub.style.display = 'none';
+      if (mech) { mech.style.display = 'block'; if(typeof mechLoadCatalog==='function') mechLoadCatalog(false); }
+      if (inf) inf.style.display = 'none';
+      if (veh) veh.style.display = 'none';
+      if (typeof showSectionTabs==='function') showSectionTabs('combat-calculator-modal','mech');
+      if(typeof setSidebarActive==='function') setSidebarActive('simulador');
+    } else {
+      if (hub) hub.style.display = 'grid';
+      if (inf) inf.style.display = 'none';
+      if (mech) mech.style.display = 'none';
+      if (veh) veh.style.display = 'none';
+    }
     
     // Reset
     window.combatCurrentCharacter = null;
@@ -18516,19 +19324,26 @@ function abrirCalculadorCombate() {
     window.combatTurnNumber = 1;
     window.combatLogEntries = [];
     
-    document.getElementById('combat-loaded-char').textContent = '';
-    document.getElementById('combat-turn-counter').textContent = 'Turno 1';
-    document.getElementById('combat-log').innerHTML = '<div style="color: #666; font-style: italic;">Sin acciones registradas...</div>';
+    // Infantry elements now in Barracones - skip reset if not found
+    try {
+      var charEl = document.getElementById('combat-loaded-char');
+      var turnEl = document.getElementById('combat-turn-counter');
+      var logEl = document.getElementById('combat-log');
+      if (charEl) charEl.textContent = '';
+      if (turnEl) turnEl.textContent = 'Turno 1';
+      if (logEl) logEl.innerHTML = '<div style="color: #666; font-style: italic;">Sin acciones registradas...</div>';
+    } catch(e) {}
     
-    cargarConfigCombate();
-    modal.style.display = 'block';
-    resetearSeleccionesCombate();
-    actualizarCalculoCombate();
+    if (typeof cargarConfigCombate === 'function') cargarConfigCombate();
+    if (typeof resetearSeleccionesCombate === 'function') resetearSeleccionesCombate();
+    if (typeof actualizarCalculoCombate === 'function') actualizarCalculoCombate();
+    } catch(e) { console.error('⚔️ Error in abrirCalculadorCombate:', e); }
     console.log('⚔️ Calculador abierto');
 }
 
 function cerrarCalculadorCombate() {
     document.getElementById('combat-calculator-modal').style.display = 'none';
+    if (typeof hideSectionTabs==='function') hideSectionTabs();
     document.getElementById('landing-page').style.display = '';
     console.log('⚔️ Calculador cerrado');
 }
@@ -26115,6 +26930,7 @@ let mechSlots = [
   { state: null, session: null },
   { state: null, session: null },
   { state: null, session: null },
+  { state: null, session: null },
   { state: null, session: null }
 ];
 let currentMechSlot = 0;
@@ -26130,7 +26946,7 @@ Object.defineProperty(window, 'mechSession', {
 });
 
 function mechSwitchSlot(slot) {
-  if (slot < 0 || slot > 3) return;
+  if (slot < 0 || slot > 4) return;
   currentMechSlot = slot;
   mechRenderTabs();
   if (mechState) {
@@ -26143,7 +26959,7 @@ function mechSwitchSlot(slot) {
 function mechRenderTabs() {
   const container = document.getElementById('mech-slot-tabs');
   if (!container) return;
-  container.innerHTML = [0,1,2,3].map(i => {
+  container.innerHTML = [0,1,2,3,4].map(i => {
     const slot = mechSlots[i];
     const active = i === currentMechSlot;
     const hasUnit = !!slot.state;
@@ -26912,7 +27728,7 @@ function mechRenderAll(){
   mechRenderTabs();
   if(!mechState||!mechSession)return;
   const d=mechState,s=mechSession;
-  document.getElementById('mech-full-sheet').style.display='block';
+  document.getElementById('mech-full-sheet').style.display='';
   document.getElementById('mech-sheet-name').textContent=d.chassis.toUpperCase()+' '+d.model;
   document.getElementById('mech-sheet-meta').textContent=
     d.tonnage+'T · '+d.techBase+' · '+(d.configType || (d.isQuad?'QUAD':'BIPED'))+' · Era: '+d.era+(d.bv?' · BV: '+d.bv:'')+'  ['+d.source+']';
@@ -26932,21 +27748,39 @@ function mechRenderStats(){
   const sys = mechGetSystemCritHits();
   const dissEffective = Math.max(0, d.diss - sys.heatsinks);
 
-  document.getElementById('mech-sheet-stats').innerHTML = [
+  var mode = mechSession?.moveMode || 'stand';
+  var jumpUsed = mechSession?.jumpUsed || 0;
+  var items = [
+    {id:'stand', l:'INMÓVIL', v:'(-1)', move:'stand'},
     {id:'walk', l:'CAMINAR', v:d.walkMP, vEff:walkEffective, move:'walk', hasPenalty: movPenalty > 0},
     {id:'run',  l:'CORRER',  v:d.runMP,  vEff:runEffective, move:'run', hasPenalty: movPenalty > 0},
-    {id:'jump', l:'SALTAR',  v:d.jumpMP, vEff:d.jumpMP, move:'jump', hasPenalty: false},
-    {id:'hs',   l:'HS',      v:d.hsCount+(d.hsDouble?' D':' S')},
+    {id:'jump', l:'SALTAR',  v:d.jumpMP, move:'jump'},
     {id:'diss', l:'DISIP.',  v:d.diss, vEff:dissEffective, hasPenalty: sys.heatsinks > 0},
-  ].map(it=>{
-    const isMove = !!it.move;
-    const mode = mechSession?.moveMode || 'stand';
-    const active = isMove && mode===it.move;
-    const displayVal = it.vEff !== undefined ? it.vEff : it.v;
-    const penaltyText = (it.hasPenalty && it.vEff !== it.v) ? `<span style="font-size:8px;color:#ff4444;text-decoration:line-through;margin-right:3px;">${it.v}</span>` : '';
-    const valueColor = it.hasPenalty && it.vEff !== it.v ? '#ff8c42' : '#e0e0e0';
-    return `<div id="mech-stat-${it.id}" ${isMove?`onclick="mechSetMoveMode('${it.move}')"`:''} style="background:${active?'rgba(96,165,250,0.18)':'rgba(0,0,0,0.6)'};border:1px solid ${active?'#60a5fa':'#5c4200'};padding:3px 7px;text-align:center;min-width:48px;${isMove?'cursor:pointer;':''}"><div style="color:${active?'#60a5fa':'#888'};font-size:7px;letter-spacing:1px;">${it.l}</div><div style="color:${valueColor};font-size:12px;font-weight:bold;">${penaltyText}${displayVal}</div></div>`;
+  ];
+  var statsArr = items.map(function(it){
+    var isMove = !!it.move;
+    var active = isMove && mode===it.move;
+    var displayVal = it.vEff !== undefined ? it.vEff : it.v;
+    var penaltyText = (it.hasPenalty && it.vEff !== it.v) ? '<span style="font-size:8px;color:#ff4444;text-decoration:line-through;margin-right:3px;">'+it.v+'</span>' : '';
+    var valueColor = it.hasPenalty && it.vEff !== it.v ? '#ff8c42' : '#e0e0e0';
+    var extra = '';
+    // Jump: show pip circles when active
+    if (it.id === 'jump' && active && d.jumpMP > 0) {
+      extra = '<div style="margin-top:4px;display:flex;gap:3px;justify-content:center;flex-wrap:wrap;">';
+      for (var ji=1; ji<=d.jumpMP; ji++) {
+        var jActive = ji <= jumpUsed;
+        extra += '<div onclick="event.stopPropagation();mechSetJumpUsed('+ji+')" style="width:10px;height:10px;border-radius:50%;cursor:pointer;background:'+(jActive?'#60a5fa':'#1a1a1a')+';border:1px solid '+(jActive?'#60a5fa':'#5c4200')+';transition:all 0.2s;"></div>';
+      }
+      extra += '</div>';
+    }
+    return '<div id="mech-stat-'+it.id+'" '+(isMove?'onclick="mechSetMoveMode(\x27'+it.move+'\x27)"':'')+' style="background:'+(active?'rgba(96,165,250,0.18)':'rgba(0,0,0,0.6)')+';border:1px solid '+(active?'#60a5fa':'#5c4200')+';padding:3px 7px;text-align:center;min-width:48px;flex:1;'+(isMove?'cursor:pointer;':'')+'"><div style="color:'+(active?'#60a5fa':'#888')+';font-size:7px;letter-spacing:1px;">'+it.l+'</div><div style="color:'+valueColor+';font-size:12px;font-weight:bold;">'+penaltyText+displayVal+'</div>'+extra+'</div>';
   }).join('');
+  document.getElementById('mech-sheet-stats').innerHTML = statsArr;
+  // Also populate inline panel for theme-new
+  var inlineEl = document.getElementById('mech-stats-inline');
+  var movePanel = document.getElementById('mech-movement-panel');
+  if (inlineEl) { inlineEl.innerHTML = statsArr; }
+  if (movePanel) { movePanel.style.display = ''; }
 }
 
 function mechGetMoveHeat(){
@@ -26954,7 +27788,7 @@ function mechGetMoveHeat(){
   const m = mechSession.moveMode || 'stand';
   if(m === 'walk') return 1;
   if(m === 'run') return 2;
-  if(m === 'jump') return parseInt(mechState.jumpMP,10) || 0;
+  if(m === 'jump') return parseInt(mechSession.jumpUsed,10) || parseInt(mechState.jumpMP,10) || 0;
   return 0;
 }
 function mechGetWeaponsHeatActive(){
@@ -27008,10 +27842,57 @@ function mechRenderMoveControls(){
     }
   });
 }
+
+
+// Set mech background image (call with URL to enable, empty to disable)
+window.mechSetBgImage = function(url) {
+  var img = document.getElementById('mech-bg-image');
+  var container = img?.parentElement;
+  if (!img) return;
+  if (url) {
+    img.src = url;
+    img.style.opacity = '0.15';
+    if (container) container.classList.add('has-mech-image');
+  } else {
+    img.src = '';
+    img.style.opacity = '0';
+    if (container) container.classList.remove('has-mech-image');
+  }
+};
+
+// Barracones tab switching (FICHA / COMBATE)
+window.switchBarraconesTab = function(tab) {
+  var ficha = document.getElementById('barracones-tab-ficha');
+  var combate = document.getElementById('barracones-tab-combate');
+  if (!ficha || !combate) return;
+  
+  if (tab === 'ficha') {
+    ficha.style.display = '';
+    combate.style.display = 'none';
+  } else if (tab === 'combate') {
+    ficha.style.display = 'none';
+    combate.style.display = '';
+  }
+  if (typeof showSectionTabs === 'function') showSectionTabs('barracones', tab);
+};
+
+function mechSetJumpUsed(n){
+  if(!mechSession) return;
+  mechSession.jumpUsed = n;
+  mechRenderStats();
+  mechRenderHeat();
+  mechRenderPilot();
+}
 function mechSetMoveMode(mode){
   if(!mechSession) return;
-  mechSession.moveMode = mode;
-  mechRenderMoveControls();
+  // Toggle: if clicking same mode, deselect to walk
+  if (mechSession.moveMode === mode) {
+    mechSession.moveMode = 'walk';
+  } else {
+    mechSession.moveMode = mode;
+    if (mode === 'jump' && !mechSession.jumpUsed) { mechSession.jumpUsed = parseInt(mechState?.jumpMP,10) || 1; }
+  }
+  mechRenderStats();
   mechRenderWeapons();
   mechRenderHeat();
   mechRenderPilot();
@@ -27073,7 +27954,7 @@ function mechRenderHeat(){
   const bar=document.getElementById('mech-heat-bar');
   if(bar){bar.style.width=pct+'%';}
   const lbl=document.getElementById('mech-heat-label');
-  if(lbl){lbl.textContent=hx.label;lbl.style.color=hx.color;}
+  if(lbl){lbl.textContent=hx.effects.length ? hx.effects.join(' · ') : 'Normal';lbl.style.color=hx.color;}
 
   const turn = mechCalcTurnDelta();
   const nextHeat = Math.max(0,(s.heat||0) + turn.delta);
@@ -27120,12 +28001,53 @@ function mechRenderHeat(){
     }
     scaleEl.innerHTML = scaleHtml;
   }
+
+  // Update next-turn heat preview in weapons column
+  var previewEl = document.getElementById('mech-heat-preview');
+  if (previewEl && mechState && mechSession) {
+    previewEl.style.display = '';
+    var td = mechCalcTurnDelta();
+    var currentHeat = mechSession.heat || 0;
+    var projHeat = Math.max(0, currentHeat + td.delta);
+    var pBar = document.getElementById('mech-heat-preview-bar-current');
+    var nBar = document.getElementById('mech-heat-preview-bar-next');
+    var pVal = document.getElementById('mech-heat-preview-value');
+    var pDet = document.getElementById('mech-heat-preview-detail');
+    if (pBar) pBar.style.width = Math.min(100, (currentHeat/30)*100) + '%';
+    if (nBar) nBar.style.width = Math.min(100, (projHeat/30)*100) + '%';
+    if (pVal) { pVal.textContent = projHeat; pVal.style.color = projHeat >= 14 ? '#ff4444' : projHeat >= 5 ? '#ffae00' : '#4ade80'; }
+    if (pDet) pDet.textContent = 'Actual ' + currentHeat + ' + Gen ' + td.gen + ' - Disip ' + td.diss + ' = ' + projHeat;
+  }
+
+  // Sync heat to Stitch vertical bar (theme-new pilot column)
+  var heatVal = mechSession?.heat || 0;
+  var hpInline = document.getElementById('mech-heat-panel-inline');
+  var hFill = document.getElementById('mech-heat-fill-inline');
+  var hvInline = document.getElementById('mech-heat-value-inline');
+  var hWarn = document.getElementById('mech-heat-warning-inline');
+  var hSinks = document.getElementById('mech-heat-sinks-inline');
+  if (hpInline) {
+    hpInline.style.display = '';
+    var heatPct = Math.min(100, (heatVal / 30) * 100);
+    if (hFill) hFill.style.height = heatPct + '%';
+    if (hvInline) { hvInline.textContent = heatVal; hvInline.style.color = heatVal >= 14 ? '#ff4444' : heatVal >= 5 ? '#ffae00' : '#ffd79b'; }
+    if (hSinks) { var sysH = mechGetSystemCritHits(); var effDiss = Math.max(0, (mechState?.diss||10) - sysH.heatsinks); hSinks.textContent = effDiss; }
+    // Warning text: show actual effects
+    if (hWarn) {
+      var hxW = getHFX(heatVal);
+      var fxList = hxW.effects.length ? hxW.effects.join(' · ') : 'SYSTEM OPTIMAL';
+      hWarn.textContent = fxList;
+      if (heatVal >= 14) { hWarn.style.color = '#ff4444'; hWarn.style.background = 'rgba(255,68,68,0.1)'; hWarn.style.borderColor = 'rgba(255,68,68,0.3)'; }
+      else if (heatVal >= 5) { hWarn.style.color = '#ffae00'; hWarn.style.background = 'rgba(255,174,0,0.08)'; hWarn.style.borderColor = 'rgba(255,174,0,0.2)'; }
+      else { hWarn.style.color = 'rgba(153,207,218,0.7)'; hWarn.style.background = 'rgba(153,207,218,0.05)'; hWarn.style.borderColor = 'rgba(153,207,218,0.2)'; }
+    }
+  }
 }
 
 function mechRenderCrits(){
   const s=mechSession;if(!s)return;
   const sys = mechGetSystemCritHits();
-  const order = ['LT','HD','RT','LA','CT','RA','LL','__DMG__','RL'];
+  const order = ['LA','HD','RA','LT','CT','RT','LL','__DMG__','RL'];
 
   const html = order.map((loc)=>{
     const label = (loc==='__DMG__') ? 'CONTROL DE DAÑOS' : mechGetCritLocLabel(loc);
@@ -27234,7 +28156,7 @@ function mechRenderPilot(){
   const sys = mechGetSystemCritHits();
   // Modificadores de disparo: calor, heridas, sensores (+2 por daño), movimiento
   const sensorGunMod = sys.sensors * 2;
-  const moveMod = s.moveMode === 'run' ? 1 : s.moveMode === 'jump' ? 3 : 0;
+  const moveMod = s.moveMode === 'stand' ? -1 : s.moveMode === 'run' ? 1 : s.moveMode === 'jump' ? 3 : 0;
   const gunneryMod = hx.hit + (s.wounds>=1?s.wounds:0) + sensorGunMod + moveMod;
   // Modificadores de pilotaje: +3 por daño en gyro, heridas
   const gyroMod = sys.gyro * 3;
@@ -27261,24 +28183,30 @@ function mechRenderPilot(){
     ${engineDestroyed && !locationDestroyed ? '<div style="background:#ff0000;color:#fff;padding:8px;text-align:center;font-weight:bold;margin-bottom:8px;animation:pulse-red 1s infinite;">⚠️ MECH DESTRUIDO - REACTOR CRÍTICO ⚠️</div>' : ''}
     ${gyroDestroyed && !engineDestroyed && !locationDestroyed ? '<div style="background:#ff0000;color:#fff;padding:8px;text-align:center;font-weight:bold;margin-bottom:8px;animation:pulse-red 1s infinite;">⚠️ MECH DESTRUIDO - GIROSCOPIO DESTRUIDO ⚠️</div>' : ''}
     ${sensorsDestroyed && !mechDestroyed ? '<div style="background:#ff4444;color:#fff;padding:6px;text-align:center;font-weight:bold;margin-bottom:8px;">🚫 SENSORES DESTRUIDOS - NO PUEDE DISPARAR</div>' : ''}
-    <div style="display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;">
-      <div style="font-size:10px;color:#60a5fa; min-width:140px;">👨‍✈ ${pilotName}</div>
-      <div style="text-align:center;background:rgba(0,0,0,0.5);border:1px solid ${sensorsDestroyed||gunneryMod>0?'#ff8c42':'#5c4200'};padding:8px 12px;">
+    <div style="font-size:10px;color:#60a5fa;margin-bottom:8px;">👨‍✈ ${pilotName}</div>
+    <div style="display:flex;gap:8px;align-items:stretch;margin-bottom:8px;">
+      <div style="flex:1;text-align:center;background:rgba(0,0,0,0.5);border:1px solid ${sensorsDestroyed||gunneryMod>0?'#ff8c42':'#5c4200'};padding:8px 6px;">
         <div style="color:#888;font-size:8px;letter-spacing:1px;margin-bottom:2px;">DISPARO</div>
-        <div style="color:${sensorsDestroyed?'#ff4444':gunneryMod>0?'#ff8c42':'#e0e0e0'};font-size:20px;font-weight:bold;">${sensorsDestroyed?'X':gunneryTotal}+</div>
+        <div style="color:${sensorsDestroyed?'#ff4444':gunneryMod>0?'#ff8c42':'#e0e0e0'};font-size:24px;font-weight:bold;">${sensorsDestroyed?'X':gunneryTotal}+</div>
       </div>
-      <div style="text-align:center;background:rgba(0,0,0,0.5);border:1px solid ${pilotMod>0?'#ff8c42':'#5c4200'};padding:8px 12px;">
+      <div style="flex:1;text-align:center;background:rgba(0,0,0,0.5);border:1px solid ${pilotMod>0?'#ff8c42':'#5c4200'};padding:8px 6px;">
         <div style="color:#888;font-size:8px;letter-spacing:1px;margin-bottom:2px;">PILOTAJE</div>
-        <div style="color:${pilotMod>0?'#ff8c42':'#e0e0e0'};font-size:20px;font-weight:bold;">${pilotingTotal}+</div>
+        <div style="color:${pilotMod>0?'#ff8c42':'#e0e0e0'};font-size:24px;font-weight:bold;">${pilotingTotal}+</div>
       </div>
-      <div>
-        <div style="color:#888;font-size:9px;letter-spacing:1px;margin-bottom:4px;">HERIDAS</div>
-        <div style="display:flex;gap:3px;">${[1,2,3,4,5,6].map(i=>`<div onclick="mechSetWounds(${i})" style="width:16px;height:16px;cursor:pointer;border-radius:1px;background:${i<=s.wounds?'#ff4444':'#1a0000'};border:1px solid #ff4444;"></div>`).join('')}</div>
-        ${s.wounds>=5?'<div style="color:#ff4444;font-size:9px;margin-top:3px;font-weight:bold;">INCONSCIENTE</div>':''}
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,0.5);border:1px solid #5c4200;padding:6px;">
+        <div style="color:#888;font-size:8px;letter-spacing:1px;margin-bottom:4px;">HERIDAS</div>
+        <div style="display:flex;gap:2px;justify-content:center;flex-wrap:wrap;">${
+          [{n:1,tn:'3+'},{n:2,tn:'5+'},{n:3,tn:'7+'},{n:4,tn:'10+'},{n:5,tn:'11+'},{n:6,tn:'💀'}].map(w=>{
+            var hit=w.n<=s.wounds;
+            var isDead=w.n===6;
+            return '<div onclick="mechSetWounds('+w.n+')" style="width:22px;height:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:'+(isDead?'12px':'8px')+';font-weight:bold;font-family:inherit;color:'+(hit?(isDead?'#fff':'#fff'):(isDead?'#555':'#ff4444'))+';background:'+(hit?'#ff4444':'#1a0000')+';border:1px solid '+(hit?'#ff4444':'#ff444466')+';'+(w.n===4?'margin-left:4px;':'')+'">'+(isDead?'💀':w.tn)+'</div>';
+          }).join('')
+        }</div>
+        ${s.wounds>=6?'<div style="color:#ff4444;font-size:8px;margin-top:2px;font-weight:bold;">MUERTO</div>':(s.wounds>=5?'<div style="color:#ff4444;font-size:8px;margin-top:2px;font-weight:bold;">INCONSCIENTE</div>':'')}
       </div>
     </div>
-    <div style="font-size:9px;color:#888;margin-top:8px;line-height:1.5;">
-      <div>TN Disparo: ${g}${hx.hit>0?' +'+hx.hit+'(calor)':''}${sensorGunMod>0?' +'+sensorGunMod+'(sens)':''}${s.wounds>0?' +'+s.wounds+'(her)':''}${moveMod>0?' +'+moveMod+'(mov)':''} = <span style="color:#ffae00;font-weight:bold;">${gunneryTotal}+</span></div>
+    <div style="font-size:9px;color:#888;line-height:1.5;">
+      <div>TN Disparo: ${g}${hx.hit>0?' +'+hx.hit+'(calor)':''}${sensorGunMod>0?' +'+sensorGunMod+'(sens)':''}${s.wounds>0?' +'+s.wounds+'(her)':''}${moveMod!==0?' '+(moveMod>0?'+':'')+moveMod+'(mov)':''} = <span style="color:#ffae00;font-weight:bold;">${gunneryTotal}+</span></div>
       <div>TN Pilotaje: ${p}${gyroMod>0?' +'+gyroMod+'(gyro)':''}${s.wounds>0?' +'+s.wounds+'(her)':''} = <span style="color:#ff8c42;font-weight:bold;">${pilotingTotal}+</span></div>
     </div>
   `;
@@ -27542,7 +28470,7 @@ Object.defineProperty(window, 'vehicleSession', {
 });
 
 function vehSwitchSlot(slot) {
-  if (slot < 0 || slot > 3) return;
+  if (slot < 0 || slot > 4) return;
   currentVehicleSlot = slot;
   vehRenderSlotTabs();
   if (vehicleState) {
@@ -27555,7 +28483,7 @@ function vehSwitchSlot(slot) {
 function vehRenderSlotTabs() {
   const container = document.getElementById('vehicle-slot-tabs');
   if (!container) return;
-  container.innerHTML = [0,1,2,3].map(i => {
+  container.innerHTML = [0,1,2,3,4].map(i => {
     const slot = vehicleSlots[i];
     const active = i === currentVehicleSlot;
     const hasUnit = !!slot.state;
@@ -29885,8 +30813,9 @@ function switchCalcTab(tab){
   if (mech) mech.style.display=(tab==='mech')?'block':'none';
   if (veh) veh.style.display=(tab==='vehicle')?'block':'none';
 
-  if (tab==='mech') mechLoadCatalog(false);
-  if (tab==='vehicle') vehicleLoadCatalog(false);
+  if (tab==='mech' && typeof mechLoadCatalog==='function') mechLoadCatalog(false);
+  if (tab==='vehicle' && typeof vehicleLoadCatalog==='function') vehicleLoadCatalog(false);
+  if (typeof showSectionTabs==='function') showSectionTabs('combat-calculator-modal', tab);
 }
 
 function switchBetweenMechVehicle(from){
@@ -29912,6 +30841,7 @@ function volverHubCalculador(){
 }
 
 // switchMechTab removed — single view layout
+
 </script>
 
 <script>
@@ -29981,6 +30911,92 @@ function volverHubCalculador(){
     if (splash) splash.style.display = 'none';
     if (video) { video.pause(); video.currentTime = 0; }
   };
+
+
+  window.toggleSidebar = function() {
+    document.body.classList.toggle('sidebar-collapsed');
+    try {
+      localStorage.setItem('sidebar-collapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
+    } catch(_) {}
+  };
+
+  // Restore sidebar state
+  try {
+    if (localStorage.getItem('sidebar-collapsed') === '1') {
+      document.body.classList.add('sidebar-collapsed');
+    }
+  } catch(_) {}
+
+
+  // Dynamic section tabs — config per section
+  var _sectionTabConfigs = {
+    'combat-calculator-modal': {
+      title: 'SIMULADOR DE COMBATE',
+      tabs: [{label:'INFANTERÍA',id:'infantry',action:"switchCalcTab('infantry')"},{label:'MECHS',id:'mech',action:"switchCalcTab('mech')"},{label:'VEHÍCULOS',id:'vehicle',action:"switchCalcTab('vehicle')"}]
+    },
+    'barracones': {
+      title: 'BARRACONES',
+      tabs: [{label:'FICHA',id:'ficha',action:"switchBarraconesTab('ficha')"},{label:'COMBATE',id:'combate',action:"switchBarraconesTab('combate')"}]
+    },
+    'tro-section': {
+      title: 'TECHNICAL READOUT',
+      tabs: []
+    },
+    'trr-hub-section': {
+      title: 'AYUDAS DE COMBATE',
+      tabs: []
+    },
+    'cronicas-hub-section': {
+      title: 'CRÓNICAS',
+      tabs: []
+    },
+    'battle-tracker': {
+      title: 'HUD TÁCTICO',
+      tabs: []
+    },
+    'pre-generacion': {
+      title: 'RECLUTAMIENTO',
+      tabs: []
+    },
+    'registro-combate': {
+      title: 'HOJA DE SERVICIO',
+      tabs: []
+    },
+    'galactic-map': {
+      title: 'MAPA ESTELAR',
+      tabs: []
+    }
+  };
+
+  window.showSectionTabs = function(sectionId, activeTabId) {
+    var bar = document.getElementById('global-section-tabs');
+    var cont = document.getElementById('section-tabs-content');
+    if (!bar || !cont || !document.body.classList.contains('theme-new')) { if(bar) bar.style.display='none'; return; }
+    var cfg = _sectionTabConfigs[sectionId];
+    if (!cfg) { bar.style.display='none'; return; }
+    var h = '<span style="color:#ffd79b;font-weight:900;padding:10px 16px;font-size:13px;letter-spacing:0.5px;">' + cfg.title + '</span>';
+    if (cfg.tabs && cfg.tabs.length) {
+      cfg.tabs.forEach(function(t){
+        var isActive = t.id === activeTabId;
+        var onclick = t.action || '';
+        h += '<span class="section-tab' + (isActive ? ' active' : '') + '" onclick="' + onclick.replace(/'/g, '\x27') + '">' + t.label + '</span>';
+      });
+    }
+    cont.innerHTML = h;
+    bar.style.display = 'block';
+  };
+
+  // Highlight active sidebar button
+  window.setSidebarActive = function(sectionName) {
+    document.querySelectorAll('.cyber-button[data-section]').forEach(function(btn) {
+      btn.classList.remove('sidebar-active');
+      if (btn.getAttribute('data-section') === sectionName) {
+        btn.classList.add('sidebar-active');
+      }
+    });
+  };
+
+  window.hideSectionTabs = function() { var b=document.getElementById('global-section-tabs'); if(b) b.style.display='none'; };
 
   window.setUiTheme = function(theme){
     const safe = (theme === 'theme-classic') ? 'theme-classic' : 'theme-new';
